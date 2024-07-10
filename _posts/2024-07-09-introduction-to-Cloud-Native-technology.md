@@ -2,9 +2,11 @@
 title: "Introduction to Cloud-Native Technology"
 categories: [cloud native, software] 
 tags: [cloud,docker,kubernetes,cloud-native]
+image:
+  path: /assets/media/cloud-native/banner.png
 ---
 
-![Cloud-Native](/assets/media/cloud-native/banner.png){: w="700" h="400" }
+<!-- ![Cloud-Native](/assets/media/cloud-native/banner.png){: w="700" h="400" } -->
 
 ## Presentation of the setup
 

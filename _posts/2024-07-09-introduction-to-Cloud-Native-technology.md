@@ -4,6 +4,8 @@ categories: [cloud native, software]
 tags: [cloud,docker,kubernetes,cloud-native]
 ---
 
+![Cloud-Native](/assets/media/cloud-native/banner.png){: w="700" h="400" }
+
 ## Presentation of the setup
 
 In this walkthrough, we will create an application that uses the main cloud-native components to illustrate their use in a cloud-native application development process.

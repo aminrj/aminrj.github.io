@@ -20,19 +20,19 @@ This tutorial walks through how to:
 
 ### A new Minikube cluster
 
-    ``` bash
-    $ minikube start -p kafka-cluster
-    😄  [kafka-cluster] minikube v1.33.1 on Darwin 14.5 (arm64)
-    ✨  Using the docker driver based on existing profile
-    👍  Starting "kafka-cluster" primary control-plane node in "kafka-cluster" cluster
-    🚜  Pulling base image v0.0.44 ...
-    🔄  Restarting existing docker container for "kafka-cluster" ...
-    🐳  Preparing Kubernetes v1.30.0 on Docker 26.1.1 ...
-    🔎  Verifying Kubernetes components...
-        ▪ Using image gcr.io/k8s-minikube/storage-provisioner:v5
-    🌟  Enabled addons: default-storageclass, storage-provisioner
-    🏄  Done! kubectl is now configured to use "kafka-cluster" cluster and "default" namespace by default
-    ```
+```shell
+$ minikube start -p kafka-cluster
+😄  [kafka-cluster] minikube v1.33.1 on Darwin 14.5 (arm64)
+✨  Using the docker driver based on existing profile
+👍  Starting "kafka-cluster" primary control-plane node in "kafka-cluster" cluster
+🚜  Pulling base image v0.0.44 ...
+🔄  Restarting existing docker container for "kafka-cluster" ...
+🐳  Preparing Kubernetes v1.30.0 on Docker 26.1.1 ...
+🔎  Verifying Kubernetes components...
+    ▪ Using image gcr.io/k8s-minikube/storage-provisioner:v5
+🌟  Enabled addons: default-storageclass, storage-provisioner
+🏄  Done! kubectl is now configured to use "kafka-cluster" cluster and "default" namespace by default
+```
 
 ### Infrastructure As Code with Terraform
 
@@ -43,57 +43,58 @@ To ease our deployment, we use Terraform as our Infrastructure As Code tool.
 
 This Terraform code declares the necessary providers, and creates the namespaces before installing the “strimiz-cluster-operator” helm-chart:
 
-``` terraform title="strimzi-kakfa.tf"
-    # Initialize terraform providers
-    provider "kubernetes" {
-      config_path = "~/.kube/config"
-    }
-    provider "helm" {
-      kubernetes {
-        config_path = "~/.kube/config"
-      }
-    }
+```terraform
+# Initialize terraform providers
+provider "kubernetes" {
+  config_path = "~/.kube/config"
+}
+provider "helm" {
+  kubernetes {
+    config_path = "~/.kube/config"
+  }
+}
 
-    # Create a namespace for observability
-    resource "kubernetes_namespace" "kafka-namespace" {
-      metadata {
-        name = "kafka"
-      }
-    }
+# Create a namespace for observability
+resource "kubernetes_namespace" "kafka-namespace" {
+  metadata {
+    name = "kafka"
+  }
+}
 
-    # Create a namespace for observability
-    resource "kubernetes_namespace" "observability-namespace" {
-      metadata {
-        name = "observability"
-      }
-    }
+# Create a namespace for observability
+resource "kubernetes_namespace" "observability-namespace" {
+  metadata {
+    name = "observability"
+  }
+}
 
-    # Helm chart for Strimzi Kafka
-    resource "helm_release" "strimzi-cluster-operator" {
-      name = "strimzi-cluster-operator"  
-      repository = "https://strimzi.io/charts/"
-      chart = "strimzi-kafka-operator"
-      version = "0.42.0"
-      namespace = kubernetes_namespace.kafka-namespace.metadata[0].name
-      depends_on = [kubernetes_namespace.kafka-namespace]
-    }
+# Helm chart for Strimzi Kafka
+resource "helm_release" "strimzi-cluster-operator" {
+  name = "strimzi-cluster-operator"  
+  repository = "https://strimzi.io/charts/"
+  chart = "strimzi-kafka-operator"
+  version = "0.42.0"
+  namespace = kubernetes_namespace.kafka-namespace.metadata[0].name
+  depends_on = [kubernetes_namespace.kafka-namespace]
+}
 ```
+{: file="strimzi-kakfa.tf"}
 
 - Apply terraform script to create the namespace and install Strimzi Kafka Operator
 
-``` bash
-  terraform init
-  ...
-  terraform apply --autor-approve
+```shell
+terraform init
+...
+terraform apply --autor-approve
 ```
 
 - Apply kubernetes yamls to create kafka resources:
 
-``` bash
+```shell
   kubectl apply -f kafka
 ```
 
-``` bash
+```shell
    $ kubectl -n kafka get po 
    NAME                                        READY   STATUS    RESTARTS   AGE 
    strimzi-cluster-operator-6948497896-swlvp   1/1     Running   0          77s
@@ -103,7 +104,7 @@ This Terraform code declares the necessary providers, and creates the namespaces
 
 Now that our Strimzi-Kafka-Operator is up and running in our newly created Kubernetes cluster, we create the Kafka cluster by applying the following yaml file with the command :
 
-```yaml title="kafka-persistent.yaml"
+```yaml 
 apiVersion: kafka.strimzi.io/v1beta2
 kind: Kafka
 metadata:
@@ -145,8 +146,9 @@ spec:
     topicOperator: {}
     userOperator: {}
 ```
+{: file="kafka-persistent.yaml"}
 
-```bash
+```shell
 kubectl apply -n kafka -f kafka-persistent.yaml
 ```
 
@@ -154,7 +156,7 @@ That’s all that we need to deploy a fully operational Kafka cluster on Kuberne
 
 In the kafka namespace, we see that our cluster is up and running and that we have 3 replicas of our cluster as well as 3 replicas of the zookeeper:
 
-```bash
+```shell
 ➜  $ kubectl -n kafka get po
 NAME                                         READY   STATUS    RESTARTS   AGE
 my-cluster-entity-operator-5d7c9f484-94zdt   2/2     Running   0          22s
@@ -170,7 +172,8 @@ strimzi-cluster-operator-6948497896-swlvp    1/1     Running   0          4m9s
 To create Kafka entities (producers, consumers, topics), we use the Kubernetes CRD installed by the Strimzi Operator to do so.
 
 For instance, we create a Kafka topic named `my-topic` by applying the following yaml code:
-```yaml title="kafka-topic.yaml"
+
+```yaml 
 apiVersion: kafka.strimzi.io/v1beta2
 kind: KafkaTopic
 metadata:
@@ -184,22 +187,22 @@ spec:
     retention.ms: 7200000
     segment.bytes: 1073741824
 ```
+{: file="kafka-topic.yaml"}
 
-```bash
-➜  $ kubectl -n kafka apply -f kafka/kafka-topic.yaml
-kafkatopic.kafka.strimzi.io/my-topic created
+```shell
+kubectl -n kafka apply -f kafka/kafka-topic.yaml kafkatopic.kafka.strimzi.io/my-topic created
 ```
 
 To produce some events to our topic, we run the following command:
 
-```bash
+```shell
 echo "Hello KafkaOnKubernetes" | kubectl -n kafka exec -i my-cluster-kafka-0 -c kafka -- \
     bin/kafka-console-producer.sh --broker-list localhost:9092 --topic my-topic
 ```
 
 To test consuming this event, we run:
 
-```bash
+```shell
 ➜  kubectl -n kafka exec -i my-cluster-kafka-0 -c kafka -- bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic my-topic --from-beginning
 Hello KafkaOnKubernetes
 ```
@@ -208,40 +211,41 @@ At this point, our Kafka cluster is up and running and we can already send and r
 
 ## Monitoring our Kafka Cluster with Grafana
 
-> :mega: 
 > **Collecting metrics is critical for understanding the health and performance of our Kafka cluster.**
+{: .prompt-warning }
 
 This is important to identify issues before they become critical and make informed decisions about resource allocation and capacity planning.
 
 For this, we will use Prometheus and Grafana to monitor Strimzi.
 
-**Prometheus consumes metrics from the running pods in your cluster when configured with Prometheus rules.
-Grafana visualizes these metrics on dashboards, providing better interface for
-monitoring.**
+> Prometheus consumes metrics from the running pods in your cluster when configured with Prometheus rules.
+> Grafana visualizes these metrics on dashboards, providing better interface for
+monitoring.
+{: .prompt-info }
 
 ### Setting-up Prometheus
 
 To deploy the Prometheus Operator to our Kafka cluster, we apply the YAML bundle resources file from the Prometheus CoreOS repository:
 
-``` bash
+```shell
   curl -s https://raw.githubusercontent.com/coreos/prometheus-operator/master/bundle.yaml > prometheus-operator-deployment.yaml
 ```
 
 Then we update the namespace with our `observability` namespace:
 
-``` bash
+```shell
 sed -i '' -e '/[[:space:]]*namespace: [a-zA-Z0-9-]*$/s/namespace:[[:space:]]*[a-zA-Z0-9-]*$/namespace: observability/' prometheus-operator-deployment.yaml
 ```
 
-> :memo: **For Linux, use this command instead:**
-
-``` bash
+> **For Linux, use this command instead:**
+```shell
 sed -E -i '/[[:space:]]*namespace: [a-zA-Z0-9-]*$/s/namespace:[[:space:]]*[a-zA-Z0-9-]*$/namespace: observability/' prometheus-operator-deployment.yaml
 ```
+{: .prompt-info}
 
 Then, deploy the Prometheus Operator:
 
-```bash
+```shell
 kubectl -n observability create -f prometheus-operator-deployment.yaml
 customresourcedefinition.apiextensions.k8s.io/alertmanagerconfigs.monitoring.coreos.com created
 customresourcedefinition.apiextensions.k8s.io/alertmanagers.monitoring.coreos.com created
@@ -261,7 +265,6 @@ service/prometheus-operator created
 ```
 ![Pods in the observability namespace](assets/media/kafka-k8s/observability-pods.png)
 
-
 Now that we have the operator up and running, we need to create the Prometheus server and configure it to watch for Strimzi CRDs in the `kafka` namespace.
 
 Note here that the name of the namespace must match otherwise Prometheus Operator won't scrap any resources we deploy.
@@ -270,7 +273,7 @@ Note here that the name of the namespace must match otherwise Prometheus Operato
 
 In order to tell Kafka CRDs to expose Prometheus metrics, we must create the PodMonitor objects for the metrics we want to monitor:
 
-```yaml title="strimzi-pod-monitor.yaml"
+```yaml 
 apiVersion: monitoring.coreos.com/v1
 kind: PodMonitor
 metadata:
@@ -353,11 +356,12 @@ spec:
       replacement: $1
       action: replace
 ```
+{: file="strimzi-pod-monitor.yaml"}
 
 Then we create the Prometheus object and configure it to look for all pods with
 the labels `app: strimzi`
 
-```bash
+```shell
 ➜  kubectl -n observability apply -f strimzi-pod-monitor.yaml
 podmonitor.monitoring.coreos.com/cluster-operator-metrics created
 podmonitor.monitoring.coreos.com/entity-operator-metrics created
@@ -366,7 +370,8 @@ podmonitor.monitoring.coreos.com/kafka-resources-metrics created
 ```
 
 Note that for this to work, we also need the corresponding ServiceAccount, and RBAC objects as follow:
-``` yaml title="prometheus.yaml"
+
+``` yaml 
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
@@ -433,10 +438,11 @@ spec:
       memory: 400Mi
   enableAdminAPI: false
 ```
+{: file="prometheus.yaml"}
 
 Then:
 
-```bash
+```shell
 ➜  kubectl -n observability create -f observability/prometheus-install/prometheus.yaml
 clusterrole.rbac.authorization.k8s.io/prometheus-server created
 serviceaccount/prometheus-server created
@@ -465,13 +471,14 @@ Otherwise, you can always refer to the git
 repository of this project referenced below.
 
 
-```bash
+```shell
 kubectl apply -f kafka-metrics.yaml -n kafka
 ```
 
 > :memo: **After running this command, Kafka Zookeeper pods start restarting one by one followed by the Kafka brokers pods until all the pods are running the updated configuration. Hence the rolling upgrade of our Kafka cluster with zero-down-time powered by Kubernetes. (check in the figure below the age value of the my-cluster-kafka-2 compared to the other two, it will be terminated then restarted last).**
 
 ![Pods in the kafka namespace](assets/media/kafka-k8s/kafka-ns-pods.png)
+
 
 For more details on how monitor Strimzi Kafka using Prometheus and Grafana, check the [Strimzi documentation](https://strimzi.io/docs/operators/latest/deploying#proc-metrics-kafka-deploy-options-str).
 
@@ -482,13 +489,13 @@ At this point, our Kafka cluster is up and running and exposes metrics for Prome
 Now we need to install Grafana using the `grafana.yaml` file then configure
 the our Prometheus as data source.
 
-```bash
+```shell
 kubectl -n observability apply -f grafana-install/grafana.yaml
 ```
 
 Once deployed, we can access the UI using port-forward, or directly using our Minikube:
 
-```bash
+```shell
 $ minikube -p kafka service grafana -n observability
 😿  service observability/grafana has no node port
 ❗  Services [observability/grafana] have type "ClusterIP" not meant to be exposed, however for local development minikube allows you to access this !
@@ -516,6 +523,7 @@ In the Dashboard tab, we click on `Import` and point to our `strimzi-kafka.json`
 Once imported, the dashboard should look something similar to the following figure:
 
 ![Grafana Dashboard for Strimzi Kafka](assets/media/kafka-k8s/strimzi-monitoring-grafana-dashboard.png)
+_Strmizi Kafka Grafana Dashboard_
 
 ## Generating some Kafka events
 
@@ -523,7 +531,7 @@ At this time, since there is no traffic going on in our Kafka cluster, some pane
 
 First, we create our first topic thanks to our Kafka Operator which is watching for any Kafka CRDs.
 
-```bash
+```shell
 kubectl apply -f kafka/kafka-topic.yaml
 ```
 
@@ -531,7 +539,7 @@ This will create our first topic `my-topic` so we can generate some events.
 
 Head to the terminal and past the following command:
 
-```bash
+```shell
 kubectl -n kafka exec -i my-cluster-kafka-0 -c kafka -- \
     bin/kafka-producer-perf-test.sh --topic my-topic --num-records 1000000 --record-size 100 --throughput 100 --producer-props bootstrap.servers=my-cluster-kafka-bootstrap:9092 --print-metrics
 501 records sent, 100.2 records/sec (0.01 MB/sec), 8.3 ms avg latency, 301.0 ms max latency.
@@ -544,7 +552,7 @@ kubectl -n kafka exec -i my-cluster-kafka-0 -c kafka -- \
 
 Then, we run the consumer with:
 
-```bash
+```shell
 kubectl -n kafka exec -i my-cluster-kafka-0 -c kafka -- \
     bin/kafka-consumer-perf-test.sh --bootstrap-server my-cluster-kafka-bootstrap:9092 --topic my-topic --from-latest --messages 100000000 --print-metrics --show-detailed-stats
 ```
@@ -567,7 +575,7 @@ To enable audit logs on a Minikube:
 
 Using the official [kubernetes documentation](https://kubernetes.io/docs/tasks/debug/debug-cluster/audit/) as reference, we login into our minikube VM and configure the `kube-apiserver` as follow:
 
-``` bash 
+```shell 
 $ minikube -p kafka-cluster ssh
 # we create a backup copy of the kube-apiserver manifest file in case we mess things up 😄
 docker@minikube:~$ sudo cp /etc/kubernetes/manifests/kube-apiserver.yaml .
@@ -579,7 +587,7 @@ We need to instruct the `kube-apiserver` to start using an `audit-policy` that
 will define what logs we want to capture, then where to which file we want to send them.
 This is done by adding these two lines bellow the kube-apiserver command:
 
-``` bash
+```shell
   - command:
     - kube-apiserver
     # add the following two lines
@@ -594,7 +602,7 @@ This is done by adding these two lines bellow the kube-apiserver command:
 With both files, we need need to configure the `volumes` and `volumeMount` into the
 `kube-apiserver` container. Scroll down into the same file and add these lines:
 
-``` bash
+```shell
 ...
 volumeMounts:
   - mountPath: /etc/kubernetes/audit-policy.yaml
@@ -607,7 +615,7 @@ volumeMounts:
 
 And then:
 
-``` bash
+```shell
 ...
 volumes:
 - name: audit
@@ -631,14 +639,14 @@ However, at this point, even if you are super carefull, it wont start... 😈
 This is because, we need to create the audit-policy file at the location we gave to the `kube-apiserver`.
 To keep things simple, we will use the audit-policy provided by the kubernetes documentation.
 
-``` bash
+```shell
 docker@minikube:~$ cd /etc/kubernetes/
 docker@minikube:~$ sudo curl -sLO https://raw.githubusercontent.com/kubernetes/website/main/content/en/examples/audit/audit-policy.yaml
 ```
 
 Now, everything should be Ok for the `kuber-apiserver` pod to come back to a running state.
 
-``` bash
+```shell
 docker@minikube:~$ exit
 $ kubectl get po -n kube-system
 NAME                               READY   STATUS    RESTARTS   AGE
@@ -656,7 +664,7 @@ storage-provisioner                1/1     Running   0          1h
 Now, we can log back to the Minikube VM to check that our audit logs are
 correctly generated in the provided audit.log file.
 
-``` bash
+```shell
 $ minikube ssh
 docker@minikube:~$ sudo cat /var/log/kubernetes/audit/audit.log
 ...

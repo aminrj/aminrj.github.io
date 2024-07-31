@@ -3,7 +3,7 @@ title: "Kafka Cluster install on Kubernetes and Monitoring with Grafana"
 categories: [cloud native, event-driven] 
 tags: [kafka,kubernetes,cloud-native, event-driven, grafana]
 image:
-  path: /assets/media/kafka-k8s/banner.png
+  path: /assets/media/kafka-k8s/banner2.png
 ---
 
 With Kubernetes, Kafka clusters can be managed declaratively, reducing the

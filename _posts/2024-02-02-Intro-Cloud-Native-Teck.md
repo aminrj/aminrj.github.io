@@ -1,12 +1,10 @@
 ---
 title: "Introduction to Cloud-Native Technology"
-categories: [cloud native, software] 
-tags: [cloud,docker,kubernetes,cloud-native]
+categories: [cloud native] 
+tags: [terraform, kubernetes,cloud-native, grafana]
 image:
-  path: /assets/media/cloud-native/banner.png
+  path: /assets/media/cloud-native/cloud-native-banner.png
 ---
-
-<!-- ![Cloud-Native](/assets/media/cloud-native/banner.png){: w="700" h="400" } -->
 
 ## Presentation of the setup
 
@@ -27,7 +25,7 @@ This will allow your applicatoin to run anywhere without needing to install thos
 
 The first step is to install Docker.
 Docker is distribued as a developer tool that is available for most platforms as Docker Desktop.
-You can check the link (https://www.docker.com/products/docker-desktop) for platform spefic installations.
+You can check the [link](https://www.docker.com/products/docker-desktop) for platform spefic installations.
 
 I have it already installed on my machine so I won't go through the installation process here.
 
@@ -83,9 +81,10 @@ The only difference is that the output is a container image.
 
 Our app is a simple Python script:
 
-```py title="hello.py"
+```py
 print("Hello Cloud-Native")
 ```
+{: file="hello.py"}
 
 We need to create a Dockerfile, pick a base container image to use as the starting point, configure Python, and add the program:
 

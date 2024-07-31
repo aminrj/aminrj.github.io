@@ -2,6 +2,8 @@
 title: "ArgoCD Deployment Patterns"
 categories: [cloud native, CICD] 
 tags: [cloud,argo-cd,kubernetes,cloud-native]
+image:
+  path: /assets/media/argocd/ArgoCD-deployment-patterns.png
 ---
 
 Kubernetes has emerged as the de-facto platform for modern containerized applications.

@@ -145,7 +145,7 @@ These logs should be sent to a centralized Security Information and Event
 Management (SIEM) system for analysis, helping detect potential threats and
 unusual behavior.
 
-![API security logging](assets/media/cloud-native/api-security-audit-logs.png)
+<!-- ![API security logging](assets/media/cloud-native/api-security-audit-logs.png) -->
 
 ### Implementing Access Control
 

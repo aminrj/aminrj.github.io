@@ -4,17 +4,17 @@ title: Amine Raji
 icon: fas fa-info-circle
 order: 4
 ---
-I am a Cloud Security Specialist and CloudSec Lead. I am passionate about
-InfoSec, DevSecOps, and Cloud Security Automation. I am a Certified Information
-Systems Security Professional (CISSP).  
+I’m a Cloud Security Specialist and CloudSec Lead, living at the intersection of
+InfoSec, DevSecOps, and automation. My mission? To make the cloud a safer place,
+one smart automation at a time.
 
-Since joining the cybersecurity industry following a stint as a software engineer, I’ve has
-focused on offensive security testing in cloud-native environments and
-organisations.
+With a background in software engineering, I leapt into cybersecurity and found
+my passion in offensive security testing, specifically for cloud-native
+environments and innovative organizations. Today, I’m leveraging that experience
+to help Fortune 500 companies level up their attack detection and defenses in
+the cloud.
 
-More recently, I’ve been putting that experience to use helping fortune 500
-enterprises validate and enhance their attack detection capabilities,
-particularly in the cloud space.
-
-I hold a PhD in Computer Science from the European University of Brittany
-(France), along with the several Information Security certificates.
+I’ve got the creds to back it up too— a PhD in Computer Science from the
+European University of Brittany (France), and a few other InfoSec certifications
+(CISSP, CEH, GIAC , Azure Administrator, Microsoft AI engineer, Certified
+Kubernetes Administrator, ...) that say, "Yes, I really do love security.

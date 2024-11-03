@@ -5,7 +5,6 @@ tags: [API security,kubernetes,cloud-native,secure development]
 image:
   path: /assets/media/cloud-native/api-security-banner.png
 ---
-## Introduction
 
 When designing a secure API, various aspects must be considered to safeguard
 your system against potential threats.

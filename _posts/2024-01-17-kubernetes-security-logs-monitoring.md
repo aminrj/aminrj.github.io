@@ -1,9 +1,21 @@
 ---
-title: "Monitoring K8s audit logs with Loki, Grafana & Prometheus"
-categories: [cloud native, cloud security] 
-tags: [terraform, kubernetes,cloud-native,loki, logging, grafana]
+title: Monitoring K8s audit logs with Loki, Grafana & Prometheus
+categories:
+  - cloud native
+  - cloud security
+tags:
+  - terraform
+  - kubernetes
+  - cloud-native
+  - loki
+  - logging
+  - grafana
 image:
   path: /assets/media/k8s/k8s-security-logs-loki.png
+slug: monitoring-k8s-audit-logs-loki-grafana-prometheus
+description: Bootstrap a security-monitored Kubernetes cluster using Kubernetes vanilla audit capability
+date: 2023-05-15T07:15:49.000Z
+preview: /media/k8s/k8s-security-logs-loki.png
 ---
 
 In this tutorial, we will monitor Kubernetes audit logs using the Grafana, Loki, Promtail and Prometheus stack.

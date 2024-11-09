@@ -1,9 +1,19 @@
 ---
-title: "Kafka Cluster install on Kubernetes and Monitoring with Grafana"
-categories: [cloud native, event-driven] 
-tags: [kafka,kubernetes,cloud-native, event-driven, grafana]
+title: "Monitoring Kafka on Kubernetes with Grafana: Step-by-Step"
+categories:
+  - cloud native
+  - event-driven
+tags:
+  - kafka
+  - kubernetes
+  - cloud-native
+  - event-driven
+  - grafana
 image:
   path: /assets/media/kafka-k8s/banner2.png
+description: Deploy a Kafka cluster within Kubernetes using Strimzi Kafka Operator and enable monitoring of usefull Kafka metrics with Prometheus and Grafana.
+date: 2024-07-16T07:19:50.000Z
+preview: /media/kafka-k8s/banner2.png
 ---
 
 With Kubernetes, Kafka clusters can be managed declaratively, reducing the

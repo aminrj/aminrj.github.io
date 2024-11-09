@@ -12,24 +12,14 @@
           "type": "string"
         },
         {
-          "title": "description",
-          "name": "description",
-          "type": "string"
-        },
-        {
-          "title": "date",
-          "name": "date",
-          "type": "datetime"
+          "title": "categories",
+          "name": "categories",
+          "type": "categories"
         },
         {
           "title": "tags",
           "name": "tags",
           "type": "tags"
-        },
-        {
-          "title": "categories",
-          "name": "categories",
-          "type": "categories"
         },
         {
           "title": "image",
@@ -42,11 +32,6 @@
               "type": "string"
             }
           ]
-        },
-        {
-          "title": "preview",
-          "name": "preview",
-          "type": "string"
         }
       ]
     }

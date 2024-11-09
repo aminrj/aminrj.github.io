@@ -1,9 +1,17 @@
 ---
-title: "Introduction to Cloud-Native Technology"
-categories: [cloud native] 
-tags: [terraform, kubernetes,cloud-native, grafana]
+title: Introduction to Cloud-Native Technology
+categories:
+  - cloud native
+tags:
+  - terraform
+  - kubernetes
+  - cloud-native
+  - grafana
 image:
   path: /assets/media/cloud-native/cloud-native-banner.png
+description: Brief introduction to Cloud-Native technology and how everything fits together.
+preview: /media/cloud-native/banner.png
+date: 2023-02-21T11:28:00.000Z
 ---
 
 ## Presentation of the setup
@@ -13,8 +21,6 @@ In this walkthrough, we will create an application that uses the main cloud-nati
 This is the first first setup of our example that we will be using throughout
 the course, so if some concepts will be briefly introduced to get the tutorial
 up and running.
-
-The detailed explanation will be provided throughout the upcoming sections.
 
 ## Containerizing apps
 

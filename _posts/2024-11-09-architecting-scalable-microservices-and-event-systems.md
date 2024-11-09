@@ -1,17 +1,19 @@
 ---
 title: Architecting Scalable Microservices and Event Systems
 description: How Kubernetes and Apache Kafka can help manage large distributed systems
-date: 2024-11-09T06:35:06.638Z
+date: 2024-09-16T05:35:06.000Z
 tags:
     - cloud-native
     - event-driven
     - kafka
     - kubernetes
     - scalable architectures
-categories: []
+categories:
+    - cloud native
+    - event-driven
 slug: architecting-scalable-microservices-event-systems
 image:
-  path: /assets/media/cloud-native/kubernetes-kafka.png
+    path: /assets/media/cloud-native/kubernetes-kafka.png
 preview: /media/cloud-native/kubernetes-kafka.png
 ---
 

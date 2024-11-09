@@ -1,9 +1,17 @@
 ---
-title: "Secure API Development"
-categories: [API security, cloud native, cloud security] 
-tags: [API security,kubernetes,cloud-native,secure development]
+title: Secure API Development
+categories:
+  - API security
+  - cloud native
+  - cloud security
+tags:
+  - API security
+  - kubernetes
+  - cloud-native
+  - secure development
 image:
   path: /assets/media/cloud-native/api-security-banner.png
+slug: secure-api-development
 ---
 
 When designing a secure API, various aspects must be considered to safeguard

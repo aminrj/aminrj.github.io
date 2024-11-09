@@ -16,7 +16,8 @@ timezone: Europe/Stockholm
 
 title: Amine Raji # the main title
 
-tagline: CyberSecurity Specialist located in Gothenburg, Sweden # the tagline below the title
+tagline: Cloud Cybersecurity Leader located in Gothenburg, Sweden # the tagline below the title
+# tagline: I built my security foundation as a military officer, where protection was mission-critical. Today, I lead cloud security for Volvo Cars' connected vehicles, bringing the same strategic precision that guided my work in defense and national infrastructure. From military operations to banking security at Société Générale, and doctoral research with Airbus, I turn complex security challenges into practical, robust solutions.
 
 description: >- # used by seo meta and the atom feed
   Experienced Cloud Security Specialist and Software Engineering professional. I am

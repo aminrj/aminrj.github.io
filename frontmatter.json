@@ -29,11 +29,6 @@
           "type": "image"
         },
         {
-          "title": "Is in draft",
-          "name": "draft",
-          "type": "draft"
-        },
-        {
           "title": "Tags",
           "name": "tags",
           "type": "tags"
@@ -42,6 +37,18 @@
           "title": "Categories",
           "name": "categories",
           "type": "categories"
+        },
+        {
+          "title": "image",
+          "name": "image",
+          "type": "fields",
+          "fields": [
+            {
+              "title": "path",
+              "name": "path",
+              "type": "string"
+            }
+          ]
         }
       ]
     }

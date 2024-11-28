@@ -87,19 +87,19 @@ public CAs while maintaining control over their most sensitive digital assets.
 
 Consider these scenarios where a private CA proves invaluable:
 
-1. Healthcare Organizations
+#### Healthcare Organizations
 
 - Securing patient data transmission between internal systems
 - Authenticating medical devices on the network
 - Ensuring compliance with health data protection regulations
 
-2. Financial Institutions
+#### Financial Institutions
 
 - Securing internal banking applications
 - Authenticating automated trading systems
 - Protecting sensitive financial transactions
 
-3. Government Agencies
+#### Government Agencies
 
 - Maintaining classified communication channels
 - Securing inter-department data exchange

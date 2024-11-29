@@ -1,5 +1,6 @@
 ---
-title: "IoT with Zigbee2Mqtt: Raspberry Pi & Home Assistant Guide"
+# title: "8 reasons on how to setup your home automation"
+title: "A practical guide to IoT with Zigbee2Mqtt RaspberryPi & Home Assistant"
 categories:
   - Home Assistant
   - IoT
@@ -11,16 +12,18 @@ image:
   path: /assets/media/iot/homeassistant_zigbee2mqtt.png
 ---
 
-In this walkthrough, I install Home Assistant on a Raspberrypi using Docker and setup Zigbee2Mqtt to communicate with Zigbee IoT over the MQTT protocol.
+In this hands-on walkthrough, I install Home Assistant on a Raspberrypi using
+Docker and setup Zigbee2MQTT to communicate with Zigbee enabled IoT devices over
+the MQTT protocol.
 
 The diagram of this setup is shown in the figure above.
 
-But fist, let's talk about the why before jumping to the how.
+But first, let's talk about the why before jumping to the how.
 
 # 1. Why this setup
 
-Setting up Home Assistant with Zigbee2MQTT, Mosquitto, and Docker on a Raspberry
-Pi 4 is an excellent choice for a smart home environment.
+Setting up Home Assistant with Zigbee2MQTT, Mosquitto, and Docker on a RPi4 is
+an excellent choice for a smart home environment.
 
 Here are the key benefits of this setup:
 
@@ -30,11 +33,19 @@ Home Assistant serves as the central hub for managing and automating all your
 smart home devices, providing a single interface for controlling Zigbee
 devices, lights, sensors, and more.
 
+[MQTT](https://mqtt.org/) (Message Queuing Telemetry Transport) is a lightweight,
+publish-subscribe-based messaging protocol that allows devices and systems to
+exchange data with each other in a scalable and efficient manner.
+
+It's often used for IoT applications where devices need to send or receive
+messages at irregular intervals, making it suitable for use cases such as smart
+home automation.
+
 By integrating Zigbee2MQTT and Mosquitto, it becomes possible to control
 Zigbee devices alongside devices using other protocols (e.g., Wi-Fi, Z-Wave,
 Bluetooth).
 
-## 2. Cost-Effective Solution
+## 2. Cost-Effective and Flexible Solution
 
 Using a Raspberry Pi 4 keeps costs low while offering sufficient processing
 power to handle a smart home ecosystem.
@@ -42,16 +53,14 @@ power to handle a smart home ecosystem.
 There's no need to invest in expensive proprietary hubs for Zigbee devices since
 Zigbee2MQTT bridges Zigbee to MQTT.
 
-## 3. Zigbee Device Flexibility
-
 Zigbee2MQTT allows you to connect and manage devices from different
 manufacturers, bypassing proprietary ecosystems (e.g., Philips Hue, Aqara, or
 IKEA Tradfri).
 
-You’re not locked into a single-brand hub, enabling you to mix and match devices
+You're not locked into a single-brand hub, enabling you to mix and match devices
 based on functionality and price.
 
-## 4. Platform Independence with MQTT
+## 3. Platform Independence with MQTT
 
 Mosquitto MQTT serves as the message broker, enabling lightweight and fast
 communication between devices and Home Assistant.
@@ -59,7 +68,10 @@ communication between devices and Home Assistant.
 MQTT is an open standard, ensuring compatibility with a wide range of devices
 and services.
 
-## 5. Docker for Modularity and Easy Management
+| A side note here, most smart cars today communicate with their Cloud using MQTT.
+This is to illustrate how mature and stable the protocol is.
+
+## 4. Docker for Modularity and Easy Management
 
 Docker simplifies the installation, updating, and maintenance of services like
 Home Assistant, Mosquitto, and Zigbee2MQTT.
@@ -68,7 +80,7 @@ Home Assistant, Mosquitto, and Zigbee2MQTT.
 - Easy to back up, restore, or migrate the setup to another system.
 - Isolation ensures one service does not interfere with another.
 
-## 6. Scalability
+## 5. Scalability
 
 This setup can be easily scaled up to:
 
@@ -77,15 +89,18 @@ This setup can be easily scaled up to:
 - Incorporate additional smart home services and automations within Home
   Assistant.
 
-## 7. Local Control and Privacy
+## 6. Local Control, Privacy and Power Economy
 
 Everything runs locally on the Raspberry Pi, ensuring:
 
 - No reliance on cloud services for device operation.
 - Increased privacy and security as data stays within your home network.
-- Faster response times since there’s no latency from cloud servers.
+- Faster response times since there's no latency from cloud servers.
 
-## 8. Open Source and Community Support
+Also, the Raspberry Pi 4 consumes very little energy compared to traditional servers,
+making it an eco-friendly solution for a 24/7 smart home controller.
+
+## 7. Open Source and Community Support
 
 The setup is powered by open-source software (Home Assistant, Zigbee2MQTT,
 Mosquitto), backed by strong community support.
@@ -93,26 +108,12 @@ Mosquitto), backed by strong community support.
 Frequent updates and a large pool of user-generated integrations ensure your
 setup can adapt to new devices and technologies.
 
-## 9. Customization and Automation
-
 Home Assistant's powerful automation engine allows for highly customizable rules
 and workflows, such as:
 
 - Automatically turning off lights when no motion is detected.
 - Sending notifications based on sensor data (e.g., high humidity, water leaks).
 - Controlling devices based on time, weather, or other triggers.
-
-## 10. Optimized for Low Power Consumption
-
-The Raspberry Pi 4 consumes very little energy compared to traditional servers,
-making it an eco-friendly solution for a 24/7 smart home controller.
-
-## 11. Future-Proof with Zigbee2MQTT
-
-Zigbee2MQTT is regularly updated to support new devices and features.
-
-It also bridges the gap for newer smart home standards like Matter, which
-promises to unify smart home ecosystems.
 
 ### Use Case Example
 
@@ -125,15 +126,15 @@ Imagine automating your entire home's lights, sensors, and appliances:
 
 This setup seamlessly integrates diverse devices and creates powerful, energy-saving automations.
 
-# 2. Walktrhough
+# 2. The Walkthrough
 
-## 0. Prerequisits
+## 0. Prerequisite
 
 There are some prerequisits that I won't present in this walkthrough.
 
 You need three things:
 
-1. Have you RaspberryPi OS installed and connected to the network
+1. Have your RaspberryPi OS installed and connected to the network
 2. Have a Zigbee dongle attached to it
 3. Be able to ssh into your RaspberryPi
 

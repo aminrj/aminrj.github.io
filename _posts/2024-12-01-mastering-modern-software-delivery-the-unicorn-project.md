@@ -14,7 +14,7 @@ As a specialist in software architectures, Security and DevOps, I found the book
 resonates deeply with the realities of guiding teams to deliver value
 efficiently.
 
-![The Unicorn Project](/assets/media/cloud-native/unicorn-1.jpeg)
+<!-- ![The Unicorn Project](/assets/media/cloud-native/unicorn-1.jpeg) -->
 
 Here are some key takeaways:
 
@@ -40,7 +40,7 @@ Each ideal is a cornerstone for driving product success:
 - **Customer Focus**: Continuously align product decisions with user needs. This
   ensures every architectural decision directly contributes to business value.
 
-> "The opposit of technical debt = "When we can safely, quickly reliably,
+> "The opposit of technical debt = "When we can safely, quickly, reliably and
 > securely achieve all goals, dreams and aspirations of our business..."
 > Gene Kim, 2019
 

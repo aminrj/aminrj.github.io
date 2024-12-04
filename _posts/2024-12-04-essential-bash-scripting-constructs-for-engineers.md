@@ -1,9 +1,24 @@
 ---
 title: 10 Bash Scripting Constructs Every Engineer Should Know
-categories: []
-tags: []
+categories:
+  - automation
+  - Bash scripting
+  - engineering
+  - programming
+  - system administration.
+tags:
+  - automation
+  - Bash scripting
+  - engineering
+  - scripting constructs.
+  - server logs
 image:
-  path: "/assets/media/iot/bash.png"
+  path: /assets/media/iot/bash.png
+keywords:
+  - Automation
+  - Bash
+  - scripting
+slug: 10-bash-scripting-constructs-engineer
 ---
 
 <!-- ![bash-scripting](/assets/media/iot/bash.png) -->
@@ -38,17 +53,18 @@ trap 'echo "Error on line $LINENO"; exit 1' ERR
 
 Good scripts are modular. Let’s define a function to parse log files:
 
+```bash
 parse_logs() {
 
-```bash
-local file="$1"
-local output="$2"
+  local file="$1"
+  local output="$2"
 
-while read -r line; do
+  while read -r line; do
     if [[ "$line" == *"FAILED LOGIN"* ]]; then
         echo "$line" >> "$output"
     fi
-done < "$file"
+
+  done < "$file"
 }
 ```
 

@@ -291,7 +291,6 @@ done
 **Why Use Them:**
 
 - Associative arrays provide a natural way to handle structured data without relying on external tools like `awk` or `sed`.
-  **Motivation:**
 - Useful for configurations, lookups, and organizing data dynamically in scripts.
 
 ### 12. Heredocs for Multi-line Input
@@ -319,7 +318,6 @@ echo "$email_body" | mail -s "Deployment Reminder" team@example.com
 **Why Use Them:**
 
 - They eliminate the need for complex string concatenations or external files.
-  **Motivation:**
 - Heredocs simplify handling multi-line content, like logs, templates, or commands, directly within your script.
 
 ### 13. `eval` for Dynamic Command Execution
@@ -346,7 +344,6 @@ echo "$greeting"
 **Why Use It:**
 
 - `eval` provides flexibility for handling dynamically generated commands or input.
-  **Motivation:**
 - Use with caution: While powerful, improper use of `eval` can lead to security risks if handling untrusted input.
 
 ### 14. Subshells for Isolated Execution
@@ -368,7 +365,6 @@ echo "Back in $current_dir"
 **Why Use Them:**
 
 - Subshells allow temporary changes to variables, environments, or directories without impacting the main shell.
-  **Motivation:**
 - Ideal for running isolated operations that don’t pollute or modify the parent environment.
 
 ### 15. Named Pipes (FIFOs)
@@ -395,7 +391,6 @@ rm my_pipe
 **Why Use Them:**
 
 - Named pipes enable asynchronous communication between processes, allowing data to flow without temporary files.
-  **Motivation:**
 - Useful for real-time processing scenarios, such as feeding logs or streaming data between commands.
 
 ## Conclusion

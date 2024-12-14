@@ -46,11 +46,16 @@ When you operate your own CA, you maintain full control over:
 
 By running your own CA, you:
 
-- Eliminate dependence on external certificate providers
-- Reduce the attack surface by keeping all certificate operations in-house
-- Maintain a clear chain of custody for all certificates
-- Can immediately revoke compromised certificates
-- Mitigate risks of certificate authorities being compromised or coerced
+- **Eliminate dependence on external certificate providers**:
+  By running your own CA, you can control the issuance and management of certificates without relying on third-party providers. This ensures that your organization has full sovereignty over its digital identities.
+- **Reduce the attack surface by keeping all certificate operations in-house:**
+  Running your own CA reduces the risk of vulnerabilities introduced during the interaction with external certificate authorities. By controlling the process, you minimize the potential entry points for attackers to compromise certificates.
+- **Maintain a clear chain of custody for all certificates:**
+  Having control over the CA allows you to securely manage and track certificates throughout their lifecycle. This transparency is crucial in maintaining trust and integrity within your organization's digital environment.
+- **Can immediately revoke compromised certificates**:
+  With an in-house CA, you can swiftly take action against rogue or compromised certificates without relying on external authorities. Quick revocation ensures that malicious entities cannot exploit the compromised certificate for unauthorized access.
+- **Mitigate risks of certificate authorities being compromised or coerced:**
+  Running your own CA eliminates the risk of third-party CAs being exploited or coerced into issuing fraudulent or compromised certificates. By maintaining control, you can prevent such scenarios from compromising your organization's security and reputation.
 
 #### Threat Mitigation
 

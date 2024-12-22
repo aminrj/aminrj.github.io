@@ -14,17 +14,13 @@ timezone: Europe/Stockholm
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-title: Amine Raji # the main title
+title: Amine Raji, PhD # the main title
 
-tagline: Cloud Cybersecurity Leader located in Gothenburg, Sweden # the tagline below the title
+tagline: Cybersecurity Expert located in Gothenburg, Sweden # the tagline below the title
 # tagline: I built my security foundation as a military officer, where protection was mission-critical. Today, I lead cloud security for Volvo Cars' connected vehicles, bringing the same strategic precision that guided my work in defense and national infrastructure. From military operations to banking security at Société Générale, and doctoral research with Airbus, I turn complex security challenges into practical, robust solutions.
 
 description: >- # used by seo meta and the atom feed
-  Experienced Cloud Security Specialist and Software Engineering professional. I am
-  passionate about computers, software, cybersecurity, DevOps, Cloud and Security Automation. I
-  have amassed through my career a bunch of academic and professional
-  certificates (PhD in CS, CISSP, CEH, AWS, Azure, GIAC, CKA, etc.) and I am
-  always eager to learn more.
+  Amine Raji, PhD. Senior Cybersecurity Researcher and Experienced Software Engineering professional.
 
 # Fill in the protocol & hostname for your site.
 # e.g. 'https://username.github.io', note that it does not end with a '/'.
@@ -39,7 +35,7 @@ twitter:
 social:
   # Change to your full name.
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
-  name: Amine Raji
+  name: Amine Raji, PhD
   email: amine.raji.perso@gmail.com
   links:
     # The first element serves as the copyright owner's link

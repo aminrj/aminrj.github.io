@@ -25,13 +25,19 @@ slug: 10-bash-scripting-constructs-engineer
 
 <!-- ## Mastering Bash for Engineers: 10 Constructs to Rule Them All -->
 
-Bash scripting is a superpower for engineers. Whether automating repetitive tasks, gluing together tools, or managing systems, Bash is always there, simple yet powerful.
+Bash scripting is a superpower for engineers.
+Whether automating repetitive tasks, gluing together tools,
+or managing systems, Bash is always there, simple yet powerful.
 
-But like any power, it requires mastery. Let me walk you through 10 essential Bash constructs through the lens of a plausible scenario.
+But like any power, it requires mastery.
+Let me walk you through 10 essential Bash constructs through the
+lens of a plausible scenario.
 
 ## The Scenario
 
-You’re tasked with analyzing server logs from multiple files, extracting failed login attempts, and generating a report. It’s a routine problem, but with Bash, we’ll make it elegant and reusable.
+You’re tasked with analyzing server logs from multiple files,
+extracting failed login attempts, and generating a report.
+It’s a routine problem, but with Bash, we’ll make it elegant and reusable.
 
 ### 1. Setting the Stage with a Script
 

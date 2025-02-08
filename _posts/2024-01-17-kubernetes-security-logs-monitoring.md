@@ -28,7 +28,7 @@ Our setup is described in the figure bellew:
 
 We start by creating a new Kubernetes cluster using Minikube so that you can redo this tutorial and test the setup before trying it on a cloud deployed cluster.
 
-``` bash
+```bash
 $ minikube start
 😄  minikube v1.32.0 on Darwin 14.2.1 (arm64)
 ✨  Using the docker driver based on existing profile
@@ -50,7 +50,7 @@ To enable audit logs on a Minikube:
 
 Using the official [kubernetes documentation](https://kubernetes.io/docs/tasks/debug/debug-cluster/audit/) as reference, we login into our minikube VM and configure the `kube-apiserver` as follow:
 
-``` bash 
+```bash
 $ minikube ssh
 # we create a backup copy of the kube-apiserver manifest file in case we mess things up 😄
 docker@minikube:~$ sudo cp /etc/kubernetes/manifests/kube-apiserver.yaml .
@@ -62,13 +62,13 @@ We need to instruct the `kube-apiserver` to start using an `audit-policy` that
 will define what logs we want to capture, then where to which file we want to send them.
 This is done by adding these two lines bellow the kube-apiserver command:
 
-``` bash
+```bash
   - command:
     - kube-apiserver
     # add the following two lines
     - --audit-policy-file=/etc/kubernetes/audit-policy.yaml
     - --audit-log-path=/var/log/kubernetes/audit/audit.log
-    # end 
+    # end
     - --advertise-address=192.168.49.2
     - --allow-privileged=true
     - --authorization-mode=Node,RBAC
@@ -77,7 +77,7 @@ This is done by adding these two lines bellow the kube-apiserver command:
 With both files, we need need to configure the `volumes` and `volumeMount` into the
 `kube-apiserver` container. Scroll down into the same file and add these lines:
 
-``` bash
+```bash
 ...
 volumeMounts:
   - mountPath: /etc/kubernetes/audit-policy.yaml
@@ -90,7 +90,7 @@ volumeMounts:
 
 And then:
 
-``` bash
+```bash
 ...
 volumes:
 - name: audit
@@ -114,14 +114,14 @@ However, at this point, even if you are super carefull, it wont start... 😈
 This is because, we need to create the audit-policy file at the location we gave to the `kube-apiserver`.
 To keep things simple, we will use the audit-policy provided by the kubernetes documentation.
 
-``` bash
+```bash
 docker@minikube:~$ cd /etc/kubernetes/
 docker@minikube:~$ sudo curl -sLO https://raw.githubusercontent.com/kubernetes/website/main/content/en/examples/audit/audit-policy.yaml
 ```
 
 Now, everything should be Ok for the `kuber-apiserver` pod to come back to a running state.
 
-``` bash
+```bash
 docker@minikube:~$ exit
 $ kubectl get po -n kube-system
 NAME                               READY   STATUS    RESTARTS   AGE
@@ -131,7 +131,7 @@ kube-apiserver-minikube            1/1     Running   0          13s
 kube-controller-manager-minikube   1/1     Running   0          1h
 kube-proxy-jcn6v                   1/1     Running   0          1h
 kube-scheduler-minikube            1/1     Running   0          1h
-storage-provisioner                1/1     Running   0          1h 
+storage-provisioner                1/1     Running   0          1h
 ```
 
 ### 3. Check audit logs are generated
@@ -139,7 +139,7 @@ storage-provisioner                1/1     Running   0          1h
 Now, we can log back to the Minikube VM to check that our audit logs are
 correctly generated in the provided audit.log file.
 
-``` bash
+```bash
 $ minikube ssh
 docker@minikube:~$ sudo cat /var/log/kubernetes/audit/audit.log
 ...
@@ -168,7 +168,7 @@ Since I already published and article on how to setup a similar monitoring stack
 For now, just create this terraform file and run `terraform apply` in the same
 folder to do the trick:
 
-``` terraform 
+```terraform
 # Initialize terraform providers
 provider "kubernetes" {
   config_path = "~/.kube/config"
@@ -226,52 +226,52 @@ This folder will hold all our configuration for the stack to get the audit logs 
 
 Here is the content for each file:
 
-``` yaml 
+```yaml
 persistence.enabled: true
 persistence.size: 10Gi
 persistence.existingClaim: grafana-pvc
 persistence.accessModes[0]: ReadWriteOnce
 persistence.storageClassName: standard
-  
+
 adminUser: admin
 adminPassword: grafana
 
-datasources: 
- datasources.yaml:
-   apiVersion: 1
-   datasources:
-    - name: Loki
-      type: loki
-      access: proxy
-      orgId: 1
-      url: http://loki-gateway.observability.svc.cluster.local
-      basicAuth: false
-      isDefault: true
-      version: 1
+datasources:
+  datasources.yaml:
+    apiVersion: 1
+    datasources:
+      - name: Loki
+        type: loki
+        access: proxy
+        orgId: 1
+        url: http://loki-gateway.observability.svc.cluster.local
+        basicAuth: false
+        isDefault: true
+        version: 1
 ```
+
 {: file="values/grafana.yaml"}
 
-``` yaml
+```yaml
 loki:
   auth_enabled: false
   commonConfig:
     replication_factor: 1
   storage:
-    type: 'filesystem'
+    type: "filesystem"
 singleBinary:
   replicas: 1
 ```
+
 {: file="values/loki.yaml"}
 
-
-``` yaml
+```yaml
 # Add Loki as a client to Promtail
 config:
   clients:
     - url: http://loki-gateway.observability.svc.cluster.local/loki/api/v1/push
 
-
-# Scraping kubernetes audit logs located in /var/log/kubernetes/audit/
+  # Scraping kubernetes audit logs located in /var/log/kubernetes/audit/
   snippets:
     scrapeConfigs: |
       - job_name: audit-logs
@@ -282,6 +282,7 @@ config:
               job: audit-logs
               __path__: /var/log/host/kubernetes/**/*.log
 ```
+
 {: file="values/promtail.yaml"}
 
 Now, everything is setup for our monitoring stack to be able to ingest audit

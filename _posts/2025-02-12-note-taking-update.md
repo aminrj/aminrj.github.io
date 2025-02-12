@@ -1,4 +1,21 @@
-# Improving my note taking workflow
+---
+title: Improving My Note Taking Workflow
+categories:
+  - productivity
+  - tools
+tags:
+  - notes
+  - neoVim
+  - workflow
+  - automation
+image:
+  path: /assets/media/notes/lazyvim.png
+keywords:
+  - Automation
+  - Bash
+  - scripting
+slug: improving-my-note-taking-workflow
+---
 
 Why I switched from Notion and Vimwiki to NeoVim and Obsidian ?
 
@@ -56,6 +73,8 @@ But, this time, I gave a chance and started exploring the key differences.
 I was gladly surprised by philosophy behind it (better community) and the
 convenience of using plugins that took my Vim experience to another level.
 
+![My notes in NeoVim](/assets/media/notes/neovim-notes.png)
+
 ## MarkDown everywhere
 
 Also, using MarkDown instead of VimWiki was another positive switch.
@@ -82,6 +101,8 @@ you notes) in my iCloud storage.
 
 I know that this is not as private as my own storage and encryption, but for
 now, I can live with it knowing that Apple has far more private data on me.😳
+
+![My notes in Obsidian](/assets/media/notes/obsidian.png)
 
 ## Enough story-telling and let's see how it works
 
@@ -130,6 +151,8 @@ Here is my setup:
    spend most of my time writing notes, content, journals, code...
 2. Obsidian for note syncing and mobile access
 3. Git for versioning and coding (however, I don't push my notes anywhere. Yet)
+
+![My notes in Obsidian](/assets/media/notes/lazy-vim-plugins.png)
 
 ## Plans for the future
 

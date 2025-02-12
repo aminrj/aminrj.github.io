@@ -11,9 +11,9 @@ tags:
 image:
   path: /assets/media/notes/lazyvim.png
 keywords:
-  - Automation
-  - Bash
-  - scripting
+  - NeoVim
+  - Obsidian
+  - Zettelkasten
 slug: improving-my-note-taking-workflow
 ---
 

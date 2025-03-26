@@ -1,11 +1,11 @@
 <!-- _includes/subscribe.html -->
 <div class="subscribe-container">
-  <iframe 
-    src="https://securityfrontlines.substack.com/embed" 
+  <iframe
+    src="https://securityfrontlines.substack.com/embed"
     class="subscribe-frame"
-    width="480" 
-    height="150" 
-    frameborder="0" 
+    width="480"
+    height="150"
+    frameborder="0"
     scrolling="no"
   ></iframe>
 </div>
@@ -18,19 +18,19 @@
     width: 100%;
     background: transparent;
   }
-  
+
   .subscribe-frame {
     border: 1px solid var(--border-color);
     background-color: var(--sidebar-bg);
     border-radius: 8px;
     filter: invert(1) hue-rotate(180deg);
   }
-  
+
   /* Adjust text contrast for better readability */
   .subscribe-frame:hover {
     opacity: 0.95;
   }
-  
+
   /* Responsive adjustments */
   @media (max-width: 480px) {
     .subscribe-frame {
@@ -38,12 +38,12 @@
       height: 250px;
     }
   }
-  
+
   /* Dark mode specific adjustments */
   [data-mode="dark"] .subscribe-frame {
     filter: invert(1) hue-rotate(180deg);
   }
-  
+
   /* Light mode adjustments */
   [data-mode="light"] .subscribe-frame {
     filter: none;
@@ -51,3 +51,5 @@
     border: 1px solid #eee;
   }
   </style>
+
+<script src="{{ '/assets/js/listmonk-subscribe.js' | relative_url }}"></script>

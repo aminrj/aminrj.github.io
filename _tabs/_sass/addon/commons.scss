@@ -1528,5 +1528,12 @@ search {
         @include ml-mr(calc(($sb-btn-gap-lg - $btn-border-width) / 2));
       }
     }
+    input.form-control {
+      border-radius: 6px;
+    }
+
+    button.btn {
+      font-weight: bold;
+    }
   }
 } /* min-width: 1650px */

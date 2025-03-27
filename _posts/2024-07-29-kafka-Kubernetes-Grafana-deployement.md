@@ -4,11 +4,11 @@ categories:
   - cloud native
   - event-driven
 tags:
-  - kafka
-  - kubernetes
-  - cloud-native
-  - event-driven
-  - grafana
+  - Kafka
+  - Kubernetes
+  - Cloud-native
+  - Event-driven
+  - Grafana
 image:
   path: /assets/media/kafka-k8s/banner2.png
 description: Deploy a Kafka cluster within Kubernetes using Strimzi Kafka Operator and enable monitoring of usefull Kafka metrics with Prometheus and Grafana.
@@ -49,7 +49,7 @@ $ minikube start -p kafka-cluster
 To ease our deployment, we use Terraform as our Infrastructure As Code tool.
 
 > :memo: **Note: on IaC**
-> If you’re not familiar with Terraform, don’t be scared, it is just an automation tool that uses code to declare infrastructures. [Install](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli) Terraform on you machine and run the two terraform commands bellow in the same folder where you put the *.tf files. that’s it.
+> If you’re not familiar with Terraform, don’t be scared, it is just an automation tool that uses code to declare infrastructures. [Install](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli) Terraform on you machine and run the two terraform commands bellow in the same folder where you put the \*.tf files. that’s it.
 
 This Terraform code declares the necessary providers, and creates the namespaces before installing the “strimiz-cluster-operator” helm-chart:
 
@@ -80,7 +80,7 @@ resource "kubernetes_namespace" "observability-namespace" {
 
 # Helm chart for Strimzi Kafka
 resource "helm_release" "strimzi-cluster-operator" {
-  name = "strimzi-cluster-operator"  
+  name = "strimzi-cluster-operator"
   repository = "https://strimzi.io/charts/"
   chart = "strimzi-kafka-operator"
   version = "0.42.0"
@@ -88,6 +88,7 @@ resource "helm_release" "strimzi-cluster-operator" {
   depends_on = [kubernetes_namespace.kafka-namespace]
 }
 ```
+
 {: file="strimzi-kakfa.tf"}
 
 - Apply terraform script to create the namespace and install Strimzi Kafka Operator
@@ -105,8 +106,8 @@ terraform apply --autor-approve
 ```
 
 ```shell
-   $ kubectl -n kafka get po 
-   NAME                                        READY   STATUS    RESTARTS   AGE 
+   $ kubectl -n kafka get po
+   NAME                                        READY   STATUS    RESTARTS   AGE
    strimzi-cluster-operator-6948497896-swlvp   1/1     Running   0          77s
 ```
 
@@ -114,7 +115,7 @@ terraform apply --autor-approve
 
 Now that our Strimzi-Kafka-Operator is up and running in our newly created Kubernetes cluster, we create the Kafka cluster by applying the following yaml file with the command :
 
-```yaml 
+```yaml
 apiVersion: kafka.strimzi.io/v1beta2
 kind: Kafka
 metadata:
@@ -142,10 +143,10 @@ spec:
     storage:
       type: jbod
       volumes:
-      - id: 0
-        type: persistent-claim
-        size: 100Gi
-        deleteClaim: false
+        - id: 0
+          type: persistent-claim
+          size: 100Gi
+          deleteClaim: false
   zookeeper:
     replicas: 3
     storage:
@@ -156,6 +157,7 @@ spec:
     topicOperator: {}
     userOperator: {}
 ```
+
 {: file="kafka-persistent.yaml"}
 
 ```shell
@@ -183,7 +185,7 @@ To create Kafka entities (producers, consumers, topics), we use the Kubernetes C
 
 For instance, we create a Kafka topic named `my-topic` by applying the following yaml code:
 
-```yaml 
+```yaml
 apiVersion: kafka.strimzi.io/v1beta2
 kind: KafkaTopic
 metadata:
@@ -197,6 +199,7 @@ spec:
     retention.ms: 7200000
     segment.bytes: 1073741824
 ```
+
 {: file="kafka-topic.yaml"}
 
 ```shell
@@ -222,7 +225,7 @@ At this point, our Kafka cluster is up and running and we can already send and r
 ## Monitoring our Kafka Cluster with Grafana
 
 > **Collecting metrics is critical for understanding the health and performance of our Kafka cluster.**
-{: .prompt-warning }
+> {: .prompt-warning }
 
 This is important to identify issues before they become critical and make informed decisions about resource allocation and capacity planning.
 
@@ -230,8 +233,8 @@ For this, we will use Prometheus and Grafana to monitor Strimzi.
 
 > Prometheus consumes metrics from the running pods in your cluster when configured with Prometheus rules.
 > Grafana visualizes these metrics on dashboards, providing better interface for
-monitoring.
-{: .prompt-info }
+> monitoring.
+> {: .prompt-info }
 
 ### Setting-up Prometheus
 
@@ -248,9 +251,11 @@ sed -i '' -e '/[[:space:]]*namespace: [a-zA-Z0-9-]*$/s/namespace:[[:space:]]*[a-
 ```
 
 > **For Linux, use this command instead:**
+
 ```shell
 sed -E -i '/[[:space:]]*namespace: [a-zA-Z0-9-]*$/s/namespace:[[:space:]]*[a-zA-Z0-9-]*$/namespace: observability/' prometheus-operator-deployment.yaml
 ```
+
 {: .prompt-info}
 
 Then, deploy the Prometheus Operator:
@@ -273,6 +278,7 @@ deployment.apps/prometheus-operator created
 serviceaccount/prometheus-operator created
 service/prometheus-operator created
 ```
+
 ![Pods in the observability namespace](assets/media/kafka-k8s/observability-pods.png)
 
 Now that we have the operator up and running, we need to create the Prometheus server and configure it to watch for Strimzi CRDs in the `kafka` namespace.
@@ -283,7 +289,7 @@ Note here that the name of the namespace must match otherwise Prometheus Operato
 
 In order to tell Kafka CRDs to expose Prometheus metrics, we must create the PodMonitor objects for the metrics we want to monitor:
 
-```yaml 
+```yaml
 apiVersion: monitoring.coreos.com/v1
 kind: PodMonitor
 metadata:
@@ -298,8 +304,8 @@ spec:
     matchNames:
       - kafka
   podMetricsEndpoints:
-  - path: /metrics
-    port: http
+    - path: /metrics
+      port: http
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: PodMonitor
@@ -315,8 +321,8 @@ spec:
     matchNames:
       - kafka
   podMetricsEndpoints:
-  - path: /metrics
-    port: healthcheck
+    - path: /metrics
+      port: healthcheck
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: PodMonitor
@@ -329,43 +335,45 @@ spec:
     matchExpressions:
       - key: "strimzi.io/kind"
         operator: In
-        values: ["Kafka", "KafkaConnect", "KafkaMirrorMaker", "KafkaMirrorMaker2"]
+        values:
+          ["Kafka", "KafkaConnect", "KafkaMirrorMaker", "KafkaMirrorMaker2"]
   namespaceSelector:
     matchNames:
       - kafka
   podMetricsEndpoints:
-  - path: /metrics
-    port: tcp-prometheus
-    relabelings:
-    - separator: ;
-      regex: __meta_kubernetes_pod_label_(strimzi_io_.+)
-      replacement: $1
-      action: labelmap
-    - sourceLabels: [__meta_kubernetes_namespace]
-      separator: ;
-      regex: (.*)
-      targetLabel: namespace
-      replacement: $1
-      action: replace
-    - sourceLabels: [__meta_kubernetes_pod_name]
-      separator: ;
-      regex: (.*)
-      targetLabel: kubernetes_pod_name
-      replacement: $1
-      action: replace
-    - sourceLabels: [__meta_kubernetes_pod_node_name]
-      separator: ;
-      regex: (.*)
-      targetLabel: node_name
-      replacement: $1
-      action: replace
-    - sourceLabels: [__meta_kubernetes_pod_host_ip]
-      separator: ;
-      regex: (.*)
-      targetLabel: node_ip
-      replacement: $1
-      action: replace
+    - path: /metrics
+      port: tcp-prometheus
+      relabelings:
+        - separator: ;
+          regex: __meta_kubernetes_pod_label_(strimzi_io_.+)
+          replacement: $1
+          action: labelmap
+        - sourceLabels: [__meta_kubernetes_namespace]
+          separator: ;
+          regex: (.*)
+          targetLabel: namespace
+          replacement: $1
+          action: replace
+        - sourceLabels: [__meta_kubernetes_pod_name]
+          separator: ;
+          regex: (.*)
+          targetLabel: kubernetes_pod_name
+          replacement: $1
+          action: replace
+        - sourceLabels: [__meta_kubernetes_pod_node_name]
+          separator: ;
+          regex: (.*)
+          targetLabel: node_name
+          replacement: $1
+          action: replace
+        - sourceLabels: [__meta_kubernetes_pod_host_ip]
+          separator: ;
+          regex: (.*)
+          targetLabel: node_ip
+          replacement: $1
+          action: replace
 ```
+
 {: file="strimzi-pod-monitor.yaml"}
 
 Then we create the Prometheus object and configure it to look for all pods with
@@ -381,7 +389,7 @@ podmonitor.monitoring.coreos.com/kafka-resources-metrics created
 
 Note that for this to work, we also need the corresponding ServiceAccount, and RBAC objects as follow:
 
-``` yaml 
+```yaml
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
@@ -448,6 +456,7 @@ spec:
       memory: 400Mi
   enableAdminAPI: false
 ```
+
 {: file="prometheus.yaml"}
 
 Then:
@@ -465,12 +474,12 @@ prometheus.monitoring.coreos.com/prometheus created
 To enable and expose metrics in Strimzi for Prometheus, we use metrics configuration properties using the `metricsConfig` configuration property or our Kafka cluster.
 
 ```yaml
-    metricsConfig:
-      type: jmxPrometheusExporter
-      valueFrom:
-        configMapKeyRef:
-          name: kafka-metrics
-          key: kafka-metrics-config.yml
+metricsConfig:
+  type: jmxPrometheusExporter
+  valueFrom:
+    configMapKeyRef:
+      name: kafka-metrics
+      key: kafka-metrics-config.yml
 ```
 
 Once configured, we apply the new config which will restart our cluster with the updated configuration:
@@ -480,7 +489,6 @@ examples folder](https://github.com/strimzi/strimzi-kafka-operator/tree/main/exa
 Otherwise, you can always refer to the git
 repository of this project referenced below.
 
-
 ```shell
 kubectl apply -f kafka-metrics.yaml -n kafka
 ```
@@ -488,7 +496,6 @@ kubectl apply -f kafka-metrics.yaml -n kafka
 > :memo: **After running this command, Kafka Zookeeper pods start restarting one by one followed by the Kafka brokers pods until all the pods are running the updated configuration. Hence the rolling upgrade of our Kafka cluster with zero-down-time powered by Kubernetes. (check in the figure below the age value of the my-cluster-kafka-2 compared to the other two, it will be terminated then restarted last).**
 
 ![Pods in the kafka namespace](assets/media/kafka-k8s/kafka-ns-pods.png)
-
 
 For more details on how monitor Strimzi Kafka using Prometheus and Grafana, check the [Strimzi documentation](https://strimzi.io/docs/operators/latest/deploying#proc-metrics-kafka-deploy-options-str).
 
@@ -585,7 +592,7 @@ To enable audit logs on a Minikube:
 
 Using the official [kubernetes documentation](https://kubernetes.io/docs/tasks/debug/debug-cluster/audit/) as reference, we login into our minikube VM and configure the `kube-apiserver` as follow:
 
-```shell 
+```shell
 $ minikube -p kafka-cluster ssh
 # we create a backup copy of the kube-apiserver manifest file in case we mess things up 😄
 docker@minikube:~$ sudo cp /etc/kubernetes/manifests/kube-apiserver.yaml .
@@ -603,7 +610,7 @@ This is done by adding these two lines bellow the kube-apiserver command:
     # add the following two lines
     - --audit-policy-file=/etc/kubernetes/audit-policy.yaml
     - --audit-log-path=/var/log/kubernetes/audit/audit.log
-    # end 
+    # end
     - --advertise-address=192.168.49.2
     - --allow-privileged=true
     - --authorization-mode=Node,RBAC
@@ -666,7 +673,7 @@ kube-apiserver-minikube            1/1     Running   0          13s
 kube-controller-manager-minikube   1/1     Running   0          1h
 kube-proxy-jcn6v                   1/1     Running   0          1h
 kube-scheduler-minikube            1/1     Running   0          1h
-storage-provisioner                1/1     Running   0          1h 
+storage-provisioner                1/1     Running   0          1h
 ```
 
 ### 3. Check audit logs are generated

@@ -4,12 +4,12 @@ categories:
   - cloud native
   - cloud security
 tags:
-  - terraform
+  - Terraform
   - kubernetes
   - cloud-native
-  - loki
-  - logging
-  - grafana
+  - Loki
+  - Logging
+  - Grafana
 image:
   path: /assets/media/k8s/k8s-security-logs-loki.png
 slug: monitoring-k8s-audit-logs-loki-grafana-prometheus

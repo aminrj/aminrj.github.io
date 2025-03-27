@@ -7,11 +7,11 @@ categories:
   - programming
   - system administration.
 tags:
-  - automation
+  - Automation
   - Bash scripting
-  - engineering
-  - scripting constructs.
-  - server logs
+  - Engineering
+  - Scripting constructs.
+  - Server logs
 image:
   path: /assets/media/iot/bash.png
 keywords:

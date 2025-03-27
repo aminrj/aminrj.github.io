@@ -268,7 +268,7 @@ docker run -d \
   --name zigbee2mqtt \
   --device=/dev/ttyUSB0 \
   --network homeassistant \
-	-e TZ=Europe/Stockholm \
+ -e TZ=Europe/Stockholm \
   -e MQTT_SERVER="mqtt://mosquitto:1883" \
   -v $(pwd)/data:/app/data \
   -v /run/udev:/run/udev:ro \
@@ -352,8 +352,12 @@ How to get the ip for the docker container running mosquitto.
 
 Run the following command to inspect the container and find its IP address:
 
+{{% raw %}}
+
 ```bash
 docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' mosquitto
 ```
+
+{{% endraw %}}
 
 This command retrieves the IP address of the mosquitto container.

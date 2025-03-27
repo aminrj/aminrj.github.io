@@ -4,10 +4,10 @@ categories:
   - cloud native
   - CICD
 tags:
-  - cloud
-  - argo-cd
-  - kubernetes
-  - cloud-native
+  - Cloud
+  - Argo-cd
+  - Kubernetes
+  - Cloud-native
 image:
   path: /assets/media/argocd/ArgoCD-deployment-patterns.png
 description: How ArgoCD deploy applications into Kubernetes cluster and the differences between different deployment patterns.
@@ -69,7 +69,7 @@ ArgoCD ApplicationSets also simplify the deployment and management of multi-clus
 They can simultaneously manage the deployment and configuration of applications across multiple Kubernetes clusters, ensuring consistency and reliability.
 This feature is particularly beneficial for organizations with geographically dispersed or hybrid cloud environments.
 
-The ApplicationSet [controller](https://argocd-applicationset.readthedocs.io/en/stable/#introduction) 
+The ApplicationSet [controller](https://argocd-applicationset.readthedocs.io/en/stable/#introduction)
 is made up of “generators”. These “generators” instruct the ApplicationSet how to generate Applications by the provided repo or repos, and it also instructs where to deploy the Application. There are 3 “generators” that I will be exploring are:
 
 - List Generator
@@ -89,3 +89,4 @@ I made a video tutorial using both ArgoCD deployment patterns presented in this 
 ArgoCD is a powerful tool that simplifies and automates application deployments on Kubernetes. By adopting a declarative GitOps approach, ArgoCD ensures that the actual state of the cluster matches the desired state defined in Git, reducing the risk of downtime, inconsistencies, and human errors. The "app of apps" pattern and the Applicationsets controller offer different ways to define and manage application groups, providing flexibility and control for managing complex application landscapes. As Kubernetes adoption continues to grow, ArgoCD is poised to become an indispensable tool for organizations that want to streamline their application delivery pipelines and achieve continuous delivery excellence.
 
 Overall, ArgoCD ApplicationSets provide a powerful and versatile tool for managing application groups in Kubernetes. They address the limitations of the traditional "App of Apps" pattern and offer a more comprehensive solution for managing complex application landscapes. With their dynamic nature, multi-cluster support, and automated generation capabilities, ArgoCD ApplicationSets are poised to become a go-to choice for organizations seeking to streamline their application delivery processes.
+

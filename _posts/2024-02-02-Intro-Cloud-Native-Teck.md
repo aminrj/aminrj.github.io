@@ -3,10 +3,10 @@ title: Introduction to Cloud-Native Technology
 categories:
   - cloud native
 tags:
-  - terraform
-  - kubernetes
-  - cloud-native
-  - grafana
+  - Terraform
+  - Kubernetes
+  - Cloud-native
+  - Grafana
 image:
   path: /assets/media/cloud-native/cloud-native-banner.png
 description: Brief introduction to Cloud-Native technology and how everything fits together.
@@ -90,6 +90,7 @@ Our app is a simple Python script:
 ```py
 print("Hello Cloud-Native")
 ```
+
 {: file="hello.py"}
 
 We need to create a Dockerfile, pick a base container image to use as the starting point, configure Python, and add the program:
@@ -99,7 +100,7 @@ FROM ubuntu
 RUN apt-get update
 RUN apt-get install -y python3
 COPY . /app
-WORKDIR /app 
+WORKDIR /app
 ```
 
 Build the container and name (tag) it hello.
@@ -163,7 +164,7 @@ We will see this in more details later in the course. For now, lets get us a run
 
 Minikube is a great choice for testing locally and allows you to test with a multinode environment.
 It is maintained by the open source Kubernetes community.
-Follow the link https://minikube.sigs .k8s.io/docs/start/ to install Minikube for your system.
+Follow the link <https://minikube.sigs> .k8s.io/docs/start/ to install Minikube for your system.
 
 ```bash
 minikube start --nodes 2
@@ -213,8 +214,8 @@ spec:
         pod: hello-cloud-native-pod
     spec:
       containers:
-      - name: hello-container
-        image: docker.io/aminrj/hello:1
+        - name: hello-container
+          image: docker.io/aminrj/hello:1
 ```
 
 This manifest will create two replicas of our python application after we run the `kubectl create -f deploy.yaml` command.
@@ -224,3 +225,4 @@ To see the pods created for this deployement we type `kubectl get pods`.
 This is it, we created our first container, build the image, uploaded it to the registery and deployed it on our local kubernetes cluster as a deployement.
 
 In the next section of the course, we will dive deeper into the core concepts of Kubernetes to learn how Kubernetes makes cloud-native application deployements more flexible.
+

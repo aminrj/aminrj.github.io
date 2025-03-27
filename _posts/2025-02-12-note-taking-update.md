@@ -4,10 +4,10 @@ categories:
   - productivity
   - tools
 tags:
-  - notes
-  - neoVim
-  - workflow
-  - automation
+  - Notes
+  - NeoVim
+  - Workflow
+  - Automation
 image:
   path: /assets/media/notes/lazyvim.png
 keywords:

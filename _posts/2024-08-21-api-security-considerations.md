@@ -6,9 +6,9 @@ categories:
   - cloud security
 tags:
   - API security
-  - kubernetes
-  - cloud-native
-  - secure development
+  - Kubernetes
+  - Cloud-native
+  - Secure development
 image:
   path: /assets/media/cloud-native/api-security-banner.png
 slug: secure-api-development
@@ -61,16 +61,16 @@ It is significantly more cost-effective to consider security during the developm
 Several security mechanisms are essential for any well-designed API:
 
 - **Encryption:** Protects data from being read by unauthorized parties, both in
-transit and at rest. Modern encryption also ensures that data cannot be tampered
-with by attackers.
+  transit and at rest. Modern encryption also ensures that data cannot be tampered
+  with by attackers.
 - **Authentication:** Verifies that users and clients are who they claim to be.
 - **Access Control (Authorization):** Ensures that every request to the API is
-properly authorized.
+  properly authorized.
 - **Audit Logging:** Records all operations to provide accountability and enable
-proper monitoring.
+  proper monitoring.
 - **Rate-Limiting:** Prevents any single user or group from monopolizing
-resources, ensuring fair access for all legitimate users and ensuring
-availability.
+  resources, ensuring fair access for all legitimate users and ensuring
+  availability.
 
 ## Developing Secure REST APIs
 
@@ -92,11 +92,11 @@ commands or queries, allowing attackers to control the executed code.
 To prevent injection attacks:
 
 - **Prepared Statements:** Use APIs that support prepared statements, where user
-inputs are clearly separated from dynamic code. This ensures that the database
-cannot mistake user input for executable code.
+  inputs are clearly separated from dynamic code. This ensures that the database
+  cannot mistake user input for executable code.
 - **Permissions:** Limit database permissions to prevent unauthorized actions.
-For example, if your API doesn’t need to delete tables, don’t grant it that
-permission. This reduces the potential impact of an SQL injection attack.
+  For example, if your API doesn’t need to delete tables, don’t grant it that
+  permission. This reduces the potential impact of an SQL injection attack.
 
 ### Input Validation and Safe Output
 
@@ -104,8 +104,8 @@ Security flaws often arise when attackers submit inputs that violate code assump
 
 - **Input Validation:** Define acceptable inputs using well-established formats and libraries. An allow list, specifying valid inputs, is more secure than a blocklist, which tries to exclude invalid ones.
 - **Safe Output:** Ensure that all API outputs are well-formed and cannot be
-exploited. Apply standard HTTP security headers to all responses and
-double-check error responses.
+  exploited. Apply standard HTTP security headers to all responses and
+  double-check error responses.
 
 ### Rate-Limiting for Availability
 
@@ -186,17 +186,17 @@ in microservices architectures.
 To develop secure gRPC APIs, consider the following recommendations:
 
 1. **Use Mutual TLS (mTLS)**: Ensure secure communication by implementing mTLS,
-which not only encrypts data in transit but also authenticates both the client
-and the server.
+   which not only encrypts data in transit but also authenticates both the client
+   and the server.
 2. **Use Streaming Carefully**: If using gRPC's streaming capabilities, ensure
-proper handling of stream flow and limits to avoid resource exhaustion and
-ensure secure data handling.
+   proper handling of stream flow and limits to avoid resource exhaustion and
+   ensure secure data handling.
 3. **Control Service Exposure**: Only expose necessary gRPC services and
-methods, and ensure that internal services are not accidentally exposed to
-external clients.
+   methods, and ensure that internal services are not accidentally exposed to
+   external clients.
 4. **Enable Logging and Monitoring**: Implement comprehensive logging and
-monitoring to track access patterns, detect anomalies, and facilitate auditing
-of gRPC calls.
+   monitoring to track access patterns, detect anomalies, and facilitate auditing
+   of gRPC calls.
 
 Other controls from the REST APIs mitigations are still valid for gRPC APIs.
 This includes enforcing authentication and authorization, validating inputs and

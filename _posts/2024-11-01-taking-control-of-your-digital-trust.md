@@ -4,10 +4,10 @@ description: How to enhance your digital trust by running your own Certificate A
 date: 2024-11-01T10:28:56.000Z
 draft: false
 tags:
-  - certificate authority
-  - digital trust
-  - software
-  - technology
+  - Certificate authority
+  - Digital trust
+  - Software
+  - Technology
 image:
   path: "assets/media/cloud-native/private-ca-banner-image.png"
 categories:

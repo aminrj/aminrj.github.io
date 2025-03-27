@@ -3,17 +3,17 @@ title: Architecting Scalable Microservices and Event Systems
 description: How Kubernetes and Apache Kafka can help manage large distributed systems
 date: 2024-05-13T05:35:06.000Z
 tags:
-    - cloud-native
-    - event-driven
-    - kafka
-    - kubernetes
-    - scalable architectures
+  - Cloud-native
+  - Event-driven
+  - Kafka
+  - Kubernetes
+  - Scalable architectures
 categories:
-    - cloud native
-    - event-driven
+  - cloud native
+  - event-driven
 slug: architecting-scalable-microservices-event-systems
 image:
-    path: /assets/media/cloud-native/kubernetes-kafka.png
+  path: /assets/media/cloud-native/kubernetes-kafka.png
 preview: /media/cloud-native/kubernetes-kafka.png
 ---
 
@@ -32,8 +32,8 @@ On the other hand, when designing systems, we are more concerned about:
 - will it still fulfil the initial requirements ?
 
 > I have been in the software engineering field for more than a decade and a
-half, within diverse and varied industries, and I can assert, from experience,
-that answering these questions is not always straightforward.
+> half, within diverse and varied industries, and I can assert, from experience,
+> that answering these questions is not always straightforward.
 
 At the same time, we want to ensure that the systems we build age well at with
 the company, and that they keep our business nimble and our customers happy.
@@ -44,7 +44,7 @@ produce robust, scalable event-driven architectures without burning piles of
 cash in required engineering effort.
 
 > A step-by-step guide to deploy both tools as well as setting-up basic
-monitoring for the clusters is provided at the end of this article.
+> monitoring for the clusters is provided at the end of this article.
 
 ## The Need, and the Problem, for Autonomy
 
@@ -70,7 +70,7 @@ That’s why, among other reasons, we design software systems where components a
 operated and evolved independently.
 
 > When architecting for scale, we are more concerned about how to build software
-that runs a company while organizing a large engineering effort.
+> that runs a company while organizing a large engineering effort.
 
 The problem we face has three distinct, but linked, parts: organization,
 software and data.
@@ -146,8 +146,8 @@ integrations with Prometheus and Grafana, provide deep insights into the health
 and performance of Kafka clusters.
 
 > With Kubernetes, Kafka clusters can be managed declaratively, reducing the
-operational overhead. Kubernetes Operators like Strimzi automate complex tasks
-such as broker configuration, rolling upgrades, and scaling.
+> operational overhead. Kubernetes Operators like Strimzi automate complex tasks
+> such as broker configuration, rolling upgrades, and scaling.
 
 ### 4. Resource Efficiency
 

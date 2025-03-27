@@ -21,8 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
           body: JSON.stringify({
             name,
             email,
-            tags: ["source:website"],
-            topics: [3] // replace with your actual topic ID
+            list_uuids: ["280513ac-ca2d-436c-87ff-2b3011845ff2"],
           })
         });
 

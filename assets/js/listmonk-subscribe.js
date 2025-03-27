@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const name = form.name.value;
 
       try {
-        const res = await fetch("https://listmonk.tool.aminrj.com/api/subscriptions", {
+        const res = await fetch("https://listmonk.tool.aminrj.com/api/public/subscription", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({

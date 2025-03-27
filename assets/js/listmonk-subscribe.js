@@ -15,12 +15,13 @@ document.addEventListener("DOMContentLoaded", () => {
       const name = form.name.value;
 
       try {
-        const res = await fetch("https://listmonk.tool.aminrj.com/subscription", {
+        const res = await fetch("https://listmonk.tool.aminrj.com/api/subscriptions", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             name,
             email,
+            tags: ["source:website"],
             topics: [3] // replace with your actual topic ID
           })
         });

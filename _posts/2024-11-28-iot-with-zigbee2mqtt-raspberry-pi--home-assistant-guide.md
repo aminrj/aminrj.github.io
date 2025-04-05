@@ -352,12 +352,8 @@ How to get the ip for the docker container running mosquitto.
 
 Run the following command to inspect the container and find its IP address:
 
-{{% raw %}}
-
 ```bash
-docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' mosquitto
+docker inspect -f '\{\{range .NetworkSettings.Networks\}\}\{\{.IPAddress\}\}\{\{end\}\}' mosquitto
 ```
-
-{{% endraw %}}
 
 This command retrieves the IP address of the mosquitto container.

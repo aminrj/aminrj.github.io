@@ -5,48 +5,48 @@ categories:
   - cloud security
 tags:
   - Terraform
-  - kubernetes
-  - cloud-native
+  - Kubernetes
+  - Cloud-native
   - Loki
   - Logging
   - Grafana
 image:
   path: /assets/media/k8s/k8s-security-logs-loki.png
 slug: monitoring-k8s-audit-logs-loki-grafana-prometheus
-description: Bootstrap a security-monitored Kubernetes cluster using Kubernetes vanilla audit capability
-date: 2023-05-15T07:15:49.000Z
+description: bootstrap a security-monitored kubernetes cluster using kubernetes vanilla audit capability
+date: 2023-05-15t07:15:49.000z
 preview: /media/k8s/k8s-security-logs-loki.png
 ---
 
-In this tutorial, we will monitor Kubernetes audit logs using the Grafana, Loki, Promtail and Prometheus stack.
-The goal is to quickly bootstrap a security-monitored Kubernetes cluster using Kubernetes vanilla audit capability.
-Our setup is described in the figure bellew:
+in this tutorial, we will monitor kubernetes audit logs using the grafana, loki, promtail and prometheus stack.
+the goal is to quickly bootstrap a security-monitored kubernetes cluster using kubernetes vanilla audit capability.
+our setup is described in the figure bellew:
 
-:construction: **TODO:** Add architecture diagram here
+:construction: **todo:** add architecture diagram here
 
-## Configure Kubernetes Audit Policy
+## configure kubernetes audit policy
 
-We start by creating a new Kubernetes cluster using Minikube so that you can redo this tutorial and test the setup before trying it on a cloud deployed cluster.
+we start by creating a new kubernetes cluster using minikube so that you can redo this tutorial and test the setup before trying it on a cloud deployed cluster.
 
 ```bash
 $ minikube start
-😄  minikube v1.32.0 on Darwin 14.2.1 (arm64)
-✨  Using the docker driver based on existing profile
-👍  Starting control plane node minikube in cluster minikube
-🚜  Pulling base image ...
-🐳  Preparing Kubernetes v1.28.3 on Docker 24.0.7 ...
-🔗  Configuring bridge CNI (Container Networking Interface) ...
-🔎  Verifying Kubernetes components...
-    ▪ Using image gcr.io/k8s-minikube/storage-provisioner:v5
-🌟  Enabled addons: storage-provisioner, default-storageclass
-🏄  Done! kubectl is now configured to use "minikube" cluster and "default" namespace by default
+😄  minikube v1.32.0 on darwin 14.2.1 (arm64)
+✨  using the docker driver based on existing profile
+👍  starting control plane node minikube in cluster minikube
+🚜  pulling base image ...
+🐳  preparing kubernetes v1.28.3 on docker 24.0.7 ...
+🔗  configuring bridge cni (container networking interface) ...
+🔎  verifying kubernetes components...
+    ▪ using image gcr.io/k8s-minikube/storage-provisioner:v5
+🌟  enabled addons: storage-provisioner, default-storageclass
+🏄  done! kubectl is now configured to use "minikube" cluster and "default" namespace by default
 ```
 
-Once the cluster started, we login into it using `minikube ssh` so that we can configure the `kube-apiserver` with an `audit-policy` and how audit logs should be stored.
+once the cluster started, we login into it using `minikube ssh` so that we can configure the `kube-apiserver` with an `audit-policy` and how audit logs should be stored.
 
-To enable audit logs on a Minikube:
+to enable audit logs on a minikube:
 
-### 1. Configure Kube-apiserver
+### 1. configure kube-apiserver
 
 Using the official [kubernetes documentation](https://kubernetes.io/docs/tasks/debug/debug-cluster/audit/) as reference, we login into our minikube VM and configure the `kube-apiserver` as follow:
 

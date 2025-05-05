@@ -29,24 +29,6 @@ illustration example._
 > **ArgoCD** for GitOps continuous delivery, **External‑Secrets**
 > to bridge secrets from Azure Key Vault, and a few battle‑tested **DevSecOps** patterns.
 
-## Table of Contents
-
-1. [Why per‑app HA Postgres?](#why)
-2. [Reference architecture](#architecture)
-3. [Prerequisites](#prereq)
-4. [Repository & GitOps layout](#layout)
-5. [Terraform – bootstrap the operators](#terraform)
-6. [Kustomize manifests](#kustomize)
-7. [Argo CD ApplicationSets](#applicationsets)
-8. [Bootstrapping the database](#bootstrap)
-9. [Deploying Linkding](#deploy‑app)
-10. [Back‑ups & disaster‑recovery](#backup)
-11. [Monitoring & observability](#monitor)
-12. [Testing HA & fail‑over](#ha‑test)
-13. [Going further](#future)
-
-<a id="why"></a>
-
 ## 1 – Why per‑app HA Postgres?
 
 First, let's briefly present some arguments on why such setup is sound in the
@@ -58,10 +40,6 @@ first place:
 - **Lifecycle independence** — upgrade, snapshot, or drop a database without downtime for others.
 
 Yes, the trade‑off is more clusters to manage – However CNPG makes that almost trivial.
-
----
-
-<a id="architecture"></a>
 
 ## 2 – Reference architecture
 
@@ -87,10 +65,6 @@ Operators, CRDs and namespaces are installed once via Terraform.
 
 Everything application‑specific lives in Git and is reconciled by ArgoCD.
 
----
-
-<a id="prereq"></a>
-
 ## 3 – Prerequisites
 
 | Tool                      | Version tested | Purpose                           |
@@ -103,10 +77,6 @@ Everything application‑specific lives in Git and is reconciled by ArgoCD.
 | Azure Key Vault           | any            | Secret backend                    |
 
 You also need _kubectl_, _kustomize_ and a Git repo.
-
----
-
-<a id="layout"></a>
 
 ## 4 – Repository & GitOps layout
 
@@ -145,10 +115,6 @@ argocd/
 ```
 
 The **base** directory contains vendor‑agnostic manifests; **overlays** patch environment‑specific details ([Kustomize](https://kustomize.io)).
-
----
-
-<a id="terraform"></a>
 
 ## 5 – Terraform – bootstrap the operators
 
@@ -234,8 +200,6 @@ Running `terraform apply` would get the initial infrastructure up and running in
 the Kubernetes:
 
 ## ![Bootstraping the infrastructure with Terraform](/assets/media/cloud-native/initial-bootstrapping-with-tf.png)
-
-<a id="kustomize"></a>
 
 ## 6 – Kustomize manifests
 
@@ -341,10 +305,6 @@ spec:
 
 > With CNPG a **read–write service** (`*-rw`) and a **read‑only service** (`*-ro`) are generated for you – we point `LD_DB_HOST` to the former.
 
----
-
-<a id="applicationsets"></a>
-
 ## 7 – ArgoCD ApplicationSets
 
 A single ApplicationSet per domain keeps things DRY:
@@ -384,8 +344,6 @@ Repeat the same for `databases/*`.
 
 ![ArgoCD Applications](/assets/media/cloud-native/argocd-apps.png)
 
-<a id="bootstrap"></a>
-
 ## 8 – Bootstrapping the database
 
 1. **Create secrets** in Azure Key Vault (`linkding-db-username`, `password`, blob SAS…).
@@ -423,10 +381,6 @@ kubectl -n cnpg-dev get clusters
 kubectl -n cnpg-dev get pods -l cnpg.io/cluster=linkding-db-dev-cnpg-v1
 ```
 
----
-
-<a id="deploy-app"></a>
-
 ## 9 – Deploying Linkding
 
 With the database ready, ArgoCD synchronises the `apps/linkding` Application:
@@ -436,10 +390,6 @@ kubectl -n linkding-dev get svc,pods
 ```
 
 Port‑forward and log‑in at `http://localhost:9090`.
-
----
-
-<a id="backup"></a>
 
 ## 10 – Back‑ups & disaster‑recovery
 
@@ -461,19 +411,11 @@ bootstrap:
 
 ![ArgoCD Linkding Application Deployment](/assets/media/cloud-native/argocd-linkding-app.png)
 
----
-
-<a id="monitor"></a>
-
 ## 11 – Monitoring & observability
 
 CNPG exports a **Prometheus PodMonitor** out‑of‑the‑box. Wire it to your Prometheus stack and import the official Grafana dashboard (ID 18630). External‑Secrets also ships metrics at `/metrics`.
 
 ![External Secret Deployment App](/assets/media/cloud-native/argocd-external-secrets.png)
-
----
-
-<a id="ha-test"></a>
 
 ## 12 – Testing HA & fail‑over
 
@@ -490,10 +432,6 @@ kubectl -n cnpg-dev get clusters linkding-db-dev-cnpg-v1 -o jsonpath='{.status.c
 ```
 
 Your application keeps running because its Service always targets the `*-rw` endpoint.
-
----
-
-<a id="future"></a>
 
 ## 13 – Going further
 

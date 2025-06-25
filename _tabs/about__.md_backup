@@ -1,0 +1,115 @@
+---
+# the default layout is 'page'
+icon: fas fa-info-circle
+order: 4
+---
+
+# Securing AI Infrastructure in Production
+
+**I'm Amine Raji, PhD** – I help enterprises deploy AI systems securely using battle-tested cloud-native infrastructure. With 15+ years in software engineering and a CISSP certification, I bridge the critical gap between AI innovation and cybersecurity reality.
+
+## What I Do
+
+**AI Security Architecture:** I design and implement secure AI deployment pipelines on Kubernetes, ensuring your models are protected from development to production.
+
+**Cloud-Native Security:** From container security to service mesh implementation, I help organizations build defensible AI infrastructure that scales.
+
+**Risk Assessment & Compliance:** I conduct comprehensive AI security audits and help teams meet regulatory requirements while maintaining development velocity.
+
+## Proven Track Record
+
+- **15+ years** in production software engineering across enterprise environments
+- **PhD in Computer Science** with deep expertise in distributed systems
+- **CISSP Certified** cybersecurity professional
+- **Kubernetes & Cloud-Native Expert** with real-world deployment experience
+- **Founder of [Molntek](https://molntek.com)** – delivering secure cloud-native solutions to enterprises
+
+## Recent Client Impact
+
+_"Reduced AI deployment security risks by 70% while maintaining development speed"_ – Fortune 500 Financial Services Company
+
+_"Implemented production-grade AI infrastructure security that passed SOC2 audit on first attempt"_ – Healthcare Technology Startup
+
+_"Saved 6 months of security review cycles with properly architected Kubernetes AI platform"_ – Manufacturing Enterprise
+
+## My Approach
+
+**Security-First, Not Security-Last:** I build security into your AI systems from day one, not as an afterthought.
+
+**Production-Proven Methods:** Every recommendation comes from real implementations in enterprise environments.
+
+**Business-Aligned Solutions:** I understand that security must enable business goals, not hinder them.
+
+## Technical Expertise
+
+**AI & ML Operations:**
+
+- Secure model serving and versioning
+- MLOps pipeline security
+- Data governance and privacy protection
+- Model monitoring and anomaly detection
+
+**Kubernetes & Container Security:**
+
+- Pod Security Standards implementation
+- Network policies and service mesh security
+- Secrets management and encryption
+- RBAC and admission controllers
+
+**Cloud Security:**
+
+- Multi-cloud security architecture
+- Identity and Access Management (IAM)
+- Infrastructure as Code security
+- Compliance automation (SOC2, GDPR, HIPAA)
+
+## Speaking & Recognition
+
+- **Keynote Speaker** at CloudNativeCon Security Track
+- **Contributing Author** to CNCF Security Best Practices Guide
+- **Technical Reviewer** for O'Reilly AI Security Publications
+- **Regular Speaker** at DevSecOps and AI conferences
+
+## Let's Work Together
+
+Whether you need a comprehensive AI security strategy, hands-on implementation support, or executive guidance on AI risk management, I can help.
+
+**Current Availability:** Accepting new consulting engagements for Q3 2025
+
+---
+
+### Get In Touch
+
+**For Executive Briefings:** [Schedule a strategy call](mailto:amine@molntek.com?subject=AI%20Security%20Strategy%20Discussion)
+
+**For Technical Consulting:** [Discuss your implementation](mailto:amine@molntek.com?subject=AI%20Security%20Implementation)
+
+**For Speaking Opportunities:** [Event inquiries](mailto:amine@molntek.com?subject=Speaking%20Inquiry)
+
+---
+
+_Want weekly insights on AI security? [Subscribe to my newsletter](#newsletter-signup) for practical tips and industry analysis._
+
+## Recent Articles
+
+Stay current with my latest thinking on AI security:
+
+{% for post in site.posts limit: 3 %}
+
+- **[{{ post.title }}]({{ post.url }})** - {{ post.date | date: "%B %Y" }}
+  {% endfor %}
+
+---
+
+**Professional Certifications:**
+
+- Certified Information Systems Security Professional (CISSP)
+- Certified Kubernetes Security Specialist (CKS)
+- AWS Certified Security - Specialty
+- Certified Ethical Hacker (CEH)
+
+**Academic Background:**
+
+- PhD in Computer Science, Distributed Systems
+- Research focus: Security in distributed AI systems
+- Published researcher in cybersecurity conferences

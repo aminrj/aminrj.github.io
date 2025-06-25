@@ -1535,5 +1535,15 @@ search {
     button.btn {
       font-weight: bold;
     }
-  }
 } /* min-width: 1650px */
+
+/* Hide breadcrumbs on home page only */
+body:has([data-layout="home"]) #topbar #breadcrumb,
+body.layout-home #topbar #breadcrumb {
+  display: none !important;
+}
+
+/* Alternative selector in case the above doesn't work */
+.home #topbar #breadcrumb {
+  display: none !important;
+}

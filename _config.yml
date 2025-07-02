@@ -226,3 +226,19 @@ jekyll-archives:
   permalinks:
     tag: /tags/:name/
     category: /categories/:name/
+
+# Analytics Configuration
+plausible:
+  domain: aminrj.com
+
+# UTM Tracking for campaigns
+utm_tracking:
+  newsletter: "utm_source=newsletter&utm_medium=email&utm_campaign=weekly"
+  linkedin: "utm_source=linkedin&utm_medium=social&utm_campaign=organic"
+  twitter: "utm_source=twitter&utm_medium=social&utm_campaign=organic"
+
+# Social Media Links with tracking
+# social:
+#   linkedin: "https://linkedin.com/in/amineraji"
+#   twitter: "https://twitter.com/yourusername"
+#   github: "https://github.com/yourusername"

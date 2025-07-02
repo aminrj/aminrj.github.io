@@ -1,0 +1,36 @@
+<!-- Add to _includes/head.html or your main layout -->
+
+<!-- Plausible Analytics -->
+{% if site.plausible.domain %}
+<script defer data-domain="{{ site.plausible.domain }}" src="https://plausible.io/js/script.js"></script>
+{% endif %}
+
+<!-- Enhanced Plausible with custom events -->
+{% if site.plausible.domain %}
+<script defer data-domain="{{ site.plausible.domain }}" src="https://plausible.io/js/script.outbound-links.js"></script>
+<script>
+  window.plausible = window.plausible || function() {
+    (window.plausible.q = window.plausible.q || []).push(arguments)
+  }
+
+  // Track newsletter signups
+  function trackNewsletterSignup() {
+    plausible('Newsletter Signup');
+  }
+
+  // Track consultation requests
+  function trackConsultationClick() {
+    plausible('Consultation Click');
+  }
+
+  // Track social media clicks
+  function trackSocialClick(platform) {
+    plausible('Social Click', {props: {platform: platform}});
+  }
+
+  // Track resource downloads
+  function trackDownload(resource) {
+    plausible('Download', {props: {resource: resource}});
+  }
+</script>
+{% endif %}

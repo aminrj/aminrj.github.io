@@ -101,6 +101,7 @@ _This week's deep dive covers advanced protection strategies for production LLM 
    <form action="https://app.kit.com/forms/8229727/subscriptions"
          id="newsletter-form"
          onsubmit="trackNewsletterSignup(); return true;"
+         target="_blank"
          method="post"
       style="display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; max-width: 400px; margin: 0 auto;">
         <input type="email" name="email_address" placeholder="Enter your email" required style="flex: 1; min-width: 250px; padding: 12px 16px; border: 2px solid #e1e8ed; border-radius: 8px; font-size: 15px; outline: none; transition: border-color 0.3s;">

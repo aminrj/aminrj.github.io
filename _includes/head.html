@@ -1,13 +1,10 @@
-<!-- Add to _includes/head.html or your main layout -->
-
 <!-- Plausible Analytics -->
-{% if site.plausible.domain %}
-<script defer data-domain="{{ site.plausible.domain }}" src="https://plausible.io/js/script.js"></script>
-{% endif %}
+<script defer data-domain="aminrj.com" src="https://plausible.io/js/script.js"></script>
 
-<!-- Enhanced Plausible with custom events -->
-{% if site.plausible.domain %}
-<script defer data-domain="{{ site.plausible.domain }}" src="https://plausible.io/js/script.outbound-links.js"></script>
+<!-- Enhanced Plausible with outbound links -->
+<script defer data-domain="aminrj.com" src="https://plausible.io/js/script.outbound-links.js"></script>
+
+<!-- Custom event tracking functions -->
 <script>
   window.plausible = window.plausible || function() {
     (window.plausible.q = window.plausible.q || []).push(arguments)
@@ -16,21 +13,24 @@
   // Track newsletter signups
   function trackNewsletterSignup() {
     plausible('Newsletter Signup');
+    console.log('Newsletter signup tracked'); // Debug
   }
 
   // Track consultation requests
   function trackConsultationClick() {
     plausible('Consultation Click');
+    console.log('Consultation click tracked'); // Debug
   }
 
   // Track social media clicks
   function trackSocialClick(platform) {
     plausible('Social Click', {props: {platform: platform}});
+    console.log('Social click tracked:', platform); // Debug
   }
 
   // Track resource downloads
   function trackDownload(resource) {
     plausible('Download', {props: {resource: resource}});
+    console.log('Download tracked:', resource); // Debug
   }
 </script>
-{% endif %}

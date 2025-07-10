@@ -1,0 +1,152 @@
+---
+layout: default
+refactor: true
+---
+
+<div class="row">
+  <div class="col-12 col-lg-11 col-xl-9">
+    <div id="post-wrapper" class="d-flex justify-content-center">
+      <div class="post-content">
+
+        <!-- Newsletter Header -->
+        <header class="newsletter-header mb-4">
+          <div class="d-flex align-items-center mb-3">
+            <div class="newsletter-badge me-3">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div>
+              <h1 class="post-title">{{ page.title }}</h1>
+              <div class="post-meta text-muted">
+                <span class="me-2">
+                  <i class="far fa-calendar-alt fa-fw"></i>
+                  <time data-ts="{{ page.date | date: '%s' }}">{{ page.date | date: '%b %d, %Y' }}</time>
+                </span>
+                <span class="me-2">
+                  <i class="fas fa-newspaper fa-fw"></i>
+                  Issue #{{ page.issue }}
+                </span>
+                {% if page.reading_time %}
+                <span>
+                  <i class="far fa-clock fa-fw"></i>
+                  {{ page.reading_time }} min read
+                </span>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+
+          {% if page.subtitle %}
+          <p class="newsletter-subtitle text-muted fs-5">{{ page.subtitle }}</p>
+          {% endif %}
+        </header>
+
+        <!-- Newsletter Content -->
+        <article class="newsletter-content">
+          {{ content }}
+        </article>
+
+        <!-- Newsletter Footer -->
+        <footer class="newsletter-footer mt-5 pt-4 border-top">
+          <div class="row">
+            <div class="col-md-8">
+              <h5>📧 Subscribe to My Newsletter</h5>
+              <p class="text-muted">Get the latest cybersecurity insights delivered to your inbox daily.</p>
+              {% if site.newsletter_signup_url %}
+              <a href="{{ site.newsletter_signup_url }}" class="btn btn-primary">
+                <i class="fas fa-envelope me-2"></i>Subscribe Now
+              </a>
+              {% endif %}
+            </div>
+            <div class="col-md-4">
+              <h6>Share this issue:</h6>
+              <div class="share-buttons">
+                <a href="https://twitter.com/intent/tweet?url={{ page.url | absolute_url }}&text={{ page.title | uri_escape }}"
+                   class="btn btn-sm btn-outline-primary me-2" target="_blank">
+                  <i class="fab fa-twitter"></i> Tweet
+                </a>
+                <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ page.url | absolute_url }}"
+                   class="btn btn-sm btn-outline-primary" target="_blank">
+                  <i class="fab fa-linkedin"></i> Share
+                </a>
+              </div>
+            </div>
+          </div>
+        </footer>
+
+        <!-- Navigation to other newsletters -->
+        <nav class="newsletter-nav mt-4">
+          <div class="d-flex justify-content-between">
+            {% assign newsletters = site.newsletters | sort: 'date' | reverse %}
+            {% assign current_index = 0 %}
+            {% for newsletter in newsletters %}
+              {% if newsletter.url == page.url %}
+                {% assign current_index = forloop.index0 %}
+                {% break %}
+              {% endif %}
+            {% endfor %}
+
+            {% assign prev_index = current_index | minus: 1 %}
+            {% assign next_index = current_index | plus: 1 %}
+
+            {% if prev_index >= 0 %}
+              {% assign prev_newsletter = newsletters[prev_index] %}
+              <a href="{{ prev_newsletter.url }}" class="btn btn-outline-secondary">
+                <i class="fas fa-chevron-left me-2"></i>Previous Issue
+              </a>
+            {% else %}
+              <span></span>
+            {% endif %}
+
+            {% if next_index < newsletters.size %}
+              {% assign next_newsletter = newsletters[next_index] %}
+              <a href="{{ next_newsletter.url }}" class="btn btn-outline-secondary">
+                Next Issue<i class="fas fa-chevron-right ms-2"></i>
+              </a>
+            {% endif %}
+          </div>
+        </nav>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.newsletter-badge {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.5rem;
+}
+
+.newsletter-subtitle {
+  font-style: italic;
+}
+
+.newsletter-content {
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+.newsletter-content h2 {
+  color: #2c3e50;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #e1e8ed;
+  padding-bottom: 0.5rem;
+}
+
+.newsletter-content h3 {
+  color: #4f46e5;
+  margin-top: 1.5rem;
+}
+
+.share-buttons .btn {
+  border-radius: 20px;
+}
+</style>

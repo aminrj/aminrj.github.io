@@ -242,3 +242,63 @@ utm_tracking:
 #   linkedin: "https://linkedin.com/in/amineraji"
 #   twitter: "https://twitter.com/yourusername"
 #   github: "https://github.com/yourusername"
+
+# Add this to your _config.yml file
+
+# collections:
+#   newsletters:
+#     output: true
+#     permalink: /newsletter/:name/
+#     sort_by: date
+#
+# # Newsletter defaults
+# defaults:
+#   - scope:
+#       path: "_newsletters"
+#       type: "newsletters"
+#     values:
+#       layout: "newsletter"
+#       permalink: /newsletter/:title/
+#
+# newsletter_signup_url: "https://aminrj.kit.com/d4f03423ce"  # Add your actual signup URL
+
+
+
+# Add this to your existing collections section
+collections:
+  tabs:
+    output: true
+    sort_by: order
+  newsletters:
+    output: true
+    permalink: /newsletter/:name/
+
+# Add newsletter defaults to your existing defaults section
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      toc: true
+      permalink: /posts/:title/
+  - scope:
+      path: ""
+      type: tabs
+    values:
+      layout: page
+      permalink: /:title/
+  # Add this new section for newsletters
+  - scope:
+      path: "_newsletters"
+      type: "newsletters"
+    values:
+      layout: "newsletter"
+  - scope:
+      path: assets/js/dist
+    values:
+      swcache: true
+
+# Newsletter settings
+# newsletter_signup_url: "#"
+newsletter_signup_url: "https://aminrj.kit.com/d4f03423ce"  # Add your actual signup URL

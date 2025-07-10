@@ -95,8 +95,8 @@ _This week's deep dive covers advanced protection strategies for production LLM 
 
 <div class="newsletter-signup">
   <div class="signup-form">
-    <h3>Free Weekly Newsletter</h3>
-    <p>Get the latest AI security insights delivered to your inbox every Tuesday.</p>
+    <h3>Free Newsletter</h3>
+    <p>Get the latest cybersecurity, cloud and AI insights delivered to your inbox every morning.</p>
 
    <form action="https://app.kit.com/forms/8229727/subscriptions"
          id="newsletter-form"

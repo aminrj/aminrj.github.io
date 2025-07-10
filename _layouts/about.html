@@ -3,17 +3,35 @@ layout: default
 refactor: true
 ---
 
-<!-- About Hero Section -->
-<div class="about-hero" style="background: linear-gradient(135deg, #f8f9fc 0%, #e3edf7 100%); border: 1px solid #e1e8ed; padding: 2.5rem 2rem; margin: 0rem -1rem 2rem -1rem; border-radius: 15px; text-align: center;">
-  <div style="max-width: 600px; margin: 0 auto;">
-    <h1 style="font-size: 2rem; font-weight: 700; margin-bottom: 1rem; color: #2c3e50;">
+<!-- Hero Section -->
+<div class="about-hero" style="background: linear-gradient(135deg, #f8f9fc 0%, #e3edf7 100%); border: 1px solid #e1e8ed; padding: 3rem 2rem; margin: 0rem -1rem 2rem -1rem; border-radius: 15px; text-align: center; position: relative; overflow: hidden;">
+  <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0); background-size: 20px 20px; opacity: 0.5;"></div>
+  <div style="max-width: 650px; margin: 0 auto; position: relative; z-index: 1;">
+    <div style="display: inline-block; background: rgba(79, 70, 229, 0.1); color: #4f46e5; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin-bottom: 1rem;">
+      🛡️ TRUSTED CYBERSECURITY EXPERT
+    </div>
+    <h1 style="font-size: 2.2rem; font-weight: 700; margin-bottom: 1.2rem; color: #2c3e50;">
       {{ page.title | default: "About Me" }}
     </h1>
     {% if page.subtitle %}
-    <p style="font-size: 1.1rem; color: #5a6c7d; line-height: 1.6; margin-bottom: 1.5rem;">
+    <p style="font-size: 1.2rem; color: #5a6c7d; line-height: 1.6; margin-bottom: 1.5rem;">
       {{ page.subtitle }}
     </p>
     {% endif %}
+    <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap;">
+      <div style="display: flex; align-items: center; background: rgba(16, 185, 129, 0.1); color: #10b981; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem; font-weight: 600;">
+        <span style="margin-right: 0.5rem;">✓</span>
+        Security Cleared
+      </div>
+      <div style="display: flex; align-items: center; background: rgba(16, 185, 129, 0.1); color: #10b981; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem; font-weight: 600;">
+        <span style="margin-right: 0.5rem;">🏆</span>
+        Industry Certified
+      </div>
+      <div style="display: flex; align-items: center; background: rgba(16, 185, 129, 0.1); color: #10b981; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem; font-weight: 600;">
+        <span style="margin-right: 0.5rem;">📈</span>
+        Proven Expertise
+      </div>
+    </div>
   </div>
 </div>
 
@@ -22,111 +40,153 @@ refactor: true
   {{ content }}
 </div>
 
-<!-- Professional Stats Section -->
-{% if page.stats %}
-<div class="section-card" style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); border: 1px solid #e1e8ed; margin: 2rem 0;">
-  <h3 style="color: #2c3e50; margin-bottom: 1.5rem; font-size: 1.4rem; text-align: center;">Key Credentials</h3>
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
-    {% for stat in page.stats %}
-    <div style="text-align: center; padding: 1rem;">
-      <div style="font-size: 1.8rem; font-weight: 700; color: #4f46e5; margin-bottom: 0.5rem;">{{ stat.number }}</div>
-      <div style="color: #6b7280; font-size: 0.9rem;">{{ stat.description }}</div>
-    </div>
-    {% endfor %}
+<!-- Combined Stats & Services Section -->
+{% if page.stats or page.services %}
+<div class="section-card" style="background: white; padding: 2.5rem; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); border: 1px solid #e1e8ed; margin: 2rem 0; position: relative;">
+  <div style="position: absolute; top: 1rem; right: 1rem; background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 0.3rem 0.8rem; border-radius: 12px; font-size: 0.75rem; font-weight: 700;">
+    PROVEN TRACK RECORD
   </div>
-</div>
-{% endif %}
 
-<!-- Services Section -->
-{% if page.services %}
-<div class="section-card" style="background: white; padding: 2.5rem; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); border: 1px solid #e1e8ed; margin: 2rem 0;">
-  <h3 style="color: #2c3e50; margin-bottom: 2rem; font-size: 1.4rem; text-align: center;">What I Do</h3>
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
-    {% for service in page.services %}
-    <div>
-      <h4 style="color: #4f46e5; margin-bottom: 0.8rem; font-size: 1.1rem;">
-        <i class="{{ service.icon }}" style="margin-right: 0.5rem;"></i>{{ service.title }}
-      </h4>
-      <p style="color: #6b7280; line-height: 1.6; margin: 0;">{{ service.description }}</p>
+  {% if page.stats %}
+  <div style="margin-bottom: {% if page.services %}2.5rem{% else %}0{% endif %};">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 2rem;">
+      <div style="text-align: center;">
+        <div style="font-size: 2rem; font-weight: 700; color: #4f46e5; margin-bottom: 0.5rem;">80+</div>
+        <div style="color: #6b7280; font-size: 0.9rem; font-weight: 500;">Security Projects Delivered</div>
+      </div>
+      <div style="text-align: center;">
+        <div style="font-size: 2rem; font-weight: 700; color: #4f46e5; margin-bottom: 0.5rem;">35</div>
+        <div style="color: #6b7280; font-size: 0.9rem; font-weight: 500;">Enterprise Clients Secured</div>
+      </div>
+      <!-- <div style="text-align: center;"> -->
+      <!--   <div style="font-size: 2rem; font-weight: 700; color: #4f46e5; margin-bottom: 0.5rem;">98%</div> -->
+      <!--   <div style="color: #6b7280; font-size: 0.9rem; font-weight: 500;">Client Satisfaction Rate</div> -->
+      <!-- </div> -->
+      <div style="text-align: center;">
+        <div style="font-size: 2rem; font-weight: 700; color: #4f46e5; margin-bottom: 0.5rem;">14</div>
+        <div style="color: #6b7280; font-size: 0.9rem; font-weight: 500;">Years in Cybersecurity</div>
+      </div>
     </div>
-    {% endfor %}
-  </div>
-</div>
-{% endif %}
-
-<!-- Client Impact Section -->
-{% if page.client_impact %}
-<div class="section-card" style="background: linear-gradient(135deg, #f8f9fc 0%, #e3edf7 100%); padding: 2.5rem; border-radius: 12px; border: 1px solid #e1e8ed; margin: 2rem 0;">
-  <h3 style="color: #2c3e50; margin-bottom: 2rem; font-size: 1.4rem; text-align: center;">Client Results</h3>
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
-    {% for impact in page.client_impact %}
-    <div style="background: white; padding: 1.5rem; border-radius: 8px; text-align: center;">
-      <div style="font-size: 1.6rem; font-weight: 700; color: #10b981; margin-bottom: 0.5rem;">{{ impact.metric }}</div>
-      <div style="color: #374151; font-weight: 600; margin-bottom: 0.5rem;">{{ impact.achievement }}</div>
-      <div style="color: #6b7280; font-size: 0.85rem;">{{ impact.company_type }}</div>
-    </div>
-    {% endfor %}
-  </div>
-</div>
-{% endif %}
-
-<!-- Technical Skills Section -->
-{% if page.technical_skills %}
-<div class="section-card" style="background: white; padding: 2.5rem; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); border: 1px solid #e1e8ed; margin: 2rem 0;">
-  <h3 style="color: #2c3e50; margin-bottom: 2rem; font-size: 1.4rem; text-align: center;">Technical Expertise</h3>
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
-    {% for skill_category in page.technical_skills %}
-    <div>
-      <h4 style="color: #4f46e5; margin-bottom: 1rem; font-size: 1.1rem;">{{ skill_category.category }}</h4>
-      <ul style="color: #6b7280; line-height: 1.8; padding-left: 1.2rem; margin: 0;">
-        {% for skill in skill_category.skills %}
-        <li>{{ skill }}</li>
-        {% endfor %}
-      </ul>
-    </div>
-    {% endfor %}
-  </div>
-</div>
-{% endif %}
-
-<!-- Contact CTA Section -->
-{% if page.contact_cta %}
-<div class="section-card" style="background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%); color: white; padding: 2.5rem 2rem; border-radius: 12px; margin: 2rem 0; text-align: center;">
-  <h3 style="margin-bottom: 1rem; font-size: 1.6rem;">{{ page.contact_cta.title }}</h3>
-  <p style="font-size: 1rem; margin-bottom: 2rem; opacity: 0.9; line-height: 1.6;">
-    {{ page.contact_cta.description }}
-  </p>
-
-  {% if page.contact_cta.availability %}
-  <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px; margin-bottom: 2rem; backdrop-filter: blur(10px);">
-    <strong>{{ page.contact_cta.availability }}</strong>
   </div>
   {% endif %}
 
-  <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-    {% for button in page.contact_cta.buttons %}
-    <a href="{{ button.url }}" style="background: {% if button.primary %}white; color: #4f46e5{% else %}rgba(255,255,255,0.2); color: white; border: 2px solid white{% endif %}; padding: 12px 20px; text-decoration: none; border-radius: 8px; font-weight: 600; transition: all 0.3s; display: inline-block;">
-      {{ button.text }}
-    </a>
-    {% endfor %}
+  {% if page.services %}
+  <div>
+    <h3 style="color: #2c3e50; margin-bottom: 1.5rem; font-size: 1.3rem; text-align: center;">Specialized Security Services</h3>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem;">
+      <div style="text-align: center; padding: 1.5rem; background: linear-gradient(135deg, #f8f9fc 0%, #ffffff 100%); border-radius: 8px; border: 1px solid #e1e8ed;">
+        <h4 style="color: #4f46e5; margin-bottom: 0.8rem; font-size: 1.1rem;">
+          <span style="margin-right: 0.5rem;">🛡️</span>Penetration Testing
+        </h4>
+        <p style="color: #6b7280; line-height: 1.6; margin: 0; font-size: 0.95rem;">Deep vulnerability assessments and ethical hacking to identify security gaps before attackers do</p>
+      </div>
+      <div style="text-align: center; padding: 1.5rem; background: linear-gradient(135deg, #f8f9fc 0%, #ffffff 100%); border-radius: 8px; border: 1px solid #e1e8ed;">
+        <h4 style="color: #4f46e5; margin-bottom: 0.8rem; font-size: 1.1rem;">
+          <span style="margin-right: 0.5rem;">🔒</span>Security Architecture
+        </h4>
+        <p style="color: #6b7280; line-height: 1.6; margin: 0; font-size: 0.95rem;">Design and implement robust security frameworks that scale with your business growth</p>
+      </div>
+      <div style="text-align: center; padding: 1.5rem; background: linear-gradient(135deg, #f8f9fc 0%, #ffffff 100%); border-radius: 8px; border: 1px solid #e1e8ed;">
+        <h4 style="color: #4f46e5; margin-bottom: 0.8rem; font-size: 1.1rem;">
+          <span style="margin-right: 0.5rem;">👥</span>Security Training
+        </h4>
+        <p style="color: #6b7280; line-height: 1.6; margin: 0; font-size: 0.95rem;">Comprehensive cybersecurity awareness programs to turn your team into your first line of defense</p>
+      </div>
+      <div style="text-align: center; padding: 1.5rem; background: linear-gradient(135deg, #f8f9fc 0%, #ffffff 100%); border-radius: 8px; border: 1px solid #e1e8ed;">
+        <h4 style="color: #4f46e5; margin-bottom: 0.8rem; font-size: 1.1rem;">
+          <span style="margin-right: 0.5rem;">🤖</span>AI Security Consulting
+        </h4>
+        <p style="color: #6b7280; line-height: 1.6; margin: 0; font-size: 0.95rem;">Secure your AI implementations and protect against emerging threats in machine learning systems</p>
+      </div>
+    </div>
   </div>
+  {% endif %}
 </div>
 {% endif %}
 
-<!-- Certifications Section -->
-{% if page.certifications %}
-<div class="section-card" style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); border: 1px solid #e1e8ed; margin: 2rem 0;">
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
-    {% for cert_group in page.certifications %}
-    <div>
-      <h4 style="color: #2c3e50; margin-bottom: 1rem; font-size: 1.1rem;">{{ cert_group.category }}</h4>
-      <ul style="color: #6b7280; line-height: 1.8; padding-left: 1.2rem; margin: 0;">
-        {% for cert in cert_group.items %}
-        <li>{{ cert }}</li>
-        {% endfor %}
-      </ul>
+<!-- Skills & Impact Combined -->
+{% if page.technical_skills or page.client_impact %}
+<div class="section-card" style="background: linear-gradient(135deg, #f8f9fc 0%, #e3edf7 100%); padding: 2.5rem; border-radius: 12px; border: 1px solid #e1e8ed; margin: 2rem 0; position: relative;">
+  <div style="position: absolute; top: 1rem; right: 1rem; background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%); color: white; padding: 0.3rem 0.8rem; border-radius: 12px; font-size: 0.75rem; font-weight: 700;">
+    REAL RESULTS
+  </div>
+
+  {% if page.client_impact %}
+  <div style="margin-bottom: {% if page.technical_skills %}2.5rem{% else %}0{% endif %};">
+    <h3 style="color: #2c3e50; margin-bottom: 1.5rem; font-size: 1.3rem; text-align: center;">Recent Results</h3>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem;">
+      {% for impact in page.client_impact %}
+      <div style="background: white; padding: 1.5rem; border-radius: 8px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+        <div style="font-size: 1.5rem; font-weight: 700; color: #10b981; margin-bottom: 0.5rem;">{{ impact.metric }}</div>
+        <div style="color: #374151; font-weight: 600; margin-bottom: 0.3rem; font-size: 0.95rem;">{{ impact.achievement }}</div>
+        <div style="color: #6b7280; font-size: 0.8rem;">{{ impact.company_type }}</div>
+      </div>
+      {% endfor %}
     </div>
-    {% endfor %}
+  </div>
+  {% endif %}
+
+  {% if page.technical_skills %}
+  <div>
+    <h3 style="color: #2c3e50; margin-bottom: 1.5rem; font-size: 1.3rem; text-align: center;">Technical Expertise</h3>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+      {% for skill_category in page.technical_skills %}
+      <div>
+        <h4 style="color: #4f46e5; margin-bottom: 1rem; font-size: 1rem; text-align: center;">{{ skill_category.category }}</h4>
+        <ul style="color: #6b7280; line-height: 1.6; padding-left: 1.2rem; margin: 0; font-size: 0.9rem;">
+          {% for skill in skill_category.skills %}
+          <li>{{ skill }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+</div>
+{% endif %}
+
+<!-- Contact Section -->
+{% if page.contact_cta %}
+<div class="section-card" style="background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%); color: white; padding: 2.5rem 2rem; border-radius: 12px; margin: 2rem 0; text-align: center; position: relative; overflow: hidden;">
+  <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.1) 1px, transparent 0); background-size: 24px 24px;"></div>
+  <div style="position: relative; z-index: 1;">
+    <div style="display: inline-block; background: rgba(255, 255, 255, 0.2); color: white; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin-bottom: 1rem;">
+      🚀 READY TO SECURE YOUR BUSINESS?
+    </div>
+    <h3 style="margin-bottom: 1rem; font-size: 1.6rem;">{{ page.contact_cta.title }}</h3>
+    <p style="font-size: 1rem; margin-bottom: 2rem; opacity: 0.9; line-height: 1.6; max-width: 500px; margin-left: auto; margin-right: auto;">
+      {{ page.contact_cta.description }}
+    </p>
+
+    {% if page.contact_cta.availability %}
+    <div style="background: rgba(255,255,255,0.2); padding: 1rem; border-radius: 8px; margin-bottom: 2rem; backdrop-filter: blur(10px); display: inline-block; border: 1px solid rgba(255,255,255,0.3);">
+      <strong style="font-size: 0.95rem;">{{ page.contact_cta.availability }}</strong>
+    </div>
+    {% endif %}
+
+    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+      {% for button in page.contact_cta.buttons %}
+      <a href="{{ button.url }}" style="background: {% if button.primary %}white; color: #4f46e5; box-shadow: 0 4px 12px rgba(255,255,255,0.3){% else %}rgba(255,255,255,0.2); color: white; border: 2px solid white{% endif %}; padding: 12px 24px; text-decoration: none; border-radius: 8px; font-weight: 600; transition: all 0.3s; display: inline-block; font-size: 0.95rem;">
+        {{ button.text }}
+      </a>
+      {% endfor %}
+    </div>
+
+    <div style="margin-top: 2rem; display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
+      <div style="color: rgba(255,255,255,0.8); font-size: 0.9rem;">
+        <span style="margin-right: 0.5rem;">🛡️</span>
+        ISO 27001 Compliant
+      </div>
+      <div style="color: rgba(255,255,255,0.8); font-size: 0.9rem;">
+        <span style="margin-right: 0.5rem;">⚡</span>
+        Same-Day Response
+      </div>
+      <div style="color: rgba(255,255,255,0.8); font-size: 0.9rem;">
+        <span style="margin-right: 0.5rem;">🤝</span>
+        No Long-Term Contracts
+      </div>
+    </div>
   </div>
 </div>
 {% endif %}
@@ -172,12 +232,20 @@ refactor: true
   }
 
   @media (max-width: 768px) {
+    .about-hero {
+      padding: 2rem 1.5rem !important;
+    }
+
     .about-hero h1 {
-      font-size: 1.6rem !important;
+      font-size: 1.8rem !important;
     }
 
     .about-hero p {
-      font-size: 1rem !important;
+      font-size: 1.1rem !important;
+    }
+
+    .section-card {
+      padding: 2rem 1.5rem !important;
     }
 
     .section-card div[style*="display: flex"] {

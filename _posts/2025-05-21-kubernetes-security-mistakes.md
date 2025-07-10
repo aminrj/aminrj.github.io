@@ -121,6 +121,30 @@ spec:
         key: prod-db-password
 ```
 
+And a strong database password gets automatically generated using my
+Infrastructure as Code as follow:
+
+```terraform
+module "app_secrets" {
+  source       = "../../modules/azure-secrets"
+  key_vault_id = module.azure_keyvault.key_vault_id
+  app_name     = "app"
+
+  static_secrets = {
+    "db-username" = "app"
+    "db-name" = "app"
+  }
+
+  random_secrets = [
+    "db-password",
+  ]
+
+  depends_on = [
+    module.azure_keyvault
+  ]
+}
+```
+
 - **Cost**: \$0 (Azure Key Vault pricing starts at \$0.03 per 10,000 transactions)
 - **Time to implement**: 2 hours
 - **Risk eliminated**: Credential leaks, insider threats

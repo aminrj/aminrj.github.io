@@ -149,6 +149,8 @@ module "app_secrets" {
 - **Time to implement**: 2 hours
 - **Risk eliminated**: Credential leaks, insider threats
 
+![Strong passwords automatically generated and stored in Azure Key Vault](/assets/media/k8s/azure-secrets-store.png)
+
 ### 2. Hardened Database with CloudNativePG
 
 **Before**: Default PostgreSQL deployment with no backup strategy
@@ -205,6 +207,9 @@ I configured Prometheus to watch for security events:
 **Time to implement**: 3 hours
 **Risk eliminated**: Late detection, blind spots
 
+![Full monitoring for sensitive assets (here one application database cluster
+monitoring with Grafana)](/assets/media/k8s/database-health-tracking.png)
+
 ### 4. Network Policies for Microsegmentation
 
 **Before:** Any pod could talk to any other pod
@@ -260,6 +265,8 @@ Let's do the math:
 - **Training and documentation**: 3,000
 
 **Total upfront cost: 27,000**
+
+![Safe storage for database backups on Azure Cloud Storage](/assets/media/k8s/safe-storage-of-databases.png)
 
 ### Return on Investment
 

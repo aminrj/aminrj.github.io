@@ -19,21 +19,25 @@ The security landscape shows concerning acceleration in both AI-specific threats
 ## 📰 🎯 Top Highlights
 
 **[CISA Adds Citrix NetScaler CVE-2025-5777 to KEV Catalog](https://thehackernews.com/2025/07/cisa-adds-citrix-netscaler-cve-2025.html)**
+
 - **Impact**: Wide enterprise exposure through critical infrastructure components with confirmed active exploitation
 - **Action**: Audit all NetScaler deployments and apply patches immediately; implement network segmentation
 - **Timeline**: Immediate (within 24 hours)
 
 **[Critical mcp-remote Vulnerability Enables RCE](https://thehackernews.com/2025/07/critical-mcp-remote-vulnerability.html)**
+
 - **Impact**: 437,000+ downloads affected, enabling arbitrary OS command execution in development environments
 - **Action**: Scan for mcp-remote usage across development pipelines; update to patched versions
 - **Timeline**: 24 hours for inventory, 48 hours for remediation
 
 **[AI Alignment Research Shows Computational Intractability](https://arxiv.org/abs/2507.07341)**
+
 - **Impact**: Theoretical proof that separating intelligence from judgment in AI systems may be impossible
 - **Action**: Review AI governance frameworks; reassess assumption-based security controls
 - **Timeline**: Weekly strategic review cycle
 
 **[Architecture-Aware Attacks Bypass Prompt Injection Defenses](https://arxiv.org/abs/2507.07417)**
+
 - **Impact**: Fine-tuning based defenses proven ineffective against sophisticated attacks
 - **Action**: Implement multi-layered prompt injection defenses; audit existing LLM applications
 - **Timeline**: Immediate assessment, 1-week implementation
@@ -104,7 +108,7 @@ The security landscape shows concerning acceleration in both AI-specific threats
 
 ## 💬 Community Corner
 
-**What's on your mind this week?** 
+**What's on your mind this week?**
 
 The AI security landscape is rapidly evolving. What developments are you tracking? What challenges are you facing in your organization?
 
@@ -114,12 +118,13 @@ The AI security landscape is rapidly evolving. What developments are you trackin
 
 Stay vigilant, stay informed, and remember - AI security is everyone's responsibility.
 
-*Found this digest valuable? [Share it]({{ page.url | absolute_url }}) with your security team!*
+_Found this digest valuable? [Share it]({{ page.url | absolute_url }}) with your security team!_
 
 ---
 
 **About This Digest**
 
-This weekly AI security intelligence digest is compiled from trusted sources and expert analysis. 
+This weekly AI security intelligence digest is compiled from trusted sources and expert analysis.
 
-*Want to suggest a topic or provide feedback? Reach out on [LinkedIn](https://linkedin.com/in/aminraji) or reply to this newsletter.*
+_Want to suggest a topic or provide feedback? Reach out on [LinkedIn](https://linkedin.com/in/aminraji) or reply to this newsletter._
+

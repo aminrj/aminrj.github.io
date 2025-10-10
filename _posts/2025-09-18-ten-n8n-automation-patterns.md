@@ -1,4 +1,14 @@
-# 10 n8n Automation Patterns Every Engineer Should Master (Especially with AI Agents)
+---
+title: Automation Patterns in n8n
+date: 2025-09-18
+uuid: 202509180000
+status: published
+content-type: # article/video/thread/course
+target-audience: # beginner/intermediate/advanced
+categories: [Automation]
+image:
+  path: /assets/media/n8n/n8n_automation_patterns.png
+---
 
 _From simple triggers to intelligent automation orchestration_
 
@@ -55,7 +65,7 @@ graph TD
 
 1. Create new workflow named `summarize-article`
 2. Add `Webhook` trigger (responds to workflow calls)
-3. Add `OpenAI` node with prompt: "Summarize this article in 3 bullet points: {{$json.content}}"
+3. Add `OpenAI` node with prompt: "Summarize this article in 3 bullet points: \{\{$json.content\}\}"
 4. Add `Respond to Webhook` node
 
 **Main workflow:**
@@ -161,9 +171,9 @@ graph TD
 
 **Switch Rules for Platform-Specific Processing:**
 
-1. **Rule 1**: `{{ $json.platform }}` equals `twitter` → Route to Twitter-specific prompt
-2. **Rule 2**: `{{ $json.platform }}` equals `linkedin` → Route to LinkedIn-specific prompt
-3. **Rule 3**: `{{ $json.wordCount }}` > 1000 → Route to long-form summarizer
+1. **Rule 1**: `\{\{ $json.platform \}\}` equals `twitter` → Route to Twitter-specific prompt
+2. **Rule 2**: `\{\{ $json.platform \}\}` equals `linkedin` → Route to LinkedIn-specific prompt
+3. **Rule 3**: `\{\{ $json.wordCount \}\}` > 1000 → Route to long-form summarizer
 4. **Default**: Route to generic handler
 
 ### Real-World Use Case

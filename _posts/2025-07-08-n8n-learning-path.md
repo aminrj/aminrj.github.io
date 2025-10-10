@@ -1,16 +1,14 @@
 ---
-title: Dive into automation: n8n learning path
-date: 2025-10-09
-uuid: 48b1
-status: inbox
+title: Diving into no-code automations with n8n
+date: 2025-07-08
+uuid: 202507080000
+status: published
 content-type: # article/video/thread/course
 target-audience: # beginner/intermediate/advanced
-categories: [category]
+categories: [Automation]
 image:
-  path: /assets/media/k8s/kubernetes-security-mistake.png
+  path: /assets/media/n8n/n8n_thumbnail.png
 ---
-
-# 🚀 n8n Mastery Guide: From Basics to Best Practices
 
 ## Table of Contents
 

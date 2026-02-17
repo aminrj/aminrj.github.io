@@ -7,33 +7,31 @@ content-type: article
 target-audience: intermediate
 categories: [LLM]
 image:
-  path: /assets/media/n8n/n8n_automation_patterns.pngdescription: Build a complete LLM application in one file. Practical guide to structured outputs, validation, and making AI models behave like system components, not magic textboxes.---
+  path: /assets/media/n8n/n8n_automation_patterns.png
+description: Build a complete LLM application in one file. Learn structured outputs, validation, and treating AI models as system components.
+---
 
-Most people learn “LLMs” by writing prompts and admiring the prose.
-Here, I buid a one-file procurement “AI analyst” to learn LLM engineering.
-And it actually works.
+## Why I Built This
 
-I wanted something different: a **real application** with **real constraints**,
-where the model has to behave like a component in a software system—not a
-magical textbox.
+Most LLM tutorials teach you to write prompts. This one teaches you to write **systems**.
 
-So I built a single-file MVP: a procurement intelligence assistant that:
+After years building software at Société Générale, Airbus, and Volvo Cars, I know what separates demos from production: contracts, validation, and error handling. When I started learning LLM engineering, I wanted to skip the "magical textbox" phase and go straight to treating models like any other API.
+
+So I built a one-file procurement analyst that actually works—not as a demo, but as a system with real constraints.
+
+It does three things:
 
 1. **Filters** tenders for relevance (cybersecurity / AI / software)
 2. **Rates** the opportunity (fit, win probability, effort, risks)
-3. **Generates** structured bid content (executive summary, approach, value
-   prop, timeline)
+3. **Generates** structured bid content (executive summary, approach, value prop, timeline)
 
-All of it runs locally through **LM Studio** using an OpenAI-compatible API.  
-And the most important part: the model is forced to return **structured JSON
-validated with Pydantic**, so downstream code stays clean and predictable.
+All of it runs locally through **LM Studio** using an OpenAI-compatible API. The model is forced to return **structured JSON validated with Pydantic**, so downstream code stays clean and predictable.
 
-This article documents the approach, the architecture, and the LLM engineering
-patterns that made it reliable enough to be useful.
+This article documents the approach, the architecture, and the LLM engineering patterns that made it reliable.
 
 ---
 
-## Why I started here (and why procurement is a great sandbox)
+## Why Procurement Makes a Great Learning Project
 
 Procurement tenders are an underrated playground for applied LLM engineering:
 
@@ -563,75 +561,29 @@ This is extremely useful early on because most failures are formatting / schema 
 
 ---
 
-## Where this goes next (my roadmap from here)
+## What I Learned Building This
 
-This MVP is intentionally a “one-file learning artifact.”
-But it points directly to the next iterations:
+**The one-file constraint forced every decision to be defensible.** When you can't hide complexity in microservices, every abstraction becomes obvious. Is this validation really needed? Is this retry logic correct? You can't defer those questions. That clarity is valuable—keep it as long as possible before splitting things up.
 
-### A) Real ingestion: scrape tender portals
+**Prompt engineering is 20% of the work; output validation is 80%.** Most tutorials stop after "look, the LLM gave me an answer!" The real engineering starts when you ask: what happens on request 1,001 when the format changes? What happens when confidence is returned as "95%" instead of 0.95? Pydantic catches these before they become production incidents.
 
-Replace `SAMPLE_TENDERS` with:
-
-- scraper → HTML/PDF parsing
-- normalization into `Tender` objects
-- storage (even a JSONL file at first)
-
-### B) Persistence + UI
-
-- store `ProcessedTender` in Postgres/SQLite
-- add a simple web UI to browse, filter, and export decisions
-
-### C) Evaluation harness (this is the big one)
-
-Create a small dataset:
-
-- 50–200 labeled tenders
-- expected relevance/category labels
-- expected score bands
-
-Then track:
-
-- false positives / false negatives in filtering
-- stability of ratings
-- output validity rate
-
-### D) Stronger guardrails
-
-If you want more robustness:
-
-- add schema-aware “repair prompts” on parse failures
-- use response-format controls (if supported by your local server)
-- add content checks (e.g., enforce exactly 3 strengths/risks)
-
-### E) Compare orchestration styles
-
-Once the linear flow is mastered:
-
-- try a graph workflow (LangGraph)
-- add optional agents (e.g., compliance agent, risk agent)
-- add memory or retrieval (company capabilities, past bids, templates)
+**Local LLM development changes the feedback loop completely.** No API costs, no rate limits, instant iteration. I ran this hundreds of times while tuning prompts and schemas. That kind of experimentation would cost hundreds of dollars with cloud APIs. Local-first development for prototyping, then scale to cloud APIs when patterns stabilize.
 
 ---
 
-## Closing: the big lesson
+## Resources & Next Steps
 
-LLMs are probabilistic text generators.
+**Read the Code**: [github.com/aminrj/procurement-ai](https://github.com/aminrj/procurement-ai) — Tag `v0.1-article-procurement-mvp` for the one-file version
 
-But you can wrap them in:
+**Follow the Series**:
+- Part 2: [Build Production-Ready LLM Agents](/posts/Build-production-ready-llam-agents/)
+- Part 3: [From MVP to Production SaaS](/posts/from-mvp-to-prod/)
 
-- contracts (Pydantic schemas)
-- validation gates
-- retries
-- orchestration logic
-- temperature strategy
+**Building an LLM Application?** If you're moving from notebooks to production and need architecture guidance on structured outputs, validation strategies, and error handling, [let's talk](/consultation/). I offer a free 30-minute call where we'll review your approach and identify where demos become fragile in production.
 
-…and make them behave like reliable components in a software system.
+Connect with me on [LinkedIn](https://www.linkedin.com/in/aminrjami/), and star the [procurement-ai repository](https://github.com/aminrj/procurement-ai) to see how this evolved from one file to a full application.
 
-This one-file MVP is my first documented step in that direction.
-Next I’ll move from “demo tenders” to real ingestion, persistence, evaluation, and automation.
-
-If you’re also learning LLM engineering: start with something that forces structure and decisions.
-You’ll learn more in a week than you’ll learn from months of prompt tinkering.
+Thanks for reading.
 
 ---
 

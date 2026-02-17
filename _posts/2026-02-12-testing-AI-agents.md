@@ -1,6 +1,6 @@
 ---
-title: LLM Engineering Part 3, From Basic LLM App to Production SaaS MVP
-date: 2026-02-02
+title: From MVP to Production (wip)
+date: 2026-01-31
 uuid: 202512180000
 status: published
 content-type: # article/video/thread/course
@@ -9,6 +9,8 @@ categories: [LLM]
 image:
   path: /assets/media/n8n/n8n_automation_patterns.png
 ---
+
+# LLM Engineering Part 3: From Working LLM App to Production SaaS MVP
 
 This article is a practical walkthrough of what it takes to move a working LLM application into a production-ready SaaS MVP, using the `procurement-ai` project as the reference implementation.
 
@@ -28,6 +30,11 @@ Recent hardening work in this codebase focused on:
 - Safer persistence via upsert semantics.
 - Status normalization across orchestration, API, and DB.
 - Updated scripts/docs and broad test coverage.
+
+Evidence:
+
+- `docs/CHANGES.md` (February 5, 2026) documents the stabilization scope.
+- Current test run in the project venv: `81 passed, 3 skipped, 4 deselected`.
 
 At this stage, this is a strong SaaS MVP baseline, not yet a fully hardened production platform. That distinction matters.
 

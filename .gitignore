@@ -30,3 +30,6 @@ assets/js/dist
 assets/media/.DS_Store
 *.backup-*
 *-fixed.md
+/assets/.DS_Store
+/assets/media/procurement-ai/.$from-mvp-to-prod-saas.drawio.bkp
+/assets/media/procurement-ai/from-mvp-to-prod-saas.drawio

@@ -29,8 +29,6 @@ All of it runs locally through **LM Studio** using an OpenAI-compatible API. The
 
 This article documents the approach, the architecture, and the LLM engineering patterns that made it reliable.
 
----
-
 ## Why Procurement Makes a Great Learning Project
 
 Procurement tenders are an underrated playground for applied LLM engineering:
@@ -48,8 +46,6 @@ LLM apps:
 - temperature control
 - orchestration
 - guardrails & branching logic
-
----
 
 ## The MVP in one sentence
 

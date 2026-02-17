@@ -11,11 +11,15 @@ image:
 description: Build a working AI analyst from scratch in one file. Learn LLM engineering fundamentals through a real procurement analysis application with structured outputs.
 ---
 
-# LLM-Engineering: Building a Procurements Analyst AI
+## Why I Built This
 
-## Step-by-Step Introduction into building LLM-powered Applications
+Most LLM tutorials end with "Hello, World!" Mine ends with a working procurement analyst.
 
-Here, I build a simple, one-file, procurement “AI analyst” to learn LLM engineering. And it actually works.
+After 15+ years at Société Générale, Airbus, and Volvo Cars, I've seen what happens when teams skip the fundamentals. When LLMs arrived, the same pattern emerged: "just get it working, we'll add structure later."
+
+That never works. So I built this one-file MVP to show the opposite: treat the LLM like **software** from day one. Schemas. Validation. Retries. The boring stuff that prevents 3 AM debugging sessions.
+
+Here, I build a simple, one-file procurement "AI analyst" to demonstrate these patterns. And it actually works.
 
 MVP output analyzing procurements with local LLM
 Why?
@@ -487,36 +491,50 @@ This one-file MVP is my first documented step in that direction. Next I’ll mov
 
 If you’re also learning LLM engineering: start with something that forces structure and decisions. You’ll learn more in a week than you’ll learn from months of prompt tinkering.
 
-Appendix: The most important snippet (the pattern to reuse everywhere)
+Appendix: The Pattern to Reuse Everywhere
 
 If you only take one piece from this article, take this pattern:
 
+```python
 # 1) Define schema with Pydantic
-
 class OutputModel(BaseModel):
-field_a: str
-score: float = Field(ge=0, le=10)
+    field_a: str
+    score: float = Field(ge=0, le=10)
 
 # 2) Call LLM and force JSON shape
-
 result = await llm.generate_structured(
-prompt="Do the task and return JSON.",
-response_model=OutputModel,
-system_prompt="Be precise.",
-temperature=0.1,
+    prompt="Do the task and return JSON.",
+    response_model=OutputModel,
+    system_prompt="Be precise.",
+    temperature=0.1,
 )
 
 # 3) Now you have a validated object, not messy text
-
 print(result.score)
-That’s the foundation of LLM engineering.
+```
 
-Like what you read ?
+That's the foundation of LLM engineering.
 
-Want to discuss more around AI and how to code with LLM strategies?
+## What I Learned Building This
 
-Connect with me on [LinkedIn] or follow my journey on [Medium] where I share real-world insights from my experiments and research.
+**Treat LLMs like any other API—because they are.** Years of integrating third-party services taught me: never trust what comes back over the wire. Authentication APIs can return malformed tokens. Payment gateways can time out mid-transaction. LLMs? Same principle. Wrap them in validation layers. Design for failure from the start.
 
-Also, make sure to start ⭐️ the Git repo for this article 😉.
+**Temperature isn't a "quality" dial—it's a variance knob.** Scoring tenders at 0.1 gives consistent "yes/no" decisions. Generating proposals at 0.7 produces natural, varied language. Neither is "better." Match the parameter to your tolerance for surprise. Low variance for logic, high variance for creativity.
+
+**One-file MVPs force design clarity.** Putting everything in a single script reveals the real complexity. No hiding behind microservices or "we'll refactor later." If your one-file solution is incomprehensible, your microservices architecture will be worse. Nail the simple version first.
+
+---
+
+## Resources & Next Steps
+
+**Read the Code**: [github.com/aminrj/procurement-ai](https://github.com/aminrj/procurement-ai) — Tag `v0.1-article-procurement-mvp` for the one-file version
+
+**Follow the Series**:
+- Part 2: [Build Production-Ready LLM Agents](/posts/Build-production-ready-llam-agents/)
+- Part 3: [From MVP to Production SaaS](/posts/from-mvp-to-prod/)
+
+**Starting an LLM Project?** If you're building AI systems and want to avoid the "prototype trap" where demos work but production fails, [let's talk](/consultation/). I offer a free 30-minute assessment where we'll review your architecture approach and flag potential pitfalls before you hit them.
+
+Connect with me on [LinkedIn](https://www.linkedin.com/in/aminrjami/), and star the [procurement-ai repository](https://github.com/aminrj/procurement-ai) to follow the journey from MVP to production.
 
 Thanks for reading.

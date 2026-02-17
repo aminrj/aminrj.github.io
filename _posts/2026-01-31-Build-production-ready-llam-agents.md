@@ -11,26 +11,30 @@ image:
 description: Build LLM agents that work reliably in production. Step-by-step guide covering error handling, structured outputs, and testing strategies for AI systems.
 ---
 
-# Build Production-Ready LLM Agents
+## Why Production LLM Agents Are Different
 
-This article walks through building a multi-agent system from scratch
+Over 15 years securing critical systems in banking, defense, aerospace, and automotive, I learned one truth: **what works in demos breaks in production.**
 
-Amine Raji
-I built a system that processes government tenders using LLM agents. It filters thousands of procurement opportunities, scores them, and generates bid documents.
+LLMs amplify this pattern. Calling an API and getting text back is trivial. Making that same API call work reliably 10,000 times with different inputs, handling failures gracefully, and maintaining consistent quality—that's engineering.
 
-The code works: calling an LLM is easy. Making it work reliably 1,000 times in a row is the actual problem.
+I built a system that processes government tenders using LLM agents. It filters thousands of procurement opportunities, scores them, and generates bid documents. The code works. But "works" in production means something very different than "works on my laptop."
+
+This article shows you how to build LLM agents that don't just work once—they work reliably, handle failures gracefully, and maintain quality under production load.
 
 This article walks through building a multi-agent system from scratch.
 I’ve published all the code as interactive notebooks you can run yourself.
 I’ll explain why certain patterns matter and what breaks when you skip them.
 
-The Problem with “Hello LLM”
+## The Problem with "Hello LLM"
 
 Most tutorials show you this:
 
-response = requests.post("<http://localhost:1234/v1/chat/completions>",
-json={"messages": [{"role": "user", "content": "Is this tender relevant?"}]})
+```python
+response = requests.post("http://localhost:1234/v1/chat/completions",
+    json={"messages": [{"role": "user", "content": "Is this tender relevant?"}]})
 print(response.json()["choices"][0]["message"]["content"])
+```
+
 It works. You get text back. But run this 100 times and you’ll get:
 
 Different formats each time
@@ -290,22 +294,32 @@ Start with 01_hello_llm.ipynb. Each notebook solves a problem you’ll hit in th
 
 The Real Takeaway
 
-Building LLM agents isn’t about prompt engineering or picking the best model. It’s about accepting that LLMs are unreliable and designing around it.
+Building LLM agents isn't about prompt engineering or picking the best model. It's about accepting that LLMs are unreliable and designing around it.
 
 LLMs return the wrong format sometimes. They time out. They give slightly different answers to the same question. They work 100 times in a row and fail on request 101.
 
 Production systems accept this and design accordingly: Pydantic validation to catch format errors, retries with backoff for transient failures, clear type contracts between components, logging to debug weird failures.
 
-The complete code and all notebooks are available at github.com/aminrj/procurement-ai. Each notebook includes detailed explanations, runnable code, and real examples.
+## What I Learned Building This
 
-Follow the learning path to build this yourself, or jump directly to the production code to see the final architecture.
+**Stop fighting LLM variability—design around it.** In defense systems, components are deterministic (or they're broken). LLMs are different: probabilistic by nature. My instinct was to "fix" the variability. Wrong approach. The right move is accepting that outputs vary and building systems that tolerate it. That's where Pydantic shines—not preventing variation, but catching when it exceeds acceptable bounds.
 
-Like what you read ?
+**Every LLM call is a security boundary.** Banking systems taught me to treat every external input as hostile. LLM outputs? Same rule applies. They cross a trust boundary into your application. Would you take user input and execute it directly? No. Would you parse API responses without validation? No. Don't treat LLM outputs differently just because they sound confident.
 
-Want to discuss more around AI and how to code with LLM strategies?
+**Production debugging requires observability from day one.** The first time something fails mysteriously at 2 AM, you'll wish you'd added structured logging and retry counters. Don't wait for production to add observability. Your future self (or your on-call teammate) will thank you.
 
-Connect with me on [LinkedIn] or follow my journey on [Medium] where I share real-world insights from my experiments and research.
+---
 
-Also, make sure to start ⭐️ the Git repo for this article 😉.
+## Resources & Next Steps
+
+**Read the Code**: [github.com/aminrj/procurement-ai](https://github.com/aminrj/procurement-ai)
+
+**Follow the Series**:
+- Part 1: [Building Your First LLM Procurement Analyst](/posts/LLM-engineering-building-a-procurements-analyst-ai/)
+- Part 3: [From MVP to Production SaaS](/posts/from-mvp-to-prod/)
+
+**Taking LLM Agents to Production?** If you're moving beyond prototypes and need architecture review from someone who's debugged LLM failures in production environments across banking, defense, and aerospace, [let's talk](/consultation/). I offer a free 30-minute call where we'll walk through your production architecture and identify the failure modes you haven't considered yet.
+
+Connect with me on [LinkedIn](https://www.linkedin.com/in/aminrjami/), and star the [procurement-ai repository](https://github.com/aminrj/procurement-ai) to follow along as I build this in public.
 
 Thanks for reading.

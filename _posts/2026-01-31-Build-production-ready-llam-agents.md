@@ -3,11 +3,12 @@ title: Build Production-Ready LLM Agents
 date: 2026-01-31
 uuid: 202512180000
 status: published
-content-type: # article/video/thread/course
-target-audience: # beginner/intermediate/advanced
+content-type: article
+target-audience: intermediate
 categories: [LLM]
 image:
   path: /assets/media/n8n/n8n_automation_patterns.png
+description: Build LLM agents that work reliably in production. Step-by-step guide covering error handling, structured outputs, and testing strategies for AI systems.
 ---
 
 # Build Production-Ready LLM Agents

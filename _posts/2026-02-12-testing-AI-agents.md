@@ -1,13 +1,14 @@
 ---
-title: From MVP to Production (wip)
-date: 2026-01-31
+title: Testing AI Agents in Production
+date: 2026-02-12
 uuid: 202512180000
 status: published
-content-type: # article/video/thread/course
-target-audience: # beginner/intermediate/advanced
+content-type: article
+target-audience: advanced
 categories: [LLM]
 image:
   path: /assets/media/n8n/n8n_automation_patterns.png
+description: Production testing strategies for LLM agents. Learn to validate AI behavior, handle edge cases, and ensure reliability at scale from enterprise security experience.
 ---
 
 # LLM Engineering Part 3: From Working LLM App to Production SaaS MVP

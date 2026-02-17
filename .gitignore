@@ -33,3 +33,6 @@ assets/media/.DS_Store
 /assets/.DS_Store
 /assets/media/procurement-ai/.$from-mvp-to-prod-saas.drawio.bkp
 /assets/media/procurement-ai/from-mvp-to-prod-saas.drawio
+
+# Local files (not pushed to git)
+*.local.md

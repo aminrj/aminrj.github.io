@@ -3,11 +3,12 @@ title: LLM-Engineering; Building a Procurements Analyst AI
 date: 2026-01-26
 uuid: 202512180000
 status: published
-content-type: # article/video/thread/course
-target-audience: # beginner/intermediate/advanced
+content-type: article
+target-audience: intermediate
 categories: [LLM]
 image:
   path: /assets/media/n8n/n8n_automation_patterns.png
+description: Build a working AI analyst from scratch in one file. Learn LLM engineering fundamentals through a real procurement analysis application with structured outputs.
 ---
 
 # LLM-Engineering: Building a Procurements Analyst AI

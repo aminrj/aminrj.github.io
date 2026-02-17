@@ -10,6 +10,7 @@ tags:
   - ArgoCD
 image:
   path: /assets/media/k8s/kubernetes-security-mistake.png
+description: A misconfigured RBAC policy could cost $430K in a single incident. Learn the most expensive Kubernetes security mistakes and how to avoid them from real-world testing.
 ---
 
 **"I thought I was being smart. I was actually being expensive."**

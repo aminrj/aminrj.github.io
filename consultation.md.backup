@@ -6,6 +6,7 @@ permalink: /consultation/
 
 <div style="background: linear-gradient(135deg, #f8f9fc 0%, #e3edf7 100%); border: 1px solid #e1e8ed; padding: 3rem 2rem; margin: -2rem -2rem 3rem -2rem; border-radius: 15px;">
   <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+    <h1 style="font-size: 2.2rem; margin-bottom: 1rem; color: #2c3e50;">Free AI Security Assessment</h1>
     <p style="font-size: 1.15rem; margin-bottom: 1.5rem; color: #5a6c7d; line-height: 1.6;">
       30-minute technical review of your AI infrastructure with actionable security recommendations
     </p>
@@ -30,7 +31,10 @@ The typical answer: "We didn't design for that." The refactor takes 6 months and
 
 ---
 
-## What You Get
+## What You Get in 30 Minutes
+
+**🔒 Security Gap Analysis**
+I'll review you
 
 **Security Gap Analysis**  
 Review of your AI infrastructure identifying the top 3-5 security risks that could derail deployment or cause a breach.
@@ -42,10 +46,7 @@ Prioritized action plan specific to your architecture—what to fix now, what to
 Real solutions from banking, defense, aerospace, and automotive environments. What actually works in production versus what sounds good in theory.
 
 **Custom Security Checklist**  
-Personalized checklist for your use case: LLM APIs, vector databases, Kubernetes deployments, multi-tenant SaaS, or compliance requirements.
-
-## Who This Is For
-
+Personalized checklist for your use case: LLM APIs, vector databases, Kubernetes deployments, multi-tenant SaaS, or compliance requirement
 - **CTOs and Engineering Leaders** deploying AI/LLM features at SaaS companies
 - **Security Teams** evaluating AI infrastructure risks before production
 - **Platform Engineers** building Kubernetes-based AI/ML platforms
@@ -91,10 +92,7 @@ Advised SaaS company on multi-tenant LLM isolation design from day one, avoiding
 **Accelerated Compliance**  
 Helped healthcare technology startup implement SOC2-compliant AI infrastructure in 30 days instead of 6 months
 
-**Production Deployment**  
-Guided enterprise automotive company deployment of AI features on Kubernetes with zero security incidents in first year
-
-## Schedule Your Assessment
+**PSchedule Your Assessment
 
 <div style="background: linear-gradient(135deg, #f8f9fc 0%, #e3edf7 100%); border: 1px solid #e1e8ed; padding: 2.5rem 2rem; border-radius: 12px; text-align: center; margin: 2rem 0;">
   <h3 style="color: #2c3e50; margin-bottom: 1.5rem; font-size: 1.3rem;">30-Minute Technical Review</h3>
@@ -110,13 +108,15 @@ Guided enterprise automotive company deployment of AI features on Kubernetes wit
   </p>
   
   <p style="color: #6b7280; font-size: 0.85rem;">
-    All consultations are confidential. NDA available upon request.
+    All consultations are confidential. NDA available upon request
+  
+  <p style="color: #6c757d; font-size: 0.9rem;">
+    All consultations are confidential. We can sign an NDA before our call if required.
   </p>
 </div>
 
 ## Frequently Asked Questions
-
-**Is this really free?**  
+Is this really free?**  
 Yes. I offer these assessments because I've seen too many companies discover critical security gaps after deployment. Prevention is easier than remediation, and 30 minutes now can save months of refactoring later.
 
 **Will you try to sell me something?**  
@@ -135,8 +135,14 @@ Just a high-level understanding of your architecture: what AI/LLM services you'r
 No problem. We can sign an NDA before our call. I work with defense, banking, and automotive clients who require strict confidentiality.
 
 **Do you work with startups?**  
-Yes, from startups to Fortune 500. The security principles are the same, though implementation approaches differ based on resources and scale.
+Yes, from startups to Fortune 500. The security principles are the same, though implementation approaches differ based on resources and scal
+A: Everything is confidential. I'll sign an NDA if requested, and I never share client information or use it for any other purpose.
 
+## Ready to Secure Your AI Infrastructure?
+
+Don't wait until after a security incident to address AI risks. Book your free assessment today and start building secure, compliant AI systems from day one.
+
+<div style="text-align: center; margin: 3rem 0;">
 ---
 
 <div style="text-align: center; margin: 3rem 0 2rem;">
@@ -145,4 +151,4 @@ Yes, from startups to Fortune 500. The security principles are the same, though 
   </a>
 </div>
 
-_Want AI security insights while you wait? [Subscribe to my newsletter](/) for daily 3-minute digests on AI/LLM security, Kubernetes vulnerabilities, and cloud-native best practices._
+_Want AI security insights while you wait? [Subscribe to my newsletter](/) for daily 3-minute digests on AI/LLM security, Kubernetes vulnerabilities, and cloud-native best practice

@@ -3,12 +3,11 @@ title: One-File Procurement “AI Analyst” with LLM Engineering
 date: 2025-12-18
 uuid: 202512180000
 status: published
-content-type: # article/video/thread/course
-target-audience: # beginner/intermediate/advanced
+content-type: article
+target-audience: intermediate
 categories: [LLM]
 image:
-  path: /assets/media/n8n/n8n_automation_patterns.png
----
+  path: /assets/media/n8n/n8n_automation_patterns.pngdescription: Build a complete LLM application in one file. Practical guide to structured outputs, validation, and making AI models behave like system components, not magic textboxes.---
 
 Most people learn “LLMs” by writing prompts and admiring the prose.
 Here, I buid a one-file procurement “AI analyst” to learn LLM engineering.

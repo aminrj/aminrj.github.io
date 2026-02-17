@@ -5,10 +5,11 @@ uuid: 202507111030
 tags: [MCP servers, Automation, AI Cybersecurity]
 categories: [AI risks, Automation, AI Cybersecurity]
 status: published
-content-type: article # article/video/thread/course
-target-audience: intermediate # beginner/intermediate/advanced
+content-type: article
+target-audience: intermediate
 image:
   path: /assets/media/ai/anthropic-mcp.png
+description: Critical security vulnerabilities in MCP protocol and AI integrations. Learn how trusted connections become attack vectors in LLM applications and how to protect them.
 ---
 
 ## The Hidden Security Risk in AI Integrations: Lessons from the MCP Protocol

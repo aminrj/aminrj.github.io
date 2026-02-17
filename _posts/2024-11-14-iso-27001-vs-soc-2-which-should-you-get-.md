@@ -15,6 +15,7 @@ tags:
 date: 2024-08-13T05:35:06.000Z
 image:
   path: "assets/media/cloud-native/soc2_iso27001_.png"
+description: ISO 27001 vs SOC 2 comparison for CTOs. Practical guidance on which security certification your company needs based on customers, budget, and compliance requirements.
 ---
 
 Both SOC 2 and ISO 27001 serve as frameworks to enhance information security,

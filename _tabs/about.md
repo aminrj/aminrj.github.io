@@ -3,152 +3,149 @@ layout: about
 icon: fas fa-info-circle
 order: 4
 title: "About Amine Raji"
-subtitle: "I help enterprises deploy AI systems without compromising security. PhD in Computer Science, CISSP certified, with 15+ years securing critical systems in banking, defense, aerospace, and automotive."
+subtitle: "I help engineering and security teams deploy AI agents without creating new attack surfaces. PhD in Computer Science, CISSP certified, 15+ years in the world's most security-critical industries."
 ---
 
 ## The Short Version
 
-I'm Amine Raji, founder of [Molntek](https://molntek.com) and specialist in AI security for production environments. I help CTOs and security teams deploy LLM applications with enterprise-grade security from day one.
+I'm Amine Raji, founder of [Molntek](https://molntek.com) and a specialist in AI/LLM security for organizations deploying agentic and LLM-powered systems. I help CTOs and security teams understand the attack surface they're creating when they deploy AI—and how to close it before it becomes an incident.
 
-My background spans the most security-critical industries on the planet: banking, defense, aerospace, automotive, and government. I've seen what breaks in production—and more importantly, what prevents it.
+My background spans the most demanding security environments on the planet: banking, defense, aerospace, automotive, and government. I've built and secured production AI systems from the inside. I know what breaks.
 
 ---
 
-## The Journey: From Critical Systems Research to AI Security
+## Why AI/LLM Security Is Different—And Why It Matters Now
 
-### The Foundation: Building Reliable Software
+When your team deploys an AI agent or LLM-powered feature, you're not just adding a new service. You're adding a new class of attack surface that most existing security frameworks weren't designed to handle:
 
-My career began with a question that still drives me today: **How do we help enterprises produce more secure and reliable software?**
+- **Prompt injection** attacks that manipulate model behavior the same way SQL injection manipulated databases
+- **Agent privilege escalation** when an AI with system access is compromised through its inputs
+- **Data exfiltration through model outputs**—training data, RAG context, and user data leaking through seemingly benign completions
+- **Multi-tenant vector database isolation failures** where one tenant's data surfaces in another's queries
+- **MCP server vulnerabilities** that expose your internal tools and systems to manipulation through AI interfaces
+- **Agentic loops and tool misuse** when autonomous agents execute unintended actions with real consequences
 
-This became my PhD research focus in Computer Science, where I studied critical systems—the kind of software where failure isn't an option. Through my doctoral work with Airbus and other aerospace partners, I learned that security and reliability aren't features you add later. They're architectural decisions you make from the start.
+Your SOC2 audit doesn't have questions about prompt injection. Your Kubernetes policies don't know how to scope LLM inference workloads. Your compliance team has never reviewed a vector database for tenant isolation. **This is the gap I close.**
 
-### Five Critical Sectors, One Consistent Pattern
+---
 
-Over 15 years, I've worked across five of the most demanding security environments:
+## The Journey: From Critical Systems to AI Security
 
-**Banking** (Société Générale): Where a security breach means immediate regulatory consequences and customer trust destruction. I learned that compliance isn't bureaucracy—it's forcing yourself to think through edge cases before they become incidents.
+### The Foundation
 
-**Defense & Government**: Where threat models include nation-state actors and the consequences of failure are measured in lives, not dollars. This taught me that security has to work even when attackers have unlimited time and resources.
+My career started with a question that still drives everything I do: **How do we help organizations produce secure and reliable software in environments where failure has real consequences?**
 
-**Aerospace** (Airbus): Where systems must function reliably for 20+ years and updates can't be deployed with `kubectl apply`. I learned to architect for the long term and design systems that degrade gracefully under attack.
+That question became my PhD research focus, pursued through collaborative work with Airbus and other aerospace partners. Security and reliability aren't features you add after the fact—they're architectural decisions that determine whether you can ship, scale, and survive an incident.
 
-**Automotive** (Volvo Cars): Where I currently lead cloud security for connected vehicles, dealing with millions of internet-connected devices that can't be easily patched. This is where I learned that modern "cloud-native" security principles apply even to cars.
+### Five Industries, One Consistent Pattern
 
-**SaaS & Technology**: Through Molntek, where I've helped startups and mid-market companies deploy AI systems that can scale from MVP to enterprise without a security rewrite.
+Over 15 years, I've secured systems across five of the most demanding environments:
+
+**Banking** (Société Générale): Where a breach means immediate regulatory action and lasting customer trust destruction. Compliance isn't bureaucracy—it's forcing you to think through edge cases before they become incidents.
+
+**Defense & Government**: Where threat models include nation-state actors and the consequences of failure are measured in lives, not dollars. Security has to work even when attackers have unlimited time and resources.
+
+**Aerospace** (Airbus): Where systems must function reliably for 20+ years. I learned to architect for the long term and design systems that degrade gracefully under attack.
+
+**Automotive** (Volvo Cars): Leading cloud security for connected vehicles—millions of internet-connected endpoints that can't be easily patched. Modern cloud-native security principles apply even to cars.
+
+**SaaS & AI Products**: Through Molntek, helping mid-market and enterprise companies deploy AI systems that can scale from prototype to production without a security rewrite.
 
 ### The Pattern I Keep Seeing
 
-Across all these industries, I noticed the same mistake repeated:
+Across all these industries, the same mistake repeats:
 
-> **Companies optimize for speed to market, then discover their architecture won't support the security they actually need.**
+> **Organizations optimize for speed to market, then discover their AI architecture won't support the security controls they actually need.**
 
-They build a prototype with OpenAI's API, it works great in demos, and suddenly they're trying to add multi-tenancy, audit logging, rate limiting, and compliance controls to code that was never designed for it.
+A team builds a working LLM prototype. It works in demos. Then they try to add multi-tenancy, audit logging, rate limiting, prompt validation, and compliance controls to code that was never designed for any of it. The refactor takes 6 months and costs hundreds of thousands. Or worse, they ship it anyway.
 
-The refactor takes 6 months. Or worse, they ship it anyway and hope nothing breaks.
+### What's Different About AI
 
-### Why AI Security Matters Now
+AI systems amplify this problem in ways traditional software doesn't. An AI agent isn't just serving data—it's making decisions, calling external APIs, reading from your internal knowledge base, and acting on behalf of users. When that agent is compromised through a malicious prompt in a document it was asked to summarize, the consequences aren't a 404 error. They're unauthorized actions with real-world effects.
 
-When AI/LLM adoption exploded in 2023-2024, I watched this pattern repeat at scale across the industry. Companies were rushing to deploy AI features without understanding the new attack surface they were creating:
-
-- LLM prompts that can be injected like SQL
-- Model outputs that can leak training data
-- AI agents with system access and no guardrails
-- Multi-tenant deployments sharing vector databases
-- Production systems calling external LLM APIs with customer data
-
-The scary part? **Most existing security frameworks don't cover this.** Your SOC2 audit probably doesn't have questions about prompt injection. Your Kubernetes security policies don't know how to handle LLM inference workloads. Your compliance team has never thought about vector database isolation.
-
-This is why I built https://aminrj.com and focus my research and writing on AI security: because the industry is repeating the same "ship first, secure later" mistakes we made with web applications 20 years ago.
-
-But this time, the stakes are higher. AI systems don't just serve content—they make decisions, access systems, and process sensitive data at scale.
+This is the security challenge I focus on: **not just hardening the infrastructure, but securing the model's behavior, the data it touches, and the systems it can reach.**
 
 ---
 
 ## My Approach: Security That Enables Speed
 
-I don't believe security should slow you down. Done right, it **accelerates** your path to production because you're not refactoring your architecture every 6 months.
+Security done right doesn't slow you down. It accelerates your path to production by eliminating the 6-month security refactor that kills most AI deployments.
 
-Here's how I work with clients:
+### 1. Architecture First, Not Compliance Checklists
 
-### 1. **Start with Architecture, Not Compliance**
+Most security consultants hand you a PDF of requirements. I start by understanding your system—what models you're running, what data flows through them, what your agents can do, and what your threat model actually looks like.
 
-Most security consultants hand you a 50-page PDF of requirements. I start by understanding your system architecture and designing security that fits how you actually work.
+Then I design security controls that fit how you work: native Kubernetes constructs, proper LLM gateway patterns, agent sandboxing, prompt validation pipelines, and vector database isolation—built into the architecture, not bolted on afterward.
 
-If you're deploying on Kubernetes, we'll use native constructs (network policies, pod security standards, admission controllers). If you're building multi-tenant LLM applications, we'll design tenant isolation at the data layer, not as an afterthought.
+### 2. Production-Proven, Not Theoretical
 
-### 2. **Production-Proven, Not Theoretical**
+Every recommendation I make has been implemented and tested in production. I write the code, deploy the systems, and document what actually works versus what sounds good in a framework document.
 
-Every recommendation I make comes from real implementations in production environments. I've made the mistakes so you don't have to.
+You'll get reference architectures, working code examples, and operational playbooks—not a list of CIS benchmarks.
 
-You'll get: reference architectures, working code examples, deployment patterns, and operational playbooks—not generic best practices from a framework document.
+### 3. Security Built Into the Workflow
 
-### 3. **Build Security Into Your Workflow**
+Security that requires monthly audits doesn't scale. I help you embed security into your CI/CD pipeline, infrastructure-as-code, and automated testing. Developers ship securely by default because the guardrails are part of the platform.
 
-Security that requires manual reviews and monthly audits doesn't scale. I help you build security into your CI/CD pipeline, infrastructure-as-code, and automated testing.
+### 4. Business Language, Not Security Jargon
 
-The goal: Your developers deploy securely by default because the guardrails are built into the platform.
+I translate security decisions into business outcomes. Not "implement pod security policies"—but "this prevents a compromised container from reaching your database, which is the difference between a contained incident and a reportable breach."
 
-### 4. **Focus on Business Impact**
-
-I translate security decisions into business outcomes. Instead of "we need to implement pod security policies," I explain "this prevents a compromised container from escalating privileges and accessing our database, which means we avoid the $2M average cost of a data breach."
-
-CTOs and boards understand risk in business terms. I speak both languages.
+Enterprise CTOs and security teams make better decisions when they understand the actual risk and business consequence.
 
 ---
 
 ## What Makes Me Different
 
-**I've secured systems in the world's most demanding environments.** 
+**I understand how LLM systems work from the inside.**
 
-When a defense contractor asks "what if the attacker has root access?", when an automotive OEM asks "what if we can't patch for 5 years?", when a bank asks "what if regulators audit us tomorrow?"—I've thought through these scenarios because I've been in those rooms.
+I've built production AI applications—not just reviewed them. I understand prompt engineering, RAG architectures, agent frameworks, and vector database patterns. That means I can identify attack vectors that a traditional security consultant won't recognize, because they've never seen a ReAct agent loop or a multi-tool orchestration pipeline in production.
 
-**I understand both security AND modern development practices.**
+**I've secured systems in the world's most demanding environments.**
 
-I don't just tell you what's secure—I show you how to build it with Kubernetes, Terraform, GitOps, and modern DevSecOps workflows. I write code, deploy systems, and test in production (safely).
-
-**I've published my research internationally.**
-
-Over my career, I've presented at conferences and published in journals across four continents. My work is peer-reviewed and cited by other researchers. This isn't just practical experience—it's research-backed methodology.
+When a defense contractor asks "what if the attacker has root access?", when a bank asks "what if regulators audit us tomorrow?", when an automotive OEM asks "what if we can't patch for 5 years?"—I've been in those rooms. The threat models I've worked with are harder than anything most enterprise AI teams will face.
 
 **I build in public.**
 
-My [blog](/) shares production-ready code, detailed architectures, and real lessons learned. The [procurement-ai project](https://github.com/aminrj/procurement-ai) is a fully open-source example of how to build LLM applications with security and reliability baked in from day one. You can see exactly how I work before you hire me.
+My [blog](/) shows exactly how I think about these problems: production architectures, real attack scenarios, and working code. The [procurement-ai project](https://github.com/aminrj/procurement-ai) is an open-source example of an LLM application built with security from day one. You can see how I work before you hire me.
+
+**I have research depth, not just practitioner experience.**
+
+Multiple peer-reviewed publications, conference presentations across four continents, and a PhD research foundation. When I make a recommendation, I can explain the underlying threat model, not just cite a checklist.
 
 ---
 
 ## Who I Work With
 
-I help two types of organizations:
+**Enterprise and mid-market security teams** evaluating or hardening AI systems before or after deployment. You have compliance requirements, existing security programs, and complex environments. I help you extend your security program to cover LLM and agentic systems specifically—the parts your current frameworks don't address.
 
-**Mid-Market SaaS Companies** deploying AI features for the first time. You need to move fast but can't afford a security incident that destroys customer trust. I help you architect AI systems that scale securely from MVP to enterprise.
-
-**Enterprise Organizations** integrating AI into critical systems. You have compliance requirements, security teams, and complex environments. I help you deploy AI without triggering a 6-month security review or refactoring your entire architecture.
+**CTOs and engineering leaders** at organizations deploying AI into production. You need to move fast but can't afford a security incident that triggers regulatory scrutiny or destroys customer trust. I help you architect AI systems that are secure from day one, not after the breach.
 
 ---
 
-## Recognition & Speaking
+## Recognition & Background
 
 - **International Speaker**: Presented at conferences across 4 continents on cloud-native security, critical systems, and AI deployment patterns
 - **Published Researcher**: Multiple peer-reviewed publications in cybersecurity and distributed systems
-- **Open Source Contributor**: Active in cloud-native and AI security communities
-- **Industry Certifications**: CISSP (Certified Information Systems Security Professional), Kubernetes security specialist
+- **Industry Certifications**: CISSP, Kubernetes security specialist
+- **Open Source**: Active in cloud-native and AI security communities
 
 ---
 
 ## Let's Work Together
 
-If you're deploying AI/LLM systems and need security guidance from someone who's secured critical systems in the world's most demanding environments, let's talk.
+If you're deploying AI/LLM systems and need security guidance from someone who understands both the security fundamentals and how these systems actually work, let's talk.
 
 **Three Ways to Work With Me:**
 
-**1. Free 30-Minute Security Assessment** → [Book here](/consultation/)  
-Quick audit of your AI deployment architecture with specific recommendations
+**1. Free 30-Minute AI Security Assessment** → [Book here](/consultation/)
+Technical review of your AI deployment with specific findings on your actual attack surface
 
-**2. Architecture Review & Strategy** → [Email me](mailto:amine@molntek.com?subject=AI%20Security%20Architecture%20Review)  
-Deep dive into your system design with documented security architecture and implementation roadmap
+**2. Architecture Review & Strategy** → [Email me](mailto:amine@molntek.com?subject=AI%20Security%20Architecture%20Review)
+Deep-dive into your system design with documented security architecture and implementation roadmap
 
-**3. Hands-On Implementation Partnership** → [Email me](mailto:amine@molntek.com?subject=AI%20Security%20Implementation%20Partnership)  
-Embedded consulting to deploy your AI systems with enterprise security from day one
+**3. Hands-On Implementation Partnership** → [Email me](mailto:amine@molntek.com?subject=AI%20Security%20Implementation%20Partnership)
+Embedded consulting to build security into your AI systems from the ground up
 
 ---
 

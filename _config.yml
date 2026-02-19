@@ -16,11 +16,10 @@ timezone: Europe/Stockholm
 
 title: Amine Raji, PhD # the main title
 
-tagline: AI Security Expert | Helping Enterprises Deploy LLM Systems Securely on Kubernetes
-# tagline: I built my security foundation as a military officer, where protection was mission-critical. Today, I lead cloud security for Volvo Cars' connected vehicles, bringing the same strategic precision that guided my work in defense and national infrastructure. From military operations to banking security at Société Générale, and doctoral research with Airbus, I turn complex security challenges into practical, robust solutions.
+tagline: Helping engineering and security teams deploy AI agents without creating new attack surfaces.
 
 description: >- # used by seo meta and the atom feed
-  Amine Raji, PhD, CISSP - AI Security Expert helping enterprises deploy LLM and AI systems securely on Kubernetes. 15+ years securing critical systems in banking, defense, aerospace, and automotive.
+  Amine Raji, PhD, CISSP — AI/LLM Security specialist for organizations deploying agentic and LLM-powered systems. 15+ years securing critical systems in banking, defense, aerospace, and automotive. I help enterprise and mid-market security teams and CTOs deploy AI without creating new attack surfaces.
 
 # Fill in the protocol & hostname for your site.
 # e.g. 'https://username.github.io', note that it does not end with a '/'.

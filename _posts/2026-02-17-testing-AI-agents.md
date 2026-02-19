@@ -7,7 +7,7 @@ content-type: article
 target-audience: advanced
 categories: [LLM]
 image:
-  path: /assets/media/n8n/n8n_automation_patterns.png
+  path: /assets/media/ai-security/evaluating-ai-agents.png
 description: Scientific approach to testing LLM agents. Precision, recall, F1 metrics from 15+ years testing systems in banking, defense, aerospace, and automotive.
 ---
 

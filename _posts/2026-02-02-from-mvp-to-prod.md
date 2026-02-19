@@ -7,7 +7,7 @@ content-type: article
 target-audience: intermediate
 categories: [LLM]
 image:
-  path: /assets/media/n8n/n8n_automation_patterns.png
+  path: /assets/media/ai-security/from-basic-llm-app-to-saas-mvp.png
 description: Learn how to build production-ready LLM applications with multi-tenancy, rate limiting, and audit logging. Real architecture from 15+ years securing critical systems.
 ---
 

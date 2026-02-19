@@ -7,7 +7,7 @@ content-type: article
 target-audience: intermediate
 categories: [LLM]
 image:
-  path: /assets/media/n8n/n8n_automation_patterns.png
+  path: /assets/media/ai/one-file-procurement-ai-analyst.png
 description: Build a complete LLM application in one file. Learn structured outputs, validation, and treating AI models as system components.
 ---
 

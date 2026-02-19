@@ -7,7 +7,7 @@ content-type: article
 target-audience: intermediate
 categories: [LLM]
 image:
-  path: /assets/media/n8n/n8n_automation_patterns.png
+  path: /assets/media/ai-security/from-basic-llm-app-to-saas-mvp.png
 description: Learn how to build production-ready LLM applications with multi-tenancy, rate limiting, and audit logging. Real architecture from 15+ years securing critical systems.
 ---
 
@@ -365,7 +365,7 @@ Multi-tenant isolation, idempotent writes, status state machines, background job
 If I were to rebuild this from scratch, I'd:
 
 1. **Start with multi-tenancy from line one** instead of adding organization_id columns later
-2. **Design the status state machine first** before writing any orchestration code  
+2. **Design the status state machine first** before writing any orchestration code
 3. **Use a real job queue from day one** instead of FastAPI background tasks (this will bite you during deployments)
 4. **Add structured logging and request IDs immediately** - debugging production issues without correlation IDs is painful
 5. **Write integration tests as I build features** not after "the MVP works"

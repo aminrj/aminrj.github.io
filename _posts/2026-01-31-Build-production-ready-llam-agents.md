@@ -7,7 +7,7 @@ content-type: article
 target-audience: intermediate
 categories: [LLM]
 image:
-  path: /assets/media/n8n/n8n_automation_patterns.png
+  path: /assets/media/ai/building-production-ready-llm-agents.png
 description: Build LLM agents that work reliably in production. Step-by-step guide covering error handling, structured outputs, and testing strategies for AI systems.
 ---
 

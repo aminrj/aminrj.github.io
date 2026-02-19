@@ -7,7 +7,7 @@ content-type: article
 target-audience: intermediate
 categories: [LLM]
 image:
-  path: /assets/media/n8n/n8n_automation_patterns.png
+  path: /assets/media/ai/build-a-procurement-analyst-ai-agent.png
 description: Build a working AI analyst from scratch in one file. Learn LLM engineering fundamentals through a real procurement analysis application with structured outputs.
 ---
 

@@ -5,8 +5,8 @@
   const FORMS = [
     { formId: 'subscribe-form',         msgId: 'subscribe-message' },
     { formId: 'subscribe-form-sidebar', msgId: 'subscribe-message-sidebar' },
-    { formId: 'post-subscribe-form',    msgId: 'post-subscribe-message' },
     { formId: 'post-cta-form',          msgId: 'post-cta-message' },
+    { formId: 'newsletter-form',        msgId: 'newsletter-message' },
   ];
 
   function getUTMParams(form) {

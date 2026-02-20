@@ -116,21 +116,15 @@ tail_includes:
 
       <!-- Newsletter Form -->
 
-      <form action="https://app.kit.com/forms/8229727/subscriptions"
-            method="post"
-            target="_blank"
-            id="newsletter-form"
-            onsubmit="trackNewsletterSignup(); return true;"
+      <form id="newsletter-form"
             style="display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; max-width: 400px; margin: 0 auto;">
-        <input type="email" name="email_address" placeholder="Enter your email" required style="flex: 1; min-width: 250px; padding: 12px 16px; border: 2px solid #e1e8ed; border-radius: 8px; font-size: 15px; outline: none; transition: border-color 0.3s;">
+        <input type="hidden" name="source" value="aminrj-home">
+        <input type="email" name="email" placeholder="Enter your email" required style="flex: 1; min-width: 250px; padding: 12px 16px; border: 2px solid #e1e8ed; border-radius: 8px; font-size: 15px; outline: none; transition: border-color 0.3s;">
         <button type="submit" style="background: #4f46e5; color: white; padding: 12px 24px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; min-width: 100px; transition: background 0.3s;">
           Subscribe
         </button>
       </form>
-
-      <p style="color: #9ca3af; font-size: 0.85rem; margin-top: 1rem;">
-        Join 1,000+ security professionals and CTOs • Unsubscribe anytime
-      </p>
+      <p id="newsletter-message" class="form-message" style="margin-top: 1rem; text-align: center;"></p>
 
     </div>
   </div>

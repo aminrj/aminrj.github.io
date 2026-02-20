@@ -36,3 +36,4 @@ assets/media/.DS_Store
 
 # Local files (not pushed to git)
 *.local.md
+/.claude/worktrees

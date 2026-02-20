@@ -27,6 +27,13 @@
   font-size: 0.7rem;
 }
 
+.sidebar-subscribe-pitch {
+  color: var(--sidebar-muted-color);
+  font-size: 0.75rem;
+  line-height: 1.45;
+  margin-bottom: 0.65rem;
+}
+
 /* Fully custom input — no Bootstrap classes so nothing overrides us */
 .sidebar-email-input {
   display: block;

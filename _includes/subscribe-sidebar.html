@@ -1,0 +1,18 @@
+<!-- _includes/subscribe-sidebar.html — compact sidebar subscription form -->
+<div class="sidebar-subscribe mt-3 mb-2 px-1">
+  <p class="sidebar-subscribe-title fw-semibold small mb-2">
+    <i class="fas fa-envelope-open-text me-1"></i>AI Security Insights
+  </p>
+  <form id="subscribe-form-sidebar" class="sidebar-subscribe-form">
+    <input type="hidden" name="source" value="aminrj-sidebar">
+    <input
+      type="email"
+      name="email"
+      class="form-control form-control-sm mb-2"
+      placeholder="your@email.com"
+      required
+    >
+    <button type="submit" class="btn btn-primary btn-sm w-100">Subscribe</button>
+    <p id="subscribe-message-sidebar" class="form-message mt-2 small text-center"></p>
+  </form>
+</div>

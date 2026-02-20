@@ -9,13 +9,14 @@
 
 <div class="d-flex justify-content-center">
   <form id="subscribe-form" class="w-100" style="max-width: 500px;">
+    <input type="hidden" name="source" value="aminrj">
     <div class="mb-3">
-      <input type="text" name="name" class="form-control" placeholder="Your name" required>
+      <input type="text" name="name" class="form-control" placeholder="Your name (optional)">
     </div>
     <div class="mb-3">
-      <input type="email" name="email" class="form-control" placeholder="Your email" required>
+      <input type="email" name="email" class="form-control" placeholder="your@email.com" required>
     </div>
     <button type="submit" class="btn btn-primary w-100">Subscribe</button>
-    <p id="subscribe-message" class="mt-3 text-center small text-muted"></p>
+    <p id="subscribe-message" class="form-message mt-3 text-center small"></p>
   </form>
 </div>

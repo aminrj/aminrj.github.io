@@ -300,4 +300,4 @@ defaults:
 
 # Newsletter settings
 # newsletter_signup_url: "#"
-newsletter_signup_url: "https://aminrj.kit.com/d4f03423ce"  # Add your actual signup URL
+newsletter_signup_url: "/subscribe/"  # Beehiiv via n8n webhook

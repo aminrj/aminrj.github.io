@@ -5,11 +5,17 @@ icon: fas fa-envelope
 order: 3
 ---
 
-# 📧 Cybersecurity Newsletter
+# AI Security Intelligence Digest
 
-Welcome to my daily cybersecurity newsletter! Here you'll find the latest security insights, threat analysis, and actionable tips.
+<div class="alert alert-info" role="alert">
+  <strong>The newsletter is back.</strong> After a hiatus, the AI Security Intelligence Digest returns in weekly format — deeper analysis, less noise.
+</div>
 
-## Newsletter Archive
+Weekly analysis of the threats, vulnerabilities, and defensive innovations shaping AI security. Written for security engineers and CTOs who need signal, not hype. Browse the archive below or [subscribe](/subscribe/) for the latest.
+
+---
+
+## Archive
 
 {% assign newsletters = site.newsletters | sort: 'date' | reverse %}
 {% if newsletters.size > 0 %}
@@ -44,13 +50,8 @@ Welcome to my daily cybersecurity newsletter! Here you'll find the latest securi
 
 ## Subscribe
 
-Want to get these insights delivered to your inbox?
+AI security analysis in your inbox, every week. No spam.
 
-{% if site.newsletter_signup_url %}
-<a href="{{ site.newsletter_signup_url }}" class="btn btn-primary btn-lg">
-<i class="fas fa-envelope me-2"></i>Subscribe Now
+<a href="/subscribe/" class="btn btn-primary btn-lg">
+  <i class="fas fa-envelope me-2"></i>Subscribe — it's free
 </a>
-{% else %}
-
-<p><em>Subscription link coming soon!</em></p>
-{% endif %}

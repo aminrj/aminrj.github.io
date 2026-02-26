@@ -95,9 +95,6 @@ The agent _looked_ fine because you only tested obvious cases. You didn't test:
 
 This is the core problem: **manual spot-checking gives you false confidence**. You need systematic evaluation against a known-good test set.
 
-![Evaluation Workflow](diagrams_evaluation/01_evaluation_workflow.md)
-
-**\*Diagram 1**: The scientific evaluation loop that enables data-driven improvements.\*
 
 ## The Solution: Build a Measurement System
 

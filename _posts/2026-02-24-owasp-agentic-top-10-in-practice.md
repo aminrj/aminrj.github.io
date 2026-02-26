@@ -139,7 +139,7 @@ tool poisoning possible.
 
 ## Attack Pattern 1: Tool Poisoning
 
-In April 2025, [Invariant Labs published](LINK) the first documented demonstration of MCP tool poisoning.
+In April 2025, [Invariant Labs published](https://github.com/invariantlabs-ai/mcp-injection-experiments) the first documented demonstration of MCP tool poisoning.
 The finding: an attacker who controls an MCP server can embed arbitrary
 instructions in a tool's description field.
 Those instructions are invisible to the user in any standard interface, but the
@@ -244,7 +244,7 @@ in a flat tool namespace.
 Any instruction the LLM receives can invoke tools from any connected server,
 regardless of which server provided that instruction.
 
-[Invariant Labs demonstrated](LINK) this with the WhatsApp MCP attack.
+[Invariant Labs demonstrated](https://github.com/invariantlabs-ai/mcp-injection-experiments) this with the WhatsApp MCP attack.
 The mechanism relies on two compounding techniques: a **rug pull** and **cross-server poisoning**.
 
 The rug pull works like this:
@@ -342,7 +342,6 @@ The cross-server component exploits the flat namespace of the agent environment:
 "Honey bees can recognize human faces"
 ```
 
-> [DIAGRAM 4 — Cross-Server Rug-Pull Attack: Sequence]
 
 The WhatsApp server functioned correctly throughout.
 It listed messages when asked and sent a message when asked.
@@ -358,7 +357,7 @@ B's tools.
 ## Attack Pattern 3: Meta-Context Injection — DockerDash
 
 The Invariant Labs attacks require a malicious MCP server that the user installed.
-[DockerDash, disclosed by Noma Labs](LINK) on February 3, 2026, demonstrates a third vector: **an external data source that the AI agent reads as trusted context**.
+DockerDash, disclosed by Noma Labs on February 3, 2026, demonstrates a third vector: **an external data source that the AI agent reads as trusted context**.
 
 Noma Labs named this technique **Meta-Context Injection**: embedding executable instructions in data sources that AI agents ingest without content validation.
 

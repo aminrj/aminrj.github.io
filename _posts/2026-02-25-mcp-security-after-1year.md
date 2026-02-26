@@ -263,7 +263,7 @@ This exploits a gap in how MCP clients handle tool metadata.
 Clients typically cache tool names, and when a previously-trusted server returns
 updated descriptions, the cache trusts the update without alerting the user.
 
-The [MCPHammer framework](LINK) demonstrates this at scale: a management server
+The MCPHammer framework demonstrates this at scale: a management server
 can push updated injection text to multiple deployed MCPHammer instances in real
 time, silently converting benign servers into malicious ones.
 
@@ -284,7 +284,7 @@ infrastructure.
 TypeScript SDK (versions up to 1.25.3). When a single `McpServer` instance
 handles multiple client connections, a common configuration in stateless
 deployments, JSON-RPC message ID collisions cause responses to route to the
-*wrong client.
+\*wrong client.
 
 Client A receives Client B's data. No attack is required. No authentication
 bypass is needed. The vulnerability is in how the SDK manages concurrent
@@ -327,30 +327,30 @@ the practices the industry already knows how to implement.
 Five measures deserve immediate attention:
 
 **1. Inventory every MCP server in your environment.** This sounds basic because it is.
- Every developer running Claude Desktop, Cursor, or a VS Code extension with MCP
- support likely has servers installed. Most organizations have no visibility
- into what those servers are, what tools they expose, or what permissions they
- hold. You cannot secure what you have not inventoried.
+Every developer running Claude Desktop, Cursor, or a VS Code extension with MCP
+support likely has servers installed. Most organizations have no visibility
+into what those servers are, what tools they expose, or what permissions they
+hold. You cannot secure what you have not inventoried.
 
 **2. Scan tool descriptions before loading any server.** Invariant Labs released `mcp-scan`
- alongside their original research. It detects suspicious patterns in tool
- description metadata before a server is connected to an agent. This single step
- addresses the entire tool poisoning attack class at install time.
+alongside their original research. It detects suspicious patterns in tool
+description metadata before a server is connected to an agent. This single step
+addresses the entire tool poisoning attack class at install time.
 
 **3. Enforce human approval for sensitive operations.** The MCP specification states that
- human confirmation SHOULD be required before tools execute file reads, network
- requests, or data mutations. Most client implementations skip this. Enabling it
- introduces friction. That friction is the control.
+human confirmation SHOULD be required before tools execute file reads, network
+requests, or data mutations. Most client implementations skip this. Enabling it
+introduces friction. That friction is the control.
 
 **4. Hash tool descriptions at first load and alert on any change.** If a tool's description
-  mutates between sessions, that is either a rug pull or an unauthorized update.
-  Either way, it warrants investigation. This is a straightforward integrity
-  check that no major MCP client currently implements by default^w
+mutates between sessions, that is either a rug pull or an unauthorized update.
+Either way, it warrants investigation. This is a straightforward integrity
+check that no major MCP client currently implements by default^w
 
 **5. Restrict network egress from MCP server processes.** If a compromised server cannot
- make outbound HTTP requests, the exfiltration step in every attack chain
- documented above fails silently. Run MCP servers in sandboxed environments with
- no outbound internet access beyond their intended scope.
+make outbound HTTP requests, the exfiltration step in every attack chain
+documented above fails silently. Run MCP servers in sandboxed environments with
+no outbound internet access beyond their intended scope.
 
 ---
 

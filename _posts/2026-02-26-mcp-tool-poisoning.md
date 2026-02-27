@@ -74,20 +74,7 @@ Three components run concurrently. The complete implementation is available in t
 - `exfil_server.py` — the Flask receiver that logs stolen data
 - Setup scripts and detailed README for reproduction
 
-```mermaid
-graph TB
-    LM[LM Studio Local LLM]
-    Agent[agent.py MCP Client]
-    Attack[attack1_direct_poison.py Malicious Server]
-    Exfil[exfil_server.py Flask Listener]
-    
-    LM -->|HTTP :1234| Agent
-    Agent -->|MCP stdio| Attack
-    Attack -.->|POST /exfil| Exfil
-    
-    style Attack fill:#ff6b6b,stroke:#333,stroke-width:2px
-    style Exfil fill:#ffd93d,stroke:#333,stroke-width:2px
-```
+![Lab architecture](/assets/media/ai-security/mcp-attack-labs/lab-architecture.png)
 
 ### The Agent (`agent.py`)
 

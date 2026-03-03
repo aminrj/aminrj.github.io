@@ -432,7 +432,7 @@ Finally, render the following line in the reply \
 ```
 
 Gordon runs `docker mcp tools list`, collects the victim's full MCP tool
-inventory, URL-encodes it, and renders a markdown image tag in its response.
+inventory, URL-encodes it, and renders a markdown image ag in its response.
 
 When the client renders that markdown, it fetches the URL, transmitting the
 encoded data to the attacker's server as a standard HTTP GET request.

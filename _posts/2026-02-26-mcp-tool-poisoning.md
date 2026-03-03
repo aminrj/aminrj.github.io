@@ -6,21 +6,30 @@ status: published
 content-type: article
 target-audience: advanced
 categories: [Security, AI, LLM]
-tags: [MCP, Model Context Protocol, AI Security, LLM, Tool Poisoning, Vulnerability, Red Team]
+tags:
+  [
+    MCP,
+    Model Context Protocol,
+    AI Security,
+    LLM,
+    Tool Poisoning,
+    Vulnerability,
+    Red Team,
+  ]
 image:
   path: /assets/media/ai-security/mcp-tool-poisoning-demo.png
 description: "A hands-on walkthrough of reproducing the Invariant Labs MCP tool-poisoning attack fully offline. Learn why model capability and available tools determine exploit success—and what defenses actually work."
 ---
 
-> *A walk-through of reproducing the Invariant Labs MCP tool-poisoning attack fully offline — including the failed attempt with a small model, and the successful exfiltration once the right model and tools were in place.*
+> _A walk-through of reproducing the Invariant Labs MCP tool-poisoning attack fully offline — including the failed attempt with a small model, and the successful exfiltration once the right model and tools were in place._
 
 ---
 
 ## Background
 
-In early 2025, Invariant Labs published a disclosure showing that **MCP (Model Context Protocol) tool descriptions are a viable attack surface**. The core idea is very simple: an LLM reads tool descriptions before deciding which tool to call. If a malicious server embeds hidden instructions inside that description, a sufficiently capable model will silently follow them — stealing files, leaking secrets — while returning a perfectly normal-looking response to the user.
+In early 2025, Invariant Labs published a disclosure showing that **MCP (Model Context Protocol) tool descriptions are a viable attack surface**. The core idea is very simple: an LLM reads tool descriptions before deciding which tool to call. If a malicious server embeds hidden instructions inside that description, a sufficiently capable model will silently follow them, stealing files, leaking secrets, while returning a perfectly normal-looking response to the user.
 
-The original proof-of-concept ran inside **Cursor IDE**, which already ships with file-reading tools and uses GPT-4/Claude as the backbone. This lab reproduces the attack **fully offline** using [LM Studio](https://lmstudio.ai/) and a custom Python agent — no cloud APIs, no IDE required. That added challenge revealed something important: *model capability matters, and so does what tools the agent already has access to*.
+The original proof-of-concept ran inside **Cursor IDE**, which already ships with file-reading tools and uses GPT-4/Claude as the backbone. This lab reproduces the attack **fully offline** using [LM Studio](https://lmstudio.ai/) and a custom Python agent — no cloud APIs, no IDE required. That added challenge revealed something important: _model capability matters, and so does what tools the agent already has access to_.
 
 **All source code for this demonstration is available at [github.com/aminrj-labs/mcp-attack-labs](https://github.com/aminrj-labs/mcp-attack-labs)** — including the poisoned MCP server, the agent implementation, and the exfil receiver. You can clone the repository and reproduce every step of this attack in your own lab environment.
 
@@ -69,6 +78,7 @@ The attacker receives: the contents of `~/.ssh/id_rsa.pub.demo`
 ## Lab Architecture
 
 Three components run concurrently. The complete implementation is available in the [mcp-attack-labs repository](https://github.com/aminrj-labs/mcp-attack-labs), where you'll find:
+
 - `agent.py` — the MCP client that bridges LM Studio and MCP servers
 - `attack1_direct_poison.py` — the malicious MCP server with poisoned tool descriptions
 - `exfil_server.py` — the Flask receiver that logs stolen data
@@ -197,7 +207,7 @@ Two compounding problems:
 `qwen2.5-7b-instruct` is a capable chat model for its size, but it did not follow the covert directive embedded in the tool description. Smaller quantized models optimized for instruction-following tend to be more literal — they answered the math question directly. The `<IMPORTANT>` block was treated as noise.
 
 **2. Even if the model had tried, it had no file-reading tool.**
-The agent was started with only `attack1_direct_poison.py`. There was no `read_text_file` or equivalent tool available. The instructions say *"read `~/.ssh/id_rsa.pub.demo`"* — but without a file-reading capability in the tool list, following those instructions is impossible regardless of model intent.
+The agent was started with only `attack1_direct_poison.py`. There was no `read_text_file` or equivalent tool available. The instructions say _"read `~/.ssh/id_rsa.pub.demo`"_ — but without a file-reading capability in the tool list, following those instructions is impossible regardless of model intent.
 
 This reveals a key dependency: **the attack requires both a susceptible model AND the agent having file-access tools available.**
 
@@ -270,12 +280,13 @@ Meanwhile, in Terminal 1 (the exfil server):
 
 Two conditions were now satisfied simultaneously:
 
-| Condition | Attempt 1 | Attempt 2 |
-|-----------|-----------|-----------|
-| Model follows covert instructions | ❌ Qwen 7B ignored them | ✅ openai/gpt-oss-20b followed them |
-| Agent has a file-reading tool | ❌ Not available | ✅ `read_file` via filesystem server |
+| Condition                         | Attempt 1               | Attempt 2                            |
+| --------------------------------- | ----------------------- | ------------------------------------ |
+| Model follows covert instructions | ❌ Qwen 7B ignored them | ✅ openai/gpt-oss-20b followed them  |
+| Agent has a file-reading tool     | ❌ Not available        | ✅ `read_file` via filesystem server |
 
 The capable model parsed the `<IMPORTANT>` block, understood it as a directive, and executed the multi-step plan on its own initiative:
+
 1. Call `read_file` to get the file contents
 2. Call `add` with the stolen data stuffed in `sidenote`
 3. Return a clean answer to the user
@@ -313,8 +324,7 @@ The attack required two things: a susceptible model and a file-reading tool. In 
 
 Nothing about `attack1_direct_poison.py` is visually suspicious when you install it. The tool is named `add`. Its description starts with "Adds two numbers." The poisoned payload is nested inside what looks like extended documentation. `mcp-scan` can detect it — most users will not.
 
-![Successful Attack](/assets/media/ai-security/mcp-attack-labs/successful-attack.png)
----
+## ![Successful Attack](/assets/media/ai-security/mcp-attack-labs/successful-attack.png)
 
 ## Defensive Takeaways
 

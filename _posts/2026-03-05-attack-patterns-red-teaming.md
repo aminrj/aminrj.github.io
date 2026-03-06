@@ -62,6 +62,10 @@ traditional applications:
 | **Persistence** | Agents maintain state across sessions. Poisoning memory today affects behavior tomorrow. |
 | **Identity** | Agents act with inherited credentials. A compromised agent executes with whatever permissions it holds. |
 
+_Every item in this table is an input that an attacker can influence — together they form the agent's attack surface._
+
+![Context window attack surface](/assets/media/ai-security/mcp-attack-labs/context-window-attack-surface.png)
+
 This is why the [CSA Agentic AI Red Teaming Guide](https://cloudsecurityalliance.org/artifacts/agentic-ai-red-teaming-guide) (May 2025), the [OWASP Agentic Top 10](https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications/) (December 2025), and [MITRE ATLAS](https://atlas.mitre.org/) are converging on a shared conclusion: AI agents require a dedicated offensive testing methodology that goes beyond model-level jailbreaking.
 
 ---
@@ -123,6 +127,9 @@ The CSA provides the most detailed operational methodology with 12 threat catego
 
 Using all three frameworks together gives you a structured, comprehensive test plan that is defensible when reporting to stakeholders.
 
+_The three frameworks approach the same problem from different angles. Use them together to build a complete picture._
+
+![Three framework-relationship](/assets/media/ai-security/mcp-attack-labs/techinique-to-attack-mapping.png)
 ---
 
 ## The Attack Technique Catalog
@@ -216,6 +223,10 @@ In multi-agent systems, the attack surface expands from single-agent compromise 
 
 The WhatsApp server functioned correctly. The daily-facts server issued instructions that invoked another server's tools. MCP has no mechanism to prevent cross-server tool invocation, a fundamental architectural weakness.
 
+_How a malicious MCP server can pivot across trust domains to invoke tools from a completely separate server — with no authentication required._
+
+![Multi-agent trust chain](/assets/media/ai-security/mcp-attack-labs/multi-agent-trust-chain.png)
+
 ### ASI08: Cascading Failures
 
 The highest-impact category for multi-agent systems. A single poisoned input at any point in the pipeline can compromise the entire output.
@@ -236,6 +247,8 @@ NVIDIA's threat research showed identical patterns in production systems: a sing
 
 To make this concrete, let's walk through how you would use these frameworks and tools against the attack infrastructure from my previous articles.
 This is the same lab environment used in the [DockerDash]({% post_url 2026-03-03-docker-dash-mcp-attack %}) and [tool poisoning]({% post_url 2026-02-26-mcp-tool-poisoning %}) demonstrations.
+
+_The red team assessment follows five phases, moving from broad threat modeling to precise manual exploitation._
 
 ### Target Architecture
 
@@ -511,6 +524,9 @@ Chain all primary attack categories into a single end-to-end exploit as I demons
 
 This full chain was executed in 6 agent turns. The user saw: "The image is safe to use." The attacker received: full container inventory. Three containers were stopped.
 
+_The DockerDash kill chain across all four attack categories — from a single poisoned image label to silent container termination and exfiltration._
+
+![DockerDash Full Kill Chain](/assets/media/ai-security/mcp-attack-labs/dockerdash-full-kill-chain.png)
 ---
 
 ## Red Teaming Tool Selection Guide
@@ -546,6 +562,9 @@ Business-logic attacks, social engineering chains, novel attack vectors.
 Catches creative exploits no tool can anticipate.
 Run quarterly or before major releases.
 
+_Each layer builds on the previous. Start broad and cheap (Layer 1), escalate to targeted and expert (Layer 4)._
+
+![4-layers testing strategy](/assets/media/ai-security/mcp-attack-labs/4-layer-testing-strategy.png)
 ---
 
 ## Severity Scoring for AI Agent Vulnerabilities

@@ -20,7 +20,7 @@ tags:
     Threat Modeling,
   ]
 image:
-  path: /assets/media/ai-security/ciso-playbook-red-teaming-agentic-ai.png
+  path: /assets/media/ai-security/red-teaming-ai-agents-playbook.png
 description: "A structured, actionable playbook for security leaders and their teams — checklists, decision matrices, severity frameworks, and ready-to-use templates for assessing the security posture of agentic AI deployments. No case studies. Pure reference material."
 ---
 

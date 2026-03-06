@@ -36,6 +36,8 @@ Together with the [MCP tool poisoning]({% post_url 2026-02-26-mcp-tool-poisoning
 
 This article is that methodology. It maps attack patterns to three industry frameworks (OWASP Agentic Top 10, MITRE ATLAS, CSA), walks through a complete 5-phase red team assessment against real lab infrastructure, and provides hands-on tooling with PyRIT and Promptfoo.
 
+All labs, configurations, and attack scripts referenced in this article are reproducible and available in the [companion GitHub repository](https://github.com/aminrj-labs/mcp-attack-labs/tree/main/labs/03-red-team-assessment).
+
 ---
 
 ## What Makes Agentic Attacks Hard to Find
@@ -339,9 +341,9 @@ The output is a risk report mapping findings to OWASP categories with pass/fail 
 They excel at broad coverage and regression testing.
 They miss business-logic attacks, creative chaining, and context-specific exploitation.
 
-**Sample Promptfoo scan output from the lab (DocuAssist agent):**
+**[Sample Promptfoo] scan output from the lab (DocuAssist agent):**
 
-![Sample Promptfoo scan output](/assets/media/ai-security/mcp-attack-labs/promptfoo-output.png)
+![[Sample Promptfoo] scan output](/assets/media/ai-security/mcp-attack-labs/promptfoo-output.png)
 
 The scan immediately flagged hijacking and supply chain as the weakest categories, both below 35% pass rate. These became the priority targets for deep exploitation in Phase 4.
 
@@ -707,7 +709,7 @@ The next article in this series covers defense: detection systems, runtime contr
 
 **3. Deploy network egress controls on your agent's runtime.** The exfiltration in both the DockerDash and tool poisoning attacks relied on outbound HTTP requests to attacker-controlled endpoints (`localhost:9999` in the lab; any domain in production). Restricting the agent's network access to an allowlisted set of domains eliminates the exfiltration channel entirely, even if the goal hijack succeeds.
 
-The lab materials for reproducing every attack covered in this series are available at [github.com/aminrj-labs/mcp-attack-labs](https://github.com/aminrj-labs/mcp-attack-labs).
+The lab materials for reproducing every attack covered in this series are available at [github.com/aminrj-labs/mcp-attack-labs](https://github.com/aminrj-labs/mcp-attack-labs). If you find these labs useful, consider giving the repo a ⭐ — it helps others discover it and keeps the project going.
 
 ---
 

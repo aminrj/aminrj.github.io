@@ -1,0 +1,130 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.3.6 Chrome/140.0.7339.249 Electron/38.8.0 Safari/537.36" version="29.3.6">
+  <diagram name="Page-1" id="RedTeamTestingLayers">
+    <mxGraphModel dx="1401" dy="817" grid="0" gridSize="10" guides="0" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="860" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=31;fontStyle=1;strokeColor=none;fillColor=none;" value="Agentic AI Red Team: 4-Layer Testing Strategy" vertex="1">
+          <mxGeometry height="40" width="1100" x="150" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=17;fontColor=#555555;strokeColor=none;fillColor=none;" value="Layers stack: each run the layers before it. Outer layers run frequently; inner layers run deeply. All four are required for full coverage." vertex="1">
+          <mxGeometry height="24" width="1100" x="150" y="58" as="geometry" />
+        </mxCell>
+        <mxCell id="l1-bg" parent="1" style="rounded=1;fillColor=#e3f2fd;strokeColor=#90caf9;strokeWidth=2;opacity=60;" value="" vertex="1">
+          <mxGeometry height="115" width="1200" x="100" y="650" as="geometry" />
+        </mxCell>
+        <mxCell id="l2-bg" parent="1" style="rounded=1;fillColor=#e8f5e9;strokeColor=#a5d6a7;strokeWidth=2;opacity=60;" value="" vertex="1">
+          <mxGeometry height="135" width="1040" x="180" y="505" as="geometry" />
+        </mxCell>
+        <mxCell id="l3-bg" parent="1" style="rounded=1;fillColor=#fff8e1;strokeColor=#ffe082;strokeWidth=2;opacity=60;" value="" vertex="1">
+          <mxGeometry height="165" width="880" x="260" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="l4-bg" parent="1" style="rounded=1;fillColor=#fce4ec;strokeColor=#f48fb1;strokeWidth=2;opacity=60;" value="" vertex="1">
+          <mxGeometry height="200" width="720" x="340" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="l1-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontStyle=1;fontColor=#1565c0;strokeColor=none;fillColor=none;" value="LAYER 1" vertex="1">
+          <mxGeometry height="20" width="70" x="115" y="655" as="geometry" />
+        </mxCell>
+        <mxCell id="l1-title" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=16;fontStyle=1;fontColor=#1565c0;strokeColor=none;fillColor=none;" value="Broad Scan" vertex="1">
+          <mxGeometry height="28" width="160" x="115" y="673" as="geometry" />
+        </mxCell>
+        <mxCell id="l1-tool1" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#bbdefb;strokeColor=#1565c0;strokeWidth=1;fontSize=12;" value="&lt;b&gt;Garak&lt;/b&gt; (NVIDIA)&lt;br/&gt;37+ probe modules" vertex="1">
+          <mxGeometry height="60" width="170" x="310" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="l1-tool2" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#bbdefb;strokeColor=#1565c0;strokeWidth=1;fontSize=12;" value="&lt;b&gt;Promptfoo&lt;/b&gt;&lt;br/&gt;133 plugins, YAML config" vertex="1">
+          <mxGeometry height="60" width="170" x="495" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="l1-coverage" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=11;fontColor=#1565c0;strokeColor=none;fillColor=none;" value="Coverage: breadth-first across all OWASP ASI categories" vertex="1">
+          <mxGeometry height="30" width="300" x="680" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="l1-time" parent="1" style="rounded=1;fillColor=#dbeeff;strokeColor=#1565c0;fontSize=11;fontStyle=1;" value="⏱ 30–60 min" vertex="1">
+          <mxGeometry height="28" width="110" x="151" y="709" as="geometry" />
+        </mxCell>
+        <mxCell id="l1-freq" parent="1" style="rounded=1;fillColor=#dbeeff;strokeColor=#1565c0;fontSize=11;" value="🔄 Run: nightly / per release" vertex="1">
+          <mxGeometry height="28" width="180" x="1012" y="675" as="geometry" />
+        </mxCell>
+        <mxCell id="l1-catch" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=11;fontColor=#1565c0;strokeColor=none;fillColor=none;" value="Catches: ~65% of vulnerabilities (high false positive rate)" vertex="1">
+          <mxGeometry height="30" width="300" x="680" y="693" as="geometry" />
+        </mxCell>
+        <mxCell id="l2-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontStyle=1;fontColor=#2e7d32;strokeColor=none;fillColor=none;" value="LAYER 2" vertex="1">
+          <mxGeometry height="20" width="70" x="195" y="510" as="geometry" />
+        </mxCell>
+        <mxCell id="l2-title" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=16;fontStyle=1;fontColor=#2e7d32;strokeColor=none;fillColor=none;" value="Compliance Scan" vertex="1">
+          <mxGeometry height="28" width="200" x="195" y="530" as="geometry" />
+        </mxCell>
+        <mxCell id="l2-tool1" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#c8e6c9;strokeColor=#2e7d32;strokeWidth=1;fontSize=12;" value="&lt;b&gt;Promptfoo&lt;/b&gt; OWASP Agentic preset&lt;br/&gt;ASI01–ASI10 structured probes" vertex="1">
+          <mxGeometry height="60" width="240" x="420" y="515" as="geometry" />
+        </mxCell>
+        <mxCell id="l2-tool2" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#c8e6c9;strokeColor=#2e7d32;strokeWidth=1;fontSize=12;" value="&lt;b&gt;AgentDojo&lt;/b&gt; (ETH Zurich)&lt;br/&gt;629 hijacking test cases" vertex="1">
+          <mxGeometry height="60" width="200" x="675" y="515" as="geometry" />
+        </mxCell>
+        <mxCell id="l2-tool3" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#c8e6c9;strokeColor=#2e7d32;strokeWidth=1;fontSize=12;" value="&lt;b&gt;mcp-scan&lt;/b&gt; (Invariant Labs)&lt;br/&gt;MCP schema poisoning detection" vertex="1">
+          <mxGeometry height="60" width="215" x="890" y="515" as="geometry" />
+        </mxCell>
+        <mxCell id="l2-time" parent="1" style="rounded=1;fillColor=#dcedc8;strokeColor=#2e7d32;fontSize=11;fontStyle=1;" value="⏱ 15–30 min" vertex="1">
+          <mxGeometry height="28" width="110" x="195" y="572" as="geometry" />
+        </mxCell>
+        <mxCell id="l2-freq" parent="1" style="rounded=1;fillColor=#dcedc8;strokeColor=#2e7d32;fontSize=11;" value="🔄 Run: per PR / weekly" vertex="1">
+          <mxGeometry height="28" width="170" x="194" y="604" as="geometry" />
+        </mxCell>
+        <mxCell id="l2-out" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=11;fontColor=#2e7d32;strokeColor=none;fillColor=none;" value="Output: compliance-ready report mapped to OWASP + MITRE ATLAS" vertex="1">
+          <mxGeometry height="25" width="360" x="680" y="580" as="geometry" />
+        </mxCell>
+        <mxCell id="l3-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontStyle=1;fontColor=#e65100;strokeColor=none;fillColor=none;" value="LAYER 3" vertex="1">
+          <mxGeometry height="20" width="70" x="275" y="335" as="geometry" />
+        </mxCell>
+        <mxCell id="l3-title" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=16;fontStyle=1;fontColor=#e65100;strokeColor=none;fillColor=none;" value="Deep Exploitation" vertex="1">
+          <mxGeometry height="28" width="220" x="275" y="355" as="geometry" />
+        </mxCell>
+        <mxCell id="l3-tool1" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#ffe0b2;strokeColor=#e65100;strokeWidth=1;fontSize=12;" value="&lt;b&gt;PyRIT&lt;/b&gt; — Crescendo&lt;br/&gt;Multi-turn escalation attacks" vertex="1">
+          <mxGeometry height="60" width="195" x="510" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="l3-tool2" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#ffe0b2;strokeColor=#e65100;strokeWidth=1;fontSize=12;" value="&lt;b&gt;PyRIT&lt;/b&gt; — TAP&lt;br/&gt;Tree of Attacks with Pruning" vertex="1">
+          <mxGeometry height="60" width="200" x="720" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="l3-tool3" parent="1" style="rounded=1;whiteSpace=wrap;fillColor=#ffe0b2;strokeColor=#e65100;strokeWidth=1;fontSize=12;" value="&lt;b&gt;PyRIT&lt;/b&gt; — Converters&lt;br/&gt;Encoding, jailbreak chaining" vertex="1">
+          <mxGeometry height="60" width="195" x="935" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="l3-time" parent="1" style="rounded=1;fillColor=#ffe0b2;strokeColor=#e65100;fontSize=11;fontStyle=1;" value="⏱ 2–4 hours" vertex="1">
+          <mxGeometry height="28" width="110" x="275" y="415" as="geometry" />
+        </mxCell>
+        <mxCell id="l3-freq" parent="1" style="rounded=1;fillColor=#ffe0b2;strokeColor=#e65100;fontSize=11;" value="🔄 Run: bi-weekly / security sprints" vertex="1">
+          <mxGeometry height="28" width="225" x="395" y="415" as="geometry" />
+        </mxCell>
+        <mxCell id="l3-catch" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=11;fontColor=#e65100;strokeColor=none;fillColor=none;" value="Discovers complex multi-turn vulnerabilities missed by automated scanners." vertex="1">
+          <mxGeometry height="22" width="380" x="660" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="l4-label" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=10;fontStyle=1;fontColor=#880e4f;strokeColor=none;fillColor=none;" value="LAYER 4" vertex="1">
+          <mxGeometry height="20" width="370" x="355" y="125" as="geometry" />
+        </mxCell>
+        <mxCell id="l4-title" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=18;fontStyle=1;fontColor=#880e4f;strokeColor=none;fillColor=none;" value="Expert Manual Testing" vertex="1">
+          <mxGeometry height="32" width="690" x="355" y="148" as="geometry" />
+        </mxCell>
+        <mxCell id="l4-desc" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fontColor=#880e4f;strokeColor=none;fillColor=none;" value="Human red teamers with domain expertise. Business-logic attacks, creative chaining, novel attack vectors.&lt;br/&gt;Full kill chain testing (ASI01 → ASI02 → ASI07 → ASI08). Catches what no automated tool can anticipate." vertex="1">
+          <mxGeometry height="55" width="690" x="355" y="183" as="geometry" />
+        </mxCell>
+        <mxCell id="l4-time" parent="1" style="rounded=1;fillColor=#f8bbd0;strokeColor=#880e4f;fontSize=11;fontStyle=1;" value="⏱ 1–2 days" vertex="1">
+          <mxGeometry height="28" width="110" x="490" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="l4-freq" parent="1" style="rounded=1;fillColor=#f8bbd0;strokeColor=#880e4f;fontSize=11;" value="🔄 Run: quarterly / before major releases" vertex="1">
+          <mxGeometry height="28" width="240" x="614" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="axis-depth" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=23;fontColor=#555555;strokeColor=none;fillColor=none;rotation=-90;" value="Increasing depth &amp;amp; coverage" vertex="1">
+          <mxGeometry height="24" width="180" x="-10" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="axis-arrow-up" edge="1" parent="1" style="startArrow=none;endArrow=block;strokeColor=#555555;strokeWidth=2;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="45" y="750" as="sourcePoint" />
+            <mxPoint x="45" y="130" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="summary-bg" parent="1" style="rounded=1;fillColor=#f5f5f5;strokeColor=#cccccc;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="50" width="1200" x="100" y="786" as="geometry" />
+        </mxCell>
+        <mxCell id="summary-text" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fontColor=#333333;strokeColor=none;fillColor=none;" value="All four layers together: systematic OWASP/MITRE coverage (automated) + creative exploit chains (human). Automating layers 1–3 into CI/CD gives continuous regression testing between manual assessments." vertex="1">
+          <mxGeometry height="50" width="1200" x="100" y="786" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

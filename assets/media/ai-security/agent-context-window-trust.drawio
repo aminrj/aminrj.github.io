@@ -1,0 +1,154 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.3.6 Chrome/140.0.7339.249 Electron/38.8.0 Safari/537.36" version="29.3.6">
+  <diagram name="Page-1" id="AgentContextWindowTrust">
+    <mxGraphModel dx="2032" dy="1185" grid="0" gridSize="10" guides="0" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="950" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- Title -->
+        <mxCell id="title" parent="1" value="The Agentic AI Trust Paradox: What Enters the Context Window" style="text;html=1;align=center;verticalAlign=middle;fontSize=20;fontStyle=1;strokeColor=none;fillColor=none;" vertex="1">
+          <mxGeometry x="200" y="20" width="1000" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" parent="1" value="The LLM processes every input identically — it cannot distinguish developer instructions from attacker-controlled content." style="text;html=1;align=center;verticalAlign=middle;fontSize=13;fontColor=#555555;strokeColor=none;fillColor=none;" vertex="1">
+          <mxGeometry x="200" y="58" width="1000" height="24" as="geometry" />
+        </mxCell>
+
+        <!-- ===== LLM Context Window outer container ===== -->
+        <mxCell id="ctx-window" parent="1" value="LLM Context Window" style="rounded=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=3;fontSize=16;fontStyle=1;verticalAlign=top;opacity=40;" vertex="1">
+          <mxGeometry x="350" y="100" width="860" height="620" as="geometry" />
+        </mxCell>
+
+        <!-- ===== TRUSTED: System Prompt ===== -->
+        <mxCell id="sys-prompt" parent="1" value="&lt;b&gt;System Prompt&lt;/b&gt;&lt;br/&gt;✅ TRUSTED&lt;br/&gt;&lt;font color=&apos;#555555&apos;&gt;Authored by developers.&lt;br/&gt;Static, reviewed, deployed.&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=2;fontSize=12;verticalAlign=middle;" vertex="1">
+          <mxGeometry x="380" y="155" width="200" height="110" as="geometry" />
+        </mxCell>
+
+        <!-- ===== VALIDATED: User Input ===== -->
+        <mxCell id="user-input" parent="1" value="&lt;b&gt;User Input&lt;/b&gt;&lt;br/&gt;⚠️ TREATED AS UNTRUSTED&lt;br/&gt;&lt;font color=&apos;#555555&apos;&gt;Filtered and validated.&lt;br/&gt;Security teams focus here.&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;strokeWidth=2;fontSize=12;verticalAlign=middle;" vertex="1">
+          <mxGeometry x="380" y="315" width="200" height="110" as="geometry" />
+        </mxCell>
+
+        <!-- ===== VULNERABLE: Tool Descriptions ===== -->
+        <mxCell id="tool-desc" parent="1" value="&lt;b&gt;Tool Descriptions&lt;/b&gt;&lt;br/&gt;🔴 TRUSTED — VULNERABLE&lt;br/&gt;&lt;font color=&apos;#555555&apos;&gt;From MCP servers. Attack:&lt;br/&gt;schema poisoning (ASI04)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;fillColor=#ffe6cc;strokeColor=#d6793b;strokeWidth=2;fontSize=12;verticalAlign=middle;" vertex="1">
+          <mxGeometry x="640" y="155" width="220" height="110" as="geometry" />
+        </mxCell>
+
+        <!-- ===== VULNERABLE: Retrieved Context ===== -->
+        <mxCell id="retrieved" parent="1" value="&lt;b&gt;Retrieved Context (RAG)&lt;/b&gt;&lt;br/&gt;🔴 TRUSTED — VULNERABLE&lt;br/&gt;&lt;font color=&apos;#555555&apos;&gt;From vector DB / docs. Attack:&lt;br/&gt;knowledge poisoning (ASI06)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;fillColor=#ffe6cc;strokeColor=#d6793b;strokeWidth=2;fontSize=12;verticalAlign=middle;" vertex="1">
+          <mxGeometry x="640" y="315" width="220" height="110" as="geometry" />
+        </mxCell>
+
+        <!-- ===== HIGH RISK: Tool Return Values ===== -->
+        <mxCell id="tool-returns" parent="1" value="&lt;b&gt;Tool Return Values&lt;/b&gt;&lt;br/&gt;🚨 TRUSTED — HIGH RISK&lt;br/&gt;&lt;font color=&apos;#555555&apos;&gt;From executed tools. Attack:&lt;br/&gt;data injection (ASI02, ASI05)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;fillColor=#f8cecc;strokeColor=#b85450;strokeWidth=2;fontSize=12;verticalAlign=middle;" vertex="1">
+          <mxGeometry x="920" y="155" width="220" height="110" as="geometry" />
+        </mxCell>
+
+        <!-- ===== HIGH RISK: Inter-Agent Messages ===== -->
+        <mxCell id="agent-msgs" parent="1" value="&lt;b&gt;Inter-Agent Messages&lt;/b&gt;&lt;br/&gt;🚨 TRUSTED — HIGH RISK&lt;br/&gt;&lt;font color=&apos;#555555&apos;&gt;From other agents. Attack:&lt;br/&gt;orchestrator poisoning (ASI07)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;fillColor=#f8cecc;strokeColor=#b85450;strokeWidth=2;fontSize=12;verticalAlign=middle;" vertex="1">
+          <mxGeometry x="920" y="315" width="220" height="110" as="geometry" />
+        </mxCell>
+
+        <!-- ===== Key Insight Box (inside window) ===== -->
+        <mxCell id="key-insight" parent="1" value="&lt;b&gt;The fundamental problem:&lt;/b&gt;&lt;br/&gt;The LLM has no runtime mechanism to distinguish&lt;br/&gt;a developer instruction from an adversarial payload&lt;br/&gt;embedded in retrieved content or a tool description.&lt;br/&gt;&lt;i&gt;All inputs are processed in the same context.&lt;/i&gt;" style="rounded=1;whiteSpace=wrap;fillColor=#fffde7;strokeColor=#f9a825;strokeWidth=2;fontSize=12;verticalAlign=middle;" vertex="1">
+          <mxGeometry x="380" y="490" width="760" height="100" as="geometry" />
+        </mxCell>
+
+        <!-- ===== External actors (left side) ===== -->
+
+        <!-- Developer -->
+        <mxCell id="dev-actor" parent="1" value="Developer" style="shape=mxgraph.general.person2;strokeColor=#82b366;fillColor=#d5e8d4;fontSize=12;fontStyle=1;" vertex="1">
+          <mxGeometry x="65" y="160" width="60" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow-dev" parent="1" value="writes" style="curved=1;startArrow=none;endArrow=block;strokeColor=#82b366;strokeWidth=2;fontSize=11;fontColor=#3e6f3a;" edge="1" source="dev-actor" target="sys-prompt">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Legitimate User -->
+        <mxCell id="user-actor" parent="1" value="User" style="shape=mxgraph.general.person2;strokeColor=#d6b656;fillColor=#fff2cc;fontSize=12;fontStyle=1;" vertex="1">
+          <mxGeometry x="65" y="320" width="60" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow-user" parent="1" value="queries" style="curved=1;startArrow=none;endArrow=block;strokeColor=#d6b656;strokeWidth=2;fontSize=11;fontColor=#b8860b;" edge="1" source="user-actor" target="user-input">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Attacker (top) -->
+        <mxCell id="attacker-top" parent="1" value="Attacker" style="shape=mxgraph.general.person2;strokeColor=#b85450;fillColor=#f8cecc;fontSize=12;fontStyle=1;" vertex="1">
+          <mxGeometry x="200" y="100" width="60" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- Attacker → Tool Descriptions (MCP poisoning) -->
+        <mxCell id="arrow-mcp" parent="1" value="MCP tool poisoning" style="curved=1;startArrow=none;endArrow=block;strokeColor=#b85450;strokeWidth=2;dashed=1;fontSize=11;fontColor=#b85450;fontStyle=2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" source="attacker-top" target="tool-desc">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="285" y="140" />
+              <mxPoint x="620" y="210" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Attacker (middle) -->
+        <mxCell id="attacker-mid" parent="1" value="Attacker" style="shape=mxgraph.general.person2;strokeColor=#b85450;fillColor=#f8cecc;fontSize=12;fontStyle=1;" vertex="1">
+          <mxGeometry x="200" y="310" width="60" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- Attacker → Retrieved Context (RAG poisoning) -->
+        <mxCell id="arrow-rag" parent="1" value="RAG poisoning" style="curved=1;startArrow=none;endArrow=block;strokeColor=#b85450;strokeWidth=2;dashed=1;fontSize=11;fontColor=#b85450;fontStyle=2;" edge="1" source="attacker-mid" target="retrieved">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ===== LLM Agent Output (right side) ===== -->
+        <mxCell id="llm-agent" parent="1" value="&lt;b&gt;LLM Agent&lt;/b&gt;&lt;br/&gt;Plans &amp; Decides" style="ellipse;whiteSpace=wrap;fillColor=#6c8ebf;strokeColor=#4a6fa0;strokeWidth=3;fontSize=14;fontColor=#ffffff;fontStyle=1;" vertex="1">
+          <mxGeometry x="1260" y="290" width="160" height="100" as="geometry" />
+        </mxCell>
+
+        <!-- Context window → LLM Agent -->
+        <mxCell id="arrow-ctx-llm" parent="1" value="" style="curved=1;startArrow=none;endArrow=block;strokeColor=#6c8ebf;strokeWidth=3;" edge="1" source="ctx-window" target="llm-agent">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1210" y="410" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Tool Calls output -->
+        <mxCell id="tool-calls-out" parent="1" value="🔧 Tool Calls&lt;br/&gt;&lt;font color=&apos;#555555&apos;&gt;docker_stop, send_email,&lt;br/&gt;read_file — real consequences&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;fillColor=#f8cecc;strokeColor=#b85450;strokeWidth=2;fontSize=12;" vertex="1">
+          <mxGeometry x="1260" y="150" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow-tools-out" parent="1" value="" style="curved=1;startArrow=none;endArrow=block;strokeColor=#b85450;strokeWidth=2;" edge="1" source="llm-agent" target="tool-calls-out">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Response output -->
+        <mxCell id="resp-out" parent="1" value="💬 Response to User&lt;br/&gt;&lt;font color=&apos;#555555&apos;&gt;May be clean-looking&lt;br/&gt;while attack succeeded&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=2;fontSize=12;" vertex="1">
+          <mxGeometry x="1260" y="460" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow-resp-out" parent="1" value="" style="curved=1;startArrow=none;endArrow=block;strokeColor=#82b366;strokeWidth=2;" edge="1" source="llm-agent" target="resp-out">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ===== Legend ===== -->
+        <mxCell id="leg-bg" parent="1" value="" style="rounded=1;fillColor=#f5f5f5;strokeColor=#cccccc;strokeWidth=1;" vertex="1">
+          <mxGeometry x="350" y="740" width="860" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-trusted" parent="1" value="✅ Trusted" style="rounded=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" vertex="1">
+          <mxGeometry x="365" y="752" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-validated" parent="1" value="⚠️ Validated (user)" style="rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1">
+          <mxGeometry x="490" y="752" width="155" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-vuln" parent="1" value="🔴 Treated as trusted — vulnerable" style="rounded=1;fillColor=#ffe6cc;strokeColor=#d6793b;fontSize=11;" vertex="1">
+          <mxGeometry x="660" y="752" width="240" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-high" parent="1" value="🚨 High-impact attack vectors" style="rounded=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;" vertex="1">
+          <mxGeometry x="915" y="752" width="205" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- Caption -->
+        <mxCell id="caption" parent="1" value="Red-team focus: the orange and red zones receive attacker-controlled content that the LLM processes with the same authority as developer instructions." style="text;html=1;align=center;verticalAlign=middle;fontSize=11;fontColor=#777777;strokeColor=none;fillColor=none;fontStyle=2;" vertex="1">
+          <mxGeometry x="200" y="810" width="1000" height="24" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

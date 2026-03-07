@@ -30,22 +30,22 @@ permalink: /field-guide/
 
 <div class="field-guide-features">
   <div class="fg-feature-card">
-    <div class="fg-icon">🎯</div>
+    <span class="fg-tag">Coverage</span>
     <h3>All 10 ASI risks mapped</h3>
     <p>Each OWASP Agentic Top 10 entry explained with a real incident reference, attack mechanism, and 2–3 specific controls.</p>
   </div>
   <div class="fg-feature-card">
-    <div class="fg-icon">⚡</div>
+    <span class="fg-tag">Practical</span>
     <h3>Production-focused</h3>
     <p>Written for teams running agents now — not theoretical. Every control maps to something you can implement this week.</p>
   </div>
   <div class="fg-feature-card">
-    <div class="fg-icon">🔬</div>
+    <span class="fg-tag">Evidence</span>
     <h3>Real incidents, named</h3>
     <p>DockerDash, WhatsApp MCP, CVE-2025-6514, Gemini memory corruption — the actual breaches, not hypotheticals.</p>
   </div>
   <div class="fg-feature-card">
-    <div class="fg-icon">🛡️</div>
+    <span class="fg-tag">Controls</span>
     <h3>Actionable mitigations</h3>
     <p>mcp-scan, tool description hashing, human approval gates, per-server namespacing — specific tools and techniques.</p>
   </div>
@@ -66,7 +66,7 @@ permalink: /field-guide/
 Written for **security engineers and CTOs running agentic systems in production** — not a theoretical overview of what AI risks might someday exist.
 
 <div style="text-align: center; margin: 2.5rem 0 1rem;">
-  <a href="/assets/pdfs/ai-agent-security-field-guide.pdf.pdf"
+  <a href="/assets/pdfs/ai-agent-security-field-guide.pdf"
      class="download-btn"
      onclick="trackDownload('ai-agent-security-field-guide')">
     Download the Field Guide &rarr;

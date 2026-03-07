@@ -216,6 +216,17 @@ exclude:
   - LICENSE
   - "*.config.js"
   - package*.json
+  # Editor / tooling config — not for public serving
+  - frontmatter.json
+  - .frontmatter
+  - scripts
+  - .claude
+  - .vscode
+  - .github
+  - Gemfile
+  - Gemfile.lock
+  # Local planning notes (gitignored but also exclude from Jekyll processing)
+  - "*.local.md"
 
 jekyll-archives:
   enabled: [categories, tags]

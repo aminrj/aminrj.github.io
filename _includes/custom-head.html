@@ -1,39 +1,41 @@
 <!-- Newsletter styles (standalone file – not subject to compress layout stripping) -->
 <link rel="stylesheet" href="{{ '/assets/css/newsletter.css' | relative_url }}">
 
-<!-- Plausible Analytics -->
-<script defer data-domain="aminrj.com" src="https://plausible.io/js/script.js"></script>
-
-<!-- Enhanced Plausible with outbound links -->
-<script defer data-domain="aminrj.com" src="https://plausible.io/js/script.outbound-links.js"></script>
-
-<!-- Custom event tracking functions -->
+<!-- GoatCounter: page views (auto) + custom events -->
+<script data-goatcounter="https://aminrj.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
 <script>
-  window.plausible = window.plausible || function() {
-    (window.plausible.q = window.plausible.q || []).push(arguments)
+  // Safe wrapper: GoatCounter loads deferred, so we queue events fired before it's ready
+  function _gc(path, title) {
+    if (window.goatcounter && window.goatcounter.count) {
+      window.goatcounter.count({ path: path, title: title, event: true });
+    } else {
+      // Script not yet loaded — retry once after a short delay
+      setTimeout(function() {
+        if (window.goatcounter && window.goatcounter.count) {
+          window.goatcounter.count({ path: path, title: title, event: true });
+        }
+      }, 1500);
+    }
   }
 
   // Track newsletter signups
   function trackNewsletterSignup() {
-    plausible('Newsletter Signup');
-    console.log('Newsletter signup tracked'); // Debug
+    _gc('event-newsletter-signup', 'Newsletter Signup');
   }
 
-  // Track consultation requests
+  // Track consultation CTA clicks
   function trackConsultationClick() {
-    plausible('Consultation Click');
-    console.log('Consultation click tracked'); // Debug
+    _gc('event-consultation-click', 'Consultation Click');
   }
 
   // Track social media clicks
   function trackSocialClick(platform) {
-    plausible('Social Click', {props: {platform: platform}});
-    console.log('Social click tracked:', platform); // Debug
+    _gc('event-social-' + platform, 'Social Click: ' + platform);
   }
 
   // Track resource downloads
   function trackDownload(resource) {
-    plausible('Download', {props: {resource: resource}});
-    console.log('Download tracked:', resource); // Debug
+    _gc('event-download-' + resource, 'Download: ' + resource);
   }
 </script>

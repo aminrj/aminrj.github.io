@@ -7,6 +7,7 @@
     { formId: 'subscribe-form-sidebar', msgId: 'subscribe-message-sidebar' },
     { formId: 'post-cta-form',          msgId: 'post-cta-message' },
     { formId: 'newsletter-form',        msgId: 'newsletter-message' },
+    { formId: 'waitlist-form',          msgId: 'waitlist-message' },
   ];
 
   function getUTMParams(form) {

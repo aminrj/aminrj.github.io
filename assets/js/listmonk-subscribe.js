@@ -35,9 +35,9 @@
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const email   = (form.querySelector('[name="email"]')   || {}).value || '';
-      const name    = (form.querySelector('[name="name"]')    || {}).value || '';
-      const source  = (form.querySelector('[name="source"]')  || {}).value || 'aminrj';
+      const email      = (form.querySelector('[name="email"]')      || {}).value || '';
+      const first_name  = (form.querySelector('[name="first_name"]') || {}).value || '';
+      const source      = (form.querySelector('[name="source"]')     || {}).value || 'aminrj';
       const submitBtn = form.querySelector('button[type="submit"]');
 
       submitBtn.disabled = true;
@@ -48,7 +48,7 @@
         const res = await fetch(N8N_WEBHOOK_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, name, source, ...getUTMParams(form) }),
+          body: JSON.stringify({ email, first_name, source, ...getUTMParams(form) }),
         });
 
         const data = await res.json();

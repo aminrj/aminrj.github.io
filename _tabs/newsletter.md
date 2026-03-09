@@ -7,15 +7,20 @@ order: 3
 
 # AI Security Intelligence Digest
 
-<div class="alert alert-info" role="alert">
-  <strong>The newsletter is back.</strong> After a hiatus, the AI Security Intelligence Digest returns in weekly format — deeper analysis, less noise.
+<div class="text-center my-4">
+  <a href="https://newsletter.aminrj.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg px-5">
+    <i class="fas fa-external-link-alt me-2"></i>Read Here
+  </a>
+  <p class="text-muted small mt-2">newsletter.aminrj.com</p>
 </div>
 
-Weekly analysis of the threats, vulnerabilities, and defensive innovations shaping AI security. Written for security engineers and CTOs who need signal, not hype. Browse the archive below or [subscribe](/subscribe/) for the latest.
+Weekly analysis of the threats, vulnerabilities, and defensive innovations shaping AI security. Written for security engineers and CTOs who need signal, not hype. New issues publish every week at [newsletter.aminrj.com](https://newsletter.aminrj.com){:target="_blank"}.
 
 ---
 
 ## Archive
+
+_Earlier issues published before the move to Beehiiv._
 
 {% assign newsletters = site.newsletters | sort: 'date' | reverse %}
 {% if newsletters.size > 0 %}

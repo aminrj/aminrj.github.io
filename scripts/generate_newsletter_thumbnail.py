@@ -40,8 +40,9 @@ CANVAS_W, CANVAS_H = 1200, 630
 # ---------------------------------------------------------------------------
 FONT_SIZE    = 72
 MAX_CHARS    = 60
-WRAP_WIDTH   = 24   # characters per line at FONT_SIZE 72
+WRAP_WIDTH   = 22   # characters per line at FONT_SIZE 72
 LINE_SPACING = 1.3  # multiplier on FONT_SIZE
+MAX_LINES    = 2     # max lines for title before truncation (with ellipsis)
 
 # Font search order — drop your own .ttf into scripts/fonts/ and it wins
 FONT_CANDIDATES = [
@@ -70,7 +71,7 @@ OVERLAY_OPACITY = 180                   # 0–255  (~70%)
 # ---------------------------------------------------------------------------
 # Layout
 # ---------------------------------------------------------------------------
-TEXT_X       = 80    # left margin for all text
+TEXT_X       = 160    # left margin for all text
 TEXT_Y       = 180   # vertical start for the title block
 ISSUE_Y      = 130   # vertical position for the "#N" label
 

@@ -76,4 +76,6 @@ Written for **security engineers and CTOs running agentic systems in production*
 
 ---
 
+*Also: the course this guide was written for &nbsp;→&nbsp; [Join the waitlist](/waitlist/)*
+
 *Amine Raji, PhD &nbsp;·&nbsp; CISSP &nbsp;·&nbsp; [aminrj.com](https://aminrj.com)*

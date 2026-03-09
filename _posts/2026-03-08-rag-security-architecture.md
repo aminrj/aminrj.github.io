@@ -22,7 +22,7 @@ tags:
     Embedding Security,
   ]
 image:
-  path: /assets/media/ai-security/rag-security-architecture.png
+  path: /assets/media/ai-security/rag-secure-architecture-guidelines.png
 description: "Mapping the RAG attack surface end to end: from document ingestion to vector storage to generation. Three reproducible attacks against a local ChromaDB + LM Studio stack (knowledge poisoning, indirect prompt injection, cross-tenant leakage), plus the five-layer defense architecture that actually works."
 ---
 

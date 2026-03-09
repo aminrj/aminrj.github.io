@@ -1,5 +1,5 @@
 ---
-title: "How I Use OpenClaw Securely as an AI Security Researcher: A Practitioner's Guide"
+title: "How I Deployed OpenClaw as an AI Security Researcher: A Practitioner's Guide"
 description: A hands-on guide to deploying OpenClaw as an AI-powered research assistant while controlling the blast radius — architecture decisions, Docker hardening, tool policies, and lessons from the ClawHavoc supply chain attack.
 date: 2026-03-04
 categories:
@@ -16,8 +16,6 @@ tags:
 image:
   path: /assets/media/ai-security/openclaw-secure-deployment-guide.png
 ---
-
-# How I Use OpenClaw Securely as an AI Security Researcher: A Practitioner's Guide
 
 _A hands-on guide to deploying OpenClaw as your AI-powered research assistant while controlling the blast radius. Built from real operational experience and the latest community security research._
 
@@ -80,7 +78,7 @@ Here is the architecture I use for AI security research. The key principle is **
 
 **Docker Desktop** serves as the containment boundary. OpenClaw runs in a Docker container with explicit volume mounts, network restrictions, and a non-root user. This is the single most impactful security improvement you can make.
 
-**Ollama** runs separately on the host, serving local models for tasks that don't require frontier intelligence, daily digest curation, initial scoring, routine classification. The models I use for these tasks are smaller (7B-class) and cost nothing to run, but they are also more susceptible to prompt injection, which is why I pair them with strict tool policies.
+**Ollama** runs separately on the host, serving local models for tasks that don't require frontier intelligence — daily digest curation, initial scoring, routine classification. The models I use for these tasks are smaller (7B-class) and cost nothing to run, but they are also more susceptible to prompt injection, which is why I pair them with strict tool policies.
 
 **Claude** (via Anthropic API) handles deep reasoning tasks, analysis, long-form synthesis, complex decision-making. The stronger model's instruction-following capability provides an additional layer of defense against injection attempts in high-stakes workflows.
 
@@ -146,9 +144,7 @@ services:
     command: ["npx", "openclaw", "start"]
 ```
 
-Key points about this configuration: the `read_only: true` flag makes the root filesystem immutable, so a compromised agent cannot modify system binaries. The `no-new-privileges` flag prevents privilege escalation. Binding port 18789 to `127.0.0.1` ensures the gateway is never directly reachable from the network.
-And critically, never mount the Docker socket into the container.
-That grants full host control.
+Key points about this configuration: the `read_only: true` flag makes the root filesystem immutable, so a compromised agent cannot modify system binaries. The `no-new-privileges` flag prevents privilege escalation. Binding port 18789 to `127.0.0.1` ensures the gateway is never directly reachable from the network. Never mount the Docker socket into the container — that grants full host control.
 
 ### Step 2: Gateway Authentication and Network Lockdown
 
@@ -167,7 +163,7 @@ openclaw config set gateway.bind loopback
 openclaw config set gateway.mode local
 ```
 
-Never expose the gateway to the public internet directly. If you need remote access, use Tailscale or an SSH tunnel, never port forwarding.
+Never expose the gateway to the public internet directly. If you need remote access, use Tailscale or an SSH tunnel — never port forwarding.
 
 ### Step 3: DM Policy and Channel Access Control
 
@@ -198,9 +194,7 @@ For maximum control, use an explicit allowlist:
 }
 ```
 
-The `requireMention` setting is essential for guild channels.
-Without it, the bot processes every message in the channel, dramatically increasing the injection surface.
-With mention gating, the bot only activates when explicitly addressed.
+The `requireMention` setting is essential for guild channels. Without it, the bot processes every message in the channel, dramatically increasing the injection surface. With mention gating, the bot only activates when explicitly addressed.
 
 ### Step 4: DM Session Isolation
 
@@ -210,7 +204,7 @@ If anyone beyond you can DM the bot, session isolation prevents cross-user data 
 openclaw config set session.dmScope per-channel-peer
 ```
 
-The default `main` scope means all DMs share one session, environment variables, conversation history, and any loaded context bleed across users.
+The default `main` scope means all DMs share one session — environment variables, conversation history, and any loaded context bleed across users.
 The `per-channel-peer` scope isolates each sender into their own session.
 This is the setting that, when misconfigured, led to the real-world credential leakage incidents documented by Giskard's security research.
 
@@ -476,4 +470,4 @@ The future of personal AI is agentic. The question is not whether you will use t
 
 _This guide will be maintained and updated as OpenClaw evolves. For the latest AI security research, subscribe to the AI Security Intelligence newsletter at Beehiiv or follow Molntek on LinkedIn._
 
-## _Feedback and corrections welcome — this is a practitioner's guide, not a finished product._
+_Feedback and corrections welcome — this is a practitioner's guide, not a finished product._

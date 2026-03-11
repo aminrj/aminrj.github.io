@@ -16,46 +16,22 @@
 
 /* ── Sidebar subscribe widget ────────────────────────────────────── */
 .sidebar-subscribe {
-  border-top: 1px solid var(--sidebar-border-color);
+  border-top: 1px solid var(--main-border-color, rgba(128,128,128,0.25));
   padding-top: 0.75rem;
 }
 
 .sidebar-subscribe-title {
-  color: var(--sidebar-muted-color);
+  color: var(--text-muted-color, #6c757d);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   font-size: 0.7rem;
 }
 
 .sidebar-subscribe-pitch {
-  color: var(--sidebar-muted-color);
+  color: var(--text-muted-color, #6c757d);
   font-size: 0.75rem;
   line-height: 1.45;
   margin-bottom: 0.65rem;
-}
-
-/* Fully custom input — no Bootstrap classes so nothing overrides us */
-.sidebar-email-input {
-  display: block;
-  width: 100%;
-  margin-bottom: 0.5rem;
-  padding: 0.3rem 0.6rem;
-  font-size: 0.8rem;
-  line-height: 1.4;
-  border: 1px solid var(--sidebar-border-color);
-  border-radius: 0.3rem;
-  background-color: var(--sidebar-btn-bg);
-  color: var(--sidebar-active-color);
-  outline: none;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
-}
-.sidebar-email-input::placeholder {
-  color: var(--sidebar-muted-color);
-  opacity: 1;
-}
-.sidebar-email-input:focus {
-  border-color: var(--input-focus-border-color);
-  box-shadow: 0 0 0 2px rgba(128, 128, 128, 0.2);
 }
 
 .sidebar-subscribe-btn {
@@ -65,14 +41,28 @@
   font-size: 0.8rem;
   font-weight: 600;
   color: #fff;
-  background-color: var(--bs-primary, #0d6efd);
+  background-color: #0d6efd;  /* fixed blue — readable in both light and dark mode */
   border: none;
   border-radius: 0.3rem;
   cursor: pointer;
   transition: background-color 0.15s ease;
+  text-decoration: none;
 }
-.sidebar-subscribe-btn:hover {
+.sidebar-subscribe-btn:hover,
+.sidebar-subscribe-btn:focus {
   background-color: #0b5ed7;
+  color: #fff;
+  text-decoration: none;
+}
+/* Chirpy dark mode: keep button blue, ensure text stays white */
+html[data-mode="dark"] .sidebar-subscribe-btn {
+  background-color: #3d8bfd;
+  color: #fff;
+}
+html[data-mode="dark"] .sidebar-subscribe-btn:hover,
+html[data-mode="dark"] .sidebar-subscribe-btn:focus {
+  background-color: #5a9bfd;
+  color: #fff;
 }
 .sidebar-subscribe-btn:disabled {
   opacity: 0.7;

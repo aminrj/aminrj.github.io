@@ -40,7 +40,7 @@
   padding: 0.3rem 0.6rem;
   font-size: 0.8rem;
   font-weight: 600;
-  color: #fff;
+  color: #fff !important;
   background-color: #0d6efd;  /* fixed blue — readable in both light and dark mode */
   border: none;
   border-radius: 0.3rem;
@@ -51,18 +51,18 @@
 .sidebar-subscribe-btn:hover,
 .sidebar-subscribe-btn:focus {
   background-color: #0b5ed7;
-  color: #fff;
+  color: #fff !important;
   text-decoration: none;
 }
 /* Chirpy dark mode: keep button blue, ensure text stays white */
 html[data-mode="dark"] .sidebar-subscribe-btn {
   background-color: #3d8bfd;
-  color: #fff;
+  color: #fff !important;
 }
 html[data-mode="dark"] .sidebar-subscribe-btn:hover,
 html[data-mode="dark"] .sidebar-subscribe-btn:focus {
   background-color: #5a9bfd;
-  color: #fff;
+  color: #fff !important;
 }
 .sidebar-subscribe-btn:disabled {
   opacity: 0.7;

@@ -31,9 +31,10 @@ The actual Q4 2025 revenue in the knowledge base: $24.7M with a $6.5M profit.
 
 I didn't touch the user query. I didn't exploit a software vulnerability. I added three documents to the knowledge base and asked a question.
 
-This is knowledge base poisoning, and it's the most underestimated attack on production RAG systems today.
+> **Lab code:** [github.com/aminrj-labs/mcp-attack-labs/labs/04-rag-security](https://github.com/aminrj-labs/mcp-attack-labs/tree/main/labs/04-rag-security)  
+> `git clone && make attack1` — 10 minutes, no cloud, no GPU required
 
-_Everything in this article is fully reproducible. The lab code is at [aminrj-labs/mcp-attack-labs — labs/04-rag-security](https://github.com/aminrj-labs/mcp-attack-labs/tree/main/labs/04-rag-security). Clone it, run `make attack1`, and watch it happen yourself._
+This is knowledge base poisoning, and it's the most underestimated attack on production RAG systems today.
 
 ---
 

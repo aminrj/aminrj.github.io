@@ -270,6 +270,12 @@ Run this before every bulk ingestion operation. If you discover a poisoning atta
 **3. Verify your success criterion before relying on output monitoring.**
 Pattern-based output monitoring (regex for dollar amounts, company names, known-bad strings) catches 40% of attacks in this test. It's better than nothing. But the poisoned response in this lab doesn't trigger any unusual patterns — it reads like a normal financial summary. For output monitoring to be reliable, it needs ML-based intent classification, not regex. [Llama Guard 3](https://ai.meta.com/research/publications/llama-guard-3-llm-safety-tool/) and [NeMo Guardrails](https://github.com/NVIDIA/NeMo-Guardrails) are worth evaluating for production deployments.
 
+The five defense layers mapped to the pipeline — and why the one most teams skip (embedding anomaly detection at ingestion) outperforms the three layers in the generation phase combined:
+
+![Defense Efficiency](/assets/media/ai-security/rag-poisoning/defense-mechanisms.png)
+
+*Pass-through = standalone attack success rate with that layer active. Lower is better. All five layers combined: 10% pass-through.*
+
 ---
 
 Knowledge base poisoning is not a theoretical threat. [PoisonedRAG](https://www.usenix.org/conference/usenixsecurity25/presentation/zou-poisonedrag) demonstrated it at research scale. I demonstrated the concept mechanism against a local deployment in an afternoon. The attack is simple, persistent, and invisible to defenders who aren't looking at the ingestion layer.

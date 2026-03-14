@@ -1,24 +1,28 @@
 <!-- Newsletter styles -->
 <link rel="stylesheet" href="{{ '/assets/css/newsletter.css' | relative_url }}">
 
-<!-- Plausible Analytics -->
-<script defer data-domain="aminrj.com" src="https://plausible.io/js/script.js"></script>
-<script defer data-domain="aminrj.com" src="https://plausible.io/js/script.outbound-links.js"></script>
+<!-- Beehiiv subscribe embed -->
+<script async src="https://subscribe-forms.beehiiv.com/embed.js"></script>
 
+<!-- GoatCounter: page views (auto) + custom events -->
+<script data-goatcounter="https://aminrj.goatcounter.com/count"
+        async src="https://gc.zgo.at/count.js"></script>
 <script>
-  window.plausible = window.plausible || function() {
-    (window.plausible.q = window.plausible.q || []).push(arguments)
+  // Safe wrapper: GoatCounter loads async, so queue events fired before it's ready
+  function _gc(path, title) {
+    if (window.goatcounter && window.goatcounter.count) {
+      window.goatcounter.count({ path: path, title: title, event: true });
+    } else {
+      setTimeout(function() {
+        if (window.goatcounter && window.goatcounter.count) {
+          window.goatcounter.count({ path: path, title: title, event: true });
+        }
+      }, 1500);
+    }
   }
-  function trackNewsletterSignup() {
-    plausible('Newsletter Signup');
-  }
-  function trackConsultationClick() {
-    plausible('Consultation Click');
-  }
-  function trackSocialClick(platform) {
-    plausible('Social Click', {props: {platform: platform}});
-  }
-  function trackDownload(resource) {
-    plausible('Download', {props: {resource: resource}});
-  }
+
+  function trackNewsletterSignup() { _gc('event-newsletter-signup', 'Newsletter Signup'); }
+  function trackConsultationClick() { _gc('event-consultation-click', 'Consultation Click'); }
+  function trackSocialClick(platform) { _gc('event-social-' + platform, 'Social Click: ' + platform); }
+  function trackDownload(resource) { _gc('event-download-' + resource, 'Download: ' + resource); }
 </script>

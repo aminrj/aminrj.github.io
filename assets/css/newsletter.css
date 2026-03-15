@@ -321,3 +321,67 @@ html[data-mode="dark"] .sidebar-subscribe-btn:focus {
   margin-top: 0.75rem;
   margin-bottom: 0;
 }
+
+/* ── Inline mid-article subscribe callout ───────────────────────── */
+.inline-cta {
+  margin: 2rem 0;
+  padding: 1.1rem 1.4rem 1.2rem;
+  border: 1px solid var(--main-border-color);
+  border-left: 4px solid var(--bs-primary, #0d6efd);
+  border-radius: 0.45rem;
+  background: var(--card-bg);
+}
+.inline-cta-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+}
+.inline-cta-header i {
+  font-size: 0.9rem;
+  color: var(--bs-primary, #0d6efd);
+}
+.inline-cta-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--bs-primary, #0d6efd);
+}
+.inline-cta-body {
+  font-size: 0.9rem;
+  color: var(--text-muted-color);
+  margin: 0 0 0.85rem;
+  line-height: 1.55;
+}
+.inline-cta-btn {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border: 1.5px solid var(--bs-primary, #0d6efd);
+  border-radius: 4px;
+  color: var(--bs-primary, #0d6efd);
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+}
+.inline-cta-btn:hover {
+  background: var(--bs-primary, #0d6efd);
+  color: #fff;
+  text-decoration: none;
+}
+html[data-mode="dark"] .inline-cta {
+  border-left-color: #5a9bfd;
+}
+html[data-mode="dark"] .inline-cta-header i,
+html[data-mode="dark"] .inline-cta-label {
+  color: #5a9bfd;
+}
+html[data-mode="dark"] .inline-cta-btn {
+  border-color: #5a9bfd;
+  color: #5a9bfd;
+}
+html[data-mode="dark"] .inline-cta-btn:hover {
+  background: #5a9bfd;
+  color: #111;
+}

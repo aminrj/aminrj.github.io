@@ -272,6 +272,8 @@ alerts on mutation.
 The detection mechanism for this attack class does not exist in the deployed
 ecosystem.
 
+{% include inline-subscribe.html %}
+
 ---
 
 ## The Infrastructure Layer Is Not Immune

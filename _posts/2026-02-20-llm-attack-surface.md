@@ -160,6 +160,8 @@ Most organizations audit their software dependencies. Almost none audit the
 behavior of their AI agent plugins and tool integrations after initial
 installation.
 
+{% include inline-subscribe.html %}
+
 ---
 
 ## What the OWASP frameworks tell us (and what they don't)

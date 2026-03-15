@@ -185,9 +185,7 @@ The [OWASP LLM Top 10 for 2025](https://genai.owasp.org/llmrisk/llm082025-vector
 
 ---
 
-> **Enjoying this series?** I publish weekly practitioner-level analysis of AI security — attack labs, incident breakdowns, and defense patterns for teams actually building these systems. [Subscribe at aminrj.com](https://aminrj.com) — one email per week, no fluff.
-
----
+{% include inline-subscribe.html %}
 
 ## The Defense That Surprised Me
 

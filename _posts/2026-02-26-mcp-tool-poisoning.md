@@ -211,6 +211,8 @@ The agent was started with only `attack1_direct_poison.py`. There was no `read_t
 
 This reveals a key dependency: **the attack requires both a susceptible model AND the agent having file-access tools available.**
 
+{% include inline-subscribe.html %}
+
 ---
 
 ## Attempt 2 — Capable Model + File Tool: Full Exfiltration

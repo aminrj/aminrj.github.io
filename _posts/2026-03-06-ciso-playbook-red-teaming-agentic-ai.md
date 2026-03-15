@@ -137,6 +137,8 @@ Before any technical assessment, these questions expose architectural risk. If y
 19. **Are third-party AI components inventoried?** — MCP servers, plugins, model providers, embedding services, vector databases.
 20. **Who owns AI security risk?** — Is there a named individual responsible for AI security posture, or is it distributed across application security, infrastructure, and data teams?
 
+{% include inline-subscribe.html %}
+
 ---
 
 ## 4. Attack Pattern Quick Reference

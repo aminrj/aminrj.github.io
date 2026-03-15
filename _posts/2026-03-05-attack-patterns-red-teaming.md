@@ -152,6 +152,9 @@ Using all three frameworks together gives you a structured, comprehensive test p
 _The three frameworks approach the same problem from different angles. Use them together to build a complete picture._
 
 ![Three framework-relationship](/assets/media/ai-security/mcp-attack-labs/techinique-to-attack-mapping.png)
+
+{% include inline-subscribe.html %}
+
 ---
 
 ## Attack Technique Reference

@@ -482,6 +482,8 @@ successful](/assets/media/ai-security/mcp-attack-labs/successful-exfill.png)
 
 ![Kill Chain](/assets/media/ai-security/mcp-attack-labs/kill-chain.png)
 
+{% include inline-subscribe.html %}
+
 ## What Defenses Work (and What Doesn't)
 
 ### Why Each Payload Attempt Failed

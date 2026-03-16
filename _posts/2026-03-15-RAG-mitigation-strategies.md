@@ -1,5 +1,5 @@
 ---
-title: "We Ran Real Attacks Against Our RAG Pipeline. Here's What Actually Stopped Them."
+title: "RAG Stack Security: Defenses That Actually Stop Real Attacks"
 date: 2026-03-15
 uuid: 202603150000
 status: draft
@@ -20,7 +20,7 @@ tags:
   ]
 image:
   path: /assets/media/ai-security/rag-mitigation-strategies..that-works.png
-description: "Three RAG-specific defenses most teams haven't implemented: embedding anomaly detection, access-controlled retrieval, and prompt structure hardening. Measured against a full attack suite on a local ChromaDB + LM Studio stack."
+description: "RAG stack security: three pipeline-specific defenses (embedding anomaly detection, access-controlled retrieval, prompt structure hardening) measured against a full attack suite on a local ChromaDB + LM Studio stack."
 ---
 
 RAG security discussions tend to orbit the same three topics: prompt injection, output scanning, and system prompt hardening. Those matter. But they address the LLM's behavior — not the infrastructure feeding it.

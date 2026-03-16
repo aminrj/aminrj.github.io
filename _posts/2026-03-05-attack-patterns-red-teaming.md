@@ -1,5 +1,5 @@
 ---
-title: "Red Teaming Agentic AI: Attack Patterns, Frameworks, and Hands-On Testing with PyRIT and Promptfoo"
+title: "LLM Red Teaming Tools: PyRIT & Garak (2025 Guide)"
 date: 2026-03-05
 uuid: 202603050000
 status: published
@@ -20,10 +20,18 @@ tags:
     Attack Patterns,
     Prompt Injection,
     Tool Poisoning,
+    Garak,
+    Automated Testing,
   ]
 image:
   path: /assets/media/ai-security/red-teaming-agentic-ai.png
-description: "A practitioner's guide to red teaming agentic AI systems — mapping attack patterns to MITRE ATLAS and OWASP Agentic Top 10, executing documented exploit chains, and running automated assessments with PyRIT and Promptfoo. Includes a running case study from real MCP tool-poisoning and DockerDash attacks."
+description: "Automated LLM red teaming with PyRIT and Garak (2025): attack patterns mapped to MITRE ATLAS and OWASP Agentic Top 10, reproducible exploit chains, and a full 5-phase assessment against real agentic infrastructure."
+---
+
+Automated LLM red teaming tools — **PyRIT** (Microsoft), **Garak** (NVIDIA), and **Promptfoo** — have changed how practitioners find vulnerabilities in agentic AI systems in 2025. Running a manual prompt injection test and calling it a red team assessment is the equivalent of running `ping` and calling it a penetration test. The attack surface is too large, too non-deterministic, and too tool-dependent for manual-only coverage.
+
+This guide covers the automated methodology: which tools to use, when to use them, and how to combine them with documented exploit chains for a complete 5-phase assessment. All labs run entirely offline on a MacBook Pro — no cloud APIs required.
+
 ---
 
 > _One line of text in a Docker image label stopped three containers, exfiltrated a complete infrastructure inventory, and the AI assistant reported: "The image is safe to use."_

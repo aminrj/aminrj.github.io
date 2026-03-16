@@ -1,5 +1,5 @@
 ---
-title: Evaluating AI Agents, A Practical Guide to Measuring What Matters
+title: "AI Agent Evaluation: Frameworks & Metrics for Production Systems"
 date: 2026-02-17
 uuid: 202602170000
 status: published
@@ -8,7 +8,7 @@ target-audience: advanced
 categories: [LLM]
 image:
   path: /assets/media/ai-security/evaluating-ai-agents.png
-description: Scientific approach to testing LLM agents. Precision, recall, F1 metrics from 15+ years testing systems in banking, defense, aerospace, and automotive.
+description: "AI agent evaluation framework with precision, recall, F1, and calibration metrics — built and tested in a real procurement system. Scientific approach from 15+ years in banking, defense, and aerospace."
 ---
 
 ## Why Evaluating AI Agents Matters ?

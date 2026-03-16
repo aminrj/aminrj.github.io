@@ -16,15 +16,23 @@ tags:
     Agentic AI,
     MCP,
     Attack Surface,
+    Tool Execution Security,
+    Attack Techniques,
   ]
 image:
   path: /assets/media/ai-security/ai-agents-new-attack-surface.png
-description: A practitioner's guide to the real security risks hiding inside LLM deployments — prompt injection, RAG poisoning, tool misuse, and supply chain attacks. What's actually happening in production right now.
+description: "LLM tool execution security: attack techniques, real incidents, and defenses for AI agents with tool access. Covers prompt injection, RAG poisoning, tool misuse, and supply chain attacks — with production examples."
 ---
 
 # Your AI Agent Just Became an Attack Surface — And Most Teams Don't Know It Yet
 
 _A practitioner's guide to the real security risks hiding inside your LLM deployments_
+
+---
+
+The LLM tool execution attack surface is larger than most teams realize. An agent with access to shell commands, database queries, email APIs, or file operations can be turned against its own infrastructure through five documented technique categories: **prompt injection** (hijacking reasoning via adversarial text), **RAG poisoning** (corrupting the knowledge base the model reads from), **tool misuse** (manipulating tool selection or parameter values), **indirect injection** (embedding instructions in external content the agent fetches), and **supply chain compromise** (poisoning MCP servers, SDKs, or model weights). Each has documented incidents from 2024–2025.
+
+This article maps those attack techniques to the real incidents I've observed — not hypothetical examples, but patterns from production systems.
 
 ---
 

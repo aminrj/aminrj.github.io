@@ -1,5 +1,5 @@
 ---
-title: "RAG Security: Knowledge Base Poisoning Succeeds 95% of the Time — Three Attacks, Five Defenses, Measured"
+title: "RAG Security: Attacks, Defenses & Architecture"
 date: 2026-03-08
 uuid: 202603080000
 status: draft
@@ -23,7 +23,7 @@ tags:
   ]
 image:
   path: /assets/media/ai-security/rag-secure-architecture-guidelines.png
-description: "Three reproducible attacks against a ChromaDB + LM Studio RAG stack — knowledge poisoning (95% success), indirect prompt injection including the undetectable semantic variant, and cross-tenant data leakage (100%). Five defense layers with measured effectiveness per attack. 100% local, no cloud APIs."
+description: "RAG security deep-dive: AI RAG architecture vulnerabilities, three reproducible attacks (knowledge poisoning at 95% success rate, indirect prompt injection, cross-tenant leakage), and five defense layers with measured effectiveness on a local ChromaDB + LM Studio stack."
 ---
 
 Knowledge base poisoning works against a standard ChromaDB + LangChain RAG stack 95% of the time. Cross-tenant data leakage succeeded on every query — 20 out of 20 — requiring zero technical sophistication. I measured both against a five-layer defense architecture and found one specific layer that most teams aren't running, which reduced the poisoning success rate from 95% to 20% on its own.

@@ -1,5 +1,5 @@
 ---
-title: "MCP Tool Poisoning: From Theory to Local Proof-of-Concept"
+title: "MCP Security: Tool Poisoning & Prompt Injection — Local Proof-of-Concept"
 date: 2026-02-26
 uuid: 202602260000
 status: published
@@ -13,12 +13,14 @@ tags:
     AI Security,
     LLM,
     Tool Poisoning,
+    Prompt Injection,
+    MCP Security,
     Vulnerability,
     Red Team,
   ]
 image:
   path: /assets/media/ai-security/mcp-tool-poisoning-demo.png
-description: "A hands-on walkthrough of reproducing the Invariant Labs MCP tool-poisoning attack fully offline. Learn why model capability and available tools determine exploit success—and what defenses actually work."
+description: "MCP security hands-on: reproducing tool poisoning and prompt injection fully offline — hidden instructions in MCP tool descriptions trigger silent file exfiltration. Includes failed attempt with a small model and successful exploit with the right model and tool access."
 ---
 
 > _A walk-through of reproducing the Invariant Labs MCP tool-poisoning attack fully offline — including the failed attempt with a small model, and the successful exfiltration once the right model and tools were in place._

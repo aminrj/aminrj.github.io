@@ -18,8 +18,12 @@ tags:
   ]
 image:
   path: /assets/media/ai-security/document-poisoning-in-rag-systems.png
-description: "I injected three fabricated documents into a ChromaDB knowledge base. Here's what the LLM said next."
+description: "RAG poisoning attack walkthrough: an attacker injects fabricated documents into a ChromaDB knowledge base and the LLM reports false financials as fact. Fully reproducible, 100% local, no GPU required."
 ---
+
+RAG poisoning is an attack where an adversary injects malicious or fabricated documents into a retrieval-augmented generation pipeline. Because the LLM treats retrieved documents as authoritative context, corrupting the knowledge base is often more effective than attacking the model directly — no jailbreak required, no model fine-tuning, no access to the inference layer.
+
+The threat categories are distinct: **knowledge base poisoning** replaces true facts with false ones; **indirect prompt injection** embeds hidden instructions inside retrieved content; **cross-tenant data leakage** exploits missing access controls to return documents from other users' namespaces. All three are reproducible in a standard ChromaDB + LangChain stack.
 
 I injected three fabricated documents into a ChromaDB knowledge base. Here's what the LLM said next.
 

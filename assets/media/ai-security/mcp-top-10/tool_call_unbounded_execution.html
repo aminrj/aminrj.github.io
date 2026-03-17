@@ -1,0 +1,176 @@
+<style>
+.tc-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border-radius:16px;font-size:12px;font-weight:500;}
+</style>
+<div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;">
+  <span class="tc-badge" style="background:#E1F5EE;color:#085041;"><span style="width:9px;height:9px;border-radius:2px;background:#1D9E75;flex-shrink:0;"></span>Normal (3–8 calls)</span>
+  <span class="tc-badge" style="background:#FCEBEB;color:#791F1F;"><span style="width:9px;height:9px;border-radius:2px;background:#E24B4A;flex-shrink:0;"></span>Unbounded execution</span>
+  <span class="tc-badge" style="background:#FAEEDA;color:#633806;"><span style="width:9px;height:9px;border-radius:2px;background:#EF9F27;flex-shrink:0;"></span>Threshold crossed</span>
+</div>
+<div style="position:relative;width:100%;height:460px;">
+  <canvas id="tcChart"></canvas>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const sessions=["S1","S2","S3","S4","S5","S6","S7","S8","S9","S10","S11","S12"];
+const calls=[4,6,3,7,5,8,4,25,80,180,340,520];
+const COST_T=20,DATA_T=60,LATERAL_T=150;
+
+function barBg(v){
+  if(v>=LATERAL_T)return"#E24B4A";
+  if(v>=COST_T)return"#EF9F27";
+  return"#1D9E75";
+}
+function barBorder(v){
+  if(v>=LATERAL_T)return"#791F1F";
+  if(v>=COST_T)return"#854F0B";
+  return"#0F6E56";
+}
+
+const thresholdPlugin={
+  id:"tp",
+  afterDraw(chart){
+    const ctx=chart.ctx;
+    const yS=chart.scales.y,xS=chart.scales.x;
+    const L=xS.left, R=xS.right;
+
+    const thresholds=[
+      {v:COST_T,    label:"cost threshold",       color:"#854F0B", dash:[6,3]},
+      {v:DATA_T,    label:"data exposure risk",    color:"#993C1D", dash:[6,3]},
+      {v:LATERAL_T, label:"lateral movement risk", color:"#791F1F", dash:[4,2]},
+    ];
+
+    thresholds.forEach(t=>{
+      const py=yS.getPixelForValue(t.v);
+
+      ctx.save();
+      ctx.strokeStyle=t.color;
+      ctx.lineWidth=1;
+      ctx.setLineDash(t.dash);
+      ctx.globalAlpha=0.55;
+      ctx.beginPath();ctx.moveTo(L,py);ctx.lineTo(R,py);ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.globalAlpha=1;
+      ctx.restore();
+
+      const labelText=t.label;
+      ctx.save();
+      ctx.font="500 11px sans-serif";
+      const tw=ctx.measureText(labelText).width;
+      const lx=L+8;
+      const ly=py-6;
+      ctx.fillStyle="rgba(255,255,255,0.88)";
+      ctx.fillRect(lx-3, ly-13, tw+6, 16);
+      ctx.fillStyle=t.color;
+      ctx.textAlign="left";
+      ctx.textBaseline="bottom";
+      ctx.fillText(labelText, lx, ly);
+      ctx.restore();
+    });
+
+    const ix=xS.getPixelForValue(6.5);
+
+    ctx.save();
+    ctx.strokeStyle="#534AB7";
+    ctx.lineWidth=1.5;
+    ctx.setLineDash([4,3]);
+    ctx.globalAlpha=0.6;
+    ctx.beginPath();ctx.moveTo(ix,yS.top);ctx.lineTo(ix,yS.bottom);ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.globalAlpha=1;
+    ctx.restore();
+
+    const iLabelLines=["inflection point","attack begins"];
+    const iLabelW=96, iLabelH=34, iLabelX=ix+6, iLabelY=yS.top+8;
+    ctx.save();
+    ctx.fillStyle="rgba(238,237,254,0.95)";
+    ctx.strokeStyle="#AFA9EC";
+    ctx.lineWidth=0.5;
+    roundRect(ctx, iLabelX, iLabelY, iLabelW, iLabelH, 4);
+    ctx.fill();ctx.stroke();
+    ctx.font="500 11px sans-serif";
+    ctx.fillStyle="#3C3489";
+    ctx.textAlign="left";ctx.textBaseline="top";
+    ctx.fillText(iLabelLines[0], iLabelX+6, iLabelY+6);
+    ctx.font="400 10px sans-serif";
+    ctx.fillStyle="#534AB7";
+    ctx.fillText(iLabelLines[1], iLabelX+6, iLabelY+20);
+    ctx.restore();
+
+    const midN=(L+ix)/2, midA=(ix+R)/2, bandY=yS.bottom+32;
+    ctx.save();
+    ctx.font="500 11px sans-serif";
+    ctx.textBaseline="middle";
+    ctx.textAlign="center";
+    ctx.fillStyle="#085041";
+    ctx.fillText("normal usage", midN, bandY);
+    ctx.fillStyle="#791F1F";
+    ctx.fillText("unbounded execution", midA, bandY);
+    ctx.restore();
+  }
+};
+
+function roundRect(ctx,x,y,w,h,r){
+  ctx.beginPath();
+  ctx.moveTo(x+r,y);
+  ctx.lineTo(x+w-r,y);ctx.quadraticCurveTo(x+w,y,x+w,y+r);
+  ctx.lineTo(x+w,y+h-r);ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+  ctx.lineTo(x+r,y+h);ctx.quadraticCurveTo(x,y+h,x,y+h-r);
+  ctx.lineTo(x,y+r);ctx.quadraticCurveTo(x,y,x+r,y);
+  ctx.closePath();
+}
+
+new Chart(document.getElementById("tcChart").getContext("2d"),{
+  type:"bar",
+  data:{
+    labels:sessions,
+    datasets:[{
+      data:calls,
+      backgroundColor:calls.map(barBg),
+      borderColor:calls.map(barBorder),
+      borderWidth:0.5,
+      borderRadius:3,
+    }]
+  },
+  options:{
+    responsive:true,
+    maintainAspectRatio:false,
+    layout:{padding:{top:16,right:12,bottom:44,left:12}},
+    plugins:{
+      legend:{display:false},
+      tooltip:{
+        callbacks:{
+          title:c=>"Session "+c[0].label,
+          label:c=>{
+            const v=c.raw;
+            let tier="normal";
+            if(v>=LATERAL_T)tier="lateral movement risk";
+            else if(v>=DATA_T)tier="data exposure risk";
+            else if(v>=COST_T)tier="cost threshold crossed";
+            return[v+" tool calls","Status: "+tier];
+          }
+        },
+        backgroundColor:"#2C2C2A",titleColor:"#F1EFE8",bodyColor:"#D3D1C7",
+        padding:10,cornerRadius:6,displayColors:false,
+      }
+    },
+    scales:{
+      x:{
+        ticks:{color:"#888780",font:{size:11}},
+        grid:{display:false},
+        border:{color:"rgba(136,135,128,0.2)"}
+      },
+      y:{
+        type:"logarithmic",min:1,max:1000,
+        title:{display:true,text:"tool calls per session (log scale)",color:"#888780",font:{size:12,weight:"400"},padding:{bottom:8}},
+        ticks:{
+          color:"#888780",font:{size:11},
+          callback:v=>[1,2,5,10,20,50,100,200,500,1000].includes(v)?v:""
+        },
+        grid:{color:"rgba(136,135,128,0.1)"},
+        border:{color:"rgba(136,135,128,0.2)"}
+      }
+    }
+  },
+  plugins:[thresholdPlugin]
+});
+</script>

@@ -1,0 +1,178 @@
+<style>
+.zone-badge { display:inline-flex; align-items:center; gap:6px; padding:6px 12px; border-radius:20px; font-size:12px; font-weight:500; }
+.risk-legend { display:flex; flex-direction:column; gap:6px; font-size:12px; }
+.risk-legend-row { display:flex; align-items:center; gap:8px; }
+.risk-dot { width:12px; height:12px; border-radius:50%; flex-shrink:0; }
+</style>
+
+<div style="display:flex; gap:8px; margin-bottom:16px; flex-wrap:wrap;">
+  <span class="zone-badge" style="background:#FCEBEB; color:#791F1F;">
+    <span style="width:10px;height:10px;border-radius:50%;background:#E24B4A;flex-shrink:0;"></span>
+    Critical — act now
+  </span>
+  <span class="zone-badge" style="background:#EEEDFE; color:#3C3489;">
+    <span style="width:10px;height:10px;border-radius:50%;background:#7F77DD;flex-shrink:0;"></span>
+    High impact, harder to exploit
+  </span>
+  <span class="zone-badge" style="background:#E1F5EE; color:#085041;">
+    <span style="width:10px;height:10px;border-radius:50%;background:#1D9E75;flex-shrink:0;"></span>
+    Monitor &amp; mitigate
+  </span>
+</div>
+
+<div style="display:flex; gap:16px; align-items:flex-start;">
+  <div style="position:relative; flex:1; height:460px;">
+    <canvas id="riskChart"></canvas>
+  </div>
+  <div style="width:190px; flex-shrink:0; padding-top:20px;">
+    <div class="risk-legend" id="risk-legend"></div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const risks = [
+  { code:"ASI01", label:"Goal hijacking",            ease:4.8, impact:5.0 },
+  { code:"ASI02", label:"Tool misuse",               ease:4.5, impact:4.6 },
+  { code:"ASI03", label:"Identity failures",         ease:4.3, impact:4.8 },
+  { code:"ASI04", label:"Memory poisoning",          ease:2.5, impact:4.4 },
+  { code:"ASI05", label:"Cascading failures",        ease:2.2, impact:3.8 },
+  { code:"ASI06", label:"Rogue agents",              ease:1.8, impact:3.5 },
+  { code:"ASI07", label:"Info disclosure",           ease:3.2, impact:4.5 },
+  { code:"ASI08", label:"Insecure agent comms",      ease:4.2, impact:4.7 },
+  { code:"ASI09", label:"Human-agent trust abuse",   ease:3.6, impact:2.8 },
+  { code:"ASI10", label:"Insufficient logging",      ease:2.0, impact:4.3 },
+];
+
+function getColor(ease, impact) {
+  if (ease >= 4 && impact >= 4.5)
+    return { bg:"#F09595", border:"#A32D2D" };
+  if (impact >= 4.2)
+    return { bg:"#AFA9EC", border:"#534AB7" };
+  return { bg:"#5DCAA5", border:"#0F6E56" };
+}
+
+const labelPlugin = {
+  id:"labelPlugin",
+  afterDatasetsDraw(chart) {
+    const ctx = chart.ctx;
+    risks.forEach((r, i) => {
+      const meta = chart.getDatasetMeta(0).data[i];
+      const x = meta.x, y = meta.y;
+      const c = getColor(r.ease, r.impact);
+      ctx.save();
+      ctx.font = "500 11px sans-serif";
+      ctx.fillStyle = c.border;
+      ctx.textAlign = "center";
+      ctx.textBaseline = "bottom";
+      ctx.fillText(r.code, x, y - 16);
+      ctx.restore();
+    });
+  }
+};
+
+const quadrantPlugin = {
+  id:"quadrantPlugin",
+  beforeDraw(chart) {
+    const ctx = chart.ctx;
+    const xScale = chart.scales.x;
+    const yScale = chart.scales.y;
+    const midX = xScale.getPixelForValue(3);
+    const midY = yScale.getPixelForValue(3);
+    const left = xScale.left;
+    const right = xScale.right;
+    const top = yScale.top;
+    const bottom = yScale.bottom;
+
+    ctx.save();
+    ctx.fillStyle = "rgba(242,67,67,0.04)";
+    ctx.fillRect(midX, top, right - midX, midY - top);
+    ctx.fillStyle = "rgba(127,119,221,0.04)";
+    ctx.fillRect(left, top, midX - left, midY - top);
+    ctx.fillStyle = "rgba(29,158,117,0.04)";
+    ctx.fillRect(left, midY, right - left, bottom - midY);
+
+    ctx.strokeStyle = "rgba(136,135,128,0.2)";
+    ctx.lineWidth = 1;
+    ctx.setLineDash([4, 4]);
+    ctx.beginPath();
+    ctx.moveTo(midX, top);
+    ctx.lineTo(midX, bottom);
+    ctx.moveTo(left, midY);
+    ctx.lineTo(right, midY);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    ctx.font = "400 10px sans-serif";
+    ctx.fillStyle = "rgba(136,135,128,0.5)";
+    ctx.textAlign = "right";
+    ctx.fillText("hard to exploit", midX - 8, top + 14);
+    ctx.textAlign = "left";
+    ctx.fillText("easy to exploit", midX + 8, top + 14);
+    ctx.restore();
+  }
+};
+
+new Chart(document.getElementById("riskChart").getContext("2d"), {
+  type:"bubble",
+  data:{
+    datasets:[{
+      data: risks.map(r => ({ x:r.ease, y:r.impact, r:16 })),
+      backgroundColor: risks.map(r => getColor(r.ease, r.impact).bg),
+      borderColor: risks.map(r => getColor(r.ease, r.impact).border),
+      borderWidth: 1.5,
+    }]
+  },
+  options:{
+    responsive:true,
+    maintainAspectRatio:false,
+    layout:{ padding:{ top:30, right:16, bottom:8, left:8 } },
+    plugins:{
+      legend:{ display:false },
+      tooltip:{
+        callbacks:{
+          title: ctx => risks[ctx[0].dataIndex].code + " — " + risks[ctx[0].dataIndex].label,
+          label: ctx => {
+            const r = risks[ctx.dataIndex];
+            return ["Ease of exploitation: " + r.ease, "Potential impact: " + r.impact];
+          }
+        },
+        backgroundColor:"#2C2C2A",
+        titleColor:"#F1EFE8",
+        bodyColor:"#D3D1C7",
+        padding:10,
+        cornerRadius:6,
+        displayColors:false,
+      }
+    },
+    scales:{
+      x:{
+        min:1, max:5.5,
+        title:{ display:true, text:"ease of exploitation →", color:"#888780", font:{ size:12, weight:"400" }, padding:{ top:8 } },
+        ticks:{ stepSize:1, color:"#888780", font:{ size:11 }, callback: v => ["","very hard","hard","moderate","easy","very easy"][v] || "" },
+        grid:{ color:"rgba(136,135,128,0.1)" },
+        border:{ color:"rgba(136,135,128,0.2)" }
+      },
+      y:{
+        min:1, max:5.5,
+        title:{ display:true, text:"potential impact →", color:"#888780", font:{ size:12, weight:"400" }, padding:{ bottom:8 } },
+        ticks:{ stepSize:1, color:"#888780", font:{ size:11 }, callback: v => ["","low","moderate","significant","high","critical"][v] || "" },
+        grid:{ color:"rgba(136,135,128,0.1)" },
+        border:{ color:"rgba(136,135,128,0.2)" }
+      }
+    }
+  },
+  plugins:[labelPlugin, quadrantPlugin]
+});
+
+const legend = document.getElementById("risk-legend");
+risks.forEach(r => {
+  const c = getColor(r.ease, r.impact);
+  legend.innerHTML += `
+    <div class="risk-legend-row">
+      <span class="risk-dot" style="background:${c.bg};border:1.5px solid ${c.border};"></span>
+      <span style="color:${c.border};font-weight:500;min-width:44px;">${r.code}</span>
+      <span style="color:var(--color-text-secondary);">${r.label}</span>
+    </div>`;
+});
+</script>

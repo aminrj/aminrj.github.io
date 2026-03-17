@@ -2,7 +2,7 @@
 title: "OWASP Agentic Top 10 in Practice: MCP Tool Poisoning, Cross-Server Attacks, and the DockerDash Incident"
 date: 2026-02-24
 uuid: 202602240000
-status: draft
+status: published
 content-type: article
 target-audience: advanced
 categories: [AI Security, LLM]

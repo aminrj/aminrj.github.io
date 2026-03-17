@@ -2,7 +2,7 @@
 title: "MCP's First Year: What 30 CVEs and 500 Server Scans Tell Us About AI's Fastest-Growing Attack Surface"
 date: 2026-02-25
 uuid: 202602250000
-status: draft
+status: published
 content-type: article
 target-audience: advanced
 categories: [AI Security, LLM]

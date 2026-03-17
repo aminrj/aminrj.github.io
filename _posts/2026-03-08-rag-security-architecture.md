@@ -2,7 +2,7 @@
 title: "RAG Security: Attacks, Defenses & Architecture"
 date: 2026-03-08
 uuid: 202603080000
-status: draft
+status: published
 content-type: article
 target-audience: advanced
 categories: [Security, AI, LLM]

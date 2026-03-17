@@ -3,8 +3,8 @@ title: "How I Deployed OpenClaw as an AI Security Researcher: A Practitioner's G
 description: A hands-on guide to deploying OpenClaw as an AI-powered research assistant while controlling the blast radius — architecture decisions, Docker hardening, tool policies, and lessons from the ClawHavoc supply chain attack.
 date: 2026-03-04
 categories:
-  - AI security
-  - cloud native
+  - AI Security
+  - Cloud Native
 tags:
   - OpenClaw
   - AI Security

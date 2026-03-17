@@ -37,11 +37,11 @@ description: "MCP Security Top 10: a practitioner's threat model mapping 10 MCP-
 
 ---
 
-That search returns an OWASP document covering MCP security at a high level — and a gap where the attack evidence should be. The OWASP LLM Top 10 is a solid framework for securing LLM applications, and the OWASP GenAI Security Project has published initial MCP guidance. But the attack evidence layer — lab-confirmed exploit chains, model-specific behavior analysis, and five attack categories not yet in any OWASP document — is what this article provides.
+The [OWASP GenAI Security Project published a Secure MCP Server Development guide](https://genai.owasp.org/resource/a-practical-guide-for-secure-mcp-server-development/) in February 2026 covering defensive controls for server developers. This article is the complementary attack evidence layer — the threat model behind those mitigations. Use both: OWASP for institutional sign-off and defensive controls; this article for the lab-confirmed attack chains that explain why those controls are necessary.
 
 This article is the gap-filler. It maps 10 MCP-specific security risks to the OWASP LLM Top 10 categories they belong to, documents the attacks that confirmed them in production environments, and ends with a pre-deployment checklist your security team can actually use.
 
-All 10 risks are lab-confirmed — either through [my own documented attack series]({% post_url 2026-02-20-llm-attack-surface %}) or through disclosed CVEs and published security research.
+All 10 risks are lab-confirmed — either through [my own documented attack series]({% post_url 2026-02-20-llm-attack-surface %}) or through disclosed CVEs and published security research. The full lab code is in the **[mcp-attack-labs repository](https://github.com/aminrj-labs/mcp-attack-labs)** — every attack here is reproducible.
 
 ---
 
@@ -582,7 +582,7 @@ Specifically, the OWASP document's vulnerability landscape section covers prompt
 
 The mitigations in the OWASP checklist are good. This article is the "why these mitigations matter" evidence base behind each of them. Use both: their document for institutional sign-off, this one for the threat model that informs your implementation decisions.
 
-If you're working on the OWASP document or representing a vendor building MCP security tooling, the five uncovered categories and the protocol-level spec proposals above are the gaps most worth addressing. The GitHub repository for the attack labs is open for review and contribution.
+If you're working on the OWASP document or representing a vendor building MCP security tooling, the five uncovered categories and the protocol-level spec proposals above are the gaps most worth addressing. The **[mcp-attack-labs GitHub repository](https://github.com/aminrj-labs/mcp-attack-labs)** is open for review and contribution.
 
 ---
 

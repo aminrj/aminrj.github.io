@@ -1,0 +1,1189 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="100%"
+   viewBox="0 0 680 740"
+   version="1.1"
+   id="svg84"
+   sodipodi:docname="agentic_compliance_architecture.svg"
+   inkscape:version="1.3 (0e150ed, 2023-07-21)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview84"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="0.95942827"
+     inkscape:cx="250.14898"
+     inkscape:cy="354.89886"
+     inkscape:window-width="1552"
+     inkscape:window-height="1382"
+     inkscape:window-x="2917"
+     inkscape:window-y="37"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg84" />
+  <defs
+     id="defs42">
+    <marker
+       style="overflow:visible"
+       id="DartArrow"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Dart arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         transform="scale(-0.5)"
+         id="path6" />
+    </marker>
+    <marker
+       id="arrow"
+       viewBox="0 0 10 10"
+       refX="8"
+       refY="5"
+       markerWidth="6"
+       markerHeight="6"
+       orient="auto-start-reverse">
+      <path
+         d="M2 1L8 5L2 9"
+         fill="none"
+         stroke="context-stroke"
+         stroke-width="1.5"
+         stroke-linecap="round"
+         stroke-linejoin="round"
+         id="path1" />
+    </marker>
+    <mask
+       id="imagine-text-gaps-dn1ux2"
+       maskUnits="userSpaceOnUse">
+      <rect
+         x="0"
+         y="0"
+         width="680"
+         height="740"
+         fill="white"
+         id="rect1" />
+      <rect
+         x="46"
+         y="35.41407012939453"
+         width="159.615478515625"
+         height="21.171863555908203"
+         fill="black"
+         rx="2"
+         id="rect2" />
+      <rect
+         x="74"
+         y="84.48731231689453"
+         width="55.229331970214844"
+         height="19.02538013458252"
+         fill="black"
+         rx="2"
+         id="rect3" />
+      <rect
+         x="168.57769775390625"
+         y="84.41407012939453"
+         width="120.84463500976562"
+         height="21.18133544921875"
+         fill="black"
+         rx="2"
+         id="rect4" />
+      <rect
+         x="210.34690856933594"
+         y="100.4140625"
+         width="37.30620002746582"
+         height="21.18133544921875"
+         fill="black"
+         rx="2"
+         id="rect5" />
+      <rect
+         x="187.88262939453125"
+         y="123.48731994628906"
+         width="82.23477172851562"
+         height="19.02538013458252"
+         fill="black"
+         rx="2"
+         id="rect6" />
+      <rect
+         x="352.1521911621094"
+         y="84.41407012939453"
+         width="135.69561004638672"
+         height="21.18133544921875"
+         fill="black"
+         rx="2"
+         id="rect7" />
+      <rect
+         x="547.2925415039062"
+         y="84.41407012939453"
+         width="59.414974212646484"
+         height="21.171863555908203"
+         fill="black"
+         rx="2"
+         id="rect8" />
+      <rect
+         x="552.3132934570312"
+         y="100.4140625"
+         width="49.37345886230469"
+         height="21.18133544921875"
+         fill="black"
+         rx="2"
+         id="rect9" />
+      <rect
+         x="545.8134765625"
+         y="123.48731994628906"
+         width="62.37309646606445"
+         height="19.02538013458252"
+         fill="black"
+         rx="2"
+         id="rect10" />
+      <rect
+         x="46"
+         y="207.4140625"
+         width="154.8798065185547"
+         height="21.171863555908203"
+         fill="black"
+         rx="2"
+         id="rect11" />
+      <rect
+         x="561.0740356445312"
+         y="203.48731994628906"
+         width="45.85188293457031"
+         height="19.02539348602295"
+         fill="black"
+         rx="2"
+         id="rect12" />
+      <rect
+         x="74.77302551269531"
+         y="249.4873046875"
+         width="12.453951835632324"
+         height="19.02538013458252"
+         fill="black"
+         rx="2"
+         id="rect13" />
+      <rect
+         x="100"
+         y="245.41407775878906"
+         width="147.71591186523438"
+         height="21.171863555908203"
+         fill="black"
+         rx="2"
+         id="rect14" />
+      <rect
+         x="100"
+         y="262.4873046875"
+         width="191.50416564941406"
+         height="19.02538013458252"
+         fill="black"
+         rx="2"
+         id="rect15" />
+      <rect
+         x="561.70068359375"
+         y="249.4873046875"
+         width="62.29930877685547"
+         height="19.02538013458252"
+         fill="black"
+         rx="2"
+         id="rect16" />
+      <rect
+         x="73.51531982421875"
+         y="286.4873046875"
+         width="14.969361782073975"
+         height="19.02538013458252"
+         fill="black"
+         rx="2"
+         id="rect17" />
+      <rect
+         x="100"
+         y="282.4140625"
+         width="145.4621124267578"
+         height="21.18132209777832"
+         fill="black"
+         rx="2"
+         id="rect18" />
+      <rect
+         x="100"
+         y="299.4873046875"
+         width="178.3770751953125"
+         height="19.02538013458252"
+         fill="black"
+         rx="2"
+         id="rect19" />
+      <rect
+         x="561.6268920898438"
+         y="286.4873046875"
+         width="62.37309646606445"
+         height="19.02538013458252"
+         fill="black"
+         rx="2"
+         id="rect20" />
+      <rect
+         x="73.65953826904297"
+         y="323.4873046875"
+         width="14.680928230285645"
+         height="19.02538013458252"
+         fill="black"
+         rx="2"
+         id="rect21" />
+      <rect
+         x="100"
+         y="319.4140625"
+         width="124.21863555908203"
+         height="21.171863555908203"
+         fill="black"
+         rx="2"
+         id="rect22" />
+      <rect
+         x="100"
+         y="336.4873046875"
+         width="225.0832061767578"
+         height="19.02538013458252"
+         fill="black"
+         rx="2"
+         id="rect23" />
+      <rect
+         x="561.70068359375"
+         y="323.4873046875"
+         width="62.29930877685547"
+         height="19.02538013458252"
+         fill="black"
+         rx="2"
+         id="rect24" />
+      <rect
+         x="46"
+         y="409.4140625"
+         width="143.59735107421875"
+         height="21.171863555908203"
+         fill="black"
+         rx="2"
+         id="rect25" />
+      <rect
+         x="539.000732421875"
+         y="405.4873046875"
+         width="59.99855041503906"
+         height="19.02538013458252"
+         fill="black"
+         rx="2"
+         id="rect26" />
+      <rect
+         x="74.77302551269531"
+         y="451.4873352050781"
+         width="12.453951835632324"
+         height="19.02538013458252"
+         fill="black"
+         rx="2"
+         id="rect27" />
+      <rect
+         x="100"
+         y="447.4140930175781"
+         width="149.12454223632812"
+         height="21.171863555908203"
+         fill="black"
+         rx="2"
+         id="rect28" />
+      <rect
+         x="100"
+         y="464.4873352050781"
+         width="178.39720153808594"
+         height="19.02538013458252"
+         fill="black"
+         rx="2"
+         id="rect29" />
+      <rect
+         x="73.51531982421875"
+         y="488.4873352050781"
+         width="14.969361782073975"
+         height="19.02538013458252"
+         fill="black"
+         rx="2"
+         id="rect30" />
+      <rect
+         x="100"
+         y="484.4140930175781"
+         width="170.24057006835938"
+         height="21.171863555908203"
+         fill="black"
+         rx="2"
+         id="rect31" />
+      <rect
+         x="100"
+         y="501.4873352050781"
+         width="274.8078308105469"
+         height="19.02538013458252"
+         fill="black"
+         rx="2"
+         id="rect32" />
+      <rect
+         x="561.6268920898438"
+         y="488.4873352050781"
+         width="62.37309646606445"
+         height="19.02538013458252"
+         fill="black"
+         rx="2"
+         id="rect33" />
+      <rect
+         x="73.65953826904297"
+         y="525.4873046875"
+         width="14.680928230285645"
+         height="19.02538013458252"
+         fill="black"
+         rx="2"
+         id="rect34" />
+      <rect
+         x="100"
+         y="521.4141235351562"
+         width="164.72007751464844"
+         height="21.18134880065918"
+         fill="black"
+         rx="2"
+         id="rect35" />
+      <rect
+         x="100"
+         y="538.4873046875"
+         width="163.35169982910156"
+         height="19.02538013458252"
+         fill="black"
+         rx="2"
+         id="rect36" />
+      <rect
+         x="196"
+         y="586.4873046875"
+         width="135.46085357666016"
+         height="19.02538013458252"
+         fill="black"
+         rx="2"
+         id="rect37" />
+      <rect
+         x="95.90392303466797"
+         y="633.4140625"
+         width="148.19216918945312"
+         height="21.171863555908203"
+         fill="black"
+         rx="2"
+         id="rect38" />
+      <rect
+         x="82.1999740600586"
+         y="652.4873046875"
+         width="175.60006713867188"
+         height="19.02538013458252"
+         fill="black"
+         rx="2"
+         id="rect39" />
+      <rect
+         x="476.7105712890625"
+         y="633.4140625"
+         width="66.57886123657227"
+         height="21.171863555908203"
+         fill="black"
+         rx="2"
+         id="rect40" />
+      <rect
+         x="441.91070556640625"
+         y="652.4873046875"
+         width="136.17857360839844"
+         height="19.02538013458252"
+         fill="black"
+         rx="2"
+         id="rect41" />
+      <rect
+         x="414.9421691894531"
+         y="670.4873046875"
+         width="190.11566162109375"
+         height="19.02538013458252"
+         fill="black"
+         rx="2"
+         id="rect42" />
+    </mask>
+    <marker
+       style="overflow:visible"
+       id="DartArrow-9"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Dart arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         transform="scale(-0.5)"
+         id="path6-9" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="DartArrow-9-1"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Dart arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         transform="scale(-0.5)"
+         id="path6-9-7" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="DartArrow-3"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Dart arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         transform="scale(-0.5)"
+         id="path6-6" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="DartArrow-3-4"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Dart arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         transform="scale(-0.5)"
+         id="path6-6-7" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="DartArrow-3-3"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Dart arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         transform="scale(-0.5)"
+         id="path6-6-8" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="DartArrow-3-8"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Dart arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         transform="scale(-0.5)"
+         id="path6-6-0" />
+    </marker>
+  </defs>
+  <!-- ══ LAYER 1: User / Application ══════════════════════════════════ -->
+  <g
+     style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"
+     id="g43">
+    <rect
+       x="30"
+       y="20"
+       width="620"
+       height="140"
+       rx="10"
+       stroke-width="0.5"
+       style="fill:rgb(241, 239, 232);stroke:rgb(95, 94, 90);color:rgb(0, 0, 0);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"
+       id="rect43" />
+    <text
+       x="50"
+       y="46"
+       dominant-baseline="central"
+       style="fill:rgb(68, 68, 65);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:start;dominant-baseline:central"
+       id="text43">User / application layer</text>
+  </g>
+  <!-- inner card -->
+  <!-- connector arrow layer 1 → 2 -->
+  <line
+     x1="340"
+     y1="160"
+     x2="340"
+     y2="190"
+     stroke="var(--color-border-primary)"
+     stroke-width="1.5"
+     marker-end="url(#arrow)"
+     fill="none"
+     style="fill:none;stroke:rgba(31, 30, 29, 0.4);color:rgb(0, 0, 0);stroke-width:1.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"
+     id="line52" />
+  <!-- ══ LAYER 2: Deployer Control ═════════════════════════════════════ -->
+  <g
+     style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"
+     id="g54">
+    <rect
+       x="30.008879"
+       y="192.00888"
+       width="619.98224"
+       height="182.29578"
+       rx="9.9997139"
+       stroke-width="0.5"
+       style="color:#000000;font-weight:400;font-size:16px;font-family:'Anthropic Sans', '-apple-system', system-ui, 'Segoe UI', sans-serif;dominant-baseline:auto;text-anchor:start;opacity:1;fill:#e1f5ee;stroke:#0f6e56;stroke-width:0.517759px;stroke-linecap:butt;stroke-linejoin:miter"
+       id="rect52" />
+    <text
+       x="50"
+       y="218"
+       dominant-baseline="central"
+       style="fill:rgb(8, 80, 65);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:start;dominant-baseline:central"
+       id="text53">Deployer control layer</text>
+    <rect
+       x="530"
+       y="202"
+       width="108"
+       height="22"
+       rx="6"
+       fill-opacity="0.25"
+       style="fill:rgb(225, 245, 238);stroke:rgb(15, 110, 86);color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"
+       id="rect53" />
+    <text
+       x="584"
+       y="213"
+       text-anchor="middle"
+       dominant-baseline="central"
+       style="fill:rgb(15, 110, 86);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:central"
+       id="text54">Art. 26</text>
+  </g>
+  <!-- inner card -->
+  <g
+     style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"
+     id="g66">
+    <rect
+       x="50.014103"
+       y="232.0141"
+       width="579.9718"
+       height="127.23252"
+       rx="7.9996109"
+       stroke-width="0.5"
+       fill-opacity="0.3"
+       style="color:#000000;font-weight:400;font-size:16px;font-family:'Anthropic Sans', '-apple-system', system-ui, 'Segoe UI', sans-serif;dominant-baseline:auto;text-anchor:start;opacity:1;fill:#e1f5ee;stroke:#0f6e56;stroke-width:0.528209px;stroke-linecap:butt;stroke-linejoin:miter"
+       id="rect54" />
+    <!-- row 1 -->
+    <g
+       style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"
+       id="g55">
+      <rect
+         x="68"
+         y="246"
+         width="26"
+         height="26"
+         rx="4"
+         stroke-width="0.5"
+         fill-opacity="0.6"
+         style="fill:rgb(225, 245, 238);stroke:rgb(15, 110, 86);color:rgb(0, 0, 0);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"
+         id="rect55" />
+      <text
+         x="81"
+         y="259"
+         text-anchor="middle"
+         dominant-baseline="central"
+         style="fill:rgb(15, 110, 86);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:central"
+         id="text55">1</text>
+    </g>
+    <text
+       x="104"
+       y="256"
+       dominant-baseline="central"
+       style="fill:rgb(8, 80, 65);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:start;dominant-baseline:central"
+       id="text56">GPAI API call monitor</text>
+    <text
+       x="104"
+       y="272"
+       dominant-baseline="central"
+       style="opacity:.7;fill:rgb(15, 110, 86);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.7;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:start;dominant-baseline:central"
+       id="text57">Logs model, input hash, rationale</text>
+    <text
+       x="620"
+       y="259"
+       text-anchor="end"
+       dominant-baseline="central"
+       style="opacity:.6;fill:rgb(15, 110, 86);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.6;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:end;dominant-baseline:central"
+       id="text58">Art. 26(5)</text>
+    <!-- row 2 -->
+    <g
+       style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"
+       id="g59">
+      <rect
+         x="68"
+         y="283"
+         width="26"
+         height="26"
+         rx="4"
+         stroke-width="0.5"
+         fill-opacity="0.6"
+         style="fill:rgb(225, 245, 238);stroke:rgb(15, 110, 86);color:rgb(0, 0, 0);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"
+         id="rect58" />
+      <text
+         x="81"
+         y="296"
+         text-anchor="middle"
+         dominant-baseline="central"
+         style="fill:rgb(15, 110, 86);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:central"
+         id="text59">2</text>
+    </g>
+    <text
+       x="104"
+       y="293"
+       dominant-baseline="central"
+       style="fill:rgb(8, 80, 65);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:start;dominant-baseline:central"
+       id="text60">Tool call event logger</text>
+    <text
+       x="104"
+       y="309"
+       dominant-baseline="central"
+       style="opacity:.7;fill:rgb(15, 110, 86);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.7;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:start;dominant-baseline:central"
+       id="text61">Tool, server, input/output hash</text>
+    <text
+       x="620"
+       y="296"
+       text-anchor="end"
+       dominant-baseline="central"
+       style="opacity:.6;fill:rgb(15, 110, 86);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.6;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:end;dominant-baseline:central"
+       id="text62">Art. 26(6)</text>
+    <!-- row 3 -->
+    <g
+       style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"
+       id="g63">
+      <rect
+         x="68"
+         y="320"
+         width="26"
+         height="26"
+         rx="4"
+         stroke-width="0.5"
+         fill-opacity="0.6"
+         style="fill:rgb(225, 245, 238);stroke:rgb(15, 110, 86);color:rgb(0, 0, 0);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"
+         id="rect62" />
+      <text
+         x="81"
+         y="333"
+         text-anchor="middle"
+         dominant-baseline="central"
+         style="fill:rgb(15, 110, 86);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:central"
+         id="text63">3</text>
+    </g>
+    <text
+       x="104"
+       y="330"
+       dominant-baseline="central"
+       style="fill:rgb(8, 80, 65);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:start;dominant-baseline:central"
+       id="text64">Incident detector</text>
+    <text
+       x="104"
+       y="346"
+       dominant-baseline="central"
+       style="opacity:.7;fill:rgb(15, 110, 86);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.7;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:start;dominant-baseline:central"
+       id="text65">Anomalous tool chains → alert + report</text>
+    <text
+       x="620"
+       y="333"
+       text-anchor="end"
+       dominant-baseline="central"
+       style="opacity:.6;fill:rgb(15, 110, 86);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.6;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:end;dominant-baseline:central"
+       id="text66">Art. 26(5)</text>
+  </g>
+  <!-- connector arrow layer 2 → 3 -->
+  <line
+     x1="340"
+     y1="362"
+     x2="340"
+     y2="392"
+     stroke="var(--color-border-primary)"
+     stroke-width="1.5"
+     marker-end="url(#arrow)"
+     fill="none"
+     style="fill:none;stroke:rgba(31, 30, 29, 0.4);color:rgb(0, 0, 0);stroke-width:1.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"
+     id="line66" />
+  <!-- ══ LAYER 3: MCP Trust Boundary ══════════════════════════════════ -->
+  <g
+     style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"
+     id="g68">
+    <rect
+       x="30"
+       y="394"
+       width="620"
+       height="180"
+       rx="10"
+       stroke-width="0.5"
+       style="fill:rgb(250, 238, 218);stroke:rgb(133, 79, 11);color:rgb(0, 0, 0);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"
+       id="rect66" />
+    <text
+       x="50"
+       y="420"
+       dominant-baseline="central"
+       style="fill:rgb(99, 56, 6);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:start;dominant-baseline:central"
+       id="text67">MCP trust boundary</text>
+    <rect
+       x="500"
+       y="404"
+       width="138"
+       height="22"
+       rx="6"
+       fill-opacity="0.25"
+       style="fill:rgb(250, 238, 218);stroke:rgb(133, 79, 11);color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"
+       id="rect67" />
+    <text
+       x="569"
+       y="415"
+       text-anchor="middle"
+       dominant-baseline="central"
+       style="fill:rgb(133, 79, 11);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:central"
+       id="text68">Art. 26(1)</text>
+  </g>
+  <!-- inner card -->
+  <g
+     style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"
+     id="g78">
+    <rect
+       x="50"
+       y="434"
+       width="580"
+       height="122"
+       rx="8"
+       stroke-width="0.5"
+       fill-opacity="0.3"
+       style="fill:rgb(250, 238, 218);stroke:rgb(133, 79, 11);color:rgb(0, 0, 0);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"
+       id="rect68" />
+    <!-- row 1 -->
+    <g
+       style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"
+       id="g69">
+      <rect
+         x="68"
+         y="448"
+         width="26"
+         height="26"
+         rx="4"
+         stroke-width="0.5"
+         fill-opacity="0.6"
+         style="fill:rgb(250, 238, 218);stroke:rgb(133, 79, 11);color:rgb(0, 0, 0);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"
+         id="rect69" />
+      <text
+         x="81"
+         y="461"
+         text-anchor="middle"
+         dominant-baseline="central"
+         style="fill:rgb(133, 79, 11);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:central"
+         id="text69">1</text>
+    </g>
+    <text
+       x="104"
+       y="458"
+       dominant-baseline="central"
+       style="fill:rgb(99, 56, 6);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:start;dominant-baseline:central"
+       id="text70">MCP server allow-list</text>
+    <text
+       x="104"
+       y="474"
+       dominant-baseline="central"
+       style="opacity:.7;fill:rgb(133, 79, 11);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.7;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:start;dominant-baseline:central"
+       id="text71">Explicit approved servers only</text>
+    <!-- row 2 -->
+    <g
+       style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"
+       id="g72">
+      <rect
+         x="68"
+         y="485"
+         width="26"
+         height="26"
+         rx="4"
+         stroke-width="0.5"
+         fill-opacity="0.6"
+         style="fill:rgb(250, 238, 218);stroke:rgb(133, 79, 11);color:rgb(0, 0, 0);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"
+         id="rect71" />
+      <text
+         x="81"
+         y="498"
+         text-anchor="middle"
+         dominant-baseline="central"
+         style="fill:rgb(133, 79, 11);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:central"
+         id="text72">2</text>
+    </g>
+    <text
+       x="104"
+       y="495"
+       dominant-baseline="central"
+       style="fill:rgb(99, 56, 6);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:start;dominant-baseline:central"
+       id="text73">Tool description scanner</text>
+    <text
+       x="104"
+       y="511"
+       dominant-baseline="central"
+       style="opacity:.7;fill:rgb(133, 79, 11);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.7;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:start;dominant-baseline:central"
+       id="text74">Injection detect · snapshot retained per session</text>
+    <text
+       x="620"
+       y="498"
+       text-anchor="end"
+       dominant-baseline="central"
+       style="opacity:.6;fill:rgb(133, 79, 11);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.6;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:end;dominant-baseline:central"
+       id="text75">Art. 26(6)</text>
+    <!-- row 3 -->
+    <g
+       style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"
+       id="g76">
+      <rect
+         x="68"
+         y="522"
+         width="26"
+         height="26"
+         rx="4"
+         stroke-width="0.5"
+         fill-opacity="0.6"
+         style="fill:rgb(250, 238, 218);stroke:rgb(133, 79, 11);color:rgb(0, 0, 0);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"
+         id="rect75" />
+      <text
+         x="81"
+         y="535"
+         text-anchor="middle"
+         dominant-baseline="central"
+         style="fill:rgb(133, 79, 11);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:central"
+         id="text76">3</text>
+    </g>
+    <text
+       x="104"
+       y="532"
+       dominant-baseline="central"
+       style="fill:rgb(99, 56, 6);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:start;dominant-baseline:central"
+       id="text77">Network egress control</text>
+    <text
+       x="104"
+       y="548"
+       dominant-baseline="central"
+       style="opacity:.7;fill:rgb(133, 79, 11);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.7;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:start;dominant-baseline:central"
+       id="text78">Approved destinations only</text>
+  </g>
+  <!-- ══ TWO BOTTOM BOXES ══════════════════════════════════════════════ -->
+  <!-- left arrow -->
+  <line
+     x1="190"
+     y1="574"
+     x2="190"
+     y2="614"
+     stroke="var(--color-border-primary)"
+     stroke-width="1.5"
+     marker-end="url(#arrow)"
+     fill="none"
+     style="fill:none;stroke:rgba(31, 30, 29, 0.4);color:rgb(0, 0, 0);stroke-width:1.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"
+     id="line78" />
+  <text
+     x="164"
+     y="590"
+     dominant-baseline="central"
+     style="color:#000000;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14.6667px;font-family:'Anthropic Sans', '-apple-system', system-ui, 'Segoe UI', sans-serif;-inkscape-font-specification:'Anthropic Sans, -apple-system, system-ui, Segoe UI, sans-serif, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;dominant-baseline:central;text-anchor:start;opacity:0.6;fill:#3d3d3a;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter"
+     id="text79">Approved servers only</text>
+  <!-- right arrow -->
+  <line
+     x1="490"
+     y1="574"
+     x2="490"
+     y2="614"
+     stroke="var(--color-border-primary)"
+     stroke-width="1.5"
+     marker-end="url(#arrow)"
+     fill="none"
+     style="fill:none;stroke:rgba(31, 30, 29, 0.4);color:rgb(0, 0, 0);stroke-width:1.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"
+     id="line79" />
+  <!-- Internal MCP Servers -->
+  <g
+     style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"
+     id="g81">
+    <rect
+       x="30"
+       y="616"
+       width="280"
+       height="90"
+       rx="10"
+       stroke-width="0.5"
+       style="fill:rgb(230, 241, 251);stroke:rgb(24, 95, 165);color:rgb(0, 0, 0);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"
+       id="rect79" />
+    <text
+       x="170"
+       y="644"
+       text-anchor="middle"
+       dominant-baseline="central"
+       style="fill:rgb(12, 68, 124);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:middle;dominant-baseline:central"
+       id="text80">Internal MCP servers</text>
+    <text
+       x="170"
+       y="662"
+       text-anchor="middle"
+       dominant-baseline="central"
+       style="opacity:.7;fill:rgb(24, 95, 165);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.7;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:central"
+       id="text81">Allow-listed · network-scoped</text>
+  </g>
+  <!-- GPAI API -->
+  <g
+     style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"
+     id="g84">
+    <rect
+       x="370"
+       y="616"
+       width="280"
+       height="90"
+       rx="10"
+       stroke-width="0.5"
+       style="fill:rgb(238, 237, 254);stroke:rgb(83, 74, 183);color:rgb(0, 0, 0);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"
+       id="rect81" />
+    <text
+       x="510"
+       y="644"
+       text-anchor="middle"
+       dominant-baseline="central"
+       style="fill:rgb(60, 52, 137);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:middle;dominant-baseline:central"
+       id="text82">GPAI API</text>
+    <text
+       x="510"
+       y="662"
+       text-anchor="middle"
+       dominant-baseline="central"
+       style="opacity:.7;fill:rgb(83, 74, 183);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.7;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:central"
+       id="text83">Anthropic · OpenAI · …</text>
+    <text
+       x="510"
+       y="680"
+       text-anchor="middle"
+       dominant-baseline="central"
+       style="opacity:.7;fill:rgb(83, 74, 183);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.7;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;text-anchor:middle;dominant-baseline:central"
+       id="text84">Art. 53 docs verified + versioned</text>
+  </g>
+  <g
+     style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:'Anthropic Sans', -apple-system, 'system-ui', 'Segoe UI', sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"
+     id="g52">
+    <rect
+       x="50"
+       y="60"
+       width="580"
+       height="84"
+       rx="8"
+       stroke-width="0.5"
+       fill-opacity="0.35"
+       style="fill:rgb(241, 239, 232);stroke:rgb(95, 94, 90);color:rgb(0, 0, 0);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"
+       id="rect44" />
+    <!-- Human Oversight Gate -->
+    <text
+       x="55.267323"
+       y="98.735977"
+       dominant-baseline="central"
+       style="color:#000000;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16px;font-family:'Anthropic Sans', '-apple-system', system-ui, 'Segoe UI', sans-serif;-inkscape-font-specification:'Anthropic Sans, -apple-system, system-ui, Segoe UI, sans-serif, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;dominant-baseline:central;text-anchor:start;opacity:1;fill:#5f5e5a;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter"
+       id="text45">Request</text>
+    <line
+       x1="118"
+       y1="101"
+       x2="148"
+       y2="101"
+       stroke="var(--color-border-primary)"
+       stroke-width="1.5"
+       marker-end="url(#arrow)"
+       fill="none"
+       mask="url(#imagine-text-gaps-dn1ux2)"
+       style="fill:none;stroke:rgba(31, 30, 29, 0.4);color:rgb(0, 0, 0);stroke-width:1.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"
+       id="line45" />
+    <g
+       style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"
+       id="g47">
+      <rect
+         x="150"
+         y="76"
+         width="158"
+         height="50"
+         rx="6"
+         stroke-width="0.5"
+         style="fill:rgb(238, 237, 254);stroke:rgb(83, 74, 183);color:rgb(0, 0, 0);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"
+         id="rect46" />
+      <text
+         x="229"
+         y="95"
+         text-anchor="middle"
+         dominant-baseline="central"
+         style="fill:rgb(60, 52, 137);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:middle;dominant-baseline:central"
+         id="text46">Human oversight</text>
+      <text
+         x="229"
+         y="111"
+         text-anchor="middle"
+         dominant-baseline="central"
+         style="fill:rgb(60, 52, 137);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:middle;dominant-baseline:central"
+         id="text47">gate</text>
+    </g>
+    <text
+       x="229"
+       y="137"
+       text-anchor="middle"
+       dominant-baseline="central"
+       style="color:#000000;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:12px;font-family:'Anthropic Sans', '-apple-system', system-ui, 'Segoe UI', sans-serif;-inkscape-font-specification:'Anthropic Sans, -apple-system, system-ui, Segoe UI, sans-serif, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;dominant-baseline:central;text-anchor:middle;opacity:0.6;fill:#5f5e5a;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter"
+       id="text48">Art. 14 · 26(2)</text>
+    <!-- arrow to orchestrator -->
+    <line
+       x1="308"
+       y1="101"
+       x2="338"
+       y2="101"
+       stroke="var(--color-border-primary)"
+       stroke-width="1.5"
+       marker-end="url(#arrow)"
+       fill="none"
+       style="fill:none;stroke:rgba(31, 30, 29, 0.4);color:rgb(0, 0, 0);stroke-width:1.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"
+       id="line48" />
+    <!-- Agent Orchestrator -->
+    <g
+       style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"
+       id="g50">
+      <rect
+         x="340"
+         y="76"
+         width="160"
+         height="50"
+         rx="6"
+         stroke-width="0.5"
+         style="fill:rgb(230, 241, 251);stroke:rgb(24, 95, 165);color:rgb(0, 0, 0);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"
+         id="rect48" />
+      <text
+         x="420"
+         y="95"
+         text-anchor="middle"
+         dominant-baseline="central"
+         style="fill:rgb(12, 68, 124);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:middle;dominant-baseline:central"
+         id="text49">Agent orchestrator</text>
+      <!-- double arrow for session logger -->
+      <line
+         x1="502"
+         y1="88"
+         x2="536"
+         y2="88"
+         stroke="var(--color-border-primary)"
+         stroke-width="1.2"
+         marker-end="url(#arrow)"
+         fill="none"
+         style="fill:none;stroke:rgba(31, 30, 29, 0.4);color:rgb(0, 0, 0);stroke-width:1.2px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"
+         id="line49" />
+      <line
+         x1="536"
+         y1="98"
+         x2="502"
+         y2="98"
+         stroke="var(--color-border-primary)"
+         stroke-width="1.2"
+         marker-end="url(#arrow)"
+         fill="none"
+         style="fill:none;stroke:rgba(31, 30, 29, 0.4);color:rgb(0, 0, 0);stroke-width:1.2px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"
+         id="line50" />
+    </g>
+    <!-- Session Logger -->
+    <g
+       style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"
+       id="g51">
+      <rect
+         x="538"
+         y="76"
+         width="78"
+         height="50"
+         rx="6"
+         stroke-width="0.5"
+         style="fill:rgb(225, 245, 238);stroke:rgb(15, 110, 86);color:rgb(0, 0, 0);stroke-width:0.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"
+         id="rect50" />
+      <text
+         x="577"
+         y="95"
+         text-anchor="middle"
+         dominant-baseline="central"
+         style="fill:rgb(8, 80, 65);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:middle;dominant-baseline:central"
+         id="text50">Session</text>
+      <text
+         x="577"
+         y="111"
+         text-anchor="middle"
+         dominant-baseline="central"
+         style="fill:rgb(8, 80, 65);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:14px;font-weight:500;text-anchor:middle;dominant-baseline:central"
+         id="text51">logger</text>
+    </g>
+    <text
+       x="577"
+       y="137"
+       text-anchor="middle"
+       dominant-baseline="central"
+       style="color:#000000;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:12px;font-family:'Anthropic Sans', '-apple-system', system-ui, 'Segoe UI', sans-serif;-inkscape-font-specification:'Anthropic Sans, -apple-system, system-ui, Segoe UI, sans-serif, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;dominant-baseline:central;text-anchor:middle;opacity:0.6;fill:#5f5e5a;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter"
+       id="text52">Art. 26(6)</text>
+    <path
+       style="fill:#000000;fill-rule:evenodd;stroke:#671110;stroke-width:2.85801;-inkscape-stroke:none;marker-end:url(#DartArrow);paint-order:stroke fill markers"
+       d="M 99.342738,114.36937 H 130.23081"
+       id="path2"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="color:#000000;font-weight:400;font-size:16px;font-family:'Anthropic Sans', '-apple-system', system-ui, 'Segoe UI', sans-serif;dominant-baseline:auto;text-anchor:start;fill:#000000;fill-rule:evenodd;stroke:#671110;stroke-width:2.85801;stroke-linecap:butt;stroke-linejoin:miter;-inkscape-stroke:none;marker-end:url(#DartArrow-9);paint-order:stroke fill markers"
+       d="m 300.17216,112.46653 h 30.88807"
+       id="path2-9"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="color:#000000;font-weight:400;font-size:16px;font-family:'Anthropic Sans', '-apple-system', system-ui, 'Segoe UI', sans-serif;dominant-baseline:auto;text-anchor:start;fill:#000000;fill-rule:evenodd;stroke:#671110;stroke-width:2.85801;stroke-linecap:butt;stroke-linejoin:miter;-inkscape-stroke:none;marker-end:url(#DartArrow-9-1);paint-order:stroke fill markers;marker-start:url(#DartArrow-9)"
+       d="m 498.47719,112.49055 h 30.88807"
+       id="path2-9-2"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="color:#000000;font-weight:400;font-size:16px;font-family:'Anthropic Sans', '-apple-system', system-ui, 'Segoe UI', sans-serif;dominant-baseline:auto;text-anchor:start;fill:#000000;fill-rule:evenodd;stroke:#671110;stroke-width:2.85801;stroke-linecap:butt;stroke-linejoin:miter;-inkscape-stroke:none;marker-end:url(#DartArrow-3);paint-order:stroke fill markers"
+       d="M 318.1562,157.72983 V 188.6179"
+       id="path2-5"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="color:#000000;font-weight:400;font-size:16px;font-family:'Anthropic Sans', '-apple-system', system-ui, 'Segoe UI', sans-serif;dominant-baseline:auto;text-anchor:start;fill:#000000;fill-rule:evenodd;stroke:#671110;stroke-width:2.85801;stroke-linecap:butt;stroke-linejoin:miter;-inkscape-stroke:none;marker-end:url(#DartArrow-3-4);paint-order:stroke fill markers"
+       d="m 315.84902,361.16147 v 30.88807"
+       id="path2-5-1"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="color:#000000;font-weight:400;font-size:16px;font-family:'Anthropic Sans', '-apple-system', system-ui, 'Segoe UI', sans-serif;dominant-baseline:auto;text-anchor:start;fill:#000000;fill-rule:evenodd;stroke:#671110;stroke-width:2.85801;stroke-linecap:butt;stroke-linejoin:miter;-inkscape-stroke:none;marker-end:url(#DartArrow-3-3);paint-order:stroke fill markers"
+       d="m 152.46362,571.03461 v 30.88807"
+       id="path2-5-4"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="color:#000000;font-weight:400;font-size:16px;font-family:'Anthropic Sans', '-apple-system', system-ui, 'Segoe UI', sans-serif;dominant-baseline:auto;text-anchor:start;fill:#000000;fill-rule:evenodd;stroke:#671110;stroke-width:2.85801;stroke-linecap:butt;stroke-linejoin:miter;-inkscape-stroke:none;marker-end:url(#DartArrow-3-8);paint-order:stroke fill markers"
+       d="m 490.93072,572.08457 v 30.88807"
+       id="path2-5-46"
+       sodipodi:nodetypes="cc" />
+  </g>
+</svg>

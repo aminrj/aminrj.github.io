@@ -4,7 +4,7 @@ description: A hands-on guide to deploying OpenClaw as an AI-powered research as
 date: 2026-03-04
 categories:
   - AI Security
-  - Cloud Native
+  - cloud native
 tags:
   - OpenClaw
   - AI Security

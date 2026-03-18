@@ -227,6 +227,8 @@ exclude:
   - Gemfile.lock
   # Local planning notes (gitignored but also exclude from Jekyll processing)
   - "*.local.md"
+  # robots.txt is provided by the Chirpy theme (assets/robots.txt with permalink)
+  - robots.txt
 
 jekyll-archives:
   enabled: [categories, tags]

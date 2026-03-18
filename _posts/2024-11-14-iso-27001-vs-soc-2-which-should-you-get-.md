@@ -2,7 +2,7 @@
 title: "ISO 27001 vs. SOC 2: Which Should You Get ?"
 categories:
   - cloud security
-  - compliance
+  - Compliance
   - information security
   - ISO 27001
   - SOC 2

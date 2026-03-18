@@ -1,10 +1,7 @@
 ---
 title: "GPAI Meets Agentic AI: Why Your MCP Deployment Triggers EU AI Act Obligations"
-date: 2026-03-23
+date: 2026-03-18
 uuid: 202603230000
-draft: true
-status: draft
-published: false
 content-type: article
 target-audience: advanced
 categories: [AI Security, EU AI Act, Compliance]
@@ -21,7 +18,7 @@ tags:
     AI Governance,
   ]
 image:
-  path: /assets/media/ai-security/mcp-security-top-10.png
+  path: /assets/media/ai-security/eu-ai-act-and-mcp-deployments.png
 description: "The March 13 delegated regulation on GPAI model evaluation made abstract obligations enforceable. If your agentic AI calls Claude or GPT through MCP, you are a downstream deployer -- and the regulatory chain extends to your architecture."
 ---
 
@@ -190,7 +187,7 @@ The `model_rationale` field captures the model's stated reason for the tool call
 
 **Serious incident reporting** under Article 26(5) covers any incident resulting in risk to health, safety, or fundamental rights. For most agentic systems, the triggering scenario is unauthorized data access or exfiltration caused by a compromised tool call chain.
 
-The forward reference: [EUAI-002]({% post_url 2026-03-30-eu-ai-act-logging-agentic-ai %}) defines a structured logging schema aligned with Article 19 retention periods and GDPR minimization requirements. Start collecting tool call events now, even if the schema needs refinement — historical event gaps cannot be filled retroactively.
+The forward reference: EUAI-002 _(publishing March 30)_ defines a structured logging schema aligned with Article 19 retention periods and GDPR minimization requirements. Start collecting tool call events now, even if the schema needs refinement — historical event gaps cannot be filled retroactively.
 
 ### Article 26(6): Keep Automatically Generated Logs
 
@@ -237,10 +234,6 @@ The following architecture shows an MCP deployment with compliance controls at e
 
 ![MCP deployment architecture with compliance](/assets/media/ai-compliance/agentic_compliance_architecture.png)
 
-The defensive mitigations map from the [DockerDash attack analysis]({% post_url 2026-03-03-docker-dash-mcp-attack %}) shows how each control layer interrupts a specific attack path:
-
-![Defensive Mitigations Map — each layer mapped to the attack vectors it stops](/assets/media/ai-security/mcp-attack-labs/defensive-mitigations-map.png)
-
 Each control in the architecture above does two things independently:
 
 - **Security function:** prevents or detects an attack
@@ -276,6 +269,11 @@ The [mcp-scan tooling in mcp-attack-labs](https://github.com/aminrj-labs/mcp-att
 
 This scan serves dual purpose: security control against tool description poisoning, and compliance evidence that you implemented Article 26(1) technical measures over the tool description attack surface.
 
+
+The defensive mitigations map from the [DockerDash attack analysis]({% post_url 2026-03-03-docker-dash-mcp-attack %}) shows how each control layer interrupts a specific attack path:
+
+![Defensive Mitigations Map — each layer mapped to the attack vectors it stops](/assets/media/ai-security/mcp-attack-labs/defensive-mitigations-map.png)
+
 ### 3. Start Structured Logging of Tool Calls Now
 
 The logging schema for Article 26(6) compliance can be refined later. The data collection cannot be retroactively applied to historical sessions.
@@ -288,7 +286,7 @@ Start collecting, at minimum:
 - Model rationale when accessible from chain-of-thought
 - `tools/list` snapshots per session, stored immutably
 
-The [EUAI-002 article]({% post_url 2026-03-30-eu-ai-act-logging-agentic-ai %}) (publishing March 30) provides a complete schema aligned with Article 19 retention periods. Start collecting now and migrate to the full schema when it publishes.
+The EUAI-002 article _(publishing March 30)_ provides a complete schema aligned with Article 19 retention periods. Start collecting now and migrate to the full schema when it publishes.
 
 ---
 
@@ -307,7 +305,7 @@ The March 13 delegated regulation established the enforcement machinery. The arc
 
 ---
 
-_This is the first article in the EU AI Act compliance series for agentic systems. [EUAI-002]({% post_url 2026-03-30-eu-ai-act-logging-agentic-ai %}), publishing March 30, covers the structured logging schema and Article 19 retention requirements._
+_This is the first article in the EU AI Act compliance series for agentic systems. EUAI-002, publishing March 30, covers the structured logging schema and Article 19 retention requirements._
 
 ---
 
@@ -316,4 +314,4 @@ _This is the first article in the EU AI Act compliance series for agentic system
 - [MCP Tool Poisoning PoC]({% post_url 2026-02-26-mcp-tool-poisoning %})
 - [Attacking Docker Desktop via MCP]({% post_url 2026-03-03-docker-dash-mcp-attack %})
 - [OpenClaw Secure Deployment Guide]({% post_url 2026-03-04-openclaw-secure-deployment %})
-- [EUAI-002: Logging Schema for Agentic AI]({% post_url 2026-03-30-eu-ai-act-logging-agentic-ai %})
+- EUAI-002: Logging Schema for Agentic AI _(publishing March 30)_

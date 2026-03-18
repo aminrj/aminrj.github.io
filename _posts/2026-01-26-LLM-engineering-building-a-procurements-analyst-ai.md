@@ -198,7 +198,7 @@ CRITICAL VALUE REQUIREMENTS:
 - Arrays: Use actual lists with 3 items for strengths/risks
 - All text fields: Provide meaningful actual content
   FORMATTING RULES:
-- Start with {{ and end with }}
+- Start with {% raw %}{{{% endraw %} and end with {% raw %}}}{% endraw %}
 - No explanations before or after JSON
 - No code blocks or backticks"""
   This might look verbose, but it’s teaching the model how to behave.

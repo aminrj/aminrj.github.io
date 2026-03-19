@@ -1,5 +1,5 @@
 ---
-title: "Document Poisoning in RAG Systems: How Attackers Corrupt Your AI's Sources"
+title: "RAG Poisoning: How Attackers Corrupt Your AI's Knowledge Base"
 date: 2026-03-12
 uuid: 202603120000
 status: published

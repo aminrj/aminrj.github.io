@@ -8,7 +8,7 @@ target-audience: advanced
 categories: [LLM]
 image:
   path: /assets/media/ai-security/evaluating-ai-agents.png
-description: "AI agent evaluation framework with precision, recall, F1, and calibration metrics — built and tested in a real procurement system. Scientific approach from 15+ years in banking, defense, and aerospace."
+description: "AI agent evaluation: precision, recall, F1, and calibration metrics for teams shipping AI to production. Practical frameworks and code — not theoretical best practices."
 ---
 
 ## Why Evaluating AI Agents Matters ?

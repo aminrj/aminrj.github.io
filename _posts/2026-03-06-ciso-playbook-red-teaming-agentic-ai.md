@@ -1,5 +1,5 @@
 ---
-title: "The CISO's Playbook: Red Teaming Agentic AI Systems — Checklists, Frameworks, and Assessment Templates"
+title: "Red Teaming Agentic AI: CISO Playbook with Checklists and Assessment Templates"
 date: 2026-03-06
 uuid: 202603060000
 status: published

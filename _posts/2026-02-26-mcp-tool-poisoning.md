@@ -1,5 +1,5 @@
 ---
-title: "MCP Security: Tool Poisoning & Prompt Injection — Local Proof-of-Concept"
+title: "Tool Poisoning in MCP: Hidden Instructions, Silent Exfiltration"
 date: 2026-02-26
 uuid: 202602260000
 status: published
@@ -20,7 +20,7 @@ tags:
   ]
 image:
   path: /assets/media/ai-security/mcp-tool-poisoning-demo.png
-description: "MCP security hands-on: reproducing tool poisoning and prompt injection fully offline — hidden instructions in MCP tool descriptions trigger silent file exfiltration. Includes failed attempt with a small model and successful exploit with the right model and tool access."
+description: "Tool poisoning in MCP: hidden instructions embedded in tool descriptions trigger silent file exfiltration, fully offline. Includes a failed attempt with a small model and a working exploit — so you know exactly what to test for."
 ---
 
 > _A walk-through of reproducing the Invariant Labs MCP tool-poisoning attack fully offline — including the failed attempt with a small model, and the successful exfiltration once the right model and tools were in place._

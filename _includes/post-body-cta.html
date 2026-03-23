@@ -1,0 +1,25 @@
+<!-- _includes/post-body-cta.html
+     Body-integrated newsletter CTA — rendered directly after post content,
+     before tags/categories. Visible to every reader who finishes the article. -->
+<div class="post-body-cta" aria-label="Newsletter subscription">
+  <div class="post-body-cta__eyebrow">The Security Lab Newsletter</div>
+  <h3 class="post-body-cta__headline">This post is the article. The newsletter is the lab.</h3>
+  <p class="post-body-cta__body">
+    Subscribers get what doesn't fit in a post: the full attack code with
+    annotated results, the measurement methodology behind the numbers, and the
+    week's thread — where I work through a technique or incident across several
+    days of testing rather than a single draft.
+    The RAG poisoning work, the MCP CVE analysis, the red-teaming patterns — all
+    of it started as a newsletter thread before it became a post.
+    One email per week. No sponsored content. Unsubscribe any time.
+  </p>
+  <a
+    class="post-body-cta__btn"
+    href="{{ site.newsletter_signup_url | default: '/subscribe/' | relative_url }}"
+    onclick="if(typeof trackNewsletterSignup==='function'){trackNewsletterSignup()}"
+  >Join the lab — it's free</a>
+  <p class="post-body-cta__note">
+    Already subscribed?
+    <a href="{{ '/archive/' | relative_url }}" class="post-body-cta__note-link">Browse the back-issues →</a>
+  </p>
+</div>

@@ -1,0 +1,289 @@
+
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+.wrap { max-width: 680px; padding: 1.5rem 0; font-family: var(--font-sans); }
+.body { font-size: 15px; line-height: 1.85; color: var(--color-text-primary); }
+.body p { margin-bottom: 0.9rem; }
+.body strong { font-weight: 500; }
+.body code { font-family: var(--font-mono); font-size: 13px; background: var(--color-background-secondary); padding: 2px 5px; border-radius: 4px; }
+a.lnk { color: var(--color-text-info); text-decoration: none; }
+a.lnk:hover { text-decoration: underline; }
+.divider { border: none; border-top: 0.5px solid var(--color-border-tertiary); margin: 1.4rem 0; }
+.section-label { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-text-tertiary); margin: 1.6rem 0 0.9rem; }
+.item { margin-bottom: 1.5rem; }
+.item-title { font-size: 15px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 0.4rem; }
+.item-body { font-size: 14px; line-height: 1.8; color: var(--color-text-secondary); }
+.item-body p { margin-bottom: 0.4rem; }
+.item-link { font-size: 13px; margin-top: 0.35rem; }
+.c-insight { background: #f5f5f4; border-left: 3px solid #a8a29e; padding: 10px 14px; border-radius: 0 6px 6px 0; font-size: 13.5px; line-height: 1.75; color: #1c1917; margin: 0.5rem 0 0.25rem; }
+.c-action  { background: #fefce8; border-left: 3px solid #ca8a04; padding: 10px 14px; border-radius: 0 6px 6px 0; font-size: 13.5px; line-height: 1.75; color: #1c1917; margin: 0.5rem 0 0.25rem; }
+.c-stat    { background: #eff6ff; border-left: 3px solid #3b82f6; padding: 10px 14px; border-radius: 0 6px 6px 0; font-size: 13.5px; line-height: 1.75; color: #1c1917; margin: 0.5rem 0 0.25rem; }
+.c-insight b, .c-action b, .c-stat b { font-weight: 700; }
+.res-list { list-style: none; padding: 0; }
+.res-list li { font-size: 14px; line-height: 1.75; padding: 0.45rem 0; border-bottom: 0.5px solid var(--color-border-tertiary); color: var(--color-text-secondary); }
+.res-list li:last-child { border-bottom: none; }
+.res-list li strong { font-weight: 500; color: var(--color-text-primary); }
+.watch-list { list-style: none; padding: 0; }
+.watch-list li { font-size: 14px; line-height: 1.75; padding: 0.3rem 0 0.3rem 1.1rem; position: relative; color: var(--color-text-secondary); }
+.watch-list li::before { content: "→"; position: absolute; left: 0; color: var(--color-text-tertiary); }
+.copy-btn { width: 100%; padding: 0.65rem 1rem; border: 0.5px solid var(--color-border-secondary); border-radius: var(--border-radius-md); background: var(--color-background-primary); color: var(--color-text-primary); font-family: var(--font-sans); font-size: 13px; cursor: pointer; margin-top: 2rem; }
+.copy-btn:hover { background: var(--color-background-secondary); }
+</style>
+
+<div class="wrap">
+
+<!-- HOOK -->
+<div class="body">
+<p>Hey 👋</p>
+
+<p>I spent most of this week building a threat model for MCP deployments — mapping 10 MCP-specific risks to OWASP categories, with lab-confirmed attack chains for each. Midway through, I kept hitting the same wall: most of the risks I was documenting don't require a sophisticated attack. They require a credential. A shared API key sitting in a <code>.env</code> file, with no scope, no expiry, and no per-agent identity.</p>
+
+<p>Then the Grantex audit landed on HN. 30 popular open-source agent projects, 500k+ GitHub stars combined. 28 out of 30 rely exclusively on environment-variable API keys. Zero have per-agent cryptographic identity. Zero have per-agent revocation. It's not a niche problem — it's the default configuration across the entire ecosystem.</p>
+
+<p>That's the thread through everything this week.</p>
+</div>
+
+
+Issues HTML snippets:
+
+<div style="background:#f5f5f4;border-left:3px solid #a8a29e;padding:12px 16px;border-radius:0 6px 6px 0;font-family:Georgia,serif;font-size:15px;line-height:1.7;color:#1c1917;">
+  <b>Worth noting:</b> your SIEM currently cannot tell you which agent
+  performed which action. When something goes wrong, you have a series
+  of API calls with the same credential as every other agent.
+  Attribution is impossible without per-agent identity.
+</div>
+
+<div style="background:#fefce8;border-left:3px solid #ca8a04;padding:12px 16px;border-radius:0 6px 6px 0;font-family:Georgia,serif;font-size:15px;line-height:1.7;color:#1c1917;">
+  <b>Action:</b> Inventory every agent in your stack. Replace any shared
+  or org-level key with short-lived, scoped credentials — per-agent
+  tokens with audience binding and a TTL. Highest-leverage single
+  change before any other hardening work.
+</div>
+
+<div style="background:#eff6ff;border-left:3px solid #3b82f6;padding:12px 16px;border-radius:0 6px 6px 0;font-family:Georgia,serif;font-size:15px;line-height:1.7;color:#1c1917;">
+  <b>Lab results:</b> 93% of projects use unscoped API keys
+  · 0% have per-agent identity
+  · 100% have no per-agent revocation
+</div>
+
+
+<hr class="divider">
+<div class="section-label">From the lab this week</div>
+
+<div class="item">
+  <div class="item-title">MCP Security Top 10: my own threat model, lab-confirmed</div>
+  <div class="item-body">
+    <p>I published a 30-minute deep dive mapping 10 MCP-specific security risks to the OWASP LLM Top 10 categories they belong to. The framing I kept coming back to: in a standard LLM app, the developer controls what context the model receives. In MCP, a third party does — and the user approved them once, weeks ago, and forgot about it.</p>
+    <p>The three things the article establishes: (1) MCP's trust model is fundamentally different from a standard API integration. (2) The flat tool namespace — where every connected server's descriptions coexist in one LLM context — is a novel attack surface with no direct OWASP equivalent. (3) The rug pull lives in a runtime API response (<code>tools/list</code>), which bypasses every static analysis tool that catches a malicious package. Every attack in the article is lab-confirmed and reproducible from the <a class="lnk" href="https://github.com/aminrj-labs/mcp-attack-labs">mcp-attack-labs repo</a>.</p>
+  </div>
+  <div class="item-link"><a class="lnk" href="https://aminrj.com/posts/owasp-mcp-top-10/">MCP Security Top 10 →</a></div>
+</div>
+
+<div class="item">
+  <div class="item-title">Something I didn't expect to write this week: the EU AI Act angle</div>
+  <div class="item-body">
+    <p>On March 13, the Council of the EU published the delegated regulation under Article 92 of the AI Act — the enforcement mechanism for GPAI model evaluation. It takes effect August 2, the same date GPAI obligations become enforceable. While working through the compliance implications for MCP deployments, I realized most engineering teams haven't processed a specific fact: if your agent calls Claude, GPT, or Gemini through an API or MCP server, you are a downstream deployer under Article 26. The provider's compliance obligations don't substitute for yours — they're parallel, and the regulatory chain runs through your architecture. The MCP layer makes this substantially harder than a standard API integration because you don't fully control what instructions third-party server authors send to the model.</p>
+    <p>I wrote it up as a 17-minute practical mapping — which obligations apply at which position in the GPAI supply chain, and what your architecture decisions look like from a compliance standpoint before August 2.</p>
+  </div>
+  <div class="item-link"><a class="lnk" href="https://aminrj.com/posts/gpai-meets-agentic-ai/">GPAI Meets Agentic AI →</a></div>
+</div>
+
+<div class="item">
+  <div class="item-title">Also published: the RAG defenses companion post</div>
+  <div class="item-body">
+    <p>The practical follow-up to the RAG poisoning research from last week. Three pipeline-specific defenses (embedding anomaly detection, access-controlled retrieval, prompt structure hardening) measured against a live attack suite. Short, dense, ends with a results table. If you ran the lab from Issue #4, this is what to implement next.</p>
+  </div>
+  <div class="item-link"><a class="lnk" href="https://aminrj.com/posts/RAG-mitigation-strategies/">RAG Stack Security: Defenses That Stop Real Attacks →</a></div>
+</div>
+
+<hr class="divider">
+<div class="section-label">This week in AI security</div>
+
+<div class="item">
+  <div class="item-title">93% of agent projects use unscoped API keys — 0% have per-agent identity</div>
+  <div class="item-body">
+    <p>Grantex Research audited 30 popular open-source agent projects across six authorization dimensions. 93% rely exclusively on env-var API keys. 0% assign cryptographically verifiable per-agent identity. 100% have no per-agent revocation — rotating one agent's access requires rotating all of them. In frameworks like CrewAI and AutoGen, when one agent delegates to another, the child either inherits the parent's full credentials or gets its own independent key. No project implements scope narrowing for delegated access.</p>
+  </div>
+  <div class="c-insight"><b>The incident response problem:</b> your SIEM currently cannot tell you which agent performed which action. When something goes wrong, you have a series of API calls with the same credential as every other agent in the system. Attribution is impossible without per-agent identity — and no popular framework ships it.</div>
+  <div class="c-action"><b>Action:</b> Inventory every agent in your stack. Replace any shared or org-level key with short-lived, scoped credentials — per-agent tokens with audience binding and a TTL. This is the highest-leverage single change before any other hardening work.</div>
+  <div class="item-link"><a class="lnk" href="https://news.ycombinator.com/item?id=47388873">Grantex report (HN) →</a> &nbsp; <a class="lnk" href="https://grantex.dev/report/state-of-agent-security-2026">Full report →</a></div>
+</div>
+
+<div class="item">
+  <div class="item-title">CVE-2026-2256: prompt injection → OS command execution in ms-agent. CVSS 9.8. No patch.</div>
+  <div class="item-body">
+    <p>CERT/CC advisory VU#431821. ModelScope's ms-agent Shell tool calls <code>subprocess.run(shell=True)</code> on input that can be influenced by external content — a document the agent is summarizing, code it's analyzing, a web page it fetched. The denylist defense (<code>check_safe()</code>) is bypassable through command obfuscation. Successful exploitation runs with the process's full OS privileges: data exfiltration, file modification, persistence, lateral movement. No vendor statement, no patch at time of writing.</p>
+  </div>
+  <div class="c-insight"><b>The pattern:</b> <code>check_safe()</code> is a regex denylist. Denylists for shell commands don't hold — there are always equivalent syntaxes. The only defensible pattern is an allowlist of permitted commands, or eliminating shell access entirely. Every agent framework that lets the model touch a shell is a CVE waiting for a researcher.</div>
+  <div class="c-action"><b>If you run ms-agent:</b> disable the Shell tool now. No patch exists. Run the process with minimal OS privileges and sandbox syscalls. If you can't do that immediately, take it offline.</div>
+  <div class="item-link"><a class="lnk" href="https://kb.cert.org/vuls/id/431821">CERT/CC advisory VU#431821 →</a></div>
+</div>
+
+<div class="item">
+  <div class="item-title">Fine-tuning on interaction logs? 2% data poisoning embeds backdoors that all current defenses miss</div>
+  <div class="item-body">
+    <p>arXiv:2510.05159 (Malice in Agentland) is getting renewed attention as more teams fine-tune agents on production interaction data. The finding: poisoning 2% of collected interaction traces embeds a trigger-based backdoor with over 80% success rate. Llama-Firewall, Granite Guardian, and weight-based Watch the Weights detection all failed to catch it. The backdoor doesn't degrade normal task performance, so it passes standard evals. Three threat models tested: direct data poisoning, environmental poisoning through scraped content, and a pre-backdoored base model fine-tuned on clean data. All three work.</p>
+  </div>
+  <div class="c-action"><b>If you fine-tune on interaction logs:</b> audit and provenance your training traces before the next run. Any trace that includes externally sourced content is potentially tainted. Separate your eval pipeline from your training pipeline.</div>
+  <div class="item-link"><a class="lnk" href="https://arxiv.org/abs/2510.05159">arXiv:2510.05159 →</a></div>
+</div>
+
+<hr class="divider">
+<div class="section-label">Tooling worth knowing</div>
+
+<ul class="res-list">
+  <li><strong>Kvlar</strong> — open-source proxy enforcing YAML policies on every MCP tool call, fails closed by default. Most immediately useful for deny-by-default on shell and database tools — directly addresses the CVE-2026-2256 class. <a class="lnk" href="https://github.com/kvlar-io/kvlar">github →</a></li>
+  <li><strong>mcp-scan</strong> — Invariant Labs' scanner for malicious tool descriptions. Catches direct poisoning and rug-pull variants at server load time. Add it to CI and treat any authentication finding as P0. <a class="lnk" href="https://github.com/invariantlabs-ai/mcp-scan">github →</a></li>
+  <li><strong>OWASP NHI Top 10</strong> — Non-Human Identity framework. If the Grantex findings describe your stack, this is the right starting framework for fixing it — more directly applicable than the LLM Top 10 for credential and identity issues. <a class="lnk" href="https://owasp.org/www-project-non-human-identities-top-10/">owasp.org →</a></li>
+</ul>
+
+<hr class="divider">
+<div class="section-label">One thing to check this week</div>
+
+<div class="body">
+<p>For each agent in your stack: what credential does it use? Is it shared with any other agent? What breaks if you rotate it? If the answers are "org API key," "yes," and "everything" — you have the Grantex finding in your own environment. The Nango guide published this week has the clearest breakdown of which auth pattern applies per integration type (OAuth vs bot token vs scoped API key). <a class="lnk" href="https://nango.dev/blog/guide-to-secure-ai-agent-api-authentication">nango.dev →</a></p>
+</div>
+
+<hr class="divider">
+<div class="section-label">What I'm watching</div>
+
+<ul class="watch-list">
+  <li>CVE-2026-2256 weaponization timeline — CVSS 9.8, no patch, CERT/CC advisory public. This gets picked up by exploit kits fast</li>
+  <li>Fine-tuning pipeline security — Malice in Agentland shows all current defenses fail; this is an open research problem, not a solved one</li>
+  <li>EU AI Act August 2 enforcement — the March 13 GPAI delegated regulation made abstract obligations concrete; most MCP deployers haven't mapped their compliance position yet</li>
+  <li>Agent identity standards — the Grantex findings will push OWASP Agentic Top 10 and NIST CAISI toward concrete per-agent credential guidance</li>
+</ul>
+
+<hr class="divider">
+
+<div class="body">
+<p>If this was useful, forward it to the engineer on your team who last deployed an agent. Odds are they used an env file and moved on.</p>
+<p>Questions, pushback, topics — reply directly, I read everything.</p>
+<p><br>Cheers,<br><strong>Amine</strong></p>
+</div>
+
+<button class="copy-btn" onclick="copyFull()">Copy for Beehiiv ↗</button>
+</div>
+
+<script>
+function copyFull() {
+  const t = `[AI Sec Intel] #5 — The .env file is not an identity system. The ecosystem just forgot.
+
+Hey 👋,
+
+I spent most of this week building a threat model for MCP deployments — mapping 10 MCP-specific risks to OWASP categories, with lab-confirmed attack chains for each. Midway through, I kept hitting the same wall: most of the risks I was documenting don't require a sophisticated attack. They require a credential. A shared API key sitting in a .env file, with no scope, no expiry, and no per-agent identity.
+
+Then the Grantex audit landed on HN. 30 popular open-source agent projects, 500k+ GitHub stars combined. 28 out of 30 rely exclusively on environment-variable API keys. Zero have per-agent cryptographic identity. Zero have per-agent revocation. It's not a niche problem — it's the default configuration across the entire ecosystem.
+
+That's the thread through everything this week.
+
+---
+
+FROM THE LAB THIS WEEK
+
+MCP Security Top 10: my own threat model, lab-confirmed
+
+I published a deep dive mapping 10 MCP-specific security risks to the OWASP LLM Top 10 categories they belong to. The framing I kept coming back to: in a standard LLM app, the developer controls what context the model receives. In MCP, a third party does — and the user approved them once, weeks ago, and forgot about it.
+
+Three things the article establishes: (1) MCP's trust model is fundamentally different from a standard API integration. (2) The flat tool namespace — every connected server's descriptions coexist in one LLM context — is a novel attack surface with no direct OWASP equivalent. (3) The rug pull lives in a runtime API response (tools/list), which bypasses every static analysis tool that catches a malicious package. Every attack is lab-confirmed and reproducible from the mcp-attack-labs repo.
+
+→ aminrj.com/posts/owasp-mcp-top-10/
+
+---
+
+Something I didn't expect to write this week: the EU AI Act angle
+
+On March 13, the Council of the EU published the delegated regulation under Article 92 of the AI Act — the enforcement mechanism for GPAI model evaluation. It takes effect August 2. Most engineering teams haven't processed this: if your agent calls Claude, GPT, or Gemini through an API or MCP server, you are a downstream deployer under Article 26. The provider's compliance obligations don't substitute for yours. The MCP layer makes this harder than a standard API integration because you don't fully control what instructions third-party server authors send to the model.
+
+I wrote it up as a practical mapping — which obligations apply at which position in the GPAI supply chain, and what your architecture decisions look like from a compliance standpoint before August 2.
+
+→ aminrj.com/posts/gpai-meets-agentic-ai/
+
+---
+
+Also published: RAG defenses companion post
+
+The practical follow-up to the RAG poisoning research from last week. Three pipeline-specific defenses measured against a live attack suite. Short, dense, ends with a results table. If you ran the lab from Issue #4, this is what to implement next.
+
+→ aminrj.com/posts/RAG-mitigation-strategies/
+
+---
+
+THIS WEEK IN AI SECURITY
+
+93% of agent projects use unscoped API keys — 0% have per-agent identity
+
+Grantex Research audited 30 popular open-source agent projects across six authorization dimensions. 93% rely exclusively on env-var API keys. 0% assign cryptographically verifiable per-agent identity. 100% have no per-agent revocation — rotating one agent's access requires rotating all of them. In frameworks like CrewAI and AutoGen, when one agent delegates to another, the child either inherits the parent's full credentials or gets its own independent key. No project implements scope narrowing for delegated access.
+
+Worth noting: your SIEM currently cannot tell you which agent performed which action. When something goes wrong, you have a series of API calls with the same credential as every other agent. Attribution is impossible without per-agent identity.
+
+Action: Inventory every agent in your stack. Replace any shared or org-level key with short-lived, scoped credentials — per-agent tokens with audience binding and a TTL. Highest-leverage single change before any other hardening work.
+
+→ news.ycombinator.com/item?id=47388873
+
+---
+
+CVE-2026-2256: prompt injection → OS command execution in ms-agent. CVSS 9.8. No patch.
+
+CERT/CC advisory VU#431821. ModelScope's ms-agent Shell tool calls subprocess.run(shell=True) on input influenced by external content — a document being summarized, code being analyzed, a web page being fetched. The denylist defense (check_safe()) is bypassable through command obfuscation. Successful exploitation runs with the process's full OS privileges. No vendor statement, no patch.
+
+The pattern: check_safe() is a regex denylist. Denylists for shell commands don't hold. The only defensible pattern is an allowlist of permitted commands, or eliminating shell access entirely. Every agent framework that lets the model touch a shell is a CVE waiting for a researcher.
+
+Action: If you run ms-agent, disable the Shell tool now. No patch exists — isolation is the only mitigation.
+
+→ kb.cert.org/vuls/id/431821
+
+---
+
+Fine-tuning on interaction logs? 2% data poisoning embeds backdoors that all current defenses miss
+
+arXiv:2510.05159 — poisoning 2% of interaction traces embeds a trigger-based backdoor with 80%+ success. Llama-Firewall, Granite Guardian, and weight-based Watch the Weights all failed to catch it. The backdoor doesn't degrade normal task performance, so it passes standard evals. Three threat models all work: direct data poisoning, environmental poisoning through scraped content, pre-backdoored base model.
+
+Action: Audit and provenance your training traces before the next fine-tuning run. Any trace including externally sourced content is potentially tainted. Separate your eval pipeline from your training pipeline.
+
+→ arxiv.org/abs/2510.05159
+
+---
+
+TOOLING WORTH KNOWING
+
+• Kvlar — open-source proxy enforcing YAML policies on every MCP tool call, fails closed. Most useful for deny-by-default on shell and database tools. github.com/kvlar-io/kvlar
+
+• mcp-scan — Invariant Labs' scanner for malicious tool descriptions. Add to CI, treat any auth finding as P0. github.com/invariantlabs-ai/mcp-scan
+
+• OWASP NHI Top 10 — Non-Human Identity framework. If the Grantex findings describe your stack, this is the right fix framework — more applicable than the LLM Top 10 for credential issues. owasp.org/www-project-non-human-identities-top-10/
+
+---
+
+ONE THING TO CHECK THIS WEEK
+
+For each agent in your stack: what credential does it use? Is it shared with any other agent? What breaks if you rotate it? If the answers are "org API key," "yes," and "everything" — you have the Grantex finding in your own environment.
+
+→ nango.dev/blog/guide-to-secure-ai-agent-api-authentication (auth pattern breakdown per integration type)
+
+---
+
+WHAT I'M WATCHING
+
+→ CVE-2026-2256 weaponization — CVSS 9.8, no patch, CERT/CC advisory public. Gets picked up by exploit kits fast
+→ Fine-tuning pipeline security — Malice in Agentland shows all current defenses fail; open research problem
+→ EU AI Act August 2 — GPAI delegated regulation made obligations concrete; most MCP deployers haven't mapped their position
+→ Agent identity standards — Grantex will push OWASP Agentic Top 10 and NIST CAISI toward concrete credential guidance
+
+---
+
+If this was useful, forward it to the engineer on your team who last deployed an agent. Odds are they used an env file and moved on.
+
+Questions, pushback, topics — reply directly, I read everything.
+
+Cheers,
+Amine`;
+
+  navigator.clipboard.writeText(t).then(() => {
+    const btn = document.querySelector('.copy-btn');
+    btn.textContent = 'Copied!';
+    setTimeout(() => btn.textContent = 'Copy for Beehiiv ↗', 2500);
+  });
+}
+</script>

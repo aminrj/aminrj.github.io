@@ -1,7 +1,7 @@
 ---
 layout: about
 icon: fas fa-info-circle
-order: 4
+order: 1
 title: "About Amine Raji"
 subtitle: "I help engineering and security teams deploy AI agents without creating new attack surfaces. PhD in Computer Science, CISSP certified, 15+ years in the world's most security-critical industries."
 ---

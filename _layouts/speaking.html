@@ -1,0 +1,105 @@
+---
+layout: default
+refactor: true
+---
+
+<link rel="stylesheet" href="{{ '/assets/css/speaking.css' | relative_url }}">
+
+{% include lang.html %}
+
+<!-- Speaking Hero -->
+<div class="speaking-hero">
+  <div class="speaking-hero-inner">
+    <div class="speaking-badge">
+      <i class="fas fa-microphone-alt"></i> SPEAKER
+    </div>
+    <h1 class="speaking-hero-title">{{ page.title | default: "Speaking" }}</h1>
+    <p class="speaking-hero-hook">{{ page.hook }}</p>
+    <div class="speaking-credentials">
+      {% if page.credentials %}
+        {% for cred in page.credentials %}
+        <span class="speaking-cred-badge">{{ cred }}</span>
+        {% endfor %}
+      {% else %}
+        <span class="speaking-cred-badge"><i class="fas fa-graduation-cap"></i> PhD</span>
+        <span class="speaking-cred-badge"><i class="fas fa-shield-alt"></i> CISSP</span>
+        <span class="speaking-cred-badge"><i class="fas fa-calendar-check"></i> 15+ years</span>
+        <span class="speaking-cred-badge"><i class="fas fa-building"></i> Volvo Cars</span>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<!-- Main Content -->
+<div class="speaking-body">
+  {{ content }}
+</div>
+
+<!-- Topics Cloud -->
+<div class="speaking-section">
+  <h2 class="speaking-section-title">Topics &amp; Expertise</h2>
+  <div class="speaking-topics">
+    <span class="speaking-topic-tag">MCP Security</span>
+    <span class="speaking-topic-tag">OWASP Agentic Top 10</span>
+    <span class="speaking-topic-tag">Cloud-Native AI Attack Surfaces</span>
+    <span class="speaking-topic-tag">Agentic AI Red Teaming</span>
+    <span class="speaking-topic-tag">RAG Pipeline Security</span>
+    <span class="speaking-topic-tag">LLM Prompt Injection</span>
+    <span class="speaking-topic-tag">Multi-Agent Trust Failures</span>
+    <span class="speaking-topic-tag">AI Incident Response</span>
+    <span class="speaking-topic-tag">Non-Human Identity &amp; Access</span>
+    <span class="speaking-topic-tag">Agent Supply Chain Security</span>
+  </div>
+</div>
+
+<!-- Formats -->
+<div class="speaking-section speaking-formats-section">
+  <h2 class="speaking-section-title">Formats</h2>
+  <div class="speaking-formats-grid">
+    <div class="speaking-format-card">
+      <i class="fas fa-podium speaking-format-icon"></i>
+      <div class="speaking-format-name">Keynote</div>
+      <div class="speaking-format-desc">20–45 min, all audience levels</div>
+    </div>
+    <div class="speaking-format-card">
+      <i class="fas fa-laptop-code speaking-format-icon"></i>
+      <div class="speaking-format-name">Technical Deep-Dive</div>
+      <div class="speaking-format-desc">45–60 min, practitioner audiences</div>
+    </div>
+    <div class="speaking-format-card">
+      <i class="fas fa-users speaking-format-icon"></i>
+      <div class="speaking-format-name">Panel</div>
+      <div class="speaking-format-desc">Practitioner or executive rooms</div>
+    </div>
+    <div class="speaking-format-card">
+      <i class="fas fa-chalkboard-teacher speaking-format-icon"></i>
+      <div class="speaking-format-name">Workshop</div>
+      <div class="speaking-format-desc">Hands-on, facilitated sessions</div>
+    </div>
+  </div>
+  <p class="speaking-formats-note">All technical talks are backed by reproducible local lab environments — no slide-only claims, no cloud dependencies on stage.</p>
+</div>
+
+<!-- Video Placeholder -->
+<div class="speaking-section">
+  <h2 class="speaking-section-title">Session Recordings</h2>
+  <div class="speaking-video-placeholder">
+    <div class="speaking-video-inner">
+      <i class="fas fa-video speaking-video-icon"></i>
+      <p class="speaking-video-text">Session recordings will be posted here as they become available.</p>
+      <p class="speaking-video-sub">Follow <a href="https://www.linkedin.com/in/araji" target="_blank" rel="noopener noreferrer">LinkedIn</a> or <a href="https://twitter.com/aminerj" target="_blank" rel="noopener noreferrer">X/Twitter</a> for updates.</p>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="speaking-cta">
+  <div class="speaking-cta-inner">
+    <h2 class="speaking-cta-title">Invite / Inquire</h2>
+    <p class="speaking-cta-desc">For speaking invitations, CFP questions, or programme committee discussions:</p>
+    <a href="mailto:speaking@aminrj.com" class="speaking-cta-btn">
+      <i class="fas fa-envelope"></i> speaking@aminrj.com
+    </a>
+    <p class="speaking-cta-note">I respond to all speaking enquiries within 48 hours.</p>
+  </div>
+</div>

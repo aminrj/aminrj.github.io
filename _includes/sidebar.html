@@ -27,7 +27,7 @@
       </li>
 
       <!-- other tabs -->
-      {% for tab in site.tabs %}
+      {% for tab in site.tabs %}{% if tab.hidden %}{% continue %}{% endif %}
         <li class="nav-item{% if tab.url == page.url %}{{ " active" }}{% endif %}">
           <a href="{{ tab.url | relative_url }}" class="nav-link">
             <i class="fa-fw {{ tab.icon }}"></i>

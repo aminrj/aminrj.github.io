@@ -1,0 +1,434 @@
+/* Speaking page styles — uses Chirpy CSS variables for light/dark mode */
+
+/* ── Hero ──────────────────────────────────────────────────────────── */
+.speaking-hero {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 60%, #0c1a2e 100%);
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  padding: 3.5rem 2rem;
+  margin: 0rem -1rem 2.5rem -1rem;
+  border-radius: 16px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.speaking-hero::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: radial-gradient(circle at 1px 1px, rgba(99,102,241,0.12) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+.speaking-hero-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.speaking-badge {
+  display: inline-block;
+  background: rgba(99, 102, 241, 0.2);
+  color: #818cf8;
+  border: 1px solid rgba(99, 102, 241, 0.4);
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+}
+
+.speaking-hero-title {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: #f1f5f9;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.speaking-hero-hook {
+  font-size: 1.15rem;
+  color: #94a3b8;
+  line-height: 1.65;
+  margin-bottom: 1.8rem;
+  font-style: italic;
+}
+
+.speaking-credentials {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.speaking-cred-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  padding: 0.35rem 0.9rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* Light mode hero adjustments */
+[data-mode="light"] .speaking-hero,
+html:not([data-mode="dark"]) .speaking-hero {
+  background: linear-gradient(135deg, #f8f9fc 0%, #e3edf7 100%);
+  border-color: #e1e8ed;
+}
+
+[data-mode="light"] .speaking-hero-title,
+html:not([data-mode="dark"]) .speaking-hero-title {
+  color: #1e293b;
+}
+
+[data-mode="light"] .speaking-hero-hook,
+html:not([data-mode="dark"]) .speaking-hero-hook {
+  color: #5a6c7d;
+}
+
+[data-mode="light"] .speaking-badge,
+html:not([data-mode="dark"]) .speaking-badge {
+  background: rgba(79, 70, 229, 0.1);
+  color: #4f46e5;
+  border-color: rgba(79, 70, 229, 0.3);
+}
+
+[data-mode="light"] .speaking-cred-badge,
+html:not([data-mode="dark"]) .speaking-cred-badge {
+  background: rgba(16, 185, 129, 0.1);
+  color: #059669;
+  border-color: rgba(16, 185, 129, 0.25);
+}
+
+/* ── Body Content ──────────────────────────────────────────────────── */
+.speaking-body {
+  margin-bottom: 2rem;
+}
+
+/* ── Sections ──────────────────────────────────────────────────────── */
+.speaking-section {
+  margin: 2.5rem 0;
+}
+
+.speaking-section-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid rgba(99, 102, 241, 0.3);
+  color: var(--heading-color);
+}
+
+/* ── Talk Cards ────────────────────────────────────────────────────── */
+.speaking-talk-card {
+  background: var(--card-bg, #1e293b);
+  border: 1px solid var(--card-border-color, rgba(99,102,241,0.2));
+  border-radius: 12px;
+  padding: 1.75rem;
+  margin-bottom: 1.5rem;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.speaking-talk-card:hover {
+  box-shadow: 0 4px 24px rgba(99, 102, 241, 0.12);
+  border-color: rgba(99, 102, 241, 0.45);
+}
+
+.speaking-talk-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.speaking-talk-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  color: white;
+  border-radius: 50%;
+  font-size: 0.85rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.speaking-talk-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--heading-color);
+  margin: 0;
+  flex: 1;
+  line-height: 1.35;
+}
+
+.speaking-talk-meta {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.85rem;
+}
+
+.speaking-talk-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.25rem 0.7rem;
+  border-radius: 12px;
+}
+
+.speaking-talk-badge.audience {
+  background: rgba(59, 130, 246, 0.12);
+  color: #60a5fa;
+  border: 1px solid rgba(59, 130, 246, 0.25);
+}
+
+.speaking-talk-badge.format {
+  background: rgba(16, 185, 129, 0.1);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+.speaking-talk-abstract {
+  color: var(--text-muted-color, #94a3b8);
+  line-height: 1.7;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+/* Light mode talk cards */
+[data-mode="light"] .speaking-talk-badge.audience,
+html:not([data-mode="dark"]) .speaking-talk-badge.audience {
+  background: rgba(59, 130, 246, 0.08);
+  color: #2563eb;
+  border-color: rgba(59, 130, 246, 0.2);
+}
+
+[data-mode="light"] .speaking-talk-badge.format,
+html:not([data-mode="dark"]) .speaking-talk-badge.format {
+  background: rgba(16, 185, 129, 0.08);
+  color: #059669;
+  border-color: rgba(16, 185, 129, 0.2);
+}
+
+/* ── Topics Tag Cloud ──────────────────────────────────────────────── */
+.speaking-topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.speaking-topic-tag {
+  display: inline-block;
+  background: rgba(99, 102, 241, 0.1);
+  color: #818cf8;
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  padding: 0.35rem 0.85rem;
+  border-radius: 20px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  transition: background 0.15s ease;
+}
+
+.speaking-topic-tag:hover {
+  background: rgba(99, 102, 241, 0.2);
+}
+
+[data-mode="light"] .speaking-topic-tag,
+html:not([data-mode="dark"]) .speaking-topic-tag {
+  background: rgba(79, 70, 229, 0.08);
+  color: #4f46e5;
+  border-color: rgba(79, 70, 229, 0.2);
+}
+
+/* ── Formats Grid ──────────────────────────────────────────────────── */
+.speaking-formats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.speaking-format-card {
+  background: var(--card-bg, rgba(30, 41, 59, 0.6));
+  border: 1px solid var(--card-border-color, rgba(99,102,241,0.15));
+  border-radius: 10px;
+  padding: 1.25rem 1rem;
+  text-align: center;
+  transition: border-color 0.2s ease;
+}
+
+.speaking-format-card:hover {
+  border-color: rgba(99, 102, 241, 0.4);
+}
+
+.speaking-format-icon {
+  font-size: 1.5rem;
+  color: #818cf8;
+  margin-bottom: 0.65rem;
+  display: block;
+}
+
+.speaking-format-name {
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-bottom: 0.3rem;
+  color: var(--heading-color);
+}
+
+.speaking-format-desc {
+  font-size: 0.8rem;
+  color: var(--text-muted-color, #94a3b8);
+}
+
+.speaking-formats-note {
+  font-size: 0.9rem;
+  color: var(--text-muted-color, #64748b);
+  font-style: italic;
+  margin-top: 0.75rem;
+}
+
+/* ── Video Placeholder ─────────────────────────────────────────────── */
+.speaking-video-placeholder {
+  border: 2px dashed rgba(99, 102, 241, 0.3);
+  border-radius: 12px;
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.speaking-video-inner {
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.speaking-video-icon {
+  font-size: 2.5rem;
+  color: rgba(99, 102, 241, 0.5);
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.speaking-video-text {
+  font-size: 1rem;
+  color: var(--text-muted-color, #94a3b8);
+  margin-bottom: 0.5rem;
+}
+
+.speaking-video-sub {
+  font-size: 0.88rem;
+  color: var(--text-muted-color, #64748b);
+}
+
+.speaking-video-sub a {
+  color: #818cf8;
+}
+
+[data-mode="light"] .speaking-video-sub a,
+html:not([data-mode="dark"]) .speaking-video-sub a {
+  color: #4f46e5;
+}
+
+/* ── CTA ───────────────────────────────────────────────────────────── */
+.speaking-cta {
+  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+  border: 1px solid rgba(99, 102, 241, 0.35);
+  border-radius: 16px;
+  padding: 3rem 2rem;
+  margin: 2.5rem 0;
+  text-align: center;
+}
+
+.speaking-cta-inner {
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.speaking-cta-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #f1f5f9;
+  margin-bottom: 0.75rem;
+}
+
+.speaking-cta-desc {
+  color: #94a3b8;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+.speaking-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  color: white !important;
+  padding: 0.85rem 2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none !important;
+  transition: opacity 0.2s ease, transform 0.1s ease;
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.35);
+}
+
+.speaking-cta-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.speaking-cta-note {
+  font-size: 0.85rem;
+  color: #64748b;
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+
+[data-mode="light"] .speaking-cta,
+html:not([data-mode="dark"]) .speaking-cta {
+  background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+  border-color: rgba(79, 70, 229, 0.25);
+}
+
+[data-mode="light"] .speaking-cta-title,
+html:not([data-mode="dark"]) .speaking-cta-title {
+  color: #1e293b;
+}
+
+[data-mode="light"] .speaking-cta-desc,
+html:not([data-mode="dark"]) .speaking-cta-desc {
+  color: #475569;
+}
+
+/* ── Responsive ────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .speaking-hero {
+    padding: 2.5rem 1.25rem;
+  }
+
+  .speaking-hero-title {
+    font-size: 1.8rem;
+  }
+
+  .speaking-talk-header {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .speaking-formats-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}

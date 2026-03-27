@@ -2,9 +2,6 @@
 title: "RAG Poisoning and EU AI Act Article 10: Data Governance Is Not Optional for Retrieval Pipelines"
 date: 2026-03-27
 uuid: 202603270000
-draft: true
-status: draft
-published: false
 content-type: article
 target-audience: advanced
 categories: [AI Security, EU AI Act, Compliance]
@@ -19,6 +16,9 @@ tags:
     Vector Database,
     Compliance,
   ]
+
+image:
+  path: /assets/media/ai-security/data-governance-and-eu-ai-act.png
 description: "Article 10 requires 'appropriate data governance and management practices.' I measured five defense layers against a RAG poisoning attack with a 95% success rate. One specific layer -- the one most teams skip -- reduced it to 20%. That layer IS Article 10 compliance."
 ---
 

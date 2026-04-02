@@ -107,6 +107,9 @@ Simon Willison's framing from his MCP security research applies here directly �
 For practitioners tracking the OWASP Agentic Top 10 (ASI01–ASI10), ClawHavoc is not a surprise. It is a confirmation.
 
 ![ClawHavoc Attack Chain](/assets/media/ai-agents-security/Clawhavoc-attack-chain.png)
+<!-- ![ClawHavoc Attack Chain](/assets/media/ai-agents-security/clawhavoc_kill_chain.png) -->
+
+
 
 **ASI02 — Tool Misuse and Exploitation.** The skill manifest weaponizes the agent's tool invocation capability. The attacker never touches the user's system directly — they write instructions that the LLM executes as legitimate tool behavior.
 

@@ -1,5 +1,5 @@
 ---
-title: "Building a Cybersecurity AI Agent From Scratch: The Complete 2026 Guide"
+title: "Building a Cybersecurity AI Agent From Scratch"
 date: 2026-03-30
 uuid: 202603300000
 content-type: article
@@ -22,8 +22,6 @@ image:
 description: "A complete hands-on guide to building a Security Intelligence Agent using LangGraph and MCP — covering architecture decisions, trade-offs, and working code that performs live threat correlation and CVE analysis. Includes real agent output and lessons from debugging."
 mermaid: true
 ---
-
-# Building a Cybersecurity AI Agent From Scratch: The Complete 2026 Guide
 
 It is 2 AM. An alert fired on your SIEM — a source IP your team has never seen before is hammering port 22 on a perimeter host. You pull the raw log, grep for the IP, and open three browser tabs: Shodan, VirusTotal, and the NVD search. Twenty minutes later you have a half-assembled picture: the IP is known Tor exit node infrastructure, there is a CVE that affects the SSH daemon version on that host, and your logs show seventeen failed auth attempts in the last six hours. You write up the finding. It took a senior analyst thirty minutes to produce something that could have been automated in three.
 

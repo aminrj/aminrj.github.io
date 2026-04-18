@@ -1,11 +1,25 @@
-# Running Local LLMs on a RTX 3090 — The Complete Practitioner Setup
+---
+title: "Qwen3.6 on 24GB VRAM: Benchmark, Config, and Every Mistake"
+date: 2026-04-18
+uuid: 202604180000
+content-type: article
+target-audience: advanced
+categories: [AI Security, LLM, Developer Guide]
+tags:
+  [
+    llama.cpp,
+    Ollama,
+    Qwen3.6,
+    Mixture of Experts,
+    RTX 3090,
+    Local LLM,
+    GPU Optimization,
+    Benchmark,
+  ]
+image:
+  path: /assets/media/ai/qwen3-6-on-24gb-vram.png
 
-> A complete record of moving from Ollama to llama.cpp, benchmarking two model generations with honest methodology, hitting every obstacle, and building a workflow I can actually use daily.
-
-**Hardware:** RTX 3090 24GB · WSL2 · Ubuntu 24.04  
-**Models tested:** Qwen3.5-35B-A3B · Qwen3.6-35B-A3B  
-**Published:** April 2026 · [github.com/aminrj/local-llm-ops](https://github.com/aminrj/local-llm-ops)
-
+description: "24GB of VRAM. A 35B-parameter model. 65k context window. It shouldn't work on paper — but KV cache quantization, flash attention, and Mixture of Experts make it not just possible but fast. Here's every knob I turned, every obstacle I hit, and the numbers that prove 24GB is enough."
 ---
 
 ## TL;DR — The Honest Numbers

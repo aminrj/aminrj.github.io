@@ -18,7 +18,7 @@ tags:
     Prompt Injection,
   ]
 image:
-  path: /assets/media/ai-security/rsac'26-agentic-ai-security-is-a-priority.png
+  path: /assets/media/ai-security/rsac-26-agentic-ai-security-is-a-priority.png
 description: "Every major vendor at RSAC 2026 shipped an agentic AI security product. None of them shipped an agent behavioral baseline. Here is what that gap means for security practitioners and what ClawHavoc — the first major supply chain attack on an AI agent ecosystem — tells us about where the threat is going."
 ---
 

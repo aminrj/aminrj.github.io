@@ -1,0 +1,157 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36" version="29.3.6">
+  <diagram name="Page-1" id="LocalLLMBenchArchitecture">
+    <mxGraphModel dx="1422" dy="726" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="800">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- Title -->
+        <mxCell id="title" parent="1" value="Local LLM Benchmarking Toolkit — Architecture" style="text;html=1;align=center;verticalAlign=middle;fontSize=22;fontStyle=1;strokeColor=none;fillColor=none;" vertex="1">
+          <mxGeometry x="150" y="20" width="900" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== Orchestration Layer ===== -->
+        <mxCell id="orch" parent="1" value="Orchestration Layer" style="rounded=1;whiteSpace=wrap;fillColor=#e1d5e7;strokeColor=#9673a6;strokeWidth=2;fontSize=14;fontStyle=1;" vertex="1">
+          <mxGeometry x="350" y="80" width="500" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="run_all" parent="1" value="run_all.sh" style="rounded=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=12;" vertex="1">
+          <mxGeometry x="500" y="100" width="200" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="makefile" parent="1" value="Makefile" style="rounded=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=12;" vertex="1">
+          <mxGeometry x="500" y="130" width="200" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== Three Benchmark Categories ===== -->
+        <mxCell id="perf_box" parent="1" value="Performance Benchmark" style="rounded=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=2;fontSize=13;fontStyle=1;" vertex="1">
+          <mxGeometry x="80" y="200" width="280" height="140" as="geometry"/>
+        </mxCell>
+        <mxCell id="perf_tool" parent="1" value="llama-bench" style="rounded=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#82b366;strokeWidth=1;fontSize=11;" vertex="1">
+          <mxGeometry x="100" y="225" width="240" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="perf_desc" parent="1" value="• Prompt processing (512, 4096 ctx)&lt;br/&gt;• Token generation (128 tok)&lt;br/&gt;• 3 repeats, CSV output" style="text;html=1;align=center;verticalAlign=middle;fontSize=10;fontColor=#555555;strokeColor=none;fillColor=none;" vertex="1">
+          <mxGeometry x="100" y="265" width="240" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="qual_box" parent="1" value="Quality Benchmark" style="rounded=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;strokeWidth=2;fontSize=13;fontStyle=1;" vertex="1">
+          <mxGeometry x="420" y="200" width="280" height="140" as="geometry"/>
+        </mxCell>
+        <mxCell id="qual_tool1" parent="1" value="lm-eval (vLLM backend)" style="rounded=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#d6b656;strokeWidth=1;fontSize=11;" vertex="1">
+          <mxGeometry x="440" y="225" width="240" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="qual_tool2" parent="1" value="bigcode-eval" style="rounded=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#d6b656;strokeWidth=1;fontSize=11;" vertex="1">
+          <mxGeometry x="440" y="260" width="240" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="qual_desc" parent="1" value="• HumanEval+ (code)&lt;br/&gt;• GSM8K (math)&lt;br/&gt;• HellaSwag (common sense)&lt;br/&gt;• JSON output, pass@1 scores" style="text;html=1;align=center;verticalAlign=middle;fontSize=10;fontColor=#555555;strokeColor=none;fillColor=none;" vertex="1">
+          <mxGeometry x="440" y="295" width="240" height="35" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="domain_box" parent="1" value="Domain Benchmark" style="rounded=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontSize=13;fontStyle=1;" vertex="1">
+          <mxGeometry x="760" y="200" width="280" height="140" as="geometry"/>
+        </mxCell>
+        <mxCell id="domain_tool" parent="1" value="curl → llama-server API" style="rounded=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#6c8ebf;strokeWidth=1;fontSize=11;" vertex="1">
+          <mxGeometry x="780" y="225" width="240" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="domain_desc" parent="1" value="• 5 curated prompts (code, security, math, vuln review, OWASP mapping)&lt;br/&gt;• Measures: latency, tokens, tok/s&lt;br/&gt;• CSV output" style="text;html=1;align=center;verticalAlign=middle;fontSize=10;fontColor=#555555;strokeColor=none;fillColor=none;" vertex="1">
+          <mxGeometry x="780" y="265" width="240" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== llama-server ===== -->
+        <mxCell id="llama_server" parent="1" value="llama-server&lt;br/><font color='#666666'>(port 8081)</font>" style="rounded=1;whiteSpace=wrap;fillColor=#f8cecc;strokeColor=#b85450;strokeWidth=2;fontSize=14;fontStyle=1;" vertex="1">
+          <mxGeometry x="500" y="400" width="200" height="70" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== Config Layer ===== -->
+        <mxCell id="config_box" parent="1" value="Configuration" style="rounded=1;whiteSpace=wrap;fillColor=#e6d0de;strokeColor=#996185;strokeWidth=2;fontSize=13;fontStyle=1;" vertex="1">
+          <mxGeometry x="80" y="400" width="300" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="models_yaml" parent="1" value="config/models.yaml" style="rounded=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#996185;strokeWidth=1;fontSize=11;" vertex="1">
+          <mxGeometry x="100" y="420" width="260" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="prompts_json" parent="1" value="config/prompts.json" style="rounded=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#996185;strokeWidth=1;fontSize=11;" vertex="1">
+          <mxGeometry x="100" y="455" width="260" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== Results Layer ===== -->
+        <mxCell id="results_box" parent="1" value="Results &amp; Summary" style="rounded=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=2;fontSize=13;fontStyle=1;" vertex="1">
+          <mxGeometry x="80" y="540" width="960" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="results_csv" parent="1" value="results/*.csv" style="rounded=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#82b366;strokeWidth=1;fontSize=11;" vertex="1">
+          <mxGeometry x="100" y="565" width="200" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="results_json" parent="1" value="results/*.json" style="rounded=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#82b366;strokeWidth=1;fontSize=11;" vertex="1">
+          <mxGeometry x="320" y="565" width="200" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="metrics_py" parent="1" value="utils/metrics.py → summary table" style="rounded=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#82b366;strokeWidth=1;fontSize=11;" vertex="1">
+          <mxGeometry x="540" y="565" width="280" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="results_desc" parent="1" value="Per-model CSV/JSON files + consolidated summary table with rich formatting (or plain text fallback)" style="text;html=1;align=center;verticalAlign=middle;fontSize=10;fontColor=#555555;strokeColor=none;fillColor=none;" vertex="1">
+          <mxGeometry x="100" y="595" width="720" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== Arrows ===== -->
+        <!-- Orchestration to benchmarks -->
+        <mxCell id="arrow1" parent="1" source="orch" target="perf_box" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="500" y="140" as="sourcePoint"/>
+            <mxPoint x="220" y="190" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arrow2" parent="1" source="orch" target="qual_box" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="550" y="140" as="sourcePoint"/>
+            <mxPoint x="560" y="190" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arrow3" parent="1" source="orch" target="domain_box" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="600" y="140" as="sourcePoint"/>
+            <mxPoint x="900" y="190" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Benchmarks to llama-server -->
+        <mxCell id="arrow4" parent="1" source="perf_box" target="llama_server" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="220" y="340" as="sourcePoint"/>
+            <mxPoint x="500" y="400" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arrow5" parent="1" source="qual_box" target="llama_server" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="560" y="340" as="sourcePoint"/>
+            <mxPoint x="560" y="400" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arrow6" parent="1" source="domain_box" target="llama_server" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="900" y="340" as="sourcePoint"/>
+            <mxPoint x="660" y="400" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- llama-server to results -->
+        <mxCell id="arrow7" parent="1" source="llama_server" target="results_box" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="600" y="470" as="sourcePoint"/>
+            <mxPoint x="600" y="540" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Config to benchmarks -->
+        <mxCell id="arrow8" parent="1" source="config_box" target="perf_box" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="230" y="400" as="sourcePoint"/>
+            <mxPoint x="220" y="200" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arrow9" parent="1" source="config_box" target="domain_box" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="380" y="400" as="sourcePoint"/>
+            <mxPoint x="900" y="200" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

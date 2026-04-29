@@ -79,14 +79,3 @@ Questions, pushback, something I missed — reply directly, I read everything.
 
 Amine
 https://aminrj.com | https://aminrj.com/subscribe
-
----
-
-## BEEHIIV HTML — paste as Custom HTML blocks
-
-**Amber (action — Caller Identity):**
-```html
-<div style="background:#fefce8;border-left:3px solid #ca8a04;padding:12px 16px;border-radius:0 6px 6px 0;font-family:Georgia,serif;font-size:15px;line-height:1.7;color:#1c1917;">
-  <b>Immediate check:</b> For every MCP server in your environment — ask whether it verifies who is calling it, or trusts any request that arrives on the right port. If it's the latter, add mutual TLS or a signed token requirement before connecting it to any agent with real permissions. An unauthenticated MCP server in a multi-agent chain is a lateral movement path, not just a misconfiguration.
-</div>
-```

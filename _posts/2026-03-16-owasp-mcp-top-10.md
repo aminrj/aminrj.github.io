@@ -45,7 +45,7 @@ All 10 risks are lab-confirmed — either through [my own documented attack seri
 
 ---
 
-## Why the OWASP LLM Top 10 Doesn't Fully Apply to MCP
+## Why the OWASP LLM top 10 doesn't fully apply to MCP
 
 The OWASP LLM Top 10 was written for AI applications: systems where a language model is at the center, receiving input from users, generating output, and potentially accessing tools. The threat model is an LLM application stack.
 
@@ -72,7 +72,7 @@ The 10 risks below each map to an existing OWASP LLM category — because the un
 
 ---
 
-## The MCP Threat Model in 3 Minutes
+## The MCP threat model in 3 minutes
 
 Before the risks, a brief architecture primer — because "MCP server" gets used loosely.
 
@@ -101,7 +101,7 @@ Now the risks.
 
 ---
 
-## MCP-01 — Tool Description Poisoning
+## MCP-01 — tool description poisoning
 
 **Maps to:** LLM01:2025 Prompt Injection
 
@@ -137,7 +137,7 @@ def add(a: int, b: int, sidenote: str) -> int:
 
 ---
 
-## MCP-02 — Server Impersonation and Supply Chain Compromise
+## MCP-02 — server impersonation and supply chain compromise
 
 **Maps to:** LLM03:2025 Supply Chain
 
@@ -167,7 +167,7 @@ As I documented in the [MCP security review]({% post_url 2026-02-25-mcp-security
 
 ---
 
-## MCP-03 — Cross-Server Tool Shadowing
+## MCP-03 — cross-server tool shadowing
 
 **Maps to:** LLM06:2025 Excessive Agency
 
@@ -192,7 +192,7 @@ The Invariant Labs Experiment 2 confirms the same pattern: a `get_fact_of_the_da
 
 ---
 
-## MCP-04 — Return Value Injection (Indirect Prompt Injection)
+## MCP-04 — return value injection (indirect prompt injection)
 
 **Maps to:** LLM01:2025 Prompt Injection (indirect variant)
 
@@ -220,7 +220,7 @@ Any system where an MCP tool returns externally-controlled content is vulnerable
 
 ---
 
-## MCP-05 — Excessive Tool Scope
+## MCP-05 — excessive tool scope
 
 **Maps to:** LLM06:2025 Excessive Agency
 
@@ -238,7 +238,7 @@ The DockerDash Threat Model B is the precise example: the attack chain that achi
 
 ---
 
-## MCP-06 — Credential Exfiltration via Tool Parameters
+## MCP-06 — credential exfiltration via tool parameters
 
 **Maps to:** LLM02:2025 Sensitive Information Disclosure
 
@@ -262,7 +262,7 @@ The DockerDash Threat Model B is the precise example: the attack chain that achi
 
 ---
 
-## MCP-07 — Persistent Memory and State Poisoning
+## MCP-07 — persistent memory and state poisoning
 
 **Maps to:** LLM04:2025 Data and Model Poisoning
 
@@ -287,7 +287,7 @@ The DockerDash Threat Model B is the precise example: the attack chain that achi
 
 ---
 
-## MCP-08 — Rug Pull Attack (Post-Approval Description Change)
+## MCP-08 — rug pull attack (post-approval description change)
 
 **Maps to:** LLM03:2025 Supply Chain
 
@@ -337,7 +337,7 @@ save_counter((launch_count + 1) % 4)  # resets after 4, erasing the pattern
 
 ---
 
-## MCP-09 — System Prompt Exfiltration via Tool Response
+## MCP-09 — system prompt exfiltration via tool response
 
 **Maps to:** LLM07:2025 System Prompt Leakage
 
@@ -381,7 +381,7 @@ def lookup_pricing(item: str, context: str) -> dict:
 
 ---
 
-## MCP-10 — Unbounded Tool Execution
+## MCP-10 — unbounded tool execution
 
 **Maps to:** LLM10:2025 Unbounded Consumption
 
@@ -440,7 +440,7 @@ Unbounded tool execution chain: each iteration exfiltrates one file and returns 
 
 ---
 
-## Mapping Summary
+## Mapping summary
 
 | # | Risk | Primitive | OWASP LLM Category | Lab-Confirmed |
 |---|------|-----------|-------------------|---------------|
@@ -467,11 +467,11 @@ Risk scoring matrix plotting MCP-01 through MCP-10 on ease-of-exploitation vs po
 
 ---
 
-## Mitigations by Layer
+## Mitigations by layer
 
 The risks span three distinct layers, and the mitigations need to match.
 
-### Protocol Layer (requires specification changes)
+### Protocol layer (requires specification changes)
 
 These mitigations require changes to the MCP specification itself — they cannot be implemented by individual deployments. What follows is a concrete proposal for each.
 
@@ -503,7 +503,7 @@ Add `X-MCP-Max-Calls` and `X-MCP-Budget-Tokens` headers to the `initialize` resp
 
 **Status as of March 2026:** The MCP specification (2025-06-18) adds OAuth-based authentication for HTTP transport and improved lifecycle management. Signed descriptions, cross-server isolation, and resource headers are not yet in the spec. I'm engaging with the OWASP GenAI Security Project working group to contribute the attack evidence and uncovered categories documented here as additions to their existing MCP guidance — specifically the five attack patterns (MCP-03, MCP-04, MCP-07, MCP-09, MCP-10) not currently covered in the published document.
 
-### Host / Client Layer (implementable today)
+### Host / client layer (implementable today)
 
 | Risk | Mitigation | Complexity |
 |---|---|---|
@@ -514,7 +514,7 @@ Add `X-MCP-Max-Calls` and `X-MCP-Budget-Tokens` headers to the `initialize` resp
 | MCP-10 | Per-session budget and loop detection | Medium |
 | MCP-03, MCP-05 | Tool scope isolation per conversation context | High |
 
-### Deployment Layer (available now)
+### Deployment layer (available now)
 
 | Tool | What it covers |
 |---|---|
@@ -532,7 +532,7 @@ uvx snyk-agent-scan@latest ~/.claude/claude_desktop_config.json
 
 ---
 
-## Pre-Deployment Checklist
+## Pre-Deployment checklist
 
 Before you connect any MCP server to an agent that has access to sensitive data, tools, or credentials:
 
@@ -565,7 +565,7 @@ Before you connect any MCP server to an agent that has access to sensitive data,
 
 ---
 
-## Relationship to the OWASP MCP Security Document
+## Relationship to the OWASP MCP security document
 
 The OWASP GenAI Security Project has published MCP security guidance (lead author: Idan Habler, Cisco/OWASP). That document is the right starting point for teams that need an institutional reference. This article is the attack evidence layer behind it.
 
@@ -586,7 +586,7 @@ If you're working on the OWASP document or representing a vendor building MCP se
 
 ---
 
-## What's Next in This Series
+## What's next in this series
 
 This article covers the threat model. The next posts cover implementation:
 
@@ -596,7 +596,7 @@ This article covers the threat model. The next posts cover implementation:
 
 ---
 
-## Lab Code
+## Lab code
 
 All attack demonstrations referenced in this article are reproducible:
 

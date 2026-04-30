@@ -19,7 +19,7 @@ These tools were not built for developers. They’re built for compliance teams.
 And while auditability matters, so does usability and adoption or buy-in from
 developers.
 
-## Why We Want to Rethink Risk Management
+## Why we want to rethink risk management
 
 We were facing the same problem you probably are:
 
@@ -33,7 +33,7 @@ So we flipped the model.
 Instead of dragging developers into slow and clunky GRC systems, we brought risk
 management to where they already are: **Git**.
 
-## The Git-Based Risk Assessment Model
+## The Git-based risk assessment model
 
 Here’s the TL;DR:
 
@@ -45,7 +45,7 @@ Here’s the TL;DR:
 
 It’s fast, transparent, version-controlled, and developer-friendly.
 
-## What the Structure Looks Like
+## What the structure looks like
 
 ```bash
 risk-assessments/
@@ -69,7 +69,7 @@ risk-assessments/
 └── .gitlab-ci.yml
 ```
 
-## Sample Risk Definition (YAML)
+## Sample risk definition (YAML)
 
 ```yaml
 id: RISK-0100
@@ -90,7 +90,7 @@ reference:
 
 Everything from likelihood to MITRE ATT\&CK mapping is explicit, validated, and versioned.
 
-## System Context Is Not Optional
+## System context is not optional
 
 Here’s the thing: documenting a risk without knowing the system is useless.
 
@@ -134,9 +134,8 @@ external_dependencies:
   - postgres (self-managed)
 ```
 
-This is what sets the stage for meaningful risk identification.
 
-## Automation : CI/CD + GitLab
+## Automation: CI/CD + GitLab
 
 We added a simple `.gitlab-ci.yml`:
 
@@ -162,7 +161,7 @@ This gives us:
 - Artifacts for downstream processing or reporting
 - Immediate feedback to the team if something breaks
 
-## Publish Dashboards Automatically
+## Publish dashboards automatically
 
 We publish the dashboard with Chart.js using GitLab Pages.
 
@@ -176,7 +175,7 @@ And the best part? It auto-deploys every time a new risk is committed.
 
 > URL format: `https://<group>.gitlab.io/<project>/`
 
-## Why It Works in the Real World
+## Why it works in the real world
 
 This approach nails the things auditors and engineers both care about:
 
@@ -188,7 +187,7 @@ This approach nails the things auditors and engineers both care about:
 | Cross-team visibility  | Aggregation + dashboards    |
 | Compliance linkage     | MITRE, OWASP references     |
 
-It’s simple, robust, and scalable.
+It's simple, auditable, and scales across teams.
 
 ## What It’s Not
 
@@ -199,7 +198,7 @@ It’s simple, robust, and scalable.
 
 But it **is** a fast, auditable, and developer-first way to **treat risk like code**.
 
-## Next Steps
+## Next steps
 
 We’re already evolving the tool to:
 
@@ -207,7 +206,6 @@ We’re already evolving the tool to:
 - Add RBAC and secure a front-end SaaS-hosting
 - Integrate with local LLMs for automated risk suggestions
 
-This is the kind of solution that gets real adoption — because it fits into
-the way developers work, not against it.
+It works because it fits into how developers already work.
 
-Let me know if you’re adopting something similar — I would love to collaborate.
+If you're building something similar, I'd be glad to compare notes.

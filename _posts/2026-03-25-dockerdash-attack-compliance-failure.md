@@ -31,7 +31,7 @@ This article examines the same attack through the EU AI Act. Three articles are 
 
 ---
 
-## Article 14: Human Oversight Was Absent
+## Article 14: human oversight was absent
 
 [Article 14](https://artificialintelligenceact.eu/article/14/) requires that high-risk AI systems "be designed and developed in such a way, including with appropriate human-machine interface tools, that they can be effectively overseen by natural persons during the period in which they are in use."
 
@@ -59,7 +59,7 @@ This is not a marginal compliance gap. It is a complete absence of the oversight
 
 ---
 
-## Article 15(3): Environmental Resilience Failure
+## Article 15(3): environmental resilience failure
 
 [Article 15(3)](https://artificialintelligenceact.eu/article/15/) requires high-risk AI systems to be "resilient as regards errors, faults, or inconsistencies that may occur within the system or the environment in which the system operates."
 
@@ -71,7 +71,7 @@ The AI assistant processed the label content without validation. The system was 
 
 ---
 
-## Article 26(5): Deployer Was Blind
+## Article 26(5): deployer was blind
 
 [Article 26(5)](https://artificialintelligenceact.eu/article/26/) requires deployers to "monitor the operation of the high-risk AI system."
 
@@ -81,7 +81,7 @@ The deployer could not monitor what they could not see. Article 26(5) requires t
 
 ---
 
-## What an Article 14-Compliant DockerDash Would Look Like
+## What an Article 14-compliant dockerdash would look like
 
 The fix is not "add a confirmation dialog for every tool call." That destroys the product. The fix is choosing the right oversight pattern for the risk level of each tool.
 
@@ -97,7 +97,7 @@ The full set of human oversight engineering patterns -- approval gates, confiden
 
 ---
 
-## Action Items for Teams Running AI-Assisted Docker Tooling
+## Action items for teams running ai-assisted Docker tooling
 
 1. **Audit your MCP tool permissions.** Which tools can the AI assistant call? Which are destructive? Classify each by risk level.
 

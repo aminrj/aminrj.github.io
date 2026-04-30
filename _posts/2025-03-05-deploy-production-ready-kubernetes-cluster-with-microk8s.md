@@ -30,7 +30,7 @@ Tools that will be deployed on a freshly installed Microk8s cluster are:
 
 Let's get to it!
 
-## 0. Perquisite: Having a multi-node Microk8s cluster
+## 0. Prerequisite: having a multi-node MicroK8s cluster
 
 I won't be starting from zero as this differ largely from one setup to the next.
 It depends on what hardware you have and how you plan on deploying your cluster.
@@ -38,7 +38,7 @@ It depends on what hardware you have and how you plan on deploying your cluster.
 There are plenty of documentation on the Microk8s website to help with that.
 So, to continue, you will need a fresh Microk8s with default configuration.
 
-## 1. Setting-up the stage with Terraform
+## 1. Setting up the stage with Terraform
 
 Configure Terraform to target our cluster.
 
@@ -82,7 +82,7 @@ environment.
 Later, we can use `Kustomize` to configure apps to be deployed on those
 environments.
 
-## 2. LoadBalancing with Metallb
+## 2. Load balancing with MetalLB
 
 When deploying Kubernetes on a local cluster (not on Provided Cloud such as
 AWS), we need something that would provision Load Balancers for our services.
@@ -155,7 +155,7 @@ spec:
 
 Once deployed, the module will install the Metallb controller and the speakers.
 
-- Controller: Watches kubernetes servicies of type `LoadBalancer` to assign IPs
+- Controller: Watches Kubernetes services of type `LoadBalancer` to assign IPs
 - Speaker: Advertise the assigned IPs to the local network using Layer 2 (ARP)
   or BGP.
 
@@ -181,16 +181,15 @@ NAME                                            DESIRED   CURRENT   READY   AGE
 replicaset.apps/metallb-controller-8474b54bc4   1         1         1       4d7h
 ```
 
-## 3. Reverse proxy with Nginx Ingress Controller
+## 3. Reverse proxy with nginx ingress controller
 
-Since public IPs are expansive, we don't want to have to need one for every
-service, so a reverse proxy with proper routing to the correct service is also
-needed.
+Since public IPs are expensive, we don't want one for every service, so a
+reverse proxy with proper routing is also needed.
 
 This is where an ingress-controller becomes handy.
 
 In Kubernetes, Ingress is the standard way to expose applications via a single
-extrernal IP instead of creating multiple LoadBalancer services.
+external IP instead of creating multiple LoadBalancer services.
 Without an Ingress Controller, every app would need a separate LoadBalancer
 service, consuming more IPs 😢.
 
@@ -236,23 +235,17 @@ daemonset.apps/ingress-nginx-controller   3         3         3       3         
 ...
 ```
 
-## 4. Handling certificates with Cert-Manager
+## 4. Handling certificates with cert-manager
 
 Thanks to Cert-Manager, we can automate the process of issuing, renewing and
 managing TLS/SSL certificates in Kubernetes.
 
-Without it, managing HTTPS for our applications would require manually obtaining
-and updating certificates, which is inefficient and error-prone.
+Without it, you'd be obtaining and updating certificates manually.
 
-In other words, here is what Cert-Manager really do:
-
-- Automatic TLS Certificates: issues certificates from Let's Encrypt or custom
-  CAs.
-- Auto-Renewal: Prevents downtime by renewing certificates before they expire
-- Integrate with Ingress: Enables HTTPS for Nginx, Traefik, Istio, etc.
-- Works with MetalLb & LoadBalancer: Secures services without needing a cloud
-  provider.
-- Multi-Environment Support: Managers different certs for Dev, Staging and Prod.
+- Issues certificates from Let's Encrypt or custom CAs
+- Auto-renews them before they expire
+- Works with Nginx, Traefik, Istio, and MetalLB
+- Manages separate certs for dev, staging, and prod
 
 To deploy `cert-manager`, we create the `Terraform` module with:
 
@@ -384,16 +377,9 @@ application's external IP changes.
 We also need to configure domain-to-service mapping (A and CNAME records).
 This could lead to downtime when MetalLb or LoadBalancer IPs change.
 
-Thankfully, there is ExternalDNS that would automate this process to ensure that
-domain names always point to the correct external IPs.
-
-Without requiring manual updates in our DNS provider (e.g., Cloudflare,
-Route53).
-
-In a nutshell, ExternalDNS watches Kubernetes services and/or Ingress resources.
-Once it detect that one has an external IP, it automatically updates our DNS
-provider to create (or update) A and CNAME records.
-It also sync DNS Records when IPs change.
+ExternalDNS watches Kubernetes services and Ingress resources. When it detects an
+external IP, it automatically updates your DNS provider (Cloudflare, Route53, etc.)
+to create or update A and CNAME records. When IPs change, it syncs automatically.
 
 To deploy `ExternalDNS`, we create the following Terraform module:
 

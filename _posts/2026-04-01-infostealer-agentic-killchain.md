@@ -26,7 +26,7 @@ the resulting attack looks like end to end.
 
 ---
 
-## Part 1: What Is an Agentic AI System?
+## Part 1: what is an agentic AI system?
 
 Before we talk about attacks, we need to be precise about what we are attacking.
 
@@ -75,7 +75,7 @@ The protocol that connects most agentic AI systems to their tools is called **MC
 
 ---
 
-## Part 2: How MCP Works (And Why It Matters for Security)
+## Part 2: how MCP works (and why it matters for security)
 
 MCP is an open protocol, published by Anthropic in late 2024, that standardizes how AI models connect to external tools and data sources. It has three components:
 
@@ -114,11 +114,11 @@ This is the foundational security flaw that all MCP attacks exploit.
 
 ---
 
-## Part 3: The Three Attack Primitives
+## Part 3: the three attack primitives
 
 Flashpoint's report references several AI attack techniques by name. Here is what each one means in practice, with concrete examples.
 
-### 3.1 Tool Poisoning (Steganographic Prompting)
+### 3.1 tool poisoning (steganographic prompting)
 
 The report calls this "steganographic prompting — hidden instructions embedded into an AI model to override normal behavior."
 
@@ -177,7 +177,7 @@ Invariant Labs published the original research on this in April 2025. Their What
 
 ---
 
-### 3.2 Meta-Context Injection (Slopsquatting Extended)
+### 3.2 meta-context injection (slopsquatting extended)
 
 The report mentions **slopsquatting** — fake software packages designed to be recommended by AI coding assistants. This is one instance of a broader attack category: **trusted data sources treated as executable instructions**.
 
@@ -230,7 +230,7 @@ The same primitive applies to any agent that reads external data: web search res
 
 ---
 
-### 3.3 Cross-Server Attack (The Rug-Pull Pattern)
+### 3.3 cross-server attack (the rug-pull pattern)
 
 The third primitive is the most dangerous in multi-tool environments.
 
@@ -284,7 +284,7 @@ OWASP maps this to **ASI08 — Insecure Agent-Agent Communication** and **ASI06 
 
 ---
 
-## Part 4: The Full Kill Chain — When Infostealers Enter the Picture
+## Part 4: the full kill chain — when infostealers enter the picture
 
 Now we can connect the macro threat intelligence to the specific attack primitives.
 
@@ -393,11 +393,11 @@ The attacker never needed to exploit a vulnerability in the traditional sense. T
 
 ---
 
-## Part 5: Why Enterprise Deployments Are Specifically Exposed
+## Part 5: why enterprise deployments are specifically exposed
 
 Two architectural patterns create outsized risk in production agentic deployments.
 
-### RAG Pipelines With Unrestricted Retrieval
+### RAG pipelines with unrestricted retrieval
 
 A RAG (Retrieval-Augmented Generation) pipeline works by giving an AI agent access to a knowledge base — documents, databases, web content — that it retrieves from at query time. The retrieved content goes directly into the agent's context window alongside the user's question.
 
@@ -433,7 +433,7 @@ Any document in the retrieval pool is a potential injection vector. An attacker 
 
 This is **ASI04 — Knowledge & Memory Poisoning** in the OWASP Agentic Top 10.
 
-### Multi-Agent Architectures With Delegated Trust
+### Multi-Agent architectures with delegated trust
 
 Most enterprise multi-agent systems have an orchestrator that delegates tasks to worker agents. The orchestrator has elevated access. Workers execute on its authority.
 
@@ -469,11 +469,11 @@ This is **ASI07 — Insecure Agent-Agent Communication**. The attack requires no
 
 ---
 
-## Part 6: What Defenders Need to Model Now
+## Part 6: what defenders need to model now
 
 The Flashpoint report recommends that organizations "use automation as support for human-led analysis" for AI threats. That is directionally correct. Here is the specific threat model required to operationalize it.
 
-### Control 1: Scan MCP Tool Descriptions Before Deployment [ASI02]
+### Control 1: scan MCP tool descriptions before deployment [asi02]
 
 Tool descriptions are untrusted input. Treat them the same way you would treat user-supplied SQL queries.
 
@@ -491,7 +491,7 @@ hidden instructions             Pattern: <IMPORTANT> block with
 
 `mcp-scan` (released by Invariant Labs alongside their research) detects malicious instruction patterns in tool descriptions before a server is ever loaded.
 
-### Control 2: Hash Tool Descriptions at First Load [ASI06]
+### Control 2: hash tool descriptions at first load [asi06]
 
 The rug-pull attack works because clients cache tool names without re-validating descriptions. The description changes between loads; the name stays the same; the client trusts the cached name.
 
@@ -509,7 +509,7 @@ Second load (malicious):
   → Alert triggered. Tool blocked.
 ```
 
-### Control 3: Human Approval Gate for Irreversible Actions [ASI02]
+### Control 3: human approval gate for irreversible actions [asi02]
 
 The OWASP Agentic Top 10's primary mitigation for ASI02 is the **Least Agency principle**: agents should not execute irreversible or high-impact actions without explicit human approval.
 
@@ -530,7 +530,7 @@ Sensitive data exfiltrated.     Tool: send_email
                                 Attack blocked.
 ```
 
-### Control 4: Per-Server Permission Scoping [ASI08]
+### Control 4: per-server permission scoping [asi08]
 
 MCP has no built-in concept of cross-server call restrictions. Until it does, enforcement happens at the agent harness layer.
 
@@ -548,7 +548,7 @@ Notes exfiltrated.              Cross-server call blocked.
                                 Event logged.
 ```
 
-### Control 5: Authenticate Inter-Agent Messages [ASI07]
+### Control 5: authenticate inter-agent messages [asi07]
 
 Forged delegation messages work because worker agents trust the `from_agent` field with no verification. The fix is message signing:
 
@@ -570,7 +570,7 @@ Agent executes.                   "timestamp": "2026-04-02T..."
                                 Forged message rejected.
 ```
 
-### Control 6: Treat RAG Corpora as Injection Surfaces [ASI04]
+### Control 6: treat RAG corpora as injection surfaces [asi04]
 
 ```
 RAG ingestion pipeline — unsecured:
@@ -593,7 +593,7 @@ RAG ingestion pipeline — with sanitization:
 
 ---
 
-## Putting It Together: The Defender's Model
+## Putting it together: the defender's model
 
 ```
 ATTACK SURFACE MAP FOR AGENTIC AI SYSTEMS
@@ -638,7 +638,7 @@ The attack primitives — tool poisoning, meta-context injection, cross-server p
 
 ---
 
-## Going Deeper
+## Going deeper
 
 The attacks described in this post are reproducible using the lab environment from Week 1 of my course **Securing Agentic AI Systems**. The lab runs 100% locally using LM Studio and Docker — no cloud dependencies, no API keys.
 

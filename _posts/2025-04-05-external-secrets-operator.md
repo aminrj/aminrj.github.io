@@ -26,7 +26,7 @@ We use Terraform to bootstrap infrastructure and ArgoCD to manage Kubernetes man
 
 If you want secrets to stay out of Git, follow along.
 
-## Why Use External Secrets Operator?
+## Why use External Secrets Operator?
 
 A few clear goals shaped this setup:
 
@@ -38,7 +38,7 @@ A few clear goals shaped this setup:
 External Secrets Operator (ESO) solves the missing piece by syncing secrets stored
 outside Kubernetes (e.g. Azure Key Vault) into your cluster, securely and automatically.
 
-## High-Level Architecture
+## High-level architecture
 
 Here’s what this setup does:
 
@@ -53,7 +53,7 @@ Azure Key Vault ← ESO ← ExternalSecret ← ArgoCD
 Creates Kubernetes Secret
 ```
 
-## Getting Started from Scratch
+## Getting started from scratch
 
 ### Prerequisites
 
@@ -65,7 +65,7 @@ Creates Kubernetes Secret
 - [Helm](https://helm.sh/)
 - A Git repository for your Kubernetes manifests (for ArgoCD)
 
-### Project Folder Structure
+### Project folder structure
 
 ```
 my-secrets-setup/
@@ -78,7 +78,7 @@ my-secrets-setup/
 │   └── externalsecret.yaml
 ```
 
-## Step 1: Configure Rancher Desktop Kubernetes Cluster
+## Step 1: Configure Rancher Desktop Kubernetes cluster
 
 1. Start Rancher Desktop and make sure Kubernetes is enabled.
 2. Run:
@@ -92,7 +92,7 @@ lima-rancher-desktop   Ready    control-plane,master   19h   v1.32.3+k3s1
 
 This should show your local cluster node.
 
-## Step 2: Provision Azure Infrastructure with Terraform
+## Step 2: Provision Azure infrastructure with Terraform
 
 Create a resource group, Azure Key Vault, and app credentials:
 
@@ -225,7 +225,7 @@ can be found in our Github: https://github.com/external-secrets/external-secrets
 
 ---
 
-## Step 4: Bootstrap Azure Credentials into Kubernetes
+## Step 4: Bootstrap Azure credentials into Kubernetes
 
 Use the Terraform output values:
 
@@ -375,7 +375,7 @@ resource "helm_release" "external_secrets" {
 
 > You only need to do this once per cluster.
 
-## Provision Azure Key Vault + App Credentials (Terraform)
+## Provision Azure Key Vault + app credentials (Terraform)
 
 Then use Terraform to provision an Azure Key Vault, an App Registration, and a
 client secret that ESO will use to authenticate as before.
@@ -417,7 +417,7 @@ spec:
 
 This syncs secrets from Azure into a Kubernetes `Secret` that your app can consume.
 
-### Use Secrets in Your Application Deployment
+### Use secrets in your application deployment
 
 You can inject secrets into your app using `envFrom` in your Deployment:
 
@@ -437,7 +437,7 @@ myapp
 If your app needs a full connection string (e.g., `DATABASE_URL`), you can
 create that as a single secret in Key Vault and map it using `remoteRef`.
 
-### Terraform Module to Generate and Store Secrets
+### Terraform module to generate and store secrets
 
 For production environments, I prefer generating credentials via Terraform to
 avoid manual work.
@@ -468,22 +468,18 @@ This creates secrets like:
 
 All stored in Azure Key Vault.
 
-## Benefits of This Approach
+## Benefits of this approach
 
-- **No secrets in Git** — everything is pulled securely from Azure
-- **Repeatable** — new environments or apps just need Terraform + ArgoCD sync
-- **Scalable** — one Key Vault, many apps, zero manual duplication
-- **GitOps-friendly** — secrets are managed declaratively
-- **Modular** — separate secret generation, storage, and usage
+- No secrets end up in Git — everything is pulled from Azure at runtime
+- New environments or apps just need Terraform + ArgoCD sync, nothing else
+- One Key Vault serves many apps with no duplication
+- Secrets are declared in Git and managed declaratively
+- Secret generation, storage, and usage are separate concerns
 
-## Final Thoughts
+## Final thoughts
 
-External Secrets Operator is one of the most effective tools I’ve added to my
-Kubernetes setup.
-It bridges the gap between secure secret storage (Azure Key Vault) and
-GitOps-driven Kubernetes workloads.
+ESO is now my default for any production cluster. It connects secure secret
+storage (Azure Key Vault) with GitOps-driven Kubernetes workloads without leaking
+credentials into Git.
 
-This setup is now my default for any production cluster.
-
-If you're building GitOps-first, multi-environment Kubernetes systems, ESO should
-be part of your toolkit.
+If you're building multi-environment Kubernetes systems, it's worth the setup cost.

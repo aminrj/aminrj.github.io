@@ -48,7 +48,7 @@ All labs, configurations, and attack scripts referenced in this article are repr
 
 ---
 
-## What Makes Agentic Attacks Hard to Find
+## What makes agentic attacks hard to find
 
 Before diving into frameworks and tooling, one insight from executing these attacks in my lab: **the most dangerous attack vectors are the simplest ones, because the LLM handles the exploitation complexity for the attacker.**
 
@@ -62,7 +62,7 @@ Every individual tool call in these attacks was legitimate. The malicious intent
 
 ---
 
-## Why Agents Need a Different Kind of Red Team
+## Why agents need a different kind of red team
 
 Traditional penetration testing assumes a relatively predictable application: inputs map to outputs through deterministic code paths. You can trace a request through the application, test each boundary, and verify each control.
 
@@ -94,11 +94,11 @@ This is why the [CSA Agentic AI Red Teaming Guide](https://cloudsecurityalliance
 
 ---
 
-## Framework Map: OWASP + MITRE ATLAS + CSA
+## Framework map: OWASP + MITRE ATLAS + CSA
 
 Before you run a single attack, you need a shared vocabulary. Three frameworks provide the foundation.
 
-### OWASP Agentic Top 10 (ASI01–ASI10)
+### OWASP agentic top 10 (asi01–asi10)
 
 The OWASP Agentic Top 10 defines the ten most critical security risks for autonomous AI systems. Published in December 2025, it was developed by over 100 industry experts and provides the primary risk taxonomy for agentic AI.
 
@@ -134,7 +134,7 @@ MITRE ATLAS (Adversarial Threat Landscape for AI Systems) extends ATT&CK to AI/M
 
 For the DockerDash red team engagement, AML.T0051 (prompt injection via Docker labels) and AML.T0056 (plugin compromise via MCP tool poisoning) were the primary techniques. AML.T0043 (adversarial data crafted into image metadata) was the attack preparation step. These ATLAS codes allow each finding to be referenced against techniques with documented real-world precedent.
 
-### CSA Agentic AI Red Teaming Guide
+### CSA agentic AI red teaming guide
 
 The CSA provides the most detailed operational methodology with 12 threat categories. The mapping to OWASP codes creates a comprehensive test matrix:
 
@@ -165,11 +165,11 @@ _The three frameworks approach the same problem from different angles. Use them 
 
 ---
 
-## Attack Technique Reference
+## Attack technique reference
 
 The attack techniques relevant to agentic AI red teaming organize into four primary categories from the OWASP Agentic Top 10. Each is summarized below with references to detailed walkthroughs in my earlier articles and scored using the AI-VSS framework described later in this article.
 
-### ASI01: Goal Hijacking — Replacing the Agent's Objective
+### ASI01: goal hijacking — replacing the agent's objective
 
 LLMs process all context without distinguishing data from instructions. Any text that enters the context window can redirect the agent's goal. Techniques range from direct prompt injection (low detection difficulty) to semantic manipulation across multi-turn conversations (very high detection difficulty). The EchoLeak vulnerability (CVE-2025-32711) demonstrated zero-click goal hijacking against Microsoft 365 Copilot through a single crafted email.
 
@@ -187,7 +187,7 @@ The agent's goal shifted from "evaluate image safety" to "stop all containers, e
 
 **AI-VSS Score: 9.5 (Critical)** — Base 7.5 + cascading (+1.0) + stealth (+0.5) + tool scope (+0.5). See [full scoring breakdown](#scoring-all-documented-attacks) below.
 
-### ASI02: Tool Misuse — Weaponizing Legitimate Tool Calls
+### ASI02: tool misuse — weaponizing legitimate tool calls
 
 Agents call tools without understanding sequencing risk. A tool chain where each individual call is legitimate can be collectively destructive. Attack surfaces include parameter pollution, tool chain manipulation, confused deputy attacks, and full-schema poisoning (CyberArk FSP) where every MCP tool schema field becomes an injection surface.
 
@@ -195,7 +195,7 @@ Agents call tools without understanding sequencing risk. A tool chain where each
 
 **AI-VSS Score: 8.5 (High)** — Base 7.0 + stealth (+0.5) + tool scope (+0.5) + human trust (+0.5)
 
-### ASI07: Inter-Agent Communication — Cross-Server Exploitation
+### ASI07: inter-agent communication — cross-server exploitation
 
 In multi-agent systems, the attack surface expands from single-agent compromise to system-wide manipulation through message spoofing, orchestrator poisoning, trust chain exploitation, and delegation injection.
 
@@ -212,7 +212,7 @@ In multi-agent systems, the attack surface expands from single-agent compromise 
 
 **AI-VSS Score: 8.0 (High)** — Base 6.5 + cascading (+1.0) + stealth (+0.5)
 
-### ASI08: Cascading Failures — Single Input, System-Wide Impact
+### ASI08: cascading failures — single input, system-wide impact
 
 The highest-impact category for multi-agent systems. A single poisoned input at any point can propagate through error amplification, hallucination cascades, feedback loops, and memory poisoning. NVIDIA's threat research documented a 10–50x amplification factor in production systems: one false data point cascaded into full crisis-response narratives with recommended layoffs, budget cuts, and board notifications.
 
@@ -220,18 +220,18 @@ The highest-impact category for multi-agent systems. A single poisoned input at 
 
 ---
 
-## Running Case Study: From DockerDash to Red Team Assessment
+## Running case study: from dockerdash to red team assessment
 
 To make this concrete, let's walk through how you would use these frameworks and tools against the attack infrastructure from my previous articles.
 This is the same lab environment used in the [DockerDash]({% post_url 2026-03-03-docker-dash-mcp-attack %}) and [tool poisoning]({% post_url 2026-02-26-mcp-tool-poisoning %}) demonstrations.
 
 _The red team assessment follows five phases, moving from broad threat modeling to precise manual exploitation._
 
-### Target Architecture
+### Target architecture
 
 ![Red Team Target Environment](/assets/media/ai-security/mcp-attack-labs/red-team-target-architecture.png)
 
-### Phase 1: Scoping & Threat Modeling (1–2 hours)
+### Phase 1: scoping & threat modeling (1–2 hours)
 
 Map the target system against the CSA 12 threat categories and OWASP ASI codes. The output is a test matrix showing which categories apply:
 
@@ -246,7 +246,7 @@ Map the target system against the CSA 12 threat categories and OWASP ASI codes. 
 | Authorization & Control Hijacking | Partial — no auth on tool calls | ASI03 | Medium |
 | Agent Untraceability | Yes — no tool call audit log | ASI10 | Medium |
 
-### Phase 2: Attack Surface Enumeration (2–3 hours)
+### Phase 2: attack surface enumeration (2–3 hours)
 
 For each target, map every input vector that reaches the model's context window:
 
@@ -266,7 +266,7 @@ For each target, map every input vector that reaches the model's context window:
 
 Document each with the trust level MCP assigns to it (spoiler: MCP assigns no trust levels to any of them).
 
-### Phase 3: Automated Scanning with Promptfoo
+### Phase 3: automated scanning with promptfoo
 
 Before manual exploitation, run a broad automated scan. Promptfoo's agentic plugins map directly to the OWASP framework:
 
@@ -377,7 +377,7 @@ prompt with a malicious task and the model will execute it the same way.
 
 ![Promptfoo scan results](/assets/media/ai-security/mcp-attack-labs/promptfoo-results.png)
 
-### Phase 4: Deep Exploitation with PyRIT
+### Phase 4: deep exploitation with PyRIT
 
 PyRIT (Python Risk Identification Tool) is Microsoft's open-source framework for multi-turn attacks against AI systems.
 Where Promptfoo excels at broad scanning, PyRIT excels at sophisticated, multi-turn attack strategies that automated scanners can't replicate.
@@ -522,7 +522,7 @@ Scorer confidence: 0.95
 
 The Crescendo strategy succeeded in 6 turns. The agent never questioned the external email address or the sensitivity of the file contents. This log, together with the tool call trace, forms the evidence for Finding #2 in the red team report.
 
-### Phase 5: Manual Expert Testing
+### Phase 5: manual expert testing
 
 The attacks that matter most are the ones no automated tool can anticipate.
 These are the business-logic attacks, creative chaining, and context-specific exploits that require human domain expertise.
@@ -543,7 +543,7 @@ _The DockerDash kill chain across all four attack categories — from a single p
 ![DockerDash Full Kill Chain](/assets/media/ai-security/mcp-attack-labs/dockerdash-full-kill-chain.png)
 ---
 
-## Red Teaming Tool Selection Guide
+## Red teaming tool selection guide
 
 Choosing the right tool depends on what phase of testing you're in:
 
@@ -555,7 +555,7 @@ Choosing the right tool depends on what phase of testing you're in:
 | **AgentDojo** (ETH Zurich) | Benchmarking agent hijacking resistance | 629 test cases, used by NIST/CAISI | Phase 2: baseline measurement |
 | **mcp-scan** (Invariant Labs) | MCP tool description analysis | Detects poisoned descriptions in MCP configs | Phase 2: enumeration |
 
-### The 4-Layer Testing Strategy
+### The 4-layer testing strategy
 
 The industry best practice is a layered approach:
 
@@ -581,7 +581,7 @@ _Each layer builds on the previous. Start broad and cheap (Layer 1), escalate to
 ![4-layers testing strategy](/assets/media/ai-security/mcp-attack-labs/4-layer-testing-strategy.png)
 ---
 
-## Severity Scoring for AI Agent Vulnerabilities
+## Severity scoring for AI agent vulnerabilities
 
 Standard CVSS doesn't capture AI-specific risk dimensions.
 The OWASP AI Vulnerability Scoring Standard (AI-VSS) provides AI-specific modifiers:
@@ -612,7 +612,7 @@ The OWASP AI Vulnerability Scoring Standard (AI-VSS) provides AI-specific modifi
 - Tool scope amplification: +0.5 (Docker daemon access)
 - **Adjusted score: 9.5 (Critical)**
 
-### Scoring All Documented Attacks {#scoring-all-documented-attacks}
+### Scoring all documented attacks {#scoring-all-documented-attacks}
 
 Applying the AI-VSS framework to every attack documented across this series produces a complete severity reference:
 
@@ -627,15 +627,15 @@ Applying the AI-VSS framework to every attack documented across this series prod
 | **Memory poisoning propagation** | 5.0 | +1.0 | +0.5 | +0.5 | — | +0.5 | **7.5 High** |
 | **Hallucination cascade** (NVIDIA) | 5.5 | +1.0 | — | — | — | +0.5 | **7.0 High** |
 
-The pattern: attacks that chain multiple ASI categories consistently score Critical. Stealth and cascading are the two most common modifiers. Every attack in this table benefited from at least one AI-specific modifier, confirming that standard CVSS alone underscores agentic AI vulnerabilities.
+The pattern: attacks that chain multiple ASI categories consistently score Critical. Stealth and cascading are the two most common modifiers. Every attack in this table benefited from at least one AI-specific modifier, confirming that standard CVSS alone underestimates agentic AI vulnerabilities.
 
 ---
 
-## Writing the Red Team Assessment Report
+## Writing the red team assessment report
 
 Every finding from your testing should be documented in a structured report. Here's the template mapped to the OWASP and MITRE frameworks:
 
-### Report Structure
+### Report structure
 
 **1. Executive Summary** (1 page, non-technical)
 
@@ -710,7 +710,7 @@ Strategic (1–3 months): Zero-trust inter-agent authentication. Independent ver
 
 ---
 
-## What to Do Right Now
+## What to do right now
 
 The next article in this series covers defense: detection systems, runtime controls, and resilient agent architectures. In the meantime, three immediate actions would have mitigated every attack documented here:
 

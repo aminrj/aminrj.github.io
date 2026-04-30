@@ -24,7 +24,7 @@ March 2026
 
 ---
 
-## Why This Guide Exists
+## Why this guide exists
 
 OpenClaw is one of the most powerful open-source AI agent platforms available today. It can execute shell commands, control browsers, read and write files, manage calendars, send messages — and it does all of this through the messaging apps you already use. That power is exactly why security professionals should care about it, and exactly why deploying it carelessly is dangerous.
 
@@ -36,11 +36,11 @@ The goal is practical: help you get the productivity benefits of an always-on AI
 
 ---
 
-## Understanding What You're Deploying
+## Understanding what you're deploying
 
 Before hardening anything, you need to understand what OpenClaw actually is from a security perspective. This is not a chatbot. This is a privileged local service with persistence, autonomous execution, and broad system access.
 
-### The Architecture in Security Terms
+### The architecture in security terms
 
 OpenClaw runs as a long-lived Node.js process called the **Gateway** — a WebSocket control plane that sits between your messaging channels (Discord, Telegram, WhatsApp, etc.) and the AI model backend (Anthropic, OpenAI, Ollama). The Gateway manages sessions, routes messages, executes tool calls, and maintains persistent memory as Markdown files on disk.
 
@@ -56,7 +56,7 @@ The key architectural components from a security standpoint are:
 
 **Memory & Sessions:** Persistent Markdown files under `~/.openclaw/` containing conversation history, learned preferences, and session state. Memory contents are injected into the LLM's system prompt — making memory poisoning a real attack vector.
 
-### The Threat Model
+### The threat model
 
 The OpenClaw project documents a clear threat model: **personal assistant security, one trusted operator boundary per gateway.** This is not a multi-tenant platform. If multiple people can message your bot, they all share the same delegated tool authority.
 
@@ -70,13 +70,13 @@ The real-world threats break into three categories:
 
 ---
 
-## My Setup: Architecture and Design Decisions
+## My setup: architecture and design decisions
 
 Here is the architecture I use for AI security research. The key principle is **separation of concerns with controlled blast radius**.
 
-### Infrastructure Layer
+### Infrastructure layer
 
-**Docker Desktop** serves as the containment boundary. OpenClaw runs in a Docker container with explicit volume mounts, network restrictions, and a non-root user. This is the single most impactful security improvement you can make.
+**Docker Desktop** is the containment boundary. OpenClaw runs in a Docker container with explicit volume mounts, network restrictions, and a non-root user. This is the single most impactful security improvement you can make.
 
 **Ollama** runs separately on the host, serving local models for tasks that don't require frontier intelligence — daily digest curation, initial scoring, routine classification. The models I use for these tasks are smaller (7B-class) and cost nothing to run, but they are also more susceptible to prompt injection, which is why I pair them with strict tool policies.
 
@@ -84,7 +84,7 @@ Here is the architecture I use for AI security research. The key principle is **
 
 **Obsidian** vault (tracked with git) is the final destination for all research outputs. OpenClaw writes to a designated workspace directory; a cron job syncs approved outputs to the Obsidian vault. The agent never has direct write access to the vault itself.
 
-### Channel Architecture (Discord)
+### Channel architecture (discord)
 
 I use Discord as my primary interface, with a deliberate channel-per-task architecture. Each Discord channel routes to a specific agent configuration with different model backends and tool policies. This is not just organizational, it is a security boundary.
 
@@ -100,9 +100,9 @@ The critical design choice here is that **no single channel has both broad exter
 
 ---
 
-## Step-by-Step Hardening Guide
+## Step-by-Step hardening guide
 
-### Step 0: Pre-Installation Security Decisions
+### Step 0: pre-installation security decisions
 
 Before installing anything, make these decisions:
 
@@ -112,7 +112,7 @@ Before installing anything, make these decisions:
 
 **Dedicated credentials.** Create separate API keys, bot tokens, and service accounts specifically for OpenClaw. Use scoped tokens with minimum required permissions. Never reuse your personal API keys.
 
-### Step 1: Docker-Based Deployment
+### Step 1: docker-based deployment
 
 Container isolation is the foundation. Here is a hardened Docker Compose configuration:
 
@@ -146,7 +146,7 @@ services:
 
 Key points about this configuration: the `read_only: true` flag makes the root filesystem immutable, so a compromised agent cannot modify system binaries. The `no-new-privileges` flag prevents privilege escalation. Binding port 18789 to `127.0.0.1` ensures the gateway is never directly reachable from the network. Never mount the Docker socket into the container — that grants full host control.
 
-### Step 2: Gateway Authentication and Network Lockdown
+### Step 2: gateway authentication and network lockdown
 
 The gateway is the control plane. Lock it down immediately:
 
@@ -165,7 +165,7 @@ openclaw config set gateway.mode local
 
 Never expose the gateway to the public internet directly. If you need remote access, use Tailscale or an SSH tunnel — never port forwarding.
 
-### Step 3: DM Policy and Channel Access Control
+### Step 3: DM policy and channel access control
 
 Control who can talk to your bot. The default `pairing` mode is a good start, it requires a verification code before any new user can interact.
 For maximum control, use an explicit allowlist:
@@ -196,7 +196,7 @@ For maximum control, use an explicit allowlist:
 
 The `requireMention` setting is essential for guild channels. Without it, the bot processes every message in the channel, dramatically increasing the injection surface. With mention gating, the bot only activates when explicitly addressed.
 
-### Step 4: DM Session Isolation
+### Step 4: DM session isolation
 
 If anyone beyond you can DM the bot, session isolation prevents cross-user data leakage:
 
@@ -208,7 +208,7 @@ The default `main` scope means all DMs share one session — environment variabl
 The `per-channel-peer` scope isolates each sender into their own session.
 This is the setting that, when misconfigured, led to the real-world credential leakage incidents documented by Giskard's security research.
 
-### Step 5: Sandbox Configuration
+### Step 5: sandbox configuration
 
 Enable sandboxing for all non-main sessions at minimum.
 For maximum security, enable it globally:
@@ -227,7 +227,7 @@ openclaw config set agents.defaults.sandbox.workspaceAccess read
 Understand the exec tool's fail-closed behavior: if `sandbox.mode` is off and `exec.host` is set to `sandbox`, exec now fails rather than silently falling back to running on the gateway host.
 This is the correct behavior, but you need to know it exists.
 
-### Step 6: Tool Policy (Least Privilege)
+### Step 6: tool policy (least privilege)
 
 This is where most deployments fail. OpenClaw ships with broad default tool access. Apply a restrictive baseline and selectively re-enable:
 
@@ -254,7 +254,7 @@ This is where most deployments fail. OpenClaw ships with broad default tool acce
 
 For my per-channel agent configurations, I layer additional tool permissions on top of this restrictive baseline. The briefing agent gets `web_search` only. The research agent gets `fs.read` + `web_search`. The maintenance agent gets `exec` within sandbox with `ask: always`. No agent gets unrestricted exec.
 
-### Step 7: Model Selection (Security Implications)
+### Step 7: model selection (security implications)
 
 Model choice is a security decision, not just a performance one.
 The official OpenClaw documentation explicitly warns that weaker and older models are significantly more susceptible to prompt injection and tool misuse.
@@ -267,7 +267,7 @@ For any agent with tool access, use the strongest available instruction-hardened
 For Ollama specifically, use at minimum a 7B+ parameter model with 64K+ context length. Models below this threshold have poor instruction following and small context windows that make injection easier.
 The Ollama documentation recommends Qwen 3.5 27B or GLM 4.7 Flash for tool-capable agents.
 
-### Step 8: Credential Hygiene
+### Step 8: credential hygiene
 
 Assume anything the agent can see might eventually leak through logs, memory, screenshots, or tool traces.
 
@@ -285,7 +285,7 @@ Rotate credentials on a schedule (monthly at minimum, immediately after any susp
 
 If your model provider supports spending limits, set them. A compromised agent running expensive API calls can cause real financial damage.
 
-### Step 9: Skill Installation Safety
+### Step 9: skill installation safety
 
 After ClawHavoc, treat every skill installation like downloading an unknown executable.
 
@@ -306,7 +306,7 @@ After ClawHavoc, treat every skill installation like downloading an unknown exec
 
 **Never** copy-paste terminal commands from a skill's prerequisites section. This is the exact social engineering vector ClawHavoc exploited, fake prerequisite installations that actually deployed Atomic macOS Stealer or keyloggers.
 
-### Step 10: Monitoring, Logging, and Incident Response
+### Step 10: monitoring, logging, and incident response
 
 Enable comprehensive logging. Without logs, you cannot investigate incidents:
 
@@ -333,9 +333,9 @@ openclaw doctor  # surfaces risky/misconfigured DM policies
 
 ---
 
-## Operational Workflows: What I Actually Use OpenClaw For
+## Operational workflows: what I actually use OpenClaw for
 
-### Daily AI Security Briefing (Automated)
+### Daily AI security briefing (automated)
 
 My morning briefing workflow runs on a cron schedule:
 
@@ -346,7 +346,7 @@ My morning briefing workflow runs on a cron schedule:
 
 The critical security design: this workflow processes untrusted external content (RSS feeds, web articles) but has no execution capability. The worst case for a prompt injection in this channel is a polluted summary, not command execution.
 
-### Research Deep Dives
+### Research deep dives
 
 When I need to analyze a new paper, incident report, or vulnerability disclosure:
 
@@ -355,7 +355,7 @@ When I need to analyze a new paper, incident report, or vulnerability disclosure
 3. Outputs go to workspace for review
 4. After my review, approved outputs feed into blog posts, newsletter content, or course materials
 
-### Backup and Maintenance (Scheduled)
+### Backup and maintenance (scheduled)
 
 The `#maintenance` channel handles scheduled tasks:
 
@@ -369,7 +369,7 @@ All exec operations require explicit approval via the `ask: always` setting. I r
 
 ---
 
-## Mapping to OWASP Agentic Top 10
+## Mapping to OWASP agentic top 10
 
 For my course students and fellow security professionals, here is how OpenClaw's attack surfaces map to the framework:
 
@@ -387,7 +387,7 @@ For my course students and fellow security professionals, here is how OpenClaw's
 
 ---
 
-## Common Mistakes and How to Avoid Them
+## Common mistakes and how to avoid them
 
 **Mistake: Running OpenClaw on your primary machine.** An agent compromise gives attackers access to everything you have: SSH keys, password manager vaults, browser sessions, personal files. Use a dedicated, disposable environment.
 
@@ -405,7 +405,7 @@ For my course students and fellow security professionals, here is how OpenClaw's
 
 ---
 
-## Security Checklist — Quick Reference
+## Security checklist — quick reference
 
 Use this checklist when setting up a new OpenClaw deployment or auditing an existing one:
 
@@ -458,7 +458,7 @@ Use this checklist when setting up a new OpenClaw deployment or auditing an exis
 
 ---
 
-## Final Thoughts
+## Final thoughts
 
 OpenClaw represents the cutting edge of what personal AI agents can do — and by extension, the cutting edge of what can go wrong. The ClawHavoc campaign, the exposed instances, and the CVE disclosures are not edge cases. They are the predictable consequences of deploying powerful autonomous systems without security-first design.
 

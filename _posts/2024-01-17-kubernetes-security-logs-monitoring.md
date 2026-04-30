@@ -20,11 +20,11 @@ preview: /media/k8s/k8s-security-logs-loki.png
 
 in this tutorial, we will monitor kubernetes audit logs using the grafana, loki, promtail and prometheus stack.
 the goal is to quickly bootstrap a security-monitored kubernetes cluster using kubernetes vanilla audit capability.
-our setup is described in the figure bellew:
+our setup is described in the figure below:
 
 :construction: **todo:** add architecture diagram here
 
-## configure kubernetes audit policy
+## Configure Kubernetes audit policy
 
 we start by creating a new kubernetes cluster using minikube so that you can redo this tutorial and test the setup before trying it on a cloud deployed cluster.
 
@@ -46,7 +46,7 @@ once the cluster started, we login into it using `minikube ssh` so that we can c
 
 to enable audit logs on a minikube:
 
-### 1. configure kube-apiserver
+### 1. Configure kube-apiserver
 
 Using the official [kubernetes documentation](https://kubernetes.io/docs/tasks/debug/debug-cluster/audit/) as reference, we login into our minikube VM and configure the `kube-apiserver` as follow:
 
@@ -104,10 +104,10 @@ volumes:
     type: DirectoryOrCreate
 ```
 
-Be carefull with the number of spaces you add before each line, this can prevent
+Be careful with the number of spaces you add before each line, this can prevent
 the `kube-apiserver` from starting.
 
-However, at this point, even if you are super carefull, it wont start... 😈
+However, at this point, even if you are super careful, it won't start... 😈
 
 ### 2. Create the audit-policy
 
@@ -164,7 +164,7 @@ potentially create alerts on some usecases.
 
 ### Power-up with Infrastructure as Code
 
-Since I already published and article on how to setup a similar monitoring stack, you can refer to my previous article for more details.
+Since I already published an article on how to setup a similar monitoring stack, you can refer to my previous article for more details.
 For now, just create this terraform file and run `terraform apply` in the same
 folder to do the trick:
 

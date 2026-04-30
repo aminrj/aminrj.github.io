@@ -42,20 +42,15 @@ When you operate your own CA, you maintain full control over:
 
 ![molntek-root-ca](/assets/media/cloud-native/molntek-root-ca.png)
 
-#### Enhanced Security
+#### Enhanced security
 
-By running your own CA, you:
+Running your own CA keeps all certificate operations in-house. In practice:
 
-- **Eliminate dependence on external certificate providers**:
-  By running your own CA, you can control the issuance and management of certificates without relying on third-party providers. This ensures that your organization has full sovereignty over its digital identities.
-- **Reduce the attack surface by keeping all certificate operations in-house:**
-  Running your own CA reduces the risk of vulnerabilities introduced during the interaction with external certificate authorities. By controlling the process, you minimize the potential entry points for attackers to compromise certificates.
-- **Maintain a clear chain of custody for all certificates:**
-  Having control over the CA allows you to securely manage and track certificates throughout their lifecycle. This transparency is crucial in maintaining trust and integrity within your organization's digital environment.
-- **Can immediately revoke compromised certificates**:
-  With an in-house CA, you can swiftly take action against rogue or compromised certificates without relying on external authorities. Quick revocation ensures that malicious entities cannot exploit the compromised certificate for unauthorized access.
-- **Mitigate risks of certificate authorities being compromised or coerced:**
-  Running your own CA eliminates the risk of third-party CAs being exploited or coerced into issuing fraudulent or compromised certificates. By maintaining control, you can prevent such scenarios from compromising your organization's security and reputation.
+- No dependence on external providers — your org controls issuance and management entirely
+- Smaller attack surface with no external CA interactions
+- Clear chain of custody for every certificate throughout its lifecycle
+- Immediate revocation of compromised certificates without waiting on third parties
+- No exposure to third-party CA compromise or coercion
 
 #### Threat Mitigation
 
@@ -77,18 +72,15 @@ For organizations that need many certificates for internal services, running a p
 
 ### Hybrid Approaches
 
-While a private CA offers significant benefits, it's not always feasible or
-necessary to completely replace public CAs. Many organizations opt for a hybrid
-approach, where they:
+A private CA doesn't have to replace public CAs entirely. Many organizations run both:
 
 - Use public CAs for external-facing services and websites
 - Operate a private CA for internal systems, sensitive communications, and
   critical infrastructure
 
-This hybrid model allows organizations to leverage the trust and scalability of
-public CAs while maintaining control over their most sensitive digital assets.
+This lets organizations use the reach of public CAs while keeping control over their most sensitive assets.
 
-### Real-World Applications
+### Real-world applications
 
 Consider these scenarios where a private CA proves invaluable:
 
@@ -119,7 +111,7 @@ While running a private CA offers significant benefits, it also comes with respo
 - Secure key storage (preferably using Hardware Security Modules)
 - Strict access controls to CA management systems
 - Regular security audits and monitoring
-- Robust backup and recovery procedures
+- Backup and recovery procedures
 
 #### Operational Needs
 
@@ -155,23 +147,15 @@ To maximize the benefits of your private CA:
 
 ## The Solution: Cloud-Native Private Certificate Authority
 
-Traditional certificate management has long been a complex, error-prone process
-involving significant manual intervention, complex infrastructure, and
-substantial operational overhead.
+Traditional certificate management means manual intervention, complex infrastructure, and significant operational overhead.
 
-Cloud-native Private CAs fundamentally transform this landscape, offering
-unprecedented security, scalability, and efficiency.
+Cloud-native Private CAs change the equation: less manual work, better scaling, and security controls you actually own.
 
 Here are the main technological advantages:
 
 ### 1. Uncompromising Security
 
-By leveraging Cloud Providers’ state of the art resources, such as [AWS KMS with FIPS 140-2 Level 3](https://aws.amazon.com/blogs/security/aws-kms-now-fips-140-2-level-3-what-does-this-mean-for-you/) certified hardware, private Cloud CA ensures that private
-keys are stored in the most secure environment possible.
-
-This level of protection goes beyond traditional on-premises solutions,
-providing a hardened security boundary that protects the most critical component
-of any Public Key Infrastructure (PKI) - the root and issuing CA private keys.
+Using Cloud Providers' infrastructure — such as [AWS KMS with FIPS 140-2 Level 3](https://aws.amazon.com/blogs/security/aws-kms-now-fips-140-2-level-3-what-does-this-mean-for-you/) certified hardware — private Cloud CA stores private keys in HSM-backed hardware. That covers the most critical part of any PKI: protecting the root and issuing CA private keys.
 
 ### 2. Serverless Architecture
 
@@ -198,41 +182,22 @@ cases, balancing performance, compatibility, and security requirements.
 
 - Automated Certificate Revocation List (CRL) publication
 - Optional public CRL Distribution Points
-- Centralized logging and comprehensive auditing
+- Centralized logging and auditing
 
 #### Granular Access Control
 
-By leveraging advanced management for user permissions with tools such as AWS
-IAM, organizations can implement extremely fine-grained access controls,
-ensuring that certificate issuance and management follow the principle of least
-privilege.
+Using AWS IAM, organizations can implement fine-grained access controls so that certificate issuance and management follow the principle of least privilege.
 
 #### Modern Operational Model: GitOps and Automation
 
-By implementing a GitOps operating model, Private Cloud-Native CA eliminates
-manual processes, introducing:
+A GitOps operating model eliminates manual processes and gives you:
 
 - Consistent, version-controlled infrastructure
 - Predictable and repeatable certificate management
-- Enhanced compliance and auditability
+- Improved compliance and auditability
 
-### What’s next ?
+### What's next?
 
-While public CAs serve an important role in internet security, organizations
-with heightened security requirements should seriously consider operating their
-own Certificate Authority.
+Public CAs are the right choice for external services. But for internal infrastructure, sensitive systems, or regulated environments, running your own CA gives you control that no third party can match.
 
-The benefits of complete control, enhanced security, and potential cost savings
-make it an attractive option for organizations that handle sensitive
-information.
-
-The investment in infrastructure and expertise required to run a private CA is
-significant, but for organizations where security is paramount, it's an
-investment that pays dividends in terms of control, security, and peace of mind.
-
-Remember: in an age where data breaches make headlines daily, taking control of
-your certificate infrastructure isn't just about security—it's about taking
-responsibility for your organization's digital trust.
-
-_Transform your security infrastructure with a Private Cloud-Native Certificate
-Infrastructure._
+The operational investment is real — you need secure key storage, lifecycle management, and staff who understand PKI. The payoff: faster revocation, tighter audit trails, and no dependency on someone else's security posture.

@@ -32,7 +32,7 @@ I measured each against a full attack suite on a local ChromaDB + LM Studio stac
 ![Mitigation Layers](/assets/media/ai-security/mcp-attack-labs/rag-mitigation-strategies.png)
 ---
 
-## Defense 1: Embedding Anomaly Detection on Ingestion
+## Defense 1: embedding anomaly detection on ingestion
 
 **What it is:** Before a document enters your vector collection, compute its embedding and compare it against your existing collection. Flag documents that are suspiciously similar to existing content, and flag batches of documents that cluster too tightly together.
 
@@ -70,7 +70,7 @@ If all three are "no," you have no detection mechanism for coordinated knowledge
 
 ---
 
-## Defense 2: Access-Controlled Retrieval (The `where` Clause Nobody Adds)
+## Defense 2: access-controlled retrieval (the `where` clause nobody adds)
 
 **What it is:** A metadata filter on every vector database query that restricts which documents a given user is permitted to retrieve, based on their identity and access level.
 
@@ -123,7 +123,7 @@ If there's no filter on retrieval, every document in your collection is reachabl
 
 ---
 
-## Defense 3: Prompt Structure Hardening (Data vs. Instructions Separation)
+## Defense 3: prompt structure hardening (data vs. instructions separation)
 
 **What it is:** A deliberate structural separation between the LLM's operator instructions and the retrieved documents, combined with explicit instructions that retrieved content is data-only.
 
@@ -192,7 +192,7 @@ Prompt hardening alone reduces marker-based injection by roughly 65% and semanti
 
 ---
 
-## The Numbers: Why This Order
+## The numbers: why this order
 
 These defenses aren't equally effective or equally urgent. Here's the full measurement table from my tests (20 runs per configuration, ChromaDB + Qwen2.5-7B, temperature=0.1). These figures are directional — treat them as relative impact comparisons between controls, not statistically precise measurements:
 
@@ -219,7 +219,7 @@ The takeaways:
 
 ---
 
-## The One Thing Semantic Injection Exposes
+## The one thing semantic injection exposes
 
 The 15% residual on semantic injection — instructions delivered through convincing corporate language with zero structural markers — cannot be closed by any regex-based or heuristic defense.
 

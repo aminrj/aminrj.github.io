@@ -11,7 +11,7 @@ image:
 description: Build a working AI analyst from scratch in one file. Learn LLM engineering fundamentals through a real procurement analysis application with structured outputs.
 ---
 
-## Why I Built This
+## Why I built this
 
 Most LLM tutorials end with "Hello, World!" Mine ends with a working procurement analyst.
 
@@ -19,55 +19,45 @@ After 15+ years at Société Générale, Airbus, and Volvo Cars, I've seen what 
 
 That never works. So I built this one-file MVP to show the opposite: treat the LLM like **software** from day one. Schemas. Validation. Retries. The boring stuff that prevents 3 AM debugging sessions.
 
-Here, I build a simple, one-file procurement "AI analyst" to demonstrate these patterns. And it actually works.
+It's a procurement intelligence assistant that:
 
-MVP output analyzing procurements with local LLM
-Why?
+- Filters tenders for relevance (cybersecurity / AI / software)
+- Rates the opportunity (fit, win probability, effort, risks)
+- Generates structured bid content (executive summary, approach, value prop, timeline)
 
-I wanted something different: a real application with real constraints, where the model has to behave like a component in a software system — not a chatbot.
+All of it runs locally through LM Studio using an OpenAI-compatible API. The model is forced to return structured JSON validated with Pydantic, so downstream code stays clean and predictable.
 
-What?
-
-So I built a single-file MVP: a procurement intelligence assistant that:
-
-Filters tenders for relevance (cybersecurity / AI / software)
-Rates the opportunity (fit, win probability, effort, risks)
-Generates structured bid content (executive summary, approach, value prop, timeline)
-All of it runs locally through LM Studio using an OpenAI-compatible API.
-And the most important part: the model is forced to return structured JSON validated with Pydantic, so downstream code stays clean and predictable.
-
-This article documents the approach, the architecture, and the LLM engineering patterns that made it reliable enough to be useful.
-
-This project is fully available on my Github. Make sur to checkout the tag (v0.1-article-procurement-mvp) for this one-file simplified version.
+This project is fully available on my GitHub. Make sure to check out the tag `v0.1-article-procurement-mvp` for this one-file simplified version.
 
 GitHub - aminrj/procurement-ai
 
 Contribute to aminrj/procurement-ai development by creating an account on GitHub.
 
-Why I started here (and why procurement is a great sandbox)
+## Why I started here (and why procurement is a great sandbox)
 
-What is a procurement tender ?
+### What is a procurement tender?
 
 A procurement tender is a document where an organization (public or private) asks companies to offer a price and plan to do a job or provide a service. The organization then compares the offers and chooses the best one.
 
 Procurement tenders are an underrated playground for applied LLM engineering:
 
-Inputs are messy: long descriptions, vague requirements, inconsistent formatting
-Outputs have business impact: go/no-go decisions, prioritization, drafting bids
-Constraints are strict: you need repeatable scoring and consistent structure
-There’s a natural workflow: filter → evaluate → generate
+- Inputs are messy: long descriptions, vague requirements, inconsistent formatting
+- Outputs have business impact: go/no-go decisions, prioritization, drafting bids
+- Constraints are strict: you need repeatable scoring and consistent structure
+- There's a natural workflow: filter → evaluate → generate
+
 And from a learning perspective, it forces you to handle the real problems of LLM apps:
 
-structured outputs
-retries
-temperature control
-orchestration
-guardrails & branching logic
-The MVP in one sentence
+- structured outputs
+- retries
+- temperature control
+- orchestration
+- guardrails & branching logic
+### The MVP in one sentence
 
 A sequential, multi-agent pipeline that turns a tender into a validated decision and draft bid content, with structured JSON enforced via Pydantic.
 
-The core design choice: treat the LLM like software, not a chatbot
+### The core design choice: treat the LLM like software
 
 If you’re new to LLM engineering, here’s the first trap:
 
@@ -77,43 +67,41 @@ The upgrade is to treat the model output as a contract.
 
 This MVP uses Pydantic models as that contract:
 
-The model must return JSON.
-The JSON must match a schema.
-Values must fall within constraints.
-If anything is wrong, we retry.
+- The model must return JSON.
+- The JSON must match a schema.
+- Values must fall within constraints.
+- If anything is wrong, we retry.
 That’s not “prompting.” That’s engineering.
 
 LM Studio for local LLM development and testing
-The architecture (simple, but teachable)
+### The architecture
 
 This app is layered in a way that mirrors production systems:
 
-Schema layer: Pydantic models describing expected outputs
-LLM infrastructure layer: one service that does API calls + cleaning + validation
-Agent layer: business logic prompts (filter, rate, generate)
-Orchestration layer: branching workflow + status + timing
-Demo layer: main() runs sample tenders and prints a report
+- Schema layer: Pydantic models describing expected outputs
+- LLM infrastructure layer: one service that does API calls + cleaning + validation
+- Agent layer: business logic prompts (filter, rate, generate)
+- Orchestration layer: branching workflow + status + timing
+- Demo layer: `main()` runs sample tenders and prints a report
 Here’s the flow:
 
 Application workflow
 This is a “boring” linear workflow — which is exactly why it’s perfect for learning. Later, you can compare it to LangGraph or more complex agent routing. But first, make the basics solid.
 
-Step 1: Define the schemas (Pydantic is the backbone)
+## Step 1: define the schemas
 
-Let’s start with the most important part: structured outputs.
-
-A minimal mental model for Pydantic here
+Let's start with the most important part: structured outputs.
 
 Pydantic gives you:
 
-Type enforcement (float vs string, list vs scalar)
-Constraint checking (confidence must be 0–1, scores must be 0–10)
-Parsing into Python objects you can trust
+- Type enforcement (float vs string, list vs scalar)
+- Constraint checking (confidence must be 0–1, scores must be 0–10)
+- Parsing into Python objects you can trust
 In this MVP, each agent has a corresponding schema:
 
-FilterAgent → FilterResult
-RatingAgent → RatingResult
-DocumentGenerator → BidDocument
+- `FilterAgent` → `FilterResult`
+- `RatingAgent` → `RatingResult`
+- `DocumentGenerator` → `BidDocument`
 Here’s the filtering output model:
 
 class FilterResult(BaseModel):
@@ -145,7 +133,7 @@ This is the “contract” mindset:
 
 Don’t accept vague prose. Accept validated data.
 
-Step 2: Build a single “structured output” LLM gateway
+## Step 2: build a single LLM gateway
 
 Most early LLM prototypes scatter API calls all over the code. That becomes untestable fast.
 
@@ -163,14 +151,15 @@ max_retries: int = 3,
 ) -> BaseModel:
 This method demonstrates a production-grade pattern:
 
-Build messages (system + user)
-Inject schema guidance into the user prompt
-Call the LLM API (LM Studio)
-Clean the response (remove code fences, extract JSON)
-Parse JSON
-Validate with Pydantic
-Retry if anything fails
-Prompt-time schema steering (simple and effective)
+- Build messages (system + user)
+- Inject schema guidance into the user prompt
+- Call the LLM API (LM Studio)
+- Clean the response (remove code fences, extract JSON)
+- Parse JSON
+- Validate with Pydantic
+- Retry if anything fails
+
+### Prompt-time schema steering
 
 This MVP doesn’t use function calling. Instead it uses example-driven JSON steering.
 
@@ -180,11 +169,11 @@ messages = [
 {"role": "system", "content": system_prompt},
 {"role": "user", "content": self._build_structured_prompt(prompt, response_model)},
 ]
-Then \_build_structured_prompt() injects:
+Then `_build_structured_prompt()` injects:
 
-an example JSON object with correct types
-strict formatting rules
-constraints (confidence 0–1, scores 0–10, enum values, lists required)
+- an example JSON object with correct types
+- strict formatting rules
+- constraints (confidence 0–1, scores 0–10, enum values, lists required)
 A snippet:
 
 return f"""{prompt}
@@ -205,14 +194,14 @@ CRITICAL VALUE REQUIREMENTS:
 
 When I’m coding with LLMs, I prefer explicit guardrails over “clever” prompts.
 
-Step 3: Clean and validate (the reliability layer)
+## Step 3: clean and validate
 
 Even good models occasionally return:
 
-Markdown fences: json …
-commentary before/after JSON
-incomplete objects
-extra braces in reasoning text
+- Markdown fences around the JSON
+- Commentary before or after the object
+- Incomplete objects
+- Extra braces inside reasoning text
 So the MVP includes \_clean_json() to strip markdown and extract the first balanced JSON object.
 
 This is one of those “unsexy” details that separates a demo from a working app.
@@ -271,13 +260,13 @@ raise Exception(f"Failed after {max_retries} attempts: {e}")
 await asyncio.sleep(2)
 This gives you a stable contract:
 
-if you get a result, it matches the schema
-if not, it fails loudly and predictably
-Step 4: The agents (business logic as prompts)
+- if you get a result, it matches the schema
+- if not, it fails loudly and predictably
+## Step 4: the agents
 
 With the infrastructure in place, the agents become clean and readable.
 
-Agent 1: FilterAgent (classification + reasoning)
+### Agent 1: filteragent
 
 The filtering agent answers: “Do we care?”
 
@@ -292,21 +281,19 @@ temperature=Config.TEMPERATURE_PRECISE,
 )
 The prompt includes explicit criteria:
 
-relevant if it involves cybersecurity / AI / software development
-not relevant if hardware, physical infra, catering, etc.
+- relevant if it involves cybersecurity / AI / software development
+- not relevant if hardware, physical infra, catering, etc.
 This is a classification prompt with reasoning, not “generate content.”
 
-Agent 2: RatingAgent (multi-dimensional scoring)
-
-This is where you start seeing “LLM as analyst.”
+### Agent 2: ratingagent
 
 The prompt asks for:
 
-strategic fit
-win probability
-effort required
-strengths and risks
-go/no-go recommendation
+- strategic fit
+- win probability
+- effort required
+- strengths and risks
+- go/no-go recommendation
 And again: low temperature.
 
 system = "You are a business development expert evaluating tender opportunities. Be analytical and realistic, not optimistic."
@@ -317,7 +304,7 @@ result.status = "rated_low"
 return result
 That branch is important: it’s cost control and quality control.
 
-Agent 3: DocumentGenerator (creative, but constrained)
+### Agent 3: documentgenerator
 
 Now we increase temperature for writing:
 
@@ -330,16 +317,16 @@ Creativity does not mean unstructured.
 
 Even “creative generation” should land in a contract if you plan to automate anything downstream.
 
-Step 5: Orchestration (where this becomes a “product workflow”)
+## Step 5: orchestration
 
 The orchestrator ties everything into a coherent pipeline.
 
 It does four jobs:
 
-sequential execution
-branching logic
-status tracking
-timing
+- sequential execution
+- branching logic
+- status tracking
+- timing
 A key part is the early exit:
 
 if (
@@ -363,13 +350,13 @@ This is “agent orchestration,” but it’s intentionally simple. You can unde
 
 That’s a feature.
 
-A quick demo dataset (and why it matters)
+### A quick demo dataset
 
 The MVP includes sample tenders:
 
-AI cybersecurity platform (should be relevant + high rated)
-office furniture (should be filtered out)
-custom CRM software (likely relevant)
+- AI cybersecurity platform (should be relevant + high rated)
+- office furniture (should be filtered out)
+- custom CRM software (likely relevant)
 That gives you immediate feedback on whether your prompts and schema steering are working.
 
 SAMPLE_TENDERS = [
@@ -377,121 +364,50 @@ Tender(...),
 Tender(...),
 Tender(...),
 ]
-When you run main(), you get a summary report:
+When you run `main()`, you get a summary report:
 
-how many were relevant
-how many rated high
-how many documents generated
-processing time
+- how many were relevant
+- how many rated high
+- how many documents generated
+- processing time
 This is the beginning of an evaluation loop.
 
 If you build more samples (including tricky borderline cases), this becomes the foundation of a real test suite.
 
-What I learned (the practical LLM engineering takeaways)
+## What I learned
 
-1. Structured outputs are not optional
+1. Structured outputs are not optional. The fastest path to reliability: define schema, steer the model toward JSON, validate and retry. Skip validation and your app becomes fragile.
 
-The fastest path to reliability is:
+2. Prompts get easier when the schema is clear. When you know the output fields, prompts become focused: return these categories, return 3 strengths, return these four sections. The schema eliminates ambiguity.
 
-define schema
-steer model toward JSON
-validate and retry
-If you skip validation, your app becomes fragile.
+3. Temperature is a tool, not a vibe. I used 0.1 for filtering and rating (precision), 0.7 for document generation (variation). It's not about "better answers" — it's about matching the mode to the task.
 
-1. Prompts become much easier when the schema is clear
+4. Orchestration is where business logic lives. The model does analysis, but the system makes decisions. Exit early if irrelevant, exit if the score is too low, only generate proposals when worth it. That's a product mindset.
 
-When you know the output fields, prompts become focused:
+5. Debugging LLM apps is mostly debugging output shape. Most failures are formatting or schema mismatch. The code prints the raw and cleaned response on each retry, which tells you exactly where things went wrong.
 
-“Return categories and confidence”
-“Return 3 strengths, 3 risks”
-“Return these four sections”
-The schema eliminates ambiguity.
-
-1. Temperature is a tool, not a vibe
-
-I used:
-
-0.1 for filtering and rating (precision)
-0.7 for document generation (variation)
-It’s not about “better answers.” It’s about matching the mode to the task.
-
-1. Orchestration is where business logic lives
-
-The model does analysis, but the system does decisions:
-
-exit early if irrelevant
-exit early if low score
-only generate proposals when worth it
-That’s a product mindset.
-
-1. Debugging LLM apps is mostly debugging output shape
-
-The code includes debug prints on retries:
-
-if attempt > 0:
-print(f" Raw response: {response[:200]}...")
-print(f" Cleaned: {cleaned[:200]}...")
-This is extremely useful early on because most failures are formatting / schema mismatch.
-
-Where this goes next (my roadmap from here)
+## Where this goes next
 
 This MVP is intentionally a “one-file learning artifact.” But it points directly to the next iterations:
 
-A) Real ingestion: scrape tender portals
+- Real ingestion: replace `SAMPLE_TENDERS` with a scraper — HTML/PDF parsing, normalization into `Tender` objects, JSONL for storage.
 
-Replace SAMPLE_TENDERS with:
+- Persistence + UI: store `ProcessedTender` objects in Postgres or SQLite, add a simple web interface to browse decisions and export results.
 
-scraper → HTML/PDF parsing
-normalization into Tender objects
-storage (even a JSONL file at first)
-B) Persistence + UI
+- Evaluation harness: build a labeled dataset of 50–200 tenders with expected relevance, category, and score ranges. Track false positives, rating stability, and output validity rate. This becomes your real test suite.
 
-store ProcessedTender in Postgres/SQLite
-add a simple web UI to browse, filter, and export decisions
-C) Evaluation harness (this is the big one)
+- Stronger guardrails: schema-aware repair prompts on parse failures, response-format controls where supported, field constraints like exactly 3 strengths/risks.
 
-Create a small dataset:
+- Orchestration comparison: once the linear flow is solid, try LangGraph, add optional agents (compliance, risk), or layer in retrieval over past bids and company capabilities.
+## Closing: the big lesson
 
-50–200 labeled tenders
-expected relevance/category labels
-expected score bands
-Then track:
-
-false positives / false negatives in filtering
-stability of ratings
-output validity rate
-D) Stronger guardrails
-
-If you want more robustness:
-
-add schema-aware “repair prompts” on parse failures
-use response-format controls (if supported by your local server)
-add content checks (e.g., enforce exactly 3 strengths/risks)
-E) Compare orchestration styles
-
-Once the linear flow is mastered:
-
-try a graph workflow (LangGraph)
-add optional agents (e.g., compliance agent, risk agent)
-add memory or retrieval (company capabilities, past bids, templates)
-Closing: the big lesson
-
-LLMs are probabilistic text generators.
-
-But you can wrap them in:
-
-contracts (Pydantic schemas)
-validation gates
-retries
-orchestration logic
-temperature strategy
-…and make them behave like reliable components in a software system.
+LLMs are probabilistic text generators. Wrap them in Pydantic schemas, validation gates, retries, and orchestration logic, and they start to behave like reliable components.
 
 This one-file MVP is my first documented step in that direction. Next I’ll move from “demo tenders” to real ingestion, persistence, evaluation, and automation.
 
 If you’re also learning LLM engineering: start with something that forces structure and decisions. You’ll learn more in a week than you’ll learn from months of prompt tinkering.
 
-Appendix: The Pattern to Reuse Everywhere
+## Appendix: the pattern to reuse everywhere
 
 If you only take one piece from this article, take this pattern:
 
@@ -515,17 +431,9 @@ print(result.score)
 
 That's the foundation of LLM engineering.
 
-## What I Learned Building This
-
-**Treat LLMs like any other API—because they are.** Years of integrating third-party services taught me: never trust what comes back over the wire. Authentication APIs can return malformed tokens. Payment gateways can time out mid-transaction. LLMs? Same principle. Wrap them in validation layers. Design for failure from the start.
-
-**Temperature isn't a "quality" dial—it's a variance knob.** Scoring tenders at 0.1 gives consistent "yes/no" decisions. Generating proposals at 0.7 produces natural, varied language. Neither is "better." Match the parameter to your tolerance for surprise. Low variance for logic, high variance for creativity.
-
-**One-file MVPs force design clarity.** Putting everything in a single script reveals the real complexity. No hiding behind microservices or "we'll refactor later." If your one-file solution is incomprehensible, your microservices architecture will be worse. Nail the simple version first.
-
 ---
 
-## Resources & Next Steps
+## Resources & next steps
 
 **Read the Code**: [github.com/aminrj/procurement-ai](https://github.com/aminrj/procurement-ai) — Tag `v0.1-article-procurement-mvp` for the one-file version
 

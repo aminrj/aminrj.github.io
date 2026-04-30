@@ -105,9 +105,9 @@ Everything runs locally first. Cloud options are noted throughout.
 
 ---
 
-## Part 1 — Why Agents, Why Now, and Why the Basics Matter
+## Part 1 — why agents, why now, and why the basics matter
 
-### What an LLM Alone Cannot Do
+### What an LLM alone cannot do
 
 A language model answers questions. It has knowledge up to its training cutoff, it can reason over text you give it, and it produces text output. That is genuinely useful, but it is fundamentally passive. The model cannot fetch a live CVE feed. It cannot query Shodan against a current IP. It cannot compare what it finds against your specific firewall logs from last night.
 
@@ -125,7 +125,7 @@ The five properties that make an agentic system different from a simple chatbot 
 
 None of these is hypothetical. The agent you build in this guide will have all five from the first working version.
 
-### The Real Value Proposition for Security Teams
+### The real value proposition for security teams
 
 Before we write any code, let us be specific about what this buys you — and what it does not.
 
@@ -135,7 +135,7 @@ Before we write any code, let us be specific about what this buys you — and wh
 
 **The transparency advantage:** Unlike a black-box AI assistant that gives you an answer with no provenance, this agent shows its work. Verbose mode (`-v`) exposes every search query, every source URL, every tool call. When the report says "LockBit 5.0 was released in February 2026," you can see that it came from a Broadcom threat report published in January 2026. If the source does not support the claim, you know before you act on it.
 
-### Why LangGraph (and Not Something Else)
+### Why langgraph (and not something else)
 
 The framework landscape in 2026 is noisy. Here is the honest decision matrix:
 
@@ -155,7 +155,7 @@ For a security use case you need: conditional routing (if intel mentions CVEs, g
 >
 > NemoClaw is NVIDIA's enterprise security layer on top of OpenClaw — announced GTC March 2026, still in early alpha — adding kernel-level sandboxing and policy-based guardrails. Relevant if you want to harden OpenClaw deployments; not relevant to building structured, code-defined agentic workflows.
 
-### The Four Concepts That Make LangGraph Click
+### The four concepts that make langgraph click
 
 **State** is a typed Python dictionary that flows through every step of the graph. Every node reads from it and writes back to it. Updates append rather than replace — nothing is lost. In our agent, the state carries: the original target, threat intel findings, CVE matches, log analysis results, extracted IOCs, and the final report.
 
@@ -187,9 +187,9 @@ The supervisor does not run tools — it routes. Each specialist node has its ow
 
 ---
 
-## Part 2 — The Tech Stack
+## Part 2 — the tech stack
 
-### The LLM Layer: Three Paths and What They Actually Cost You
+### The LLM layer: three paths and what they actually cost you
 
 The choice of LLM matters more for security workflows than most tutorials acknowledge. Three factors:
 
@@ -270,7 +270,7 @@ Centralizing LLM configuration in one file means changing providers requires tou
 
 `temperature=0` is non-negotiable for agents. Non-determinism is useful for creative tasks. For security analysis you need the same routing decision for the same data.
 
-### The Tool Layer: Native vs MCP — With Security Context
+### The tool layer: native vs MCP — with security context
 
 **LangChain native tools** (`@tool` decorator) are Python functions that live in the same process as your agent. Simple, fast, easy to audit. Their descriptions are static — written in your code.
 
@@ -280,7 +280,7 @@ What has also become clear is that MCP introduces an attack surface native tools
 
 This guide builds with native tools first, then shows the MCP migration with security implications explicit. That sequence is the right mental model: understand what you are gaining and what you are accepting.
 
-### Complete Stack
+### Complete stack
 
 ```
 LLM:           Ollama / OpenAI / Anthropic (single llm_config.py)
@@ -298,7 +298,7 @@ Pin versions explicitly. Both LangGraph and LangChain had critical CVEs in late 
 
 ---
 
-## Part 3 — Environment Setup
+## Part 3 — environment setup
 
 ```bash
 mkdir ~/sec-intel-agent && cd ~/sec-intel-agent
@@ -348,9 +348,9 @@ curl http://localhost:11434/v1/chat/completions \
 
 ---
 
-## Part 4 — Building the Agent
+## Part 4 — building the agent
 
-### Step 1: Define the State
+### Step 1: define the state
 
 ```python
 # state.py
@@ -381,7 +381,7 @@ class SecurityIntelState(TypedDict):
 
 The `Annotated[list, add_messages]` on `messages` tells LangGraph to append rather than overwrite on each update — this is how conversation history accumulates across nodes without being lost.
 
-### Step 2: Build the Tools
+### Step 2: build the tools
 
 Four tools cover the full triage workflow. Security considerations are inline — they matter, and they are not afterthoughts.
 
@@ -554,7 +554,7 @@ def extract_iocs(text: str) -> str:
 ALL_TOOLS = [search_threat_intelligence, lookup_cve, analyze_logs, extract_iocs]
 ```
 
-### Step 3: Build the Supervisor
+### Step 3: build the supervisor
 
 The supervisor uses **deterministic conditional logic, not an LLM**. This is a deliberate choice: LLM-based routing adds latency, token cost, and non-determinism to what is purely a control-flow decision. The LLM's reasoning is reserved for tasks that actually require it.
 
@@ -592,7 +592,7 @@ def supervisor_node(state: SecurityIntelState) -> Command[Literal[
     return Command(goto="report_node", update={"current_phase": "report"})
 ```
 
-### Step 4: Build the Analyst Nodes
+### Step 4: build the analyst nodes
 
 Each node runs a focused agentic loop: invoke the LLM, execute tool calls, accumulate results, repeat up to `_MAX_TURNS`. The shared `_run_node` function handles this pattern.
 
@@ -670,7 +670,7 @@ report_body = re.split(r'###\s+References', report_text, maxsplit=1)[0]
 report_iocs = json.loads(extract_iocs.invoke({"text": report_body}))
 ```
 
-### Step 5: Wire the Graph
+### Step 5: wire the graph
 
 ```python
 # graph.py
@@ -699,7 +699,7 @@ def build_graph(db_path="sec_agent.db"):
 graph = build_graph()
 ```
 
-### Step 6: The Entry Point
+### Step 6: the entry point
 
 Target type detection handles the classification and rejects inputs that would waste API quota with no useful result:
 
@@ -720,9 +720,9 @@ def detect_target_type(target: str) -> str:
 
 ---
 
-## Part 5 — Running the Agent: Real Output
+## Part 5 — running the agent: real output
 
-### CVE Analysis
+### CVE analysis
 
 ```bash
 python3 main.py -v CVE-2025-68664
@@ -782,7 +782,7 @@ code via crafted JSON payloads containing the reserved 'lc' key...
 ======================================================================
 ```
 
-### Threat Actor Analysis
+### Threat actor analysis
 
 ```bash
 python3 main.py -v "LockBit ransomware"
@@ -826,7 +826,7 @@ python3 main.py -v "LockBit ransomware"
 
 ---
 
-## Part 6 — MCP: Turning Your Tools Into a Shared Protocol
+## Part 6 — MCP: turning your tools into a shared protocol
 
 Once your tools are working as native `@tool` functions, migrating to MCP is a small step with significant architectural implications.
 
@@ -881,7 +881,7 @@ Connect to Claude Desktop by adding to `~/.claude_desktop_config.json`:
 
 ---
 
-## Part 7 — Observability
+## Part 7 — observability
 
 With `LANGCHAIN_TRACING_V2=true` and `LANGCHAIN_API_KEY` set, every run sends a full trace to [smith.langchain.com](https://smith.langchain.com) automatically — every LLM call, every tool invocation with arguments and results, every node execution, every routing decision.
 
@@ -898,7 +898,7 @@ Use verbose mode to verify claims against sources before acting on them. If the 
 
 ---
 
-## Part 8 — Lessons From Building It
+## Part 8 — lessons from building it
 
 These are things the code in every tutorial glosses over. They are things you will hit.
 
@@ -916,7 +916,7 @@ These are things the code in every tutorial glosses over. They are things you wi
 
 ---
 
-## Part 9 — Extending the Agent
+## Part 9 — extending the agent
 
 In order of impact:
 
@@ -934,7 +934,7 @@ In order of impact:
 
 ---
 
-## Part 10 — What You Actually Built
+## Part 10 — what you actually built
 
 Let us be precise.
 

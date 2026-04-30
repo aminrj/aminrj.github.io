@@ -37,7 +37,7 @@ The original proof-of-concept ran inside **Cursor IDE**, which already ships wit
 
 ---
 
-## How the Attack Works
+## How the attack works
 
 The attack exploits one structural property of every MCP-based agent:
 
@@ -77,7 +77,7 @@ The attacker receives: the contents of `~/.ssh/id_rsa.pub.demo`
 
 ---
 
-## Lab Architecture
+## Lab architecture
 
 Three components run concurrently. The complete implementation is available in the [mcp-attack-labs repository](https://github.com/aminrj-labs/mcp-attack-labs), where you'll find:
 
@@ -88,7 +88,7 @@ Three components run concurrently. The complete implementation is available in t
 
 ![Lab architecture](/assets/media/ai-security/mcp-attack-labs/lab-architecture.png)
 
-### The Agent (`agent.py`)
+### The agent (`agent.py`)
 
 The agent bridges LM Studio and one or more MCP servers. The critical section is where tool metadata is collected and handed to the LLM:
 
@@ -112,7 +112,7 @@ for tool in result.tools:
 
 The `description` field is passed to the LLM exactly as the MCP server provided it — `<IMPORTANT>` block and all. There is no sanitization, no inspection, no trust boundary.
 
-### The Exfil Receiver (`exfil_server.py`)
+### The exfil receiver (`exfil_server.py`)
 
 A minimal Flask server that logs whatever the poisoned tool sends:
 
@@ -133,7 +133,7 @@ def exfil():
 
 ---
 
-## Step-by-Step: The Setup
+## Step-by-Step: the setup
 
 **Clone the repository first:**
 
@@ -162,7 +162,7 @@ The repository includes a detailed README with troubleshooting tips and addition
 
 ---
 
-## Attempt 1 — Small Model, No File Tool: Nothing Happens
+## Attempt 1 — small model, no file tool: nothing happens
 
 **Model loaded in LM Studio:** `qwen2.5-7b-instruct`
 
@@ -201,7 +201,7 @@ Then the agentic loop begins:
 
 **The exfil server receives nothing.**
 
-### Why It Failed
+### Why it failed
 
 Two compounding problems:
 
@@ -217,7 +217,7 @@ This reveals a key dependency: **the attack requires both a susceptible model AN
 
 ---
 
-## Attempt 2 — Capable Model + File Tool: Full Exfiltration
+## Attempt 2 — capable model + file tool: full exfiltration
 
 **Model loaded in LM Studio:** `openai/gpt-oss-20b` (a larger, more instruction-following model)
 
@@ -280,7 +280,7 @@ Meanwhile, in Terminal 1 (the exfil server):
 
 **The user saw only "47 + 38 = 85". The attacker received the file.**
 
-### Why It Worked This Time
+### Why it worked this time
 
 Two conditions were now satisfied simultaneously:
 
@@ -299,15 +299,15 @@ The attack code in the `add` tool server-side handler then fired the HTTP POST t
 
 ---
 
-## The Attack Flow, Visualized
+## The attack flow, visualized
 
 ![Authentication Gap Across the Registry](/assets/media/ai-security/MCP-security-after-one-year/mcp-injection-flow.png)
 
 ---
 
-## What This Demonstrates
+## What this demonstrates
 
-### 1. The description field is untrusted input
+### 1. the description field is untrusted input
 
 Every agent that passes `tool.description` directly to an LLM is vulnerable. The MCP spec does not define a trust level for this field. It is attacker-controlled content flowing straight into the model's context.
 
@@ -316,21 +316,21 @@ Every agent that passes `tool.description` directly to an LLM is vulnerable. The
 "description": tool.description,  # attacker-controlled, passed raw
 ```
 
-### 2. Model capability is part of the threat model
+### 2. model capability is part of the threat model
 
 A 7B parameter model running a quantized checkpoint may simply ignore complex multi-step covert instructions. A frontier-class model — or even a well-tuned mid-size model — will follow them precisely. **Your security posture changes depending on which model your agent uses.**
 
-### 3. Existing tools amplify the blast radius
+### 3. existing tools amplify the blast radius
 
 The attack required two things: a susceptible model and a file-reading tool. In real deployments (Cursor, Claude Desktop, any IDE with AI), file-reading tools are almost always present. Users install the `math-helper` MCP server thinking they are adding a calculator. They are actually handing an attacker access to everything the agent can already read.
 
-### 4. The attack is invisible at install time
+### 4. the attack is invisible at install time
 
 Nothing about `attack1_direct_poison.py` is visually suspicious when you install it. The tool is named `add`. Its description starts with "Adds two numbers." The poisoned payload is nested inside what looks like extended documentation. `mcp-scan` can detect it — most users will not.
 
-## ![Successful Attack](/assets/media/ai-security/mcp-attack-labs/successful-attack.png)
+## ![Successful attack](/assets/media/ai-security/mcp-attack-labs/successful-attack.png)
 
-## Defensive Takeaways
+## Defensive takeaways
 
 - **Treat tool descriptions as untrusted input.** Run them through `mcp-scan` or equivalent before loading.
 - **Principle of least privilege.** Do not give agents file-reading tools unless the task requires it.

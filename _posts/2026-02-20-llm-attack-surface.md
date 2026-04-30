@@ -24,7 +24,7 @@ image:
 description: "LLM tool execution security: attack techniques, real incidents, and defenses for AI agents with tool access. Covers prompt injection, RAG poisoning, tool misuse, and supply chain attacks — with production examples."
 ---
 
-# Your AI Agent Just Became an Attack Surface — And Most Teams Don't Know It Yet
+# Your AI agent just became an attack surface — and most teams don't know it yet
 
 _A practitioner's guide to the real security risks hiding inside your LLM deployments_
 
@@ -58,7 +58,7 @@ Not hypothetically. In production. Right now.
 
 ---
 
-## The problem isn't the model. It's the architecture around it
+## The problem isn't the model. it's the architecture around it
 
 When most people think about AI security risks, they picture a jailbroken chatbot saying something offensive.
 
@@ -87,7 +87,7 @@ _Diagram 1: Every input channel into the agent's context is a potential attack v
 
 Let me walk through the attack categories I see most frequently in real deployments, grounded in current research and actual incidents.
 
-### Prompt Injection: The SQL injection of the AI era
+### Prompt injection: the SQL injection of the AI era
 
 Direct prompt injection — where a user manipulates the model through the chat interface — is the one people know about. But it's the least interesting attack vector once you understand indirect injection.
 
@@ -106,7 +106,7 @@ The OWASP LLM Top 10 lists prompt injection as the number one risk for exactly t
 ![Indirect prompt injection ](assets/media/ai-security/ai-agents-attack-surface/diag2-Indirect-prompt-injection.png)
 _Diagram 2: Indirect prompt injection (EchoLeak / CVE-2025-32711 pattern). The user sees a normal summary; their data is already gone before the response renders._
 
-### RAG Pipeline Poisoning: Corrupting the knowledge base
+### RAG pipeline poisoning: corrupting the knowledge base
 
 Retrieval-Augmented Generation (RAG) architectures have become the default
 pattern for giving LLMs access to organizational knowledge.
@@ -130,7 +130,7 @@ This is particularly insidious because it doesn't look like an attack. It looks 
 ![RAG poisoning diagram](assets/media/ai-security/ai-agents-attack-surface/RAG-pipeline-poisoning.png)
 _Diagram 3: RAG pipeline poisoning. A single poisoned document entering any ingestion source becomes a persistent false belief that the agent actively defends as correct._
 
-### Tool Misuse and Excessive Agency
+### Tool misuse and excessive agency
 
 [The OWASP Agentic Top 10](https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/) (published in dec. 2025) identifies "excessive agency" as a critical risk category: agents being granted more autonomy, more tool access, and more capability than the actual task requires.
 
@@ -150,7 +150,7 @@ Which, if you've taken the easy route, is a lot.
 The fix sounds simple (principle of least privilege applied to agents) but requires a different way of thinking about authorization.
 Traditional RBAC doesn't map cleanly onto agent capabilities. This is an area where the field is actively developing better patterns.
 
-### Supply Chain: The attack vector you haven't audited
+### Supply chain: the attack vector you haven't audited
 
 Your agent probably isn't built from scratch. It uses frameworks (LangChain, AutoGen, CrewAI), it connects to external services via plugins or the Model Context Protocol (MCP), and it depends on model weights that were trained by someone else.
 

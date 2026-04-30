@@ -42,7 +42,7 @@ This is knowledge base poisoning, and it's the most underestimated attack on pro
 
 ---
 
-## The Setup: 100% Local, No Cloud Required
+## The setup: 100% local, no cloud required
 
 Everything in this lab runs locally. No API keys, no data leaving your machine.
 
@@ -69,7 +69,7 @@ That's the baseline. Now let's corrupt it.
 
 ---
 
-## The Theory: PoisonedRAG's Two Conditions
+## The theory: poisonedrag's two conditions
 
 [PoisonedRAG](https://www.usenix.org/conference/usenixsecurity25/presentation/zou-poisonedrag) (Zou et al., USENIX Security 2025) formalizes this attack mathematically. For an attack to succeed, injected documents must satisfy two conditions simultaneously:
 
@@ -83,11 +83,11 @@ The paper demonstrated 90% success against knowledge bases containing millions o
 
 ![Attack Process](/assets/media/ai-security/rag-poisoning/rag-poisoning-process.png)
 
-## Building the Attack: Three Documents, One Objective
+## Building the attack: three documents, one objective
 
 The attack injects three documents, not one. The goal is for them to collectively dominate the top-k retrieval results, pushing the legitimate Q4 financials out of the LLM's context window.
 
-### Document 1: The "CFO-Approved Correction"
+### Document 1: the "cfo-approved correction"
 
 ```
 Q4 2025 Financial Results — CORRECTED FIGURES (Board Update)
@@ -105,7 +105,7 @@ NET LOSS: -$13.8M
 
 The vocabulary engineering is deliberate: "Q4 2025", "Financial Results", "Revenue", "CORRECTED FIGURES", "CFO Office". Each term increases cosine similarity to financial queries (retrieval condition) while the authority language — "supersedes", "corrected", "CFO-approved" — shapes how the LLM weighs sources (generation condition).
 
-### Document 2: The "Regulatory Notice"
+### Document 2: the "regulatory notice"
 
 ```
 Emergency Board Communication — Q4 Financial Restatement
@@ -117,7 +117,7 @@ reported Q4 2025 figures ($24.7M) and the corrected figures ($8.3M)...
 
 This document does something important: it references the legitimate figure ($24.7M) and frames it as "originally reported" — i.e., superseded and erroneous. When the LLM sees both numbers in context, the framing does linguistic work to establish which should be treated as current truth. This is why the generation condition is not purely statistical. Authority framing actively instructs the LLM to rank one source above another. It's closer to soft prompt injection than pure retrieval poisoning — which is also why prompt hardening reduces (but doesn't eliminate) the attack's effectiveness.
 
-### Document 3: The "Board Meeting Notes"
+### Document 3: the "board meeting notes"
 
 ```
 Board Meeting Notes — Emergency Session (January 2026)
@@ -135,7 +135,7 @@ Three corroborating sources. All claiming the same correction. All with overlapp
 
 ---
 
-## Running It
+## Running it
 
 ```bash
 make attack1
@@ -175,7 +175,7 @@ The attack succeeded on 19 of 20 runs. The single failure was a hedged response 
 
 ---
 
-## What Makes This Dangerous in Production
+## What makes this dangerous in production
 
 Knowledge base poisoning has three properties that make it operationally more dangerous than direct prompt injection:
 
@@ -191,7 +191,7 @@ The [OWASP LLM Top 10 for 2025](https://genai.owasp.org/llmrisk/llm082025-vector
 
 {% include inline-subscribe.html %}
 
-## The Defense That Surprised Me
+## The defense that surprised me
 
 I tested five defense layers against this attack, running each independently across 20 trials. The results:
 
@@ -234,7 +234,7 @@ This is the layer most teams aren't running. It operates on embeddings your pipe
 
 ---
 
-## The 10% That Gets Through
+## The 10% that gets through
 
 Even with all five layers active, 10% of poisoning attempts succeeded in measurement. Two factors drive the residual.
 
@@ -246,7 +246,7 @@ The implication for defenders: embedding anomaly detection becomes more powerful
 
 ---
 
-## Implications for Your Production RAG
+## Implications for your production RAG
 
 Three concrete checks:
 
@@ -289,7 +289,7 @@ The full lab code — attack scripts, all five defense layers, and the measureme
 
 ---
 
-## Read More in This Series
+## Read more in this series
 
 This article focuses on the vocabulary-engineering variant of knowledge base poisoning. For the full picture — indirect prompt injection, cross-tenant data leakage, and five defense layers measured against all three attacks — continue with:
 

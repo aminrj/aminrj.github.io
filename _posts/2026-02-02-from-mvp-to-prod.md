@@ -11,7 +11,7 @@ image:
 description: Learn how to build production-ready LLM applications with multi-tenancy, rate limiting, and audit logging. Real architecture from 15+ years securing critical systems.
 ---
 
-## Why I Built This (And Why You Should Care)
+## Why I built this (and why you should care)
 
 Over 15 years securing critical systems in banking, defense, aerospace, and automotive, I've watched the same pattern repeat: companies build a working prototype, rush it to production, then discover their architecture can't support the security and reliability they actually need.
 
@@ -32,7 +32,7 @@ The first two articles covered:
 
 This part is about the layer above agents: storage, APIs, UI, tenancy, deployment, and operational safeguards.
 
-## 1. Production-Readiness Snapshot (Current State)
+## 1. production-readiness snapshot (current state)
 
 Recent hardening work in this codebase focused on:
 
@@ -44,7 +44,7 @@ Recent hardening work in this codebase focused on:
 
 At this stage, this is a strong SaaS MVP baseline, not yet a fully hardened production platform. That distinction matters.
 
-## 2. Step One: Persist the Right Things (and Persist Them Safely)
+## 2. step one: persist the right things (and persist them safely)
 
 Most LLM demos fail in production because they treat the model response as the product. In practice, your product is the persisted system of record around LLM outputs.
 
@@ -117,7 +117,7 @@ def upsert(self, tender_id: int, is_relevant: bool, confidence: float, **kwargs:
 
 Without this, retries and reprocessing become a source of outages.
 
-## 3. Step Two: Treat Orchestration as a Stateful Workflow
+## 3. step two: treat orchestration as a stateful workflow
 
 A demo chain can just call model A -> model B -> model C. Production needs:
 
@@ -155,7 +155,7 @@ async def process_tender(self, tender: Tender) -> ProcessedTender:
 
 This is the first point where your LLM app starts behaving like a backend service instead of a notebook.
 
-## 4. Step Three: Productize the API Contract
+## 4. step three: productize the API contract
 
 For client-facing behavior, this project uses a simple but correct pattern:
 
@@ -194,7 +194,7 @@ def get_current_organization(x_api_key: str = Header(...), session: Session = De
 
 This is enough for MVP tenancy and billing guardrails while you postpone full user auth/JWT.
 
-## 5. Step Four: Build an Operator UI, Not Just API Docs
+## 5. step four: build an operator UI, not just API docs
 
 A production MVP needs internal and customer-facing operability. The HTMX server-rendered UI here gives:
 
@@ -222,7 +222,7 @@ A production MVP needs internal and customer-facing operability. The HTMX server
 
 This is a practical MVP choice: low frontend complexity, high operational value.
 
-## 6. Step Five: Add Ingestion Pipelines with Deduplication
+## 6. step five: add ingestion pipelines with deduplication
 
 An LLM workflow only becomes a product when fed by repeatable data ingestion.
 
@@ -252,7 +252,7 @@ tender_repo.create(
 
 Combined with unique constraints, this avoids duplicate growth and protects downstream analytics.
 
-## 7. Step Six: Use Layered Testing as a Deployment Gate
+## 7. step six: use layered testing as a deployment gate
 
 A production-ready LLM MVP should test at three levels:
 
@@ -282,7 +282,7 @@ Current local result:
 
 This gives a reliable quality baseline for iterative delivery.
 
-## 8. Step Seven: Make It Deployable by Default
+## 8. step seven: make it deployable by default
 
 A SaaS MVP should run in one command locally and in CI/staging with minimal differences.
 
@@ -308,7 +308,7 @@ services:
 
 This is a strong MVP packaging baseline for demos, pilots, and early customer validation.
 
-## 9. What Still Needs Work Before "Production at Scale"
+## 9. what still needs work before "production at scale"
 
 This is the critical part. A good production-readiness article should not pretend the MVP is complete.
 
@@ -325,7 +325,7 @@ Priority backlog from current architecture:
 
 If you do these 8 items, you move from "production-ready MVP" to "operationally durable production system."
 
-## 10. Practical Blueprint You Can Reuse
+## 10. practical blueprint you can reuse
 
 If you already have a working LLM app, this transition sequence is practical:
 
@@ -341,7 +341,7 @@ If you already have a working LLM app, this transition sequence is practical:
 
 That sequence is exactly what this Procurement AI project now demonstrates.
 
-## Final Takeaway
+## Final takeaway
 
 The jump from "LLM app works" to "SaaS MVP is production-ready" is not a prompt-engineering problem. It is a software engineering problem:
 
@@ -356,7 +356,7 @@ The strongest signal of maturity in this project is not just that it generates a
 
 ---
 
-## What I Learned Building This
+## What I learned building this
 
 **The hardest part wasn't the LLM integration—it was the boring stuff.**
 
@@ -374,7 +374,7 @@ The good news: because I made these mistakes in this project, you won't have to.
 
 ---
 
-## Where to Go Next
+## Where to go next
 
 If you're building LLM applications and want to avoid the "works in demo, breaks in production" cycle:
 

@@ -30,7 +30,7 @@ This article covers what those attacks mean under the EU AI Act, because a RAG p
 
 ---
 
-## Article 10: Data Governance for RAG Is Not About Training Data
+## Article 10: data governance for RAG is not about training data
 
 Most Article 10 commentary focuses on training data -- the dataset used to train the model itself. But Article 10(2) requires "appropriate data governance and management practices" for "training, validation, and testing data sets." For RAG systems, the retrieval corpus is operational data that directly determines the model's output. It is the functional equivalent of a continuously updated dataset that the model consults at inference time.
 
@@ -47,7 +47,7 @@ For a RAG pipeline, this maps to:
 
 ---
 
-## The Defense Layer That Satisfies Article 10
+## The defense layer that satisfies Article 10
 
 In the [RAG security architecture analysis](https://aminrj.com/posts/rag-security-architecture/), I tested five defense layers against the full attack suite:
 
@@ -76,7 +76,7 @@ The column that matters for regulatory purposes is the last one. A regulator ask
 
 ---
 
-## Cross-Tenant Leakage: Article 10(2)(f) in Practice
+## Cross-Tenant leakage: Article 10(2)(f) in practice
 
 The [cross-tenant data leakage attack](https://aminrj.com/posts/rag-document-poisoning/) succeeded on every query -- 20 out of 20 -- in the default ChromaDB configuration. No technical sophistication was required. The attacker simply queried the vector database without namespace isolation, and documents from other users' collections were returned.
 
@@ -86,7 +86,7 @@ Article 10(2)(f) requires consideration of "the identification of any possible d
 
 ---
 
-## Article 15(4): RAG Poisoning as System Exploitation
+## Article 15(4): RAG poisoning as system exploitation
 
 [Article 15(4)](https://artificialintelligenceact.eu/article/15/) requires resilience "against attempts by unauthorized third parties to alter their use, outputs, or performance by exploiting system vulnerabilities."
 
@@ -96,7 +96,7 @@ The five-layer defense architecture demonstrated in the [RAG security series](ht
 
 ---
 
-## What to Do
+## What to do
 
 If your RAG system handles data in any Annex III high-risk category:
 

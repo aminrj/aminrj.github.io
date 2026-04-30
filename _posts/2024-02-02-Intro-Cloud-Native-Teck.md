@@ -18,7 +18,7 @@ date: 2023-02-21T11:28:00.000Z
 
 In this walkthrough, we will create an application that uses the main cloud-native components to illustrate their use in a cloud-native application development process.
 
-This is the first first setup of our example that we will be using throughout
+This is the first setup of our example that we will be using throughout
 the course, so if some concepts will be briefly introduced to get the tutorial
 up and running.
 
@@ -26,12 +26,12 @@ up and running.
 
 ### Install Docker
 
-Containerizing your application, that is pachaging it and its dependencies into an executable container is a required step for adopting Cloud-Native.
-This will allow your applicatoin to run anywhere without needing to install those dependencies on the host machine.
+Containerizing your application, that is packaging it and its dependencies into an executable container is a required step for adopting Cloud-Native.
+This will allow your application to run anywhere without needing to install those dependencies on the host machine.
 
 The first step is to install Docker.
-Docker is distribued as a developer tool that is available for most platforms as Docker Desktop.
-You can check the [link](https://www.docker.com/products/docker-desktop) for platform spefic installations.
+Docker is distributed as a developer tool that is available for most platforms as Docker Desktop.
+You can check the [link](https://www.docker.com/products/docker-desktop) for platform-specific installations.
 
 I have it already installed on my machine so I won't go through the installation process here.
 
@@ -151,7 +151,7 @@ Here we start from a more specific base image that contain everything needed to 
 
 Now that we have our application containerized, we need a kubernetes cluster to deploy our application the Cloud-Native way.
 For very simple deployments, we can deploy one container per VM and scale our VMs as needed.
-That way, we have the advantage of containers such as convinient packaging without the complexity of having a Kubernetes cluster.
+That way, we have the advantage of containers such as convenient packaging without the complexity of having a Kubernetes cluster.
 
 However, you most likely will have a number of different services to deploy, so we need something more flexible. This is where a container orchestrator such as Kubernetes becomes handy.
 It contains all the tooling that handle the scheduling and monitoring of different containers on different machines.
@@ -164,7 +164,7 @@ We will see this in more details later in the course. For now, lets get us a run
 
 Minikube is a great choice for testing locally and allows you to test with a multinode environment.
 It is maintained by the open source Kubernetes community.
-Follow the link <https://minikube.sigs> .k8s.io/docs/start/ to install Minikube for your system.
+Follow the link <https://minikube.sigs.k8s.io/docs/start/> to install Minikube for your system.
 
 ```bash
 minikube start --nodes 2
@@ -178,9 +178,9 @@ The `start` command will automatically configure `kubectl` to use Minikube conte
 Up until now, the container we have created have been stored and run locally on your machine.
 Before you can deploy the container into Kubernetes, you will need to upload your container image data and provide a way for Kubernetes to fetch the image.
 
-For this, we use what we call a container registery.
-Docker Hub is a popular choice as a container registery, particularly when it comes to public container images.
-You will need a Docker Hub account to start uploading images to the registery.
+For this, we use what we call a container registry.
+Docker Hub is a popular choice as a container registry, particularly when it comes to public container images.
+You will need a Docker Hub account to start uploading images to the registry.
 Go to the Docker Hub website and create a free account.
 
 Once the repository is setup, Docker is authenticated and your image is tagged, you can push the image to the repository with:
@@ -220,9 +220,9 @@ spec:
 
 This manifest will create two replicas of our python application after we run the `kubectl create -f deploy.yaml` command.
 To check the result, we run `kubectl get deploy` command.
-To see the pods created for this deployement we type `kubectl get pods`.
+To see the pods created for this deployment we type `kubectl get pods`.
 
-This is it, we created our first container, build the image, uploaded it to the registery and deployed it on our local kubernetes cluster as a deployement.
+This is it, we created our first container, built the image, uploaded it to the registry and deployed it on our local Kubernetes cluster as a deployment.
 
-In the next section of the course, we will dive deeper into the core concepts of Kubernetes to learn how Kubernetes makes cloud-native application deployements more flexible.
+In the next section of the course, we will dive deeper into the core concepts of Kubernetes to learn how Kubernetes makes cloud-native application deployments more flexible.
 

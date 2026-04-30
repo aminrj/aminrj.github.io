@@ -30,7 +30,7 @@ Leaderboard scores are fine for comparing models against each other. They tell y
 
 So I built something that answers those questions in one command.
 
-## The Problem With Local LLM Evaluation
+## The problem with local LLM evaluation
 
 The same model can behave completely differently depending on your hardware, your quantization, and your context window settings.
 
@@ -44,19 +44,19 @@ The tools that exist for local LLM benchmarking fall into two camps.
 
 No tool does all three in a single pipeline. So I built one.
 
-## What the Toolkit Does
+## What the toolkit does
 
 The toolkit lives at `github.com/aminrj/local-llama-bench` (not public yet, I'll push it when I'm happy). Three benchmark categories.
 
-### Performance: How fast does your GPU handle this model?
+### Performance: how fast does your GPU handle this model?
 
 Uses `llama-bench` to measure prompt processing (at 512 and 4096 context) and token generation speed (at 128 tokens). Three repeats, CSV output, summary table.
 
-### Quality: How well does the model actually perform?
+### Quality: how well does the model actually perform?
 
 Runs `lm-eval` and `bigcode-eval` against a running llama-server. Tasks: HumanEval+ (code generation), GSM8K (math reasoning), HellaSwag (common-sense completion). Uses `--limit 50` for speed. JSON output with pass@1 scores.
 
-### Domain: Does the model handle the actual work I need it to do?
+### Domain: does the model handle the actual work I need it to do?
 
 Five curated prompts covering the kind of work I actually ask local models to do:
 
@@ -134,7 +134,7 @@ flowchart TD
 
 The orchestration script (`run_all.sh`) discovers llama.cpp binaries automatically, reads the model registry from `config/models.yaml`, and runs each benchmark in sequence. The llama-server is reused across benchmarks. If you're already running a model for other work, the benchmarks don't tear it down.
 
-## Architecture Decisions
+## Architecture decisions
 
 **Server reuse.** The performance benchmark used to kill any existing llama-server before running. That was dumb. If I'm already running `codemode` with my Qwen3.6 model loaded, the benchmark shouldn't tear it down. Now all scripts detect an existing server on port 8081 and reuse it. The cleanup trap only kills servers the script itself started.
 
@@ -161,7 +161,7 @@ done
 
 **Test coverage.** Three test suites: project structure (directories exist, files are executable, requirements.txt has the right packages), script syntax (bash -n parsing, set -e present, proper shebangs), and metrics.py parsing logic (mock CSV/JSON data, edge cases like empty files). 76 tests, all passing. That's more than most people write for a toolkit like this, but metrics parsing is the part that breaks silently if you get it wrong.
 
-## Benchmark Results
+## Benchmark results
 
 The most useful thing this toolkit revealed wasn't a benchmark number. It was the gap between what the tools promise and what they actually deliver.
 
@@ -215,13 +215,13 @@ Here's the raw data:
 
 This kind of data doesn't come from a leaderboard. It tells you whether this model is suitable for your workflow.
 
-## The lm-eval Gotcha
+## The lm-eval gotcha
 
 `lm-eval` with `--model vllm` and a llama-server URL as the backend doesn't work out of the box. The model_args format is different from what llama-server expects. I had to figure out that `pretrained=http://127.0.0.1:8081/v1` is the right connection string.
 
 bigcode-eval doesn't support llama-server at all. It's built for vLLM and HuggingFace models. I still run it, but the results are basically meaningless for local models. I left it in because the failure mode is visible and documented.
 
-## How to Use It
+## How to use it
 
 ```bash
 git clone <repo-url>
@@ -241,7 +241,7 @@ You need Python 3 with pip, llama.cpp built with CUDA (or Metal on Apple Silicon
 
 The fast mode runs `--limit 50` for quality benchmarks and skips domain prompts beyond the first three. Full mode runs everything. Either way, the results go into `results/` as CSV and JSON files, and you get a summary table at the end via `utils/metrics.py`.
 
-## Where This Goes Next
+## Where this goes next
 
 A few things I want to add before making this public:
 
@@ -253,7 +253,7 @@ A few things I want to add before making this public:
 
 4. **Docker support.** Running this on a clean machine requires setting up llama.cpp, Python dependencies, and the right CUDA drivers. A Docker image would make this accessible to people who don't want to dig into build instructions.
 
-## Why This Matters
+## Why this matters
 
 If you're running local LLMs, you should know what they can do on your hardware. What they can do on your machine, with your quantization, for your workload.
 

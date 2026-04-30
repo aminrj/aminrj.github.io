@@ -27,7 +27,7 @@ description: "The Commission missed its February deadline for Article 6 guidance
 
 ---
 
-## Article Structure and Research Directives
+## Article structure and research directives
 
 ### Opening hook (300 words)
 
@@ -42,7 +42,7 @@ The Commission was supposed to publish Article 6 high-risk classification guidel
 
 ---
 
-### Section 1: How Article 6 classification works (600 words)
+### Section 1: how Article 6 classification works (600 words)
 
 **What to cover:**
 - Article 6(1): Systems listed in Annex III are high-risk
@@ -57,7 +57,7 @@ The Commission was supposed to publish Article 6 high-risk classification guidel
 
 ---
 
-### Section 2: The 8 Annex III categories that matter for agentic AI (800 words)
+### Section 2: the 8 Annex III categories that matter for agentic AI (800 words)
 
 Walk through each Annex III category and assess whether agentic AI systems typically fall within it:
 
@@ -80,7 +80,7 @@ Walk through each Annex III category and assess whether agentic AI systems typic
 
 ---
 
-### Section 3: Decision tree (1200 words -- core deliverable)
+### Section 3: decision tree (1200 words -- core deliverable)
 
 A step-by-step decision tree that an engineering team can run their system through:
 
@@ -124,7 +124,7 @@ Plus 10+ more examples covering each Annex III category with boundary cases.
 
 ---
 
-### Section 5: Documenting your classification for audit (300 words)
+### Section 5: documenting your classification for audit (300 words)
 
 When a regulator asks "how did you classify this system?", you need a documented decision trail.
 

@@ -11,7 +11,7 @@ image:
 description: "AI agent evaluation: precision, recall, F1, and calibration metrics for teams shipping AI to production. Practical frameworks and code — not theoretical best practices."
 ---
 
-## Why Evaluating AI Agents Matters ?
+## Why evaluating AI agents matters ?
 
 After 15+ years writing tests for banking systems, defense software, aerospace applications, and automotive platforms, I thought I understood testing. I'd written unit tests, integration tests, end-to-end tests. I knew how to mock dependencies, write assertions, and catch regressions.
 
@@ -27,7 +27,7 @@ This guide walks through building an evaluation framework for AI agents. We'll c
 
 **This is Part 4 of the LLM Engineering series.** If you haven't read the earlier parts, start with [Part 1: Building a Procurement Analyst AI](/posts/LLM-engineering-building-a-procurements-analyst-ai/), which covers the initial implementation. [Part 2: Production-Ready LLM Agents](/posts/Build-production-ready-llam-agents/) discusses architecture patterns, and [Part 3: From MVP to Production SaaS](/posts/from-mvp-to-prod/) covers deployment. This article focuses on the evaluation framework that lets you measure and improve agent performance scientifically.
 
-## What You'll Learn
+## What you'll learn
 
 - **Why AI agents fail silently** and how to catch these failures
 - **Building test datasets** that reveal actual agent performance
@@ -46,15 +46,15 @@ To follow along, you should understand:
 
 No advanced ML knowledge required—we'll explain all the metrics from first principles.
 
-## Context: Why This Matters
+## Context: why this matters
 
 **The Problem**: Most AI agent failures are invisible. Your agent might be making wrong decisions 30-40% of the time, but without systematic evaluation, you won't know until customers complain.
 
 **The Solution**: Treat AI agent evaluation like software testing. Create test suites, measure performance, set quality gates, and iterate based on data—not hunches.
 
-## Why AI Agents Need Different Testing Approaches
+## Why AI agents need different testing approaches
 
-### Traditional Software: Deterministic Testing
+### Traditional software: deterministic testing
 
 Traditional software testing is **deterministic**: If you call `add(2, 3)`, you expect `5` every time. When something breaks, you get:
 
@@ -62,7 +62,7 @@ Traditional software testing is **deterministic**: If you call `add(2, 3)`, you 
 - A stack trace
 - Visibly wrong output (like returning `"hello"` instead of `5`)
 
-### AI Agents: Probabilistic Failures
+### AI agents: probabilistic failures
 
 AI agents don't work this way. They **fail quietly** by producing outputs that _seem_ reasonable but are subtly incorrect.
 
@@ -96,7 +96,7 @@ The agent _looked_ fine because you only tested obvious cases. You didn't test:
 This is the core problem: **manual spot-checking gives you false confidence**. You need systematic evaluation against a known-good test set.
 
 
-## The Solution: Build a Measurement System
+## The solution: build a measurement system
 
 The approach is straightforward:
 
@@ -117,11 +117,11 @@ Instead of guessing "does this prompt change help?", you can prove it with numbe
 
 Let's build this system piece by piece, starting with the foundation.
 
-## Part 1: Creating Your Test Dataset
+## Part 1: creating your test dataset
 
 Your test dataset is the ground truth—cases where you've manually determined the correct answer. This is the most important piece of your evaluation system. Get this wrong, and all your metrics will be meaningless.
 
-### What Makes a Good Test Case
+### What makes a good test case
 
 A test case needs three things:
 
@@ -226,7 +226,7 @@ EVAL_009 = EvaluationTestCase(
 
 This is where agents typically struggle. The presence of "software" might trigger a false positive. Your edge cases should come from real-world ambiguity you expect to encounter.
 
-### How Many Test Cases Do You Need?
+### How many test cases do you need?
 
 **For MVP evaluation**: Start with **15-20 cases** distributed as:
 
@@ -251,13 +251,13 @@ This gives you enough data for meaningful metrics without requiring weeks of tes
 
 **Pro Tip**: Start small. You'll naturally expand your test set as you discover where your agent fails in production. Your evaluation dataset should be a living document.
 
-## Part 2: Understanding Classification Metrics
+## Part 2: understanding classification metrics
 
 Now you have a test dataset. When you run your agent on it, you'll get predictions. How do you measure if these predictions are good?
 
 For a binary classifier (yes/no, relevant/irrelevant), every prediction falls into one of four categories. Understanding these is critical.
 
-### The Confusion Matrix: Foundation of All Metrics
+### The confusion matrix: foundation of all metrics
 
 Imagine you run your filter agent on 10 test cases. Here's what might happen:
 
@@ -302,7 +302,7 @@ From these four numbers, we derive all our metrics. Let's see how.
 
 **\*Diagram 2**: Visual breakdown of the confusion matrix showing all four prediction outcomes.\*
 
-### Metric 1: Precision (Quality of YES Predictions)
+### Metric 1: precision (quality of YES predictions)
 
 **Question**: When my agent says "relevant," how often is it actually relevant?
 
@@ -331,7 +331,7 @@ class FilterMetrics:
 
 **Real-world impact**: Low precision = your team loses trust in the system. They start ignoring its recommendations.
 
-### Metric 2: Recall (Completeness of Detection)
+### Metric 2: recall (completeness of detection)
 
 **Question**: Of all the truly relevant cases, how many did my agent find?
 
@@ -353,7 +353,7 @@ def recall(self) -> float:
 
 **Real-world impact**: Low recall = opportunity cost. You're leaving money on the table.
 
-### The Precision-Recall Tradeoff
+### The precision-recall tradeoff
 
 Here's the challenge: these metrics are usually in tension. You can often increase one by decreasing the other.
 
@@ -378,7 +378,7 @@ The opposite is true too. Make your agent pickier, and precision increases but r
 
 **\*Diagram 3**: Visualizing the precision-recall tradeoff and how agent behavior affects both metrics.\*
 
-### Metric 3: F1 Score (Balanced Measure)
+### Metric 3: f1 score (balanced measure)
 
 When you have one metric going up and another going down, how do you evaluate overall progress? You need a single number that balances both.
 
@@ -423,7 +423,7 @@ Harmonic mean penalizes imbalance. If one metric is terrible, F1 stays low even 
 - **F1 = 0.75-0.85**: Needs improvement. Identify weak spots and iterate.
 - **F1 < 0.75**: Significant issues. Don't deploy yet.
 
-### Putting the Metrics Together
+### Putting the metrics together
 
 Let's implement this as a Python class:
 
@@ -490,11 +490,11 @@ print(f"F1 Score:  {metrics.f1_score:.2%}")   # 73%
 print(f"Accuracy:  {metrics.accuracy:.2%}")   # 70%
 ```
 
-## Part 3: Metrics for Scoring Tasks
+## Part 3: metrics for scoring tasks
 
 If your agent produces numerical scores (like rating a tender's value from 0-10), you need different metrics. The question shifts from "is this classification correct?" to "how close is this number to the right answer?"
 
-### Mean Absolute Error (MAE): Average Distance from Truth
+### Mean absolute error (mae): average distance from truth
 
 MAE tells you: on average, how far off are your predictions?
 
@@ -548,11 +548,11 @@ print(f"MAE: {metrics.mae:.2f}")
 
 **Why MAE matters**: It's in the same units as your scores. If you're rating tenders on a 10-point scale, an MAE of 1.5 means "typically off by about 1-2 points." Your business stakeholders can understand this directly.
 
-### Root Mean Squared Error (RMSE): Penalizing Large Mistakes
+### Root mean squared error (rmse): penalizing large mistakes
 
 RMSE is similar to MAE but punishes large errors more heavily:
 
-### Root Mean Squared Error (RMSE): Penalizing Large Mistakes
+### Root mean squared error (rmse): penalizing large mistakes
 
 RMSE is similar to MAE but punishes large errors more heavily:
 
@@ -589,7 +589,7 @@ RMSE (1.94) is higher than MAE (1.5) because the large error (-3.0) gets amplifi
 
 RMSE penalizes that first scenario more heavily.
 
-### Correlation: Are You Directionally Correct?
+### Correlation: are you directionally correct?
 
 Sometimes absolute accuracy matters less than relative ordering. Correlation measures: "When actual score goes up, does predicted score go up too?"
 
@@ -634,13 +634,13 @@ MAE: 0.75 (also good)
 
 Even though the predictions aren't perfect, they maintain the correct relative ordering: lowest actual gets lowest prediction, highest actual gets highest prediction.
 
-## Part 4: Confidence Calibration (Advanced)
+## Part 4: confidence calibration (advanced)
 
 This is a subtle but critical concept. When your agent says "90% confident," is it actually correct 90% of the time?
 
 Many LLMs are overconfident. They'll say "I'm 95% sure" when they're actually only right 60% of the time. If you build automated decision-making on top of confidence scores, this will bite you.
 
-### Understanding the Problem
+### Understanding the problem
 
 ```python
 # Your agent makes 10 predictions with "high confidence"
@@ -664,7 +664,7 @@ predictions = [
 
 If you write code like `if confidence > 0.90: auto_approve()`, you'll be auto-approving bad predictions 60% of the time.
 
-### Measuring Calibration: Expected Calibration Error
+### Measuring calibration: expected calibration error
 
 The idea: group predictions into confidence bins and check if accuracy matches confidence.
 
@@ -764,9 +764,9 @@ ECE = 0.18  # Poor calibration
 - Actual accuracy: 93%
 - Result: Safe to use confidence thresholds for automation
 
-## Part 5: Building the Complete Evaluator
+## Part 5: building the complete evaluator
 
-## Part 5: Building the Complete Evaluator
+## Part 5: building the complete evaluator
 
 Now we tie everything together. You have:
 
@@ -918,7 +918,7 @@ class Evaluator:
         )
 ```
 
-### Using the Evaluator
+### Using the evaluator
 
 ```python
 # Initialize
@@ -941,11 +941,11 @@ if result.errors_count > 0:
     print(f"\nWarning: {result.errors_count} test cases had errors")
 ```
 
-## Part 6: Using Evaluation to Improve Your Agent
+## Part 6: using evaluation to improve your agent
 
 Once you have a working evaluation system, you can iterate scientifically. Here's the workflow:
 
-### Step 1: Establish Baseline
+### Step 1: establish baseline
 
 ```bash
 # Run evaluation and save results
@@ -962,7 +962,7 @@ Baseline Results (2026-02-14):
   ECE: 0.18
 ```
 
-### Step 2: Hypothesize an Improvement
+### Step 2: hypothesize an improvement
 
 Look at your metrics and identify weaknesses. In this example:
 
@@ -971,7 +971,7 @@ Look at your metrics and identify weaknesses. In this example:
 
 **Hypothesis**: Adding few-shot examples to the prompt will help the agent recognize edge cases, reducing false positives.
 
-### Step 3: Make the Change
+### Step 3: make the change
 
 ```python
 # Before: criteria-only prompt
@@ -1007,7 +1007,7 @@ Now evaluate this tender:
 """
 ```
 
-### Step 3: Re-evaluate
+### Step 3: re-evaluate
 
 ```bash
 python -m evaluation.run --output new_version.json
@@ -1023,7 +1023,7 @@ New Version Results:
   ECE: 0.12 (-33% vs baseline)
 ```
 
-### Step 4: Decide Based on Data
+### Step 4: decide based on data
 
 Improvements across the board:
 
@@ -1034,7 +1034,7 @@ Improvements across the board:
 
 **Decision: Keep the change.** The data proves it works.
 
-### What If Results Were Mixed?
+### What if results were mixed?
 
 Sometimes you'll see tradeoffs:
 
@@ -1053,7 +1053,7 @@ Lower temperature made the agent more conservative (higher precision), but it's 
 
 Without quantitative evaluation, you'd be guessing. With metrics, you know exactly what each change does.
 
-## Part 7: Preventing Regressions
+## Part 7: preventing regressions
 
 Once your agent performs well, you want to make sure it stays that way. Set up **automated quality gates** that prevent degraded agents from reaching production.
 
@@ -1061,7 +1061,7 @@ Once your agent performs well, you want to make sure it stays that way. Set up *
 
 **\*Diagram 5**: Automated quality gates in CI/CD pipeline that catch regressions before deployment.\*
 
-### CI/CD Integration
+### CI/CD integration
 
 **Goal**: Make evaluation a required step in your deployment pipeline, just like unit tests.
 
@@ -1131,7 +1131,7 @@ print("Quality check passed")
 
 Now if someone makes a change that degrades the agent, CI fails. No regressions make it to production.
 
-### Regression Detection
+### Regression detection
 
 Beyond absolute thresholds, check for drops relative to your baseline:
 
@@ -1150,9 +1150,9 @@ if drop > 0.02:  # More than 2% drop
 
 This catches subtle degradation that might not hit absolute thresholds but represents a step backward.
 
-## Practical Recommendations
+## Practical recommendations
 
-### Start Small (Week 1)
+### Start small (week 1)
 
 Don't try to build the perfect evaluation system on day one. Start with:
 
@@ -1163,7 +1163,7 @@ Don't try to build the perfect evaluation system on day one. Start with:
 
 **Deliverable**: Know your baseline performance (e.g., "F1 = 0.73")
 
-### Expand Strategically (Week 2-3)
+### Expand strategically (week 2-3)
 
 Once you see the value, add:
 
@@ -1174,7 +1174,7 @@ Once you see the value, add:
 
 **Deliverable**: Track improvements over time, prove changes help
 
-### Automate Quality Gates (Week 4+)
+### Automate quality gates (week 4+)
 
 Finally, integrate into your workflow:
 
@@ -1184,19 +1184,19 @@ Finally, integrate into your workflow:
 
 **Deliverable**: Never ship a regression to production
 
-### Focus on F1 Score
+### Focus on f1 score
 
 Unless you have specific business requirements (like "false positives are 10x worse than false negatives"), use F1 as your primary metric. It balances both concerns.
 
-### Document Your Test Cases
+### Document your test cases
 
 Future you will thank past you. Write down _why_ each edge case should pass or fail. When debugging failures months later, this context is invaluable.
 
-### Update Tests Based on Real Failures
+### Update tests based on real failures
 
 When your agent fails in production, add that case to your test set. Your evaluation dataset should evolve to cover real-world scenarios you encounter.
 
-### Set Realistic Thresholds
+### Set realistic thresholds
 
 Don't demand F1 > 0.95 if achieving that would take months. Set thresholds based on:
 
@@ -1206,7 +1206,7 @@ Don't demand F1 > 0.95 if achieving that would take months. Set thresholds based
 
 For many use cases, F1 > 0.85 is perfectly acceptable.
 
-## What I Learned Building This Evaluation Framework
+## What I learned building this evaluation framework
 
 Looking back at 6-8 hours invested in building this evaluation system, three insights stand out:
 
@@ -1224,11 +1224,11 @@ The CI integration caught three separate regressions before they reached product
 
 The cost of _not_ having this framework: invisible failures, wasted time on false positives, missed opportunities, production incidents. The cost of building it: 6-8 hours. It paid for itself in the first week.
 
-## Conclusion: From Guesswork to Science
+## Conclusion: from guesswork to science
 
 The difference between **hobby AI development** and **professional AI development** is measurement.
 
-### Without Evaluation
+### Without evaluation
 
 - You don't know if your system works
 - You can't prove changes help
@@ -1236,7 +1236,7 @@ The difference between **hobby AI development** and **professional AI developmen
 - You debug with no data
 - Decisions based on "it looks good"
 
-### With Systematic Evaluation
+### With systematic evaluation
 
 - You know your baseline performance
 - You can A/B test changes scientifically
@@ -1244,7 +1244,7 @@ The difference between **hobby AI development** and **professional AI developmen
 - You make data-driven decisions
 - You build trust through transparency
 
-## Real-World Impact
+## Real-World impact
 
 Building the evaluation framework in this guide—**18 test cases, metrics module, evaluator, and CLI**—took about **6-8 hours**. That investment has already paid for itself by:
 
@@ -1256,7 +1256,7 @@ Building the evaluation framework in this guide—**18 test cases, metrics modul
 
 **ROI**: 6 hours invested, 40+ hours saved in first month, plus avoided production issues.
 
-## Your Next Steps
+## Your next steps
 
 **Day 1** (2-3 hours):
 
@@ -1282,7 +1282,7 @@ Your AI agents deserve the same rigor as your traditional software.
 
 ---
 
-## Implementation Reference
+## Implementation reference
 
 Complete code for this evaluation framework:
 

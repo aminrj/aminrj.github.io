@@ -28,7 +28,7 @@ That article covered the security implications. This one covers what the same at
 
 ---
 
-## Article 15(4): Resilience Against Exploitation
+## Article 15(4): resilience against exploitation
 
 Article 15(4) of the [EU AI Act](https://artificialintelligenceact.eu/article/15/) requires high-risk AI systems to be "resilient against attempts by unauthorized third parties to alter their use, outputs, or performance by exploiting system vulnerabilities."
 
@@ -40,7 +40,7 @@ An MCP deployment vulnerable to tool poisoning fails Article 15(4) on its own te
 
 ---
 
-## Article 9(2)(b): Risk Identification
+## Article 9(2)(b): risk identification
 
 Article 9 establishes the [risk management system](https://artificialintelligenceact.eu/article/9/) that providers of high-risk AI systems must implement. Article 9(2)(b) requires "estimation and evaluation of the risks that may emerge when the high-risk AI system is used in accordance with its intended purpose and under conditions of reasonably foreseeable misuse."
 
@@ -50,7 +50,7 @@ Tool poisoning is a reasonably foreseeable risk of any MCP deployment. The attac
 
 ---
 
-## Article 26(5): Deployer Monitoring Obligation
+## Article 26(5): deployer monitoring obligation
 
 If you are deploying (not providing) an agentic AI system that uses MCP, [Article 26(5)](https://artificialintelligenceact.eu/article/26/) requires you to "monitor the operation of the high-risk AI system on the basis of the instructions of use."
 
@@ -60,7 +60,7 @@ In the tool poisoning scenario, the agent silently diverted from its intended be
 
 ---
 
-## Mapping: Attack Step to Article to Control
+## Mapping: attack step to Article to control
 
 | Attack step | Article violated | Required control | Lab status |
 |---|---|---|---|
@@ -72,7 +72,7 @@ In the tool poisoning scenario, the agent silently diverted from its intended be
 
 ---
 
-## What to Do
+## What to do
 
 If you operate MCP-connected agents that could fall under Annex III high-risk classification:
 

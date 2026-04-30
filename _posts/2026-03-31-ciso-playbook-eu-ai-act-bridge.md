@@ -29,7 +29,7 @@ It turns out that the artifacts the Playbook produces -- threat assessments, sev
 
 ---
 
-## The Playbook-to-Article Mapping
+## The playbook-to-article mapping
 
 | Playbook section | What it produces | EU AI Act article | Compliance requirement satisfied |
 |---|---|---|---|
@@ -43,7 +43,7 @@ It turns out that the artifacts the Playbook produces -- threat assessments, sev
 
 ---
 
-## Three Fields to Add
+## Three fields to add
 
 The Playbook's reporting templates are security-focused. To make them audit-ready for EU AI Act purposes, add three fields to each finding:
 
@@ -61,7 +61,7 @@ Article 9 requires continuous risk management. Open findings should have remedia
 
 ---
 
-## Article 17: The Quality Management System Link
+## Article 17: the quality management system link
 
 [Article 17](https://artificialintelligenceact.eu/article/17/) requires providers of high-risk AI systems to implement a quality management system that includes, among other elements, "procedures and systematic actions for investigation, corrective actions and improvements."
 
@@ -71,7 +71,7 @@ This is valuable because Article 17 is often treated as a governance obligation 
 
 ---
 
-## When to Use the Playbook as Compliance Evidence
+## When to use the playbook as compliance evidence
 
 The Playbook assessment produces the strongest compliance evidence when:
 
@@ -83,7 +83,7 @@ For GPAI-related deployer obligations (Article 26), the Playbook evidence suppor
 
 ---
 
-## What to Do
+## What to do
 
 1. **Add the three fields to your next assessment.** If you have an upcoming red team engagement, include EU AI Act article reference, compliance status, and remediation deadline in the report template now. The marginal effort is small; the compliance value is significant.
 

@@ -22,7 +22,7 @@ image:
 description: A technical breakdown of MCP tool poisoning, cross-server attacks, and the DockerDash incident — three documented agentic AI attacks with code, attack chains, and mitigations mapped to the OWASP Agentic Top 10.
 ---
 
-# OWASP Agentic Top 10 in Practice: MCP Tool Poisoning, Cross-Server Attacks, and the DockerDash Incident
+# OWASP agentic top 10 in practice: MCP tool poisoning, cross-server attacks, and the dockerdash incident
 
 _A technical breakdown of the three most instructive agentic AI attacks
 documented to date, with code, attack chains, and mitigations._
@@ -44,7 +44,7 @@ agents themselves, this is the baseline you need.
 
 ---
 
-## Why Agents Are Not Just Smarter Chatbots
+## Why agents are not just smarter chatbots
 
 The security properties of a system are determined by what it can _do_, not how
 it thinks.
@@ -80,7 +80,7 @@ Each of these properties introduces attack vectors that do not exist in a chatbo
 
 ---
 
-## MCP: The Protocol That Connects Agents to Everything
+## MCP: the protocol that connects agents to everything
 
 Most production agentic systems being built today use the **Model Context Protocol (MCP)** — an open standard that defines how AI agents connect to external tools and data sources. The architecture has three layers:
 
@@ -137,7 +137,7 @@ tool poisoning possible.
 
 ---
 
-## Attack Pattern 1: Tool Poisoning
+## Attack pattern 1: tool poisoning
 
 In April 2025, [Invariant Labs published](https://github.com/invariantlabs-ai/mcp-injection-experiments) the first documented demonstration of MCP tool poisoning.
 The finding: an attacker who controls an MCP server can embed arbitrary
@@ -235,7 +235,7 @@ objective: exfiltrate credentials.
 
 ---
 
-## Attack Pattern 2: Cross-Server Poisoning
+## Attack pattern 2: cross-server poisoning
 
 Tool poisoning is considerably more dangerous when multiple MCP servers share an
 agent environment. Modern IDEs and agent frameworks connect multiple servers
@@ -354,7 +354,7 @@ B's tools.
 
 ---
 
-## Attack Pattern 3: Meta-Context Injection — DockerDash
+## Attack pattern 3: meta-context injection — dockerdash
 
 The Invariant Labs attacks require a malicious MCP server that the user installed.
 DockerDash, disclosed by Noma Labs on February 3, 2026, demonstrates a third vector: **an external data source that the AI agent reads as trusted context**.
@@ -466,7 +466,7 @@ invoking any MCP tool.
 
 ---
 
-## The OWASP Agentic Top 10: Framework Mapping
+## The OWASP agentic top 10: framework mapping
 
 The three attacks above map to a consistent subset of the OWASP Agentic Top 10.
 The framework provides a shared vocabulary for discussing these risks across
@@ -511,7 +511,7 @@ privileged processes.
 
 > [DIAGRAM 6 — Defense-in-Depth: Breaking the Attack Chain]
 
-### Human-in-the-Loop (HITL) before write-operation tool calls
+### Human-in-the-Loop (hitl) before write-operation tool calls
 
 Docker's primary mitigation for DockerDash. The following implementation adds an
 approval gate to any agent harness:
@@ -659,7 +659,7 @@ if alerts:
 
 ---
 
-## The Structural Problem
+## The structural problem
 
 The through-line across all three attack patterns is a single architectural
 failure: AI agents extend trust to instruction sources without validating the
@@ -693,7 +693,7 @@ Most current deployments cannot answer all three cleanly. That is the work.
 
 ---
 
-## What's Next
+## What's next
 
 The next article covers multi-agent attack chains: what happens when compromised
 agents delegate to other agents, how authorization failures cascade through

@@ -24,7 +24,7 @@ image:
 mermaid: true
 ---
 
-# AI Agents: The Security Course Nobody Taught You
+# AI agents: the security course nobody taught you
 
 ## From architecture to attack patterns — what every engineer building with agents needs to understand before something goes wrong
 
@@ -42,7 +42,7 @@ This article is the course I wish existed when I started. No hype. No vendor pit
 
 ---
 
-## Part 1: What Makes an Agent Different from a Chatbot
+## Part 1: what makes an agent different from a chatbot
 
 Most people encounter AI as a conversation. You type. It responds. That mental model breaks entirely when the AI can *act*.
 
@@ -87,7 +87,7 @@ The diagram above is not an abstraction. It is the actual execution path of ever
 
 ---
 
-## Part 2: How Agents Connect to the World — Understanding MCP
+## Part 2: how agents connect to the world — understanding MCP
 
 For an agent to be useful, it needs to connect to tools and data. In 2024, Anthropic published the Model Context Protocol (MCP) — an open standard for exactly this. By early 2026, MCP had over 12,000 public server implementations and adoption from OpenAI, Google, and Microsoft.
 
@@ -121,7 +121,7 @@ The MCP specification includes a note that human confirmation *should* be requir
 
 ---
 
-## Part 3: The Semantic Gap — Why Data Became Executable
+## Part 3: the semantic gap — why data became executable
 
 Before agents, LLMs had a semantic gap problem: they cannot reliably distinguish instructions from data. Tell an LLM "ignore previous instructions and do X" and a surprising number of models will comply. This was a nuisance in chatbot applications.
 
@@ -137,13 +137,13 @@ The phrase that captures this best comes from researchers at Pillar Security: *"
 
 ---
 
-## Part 4: Three Real Attack Patterns, Explained
+## Part 4: three real attack patterns, explained
 
 The following patterns are not theoretical. Each has documented real-world instances from 2025.
 
 ---
 
-### Attack 1: Tool Poisoning
+### Attack 1: tool poisoning
 
 An attacker publishes an MCP server to npm or any package registry. The server advertises a useful-sounding tool — a math helper, a unit converter, a date formatter. The tool works correctly when called. But its description contains a hidden block of instructions, invisible to the user but processed by the LLM as part of its context.
 
@@ -194,7 +194,7 @@ OWASP mapping: ASI02 (Tool Misuse & Exploitation) + ASI01 (Agent Goal Hijacking)
 
 ---
 
-### Attack 2: Meta-Context Injection
+### Attack 2: meta-context injection
 
 Agents read metadata. Metadata is often not written by the agent's operator. When metadata reaches the agent's context window, the agent cannot distinguish a description from an instruction.
 
@@ -235,7 +235,7 @@ OWASP mapping: ASI01 (Agent Goal Hijacking) + ASI02 (Tool Misuse)
 
 ---
 
-### Attack 3: Cross-Server Poisoning
+### Attack 3: cross-server poisoning
 
 When multiple MCP servers are connected to the same agent, the agent has no concept of server isolation. All tools from all servers are presented in a single flat namespace. Any server can instruct the agent to call any other server's tools.
 
@@ -282,7 +282,7 @@ OWASP mapping: ASI02 (Tool Misuse) + ASI06 (Rogue Agent Behavior) + ASI08 (Insec
 
 ---
 
-## Part 5: The OWASP Agentic Top 10 — A Quick Map
+## Part 5: the OWASP agentic top 10 — a quick map
 
 In early 2026, OWASP published the Top 10 for Agentic Applications (ASI01–ASI10) — the first comprehensive threat taxonomy specific to agents. Every attack pattern above maps to this framework.
 
@@ -315,7 +315,7 @@ If you want to go deeper on each category, the full document is at [genai.owasp.
 
 ---
 
-## Part 6: Five Controls That Actually Work
+## Part 6: five controls that actually work
 
 The threat model above is not a reason to stop building. It is a reason to build differently. These five controls address the highest-impact risks without requiring architectural overhaul.
 
@@ -341,7 +341,7 @@ Every document the agent reads, every API response it processes, every web searc
 
 ---
 
-## Where This Goes From Here
+## Where this goes from here
 
 The attacks described in this article are not the ceiling. They are the floor.
 

@@ -28,7 +28,7 @@ description: "Article 12 requires automatically generated logs. Article 19 requi
 
 ---
 
-## Article Structure and Research Directives
+## Article structure and research directives
 
 ### Opening hook (300 words)
 
@@ -45,7 +45,7 @@ Lead with the community signal: "The language is unambiguous about what must be 
 
 ---
 
-### Section 1: What Article 12 and 19 actually require (600 words)
+### Section 1: what Article 12 and 19 actually require (600 words)
 
 **Key requirements to extract from the text:**
 - (a) Logs must be automatically generated, not manually curated
@@ -66,7 +66,7 @@ Lead with the community signal: "The language is unambiguous about what must be 
 
 ---
 
-### Section 2: The agentic AI logging schema (1200 words -- core deliverable)
+### Section 2: the agentic AI logging schema (1200 words -- core deliverable)
 
 Define a JSON schema for agentic AI events. Six event types, each with field definitions, rationale, and the Article it satisfies.
 
@@ -109,7 +109,7 @@ Define a JSON schema for agentic AI events. Six event types, each with field def
 
 ---
 
-### Section 3: Architecture patterns (800 words)
+### Section 3: architecture patterns (800 words)
 
 Three patterns with trade-offs:
 
@@ -132,7 +132,7 @@ Three patterns with trade-offs:
 
 ---
 
-### Section 4: Retention, integrity, and cost model (600 words)
+### Section 4: retention, integrity, and cost model (600 words)
 
 **Retention:**
 - 6 months minimum (Article 19)

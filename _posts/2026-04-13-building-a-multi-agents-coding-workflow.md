@@ -23,7 +23,7 @@ image:
 description: "A proof-of-concept multi-agent coding system built on OpenCode and a local Ollama model, with Discord as the human interface. Covers the architecture, technical decisions, limitations, and threat modeling perspective for those working in AI security."
 ---
 
-# Building a Local Multi-Agent Development System
+# Building a local multi-agent development system
 
 This post documents agent-forge: a proof-of-concept multi-agent coding system
 built on [OpenCode](https://opencode.ai) and a local Ollama model, with Discord as the human interface.
@@ -34,7 +34,7 @@ security — what this kind of system looks like from a threat modeling perspect
 
 ---
 
-## The Actual Point
+## The actual point
 
 Most AI coding setups still require you to be present in front of your screen.
 You send a prompt, read the output, decide if it's good enough, prompt again,
@@ -77,7 +77,7 @@ every step, is what this system is actually about.
 
 ---
 
-## What We Built and How
+## What we built and how
 
 The implementation is a proof-of-concept multi-agent coding system where three agents
 — Architect, Executor, and Reviewer — work sequentially through a shared OpenCode server session.
@@ -107,7 +107,7 @@ Everything runs on-premises. No API calls leave the machine.
 
 ## Architecture
 
-### The Three-Agent Workflow
+### The three-agent workflow
 
 ```
 User (Discord !build)
@@ -169,7 +169,7 @@ The role instructions are injected fresh on every call, which matters because `-
 shares session context — without the role prefix, later calls can bleed into
 earlier agent personas.
 
-### Why `--attach` Was the Key Fix
+### Why `--attach` was the key fix
 
 The initial version spawned isolated `opencode run` processes.
 Each call was stateless: the model had no knowledge of what the previous agent had done.
@@ -185,7 +185,7 @@ initialization issue with the Ollama backend), stopped occurring.
 
 This is the architectural decision that made everything else work.
 
-### Human Interface
+### Human interface
 
 The Discord bot exposes four commands:
 
@@ -201,7 +201,7 @@ On a successful `VERDICT: PASS`, the bot runs
 
 ---
 
-## What Works
+## What works
 
 **The persistent session model is solid.** Once you understand that OpenCode's `--attach`
 is the right primitive for chained agent calls, the rest follows naturally.
@@ -242,7 +242,7 @@ asynchronously reviewable.
 
 ---
 
-## What Doesn't Work Well
+## What doesn't work well
 
 **Complex multi-file tasks are unreliable.** The Executor can create files and
 write code, but the Reviewer's ability to validate correctness is limited by the
@@ -291,11 +291,11 @@ We don't have that yet.
 
 ---
 
-## Security Perspective for AI Security Practitioners
+## Security perspective for AI security practitioners
 
 This section is for people whose job involves thinking about what happens when agentic AI systems interact with infrastructure. The agent-forge setup is intentionally minimal — it's a proof of concept — but the attack surface it exposes is representative of how these systems tend to get deployed in practice. Some of what follows maps directly onto the [OWASP Top 10 for LLM Applications](https://genai.owasp.org/llm-top-10/).
 
-### What the Threat Model Actually Looks Like
+### What the threat model actually looks like
 
 The system has a **code execution primitive with no human approval gate**. When `VERDICT: PASS` is detected, the bot commits to git automatically. Anyone who can influence the Reviewer's output can commit arbitrary code to the target repository.
 
@@ -315,7 +315,7 @@ In agent-forge, the Reviewer is instructed to "check the work just done" and "li
 
 **Path 3: The `OPENCODE_PERMISSION` setting.** The environment variable `OPENCODE_PERMISSION` is set to `{"allow":["*"]}` for every agent call. This grants OpenCode unrestricted file system access within the process. The intent is to let the Executor write files without interactive permission prompts, but it also means the model can read any file accessible to the process, not just files in the target repository. On a developer workstation, that includes SSH keys, `.env` files in other projects, and credentials stored in home directory config files. This is OWASP **LLM06: Excessive Agency** — the system has more permissions than the task requires.
 
-### What Running Locally Actually Buys You (and What It Doesn't)
+### What running locally actually buys you (and what it doesn't)
 
 The privacy argument for local models is real but partial. This is worth thinking through carefully, because it's often misunderstood.
 
@@ -331,7 +331,7 @@ Warning: OPENCODE_SERVER_PASSWORD is not set; server is unsecured.
 
 The server listens on `127.0.0.1:4096` by default, which limits it to localhost. But any local process — including a compromised dependency, a browser tab exploiting a local SSRF, or another agent in a more complex multi-agent setup — can send arbitrary prompts to that server. If you ever bind it to `0.0.0.0` for network access, it becomes network-wide unauthenticated remote code execution.
 
-### Hardening This for Non-Toy Use
+### Hardening this for non-toy use
 
 If you're building something based on this pattern and expect it to run against anything more sensitive than a scratch repository, a few changes are worth making:
 
@@ -347,7 +347,7 @@ If you're building something based on this pattern and expect it to run against 
 
 6. **Consider model provenance.** Know where your model weights came from, verify checksums, and treat model updates like software updates — tested before running against anything important.
 
-### Agentic Autonomy vs. Meaningful Oversight
+### Agentic autonomy vs. meaningful oversight
 
 There's a broader point here that applies beyond this specific implementation. Anthropic's guidance states it plainly: "The autonomous nature of agents means higher costs, and the potential for compounding errors." The three-pass review loop is a genuine improvement over single-agent execution, but the review is still automated, the commit is still automated, and the only human touchpoint is the initial `!build` command.
 
@@ -355,7 +355,7 @@ That narrow control gate is fine for a sandboxed scratch repository with no cred
 
 ---
 
-## Honest Assessment of Current Capabilities
+## Honest assessment of current capabilities
 
 For boilerplate generation on greenfield tasks, this works well. Tell it to create a FastAPI endpoint, a pytest fixture, a Dockerfile for a Python app — the architect→executor→reviewer loop produces reasonable output with modest manual cleanup.
 
@@ -367,7 +367,7 @@ Don't use `VERDICT: PASS` as a substitute for human review on anything that matt
 
 ---
 
-## Extending This
+## Extending this
 
 The architecture is deliberately minimal — it's 180 lines of Python. A few directions that seem worthwhile:
 
@@ -383,7 +383,7 @@ The architecture is deliberately minimal — it's 180 lines of Python. A few dir
 
 ---
 
-## Where This Fits
+## Where this fits
 
 Agent-forge is not a production system. It's a starting point for understanding how multi-agent coding workflows behave in practice, what the failure modes look like, and what security properties you need to think about before you attach this kind of autonomy to anything important.
 

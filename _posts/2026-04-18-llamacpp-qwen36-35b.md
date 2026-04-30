@@ -22,7 +22,7 @@ image:
 description: "24GB of VRAM. A 35B-parameter model. 65k context window. It shouldn't work on paper — but KV cache quantization, flash attention, and Mixture of Experts make it not just possible but fast. Here's every knob I turned, every obstacle I hit, and the numbers that prove 24GB is enough."
 ---
 
-## TL;DR — The Honest Numbers
+## TL;DR — the honest numbers
 
 | Model | Backend | Short | Medium | Long | Context | VRAM |
 |---|---|---|---|---|---|---|
@@ -53,7 +53,7 @@ description: "24GB of VRAM. A 35B-parameter model. 65k context window. It should
 
 ---
 
-## 1. Why Move Beyond Ollama
+## 1. why move beyond Ollama
 
 Ollama is great for getting started. `ollama run qwen3-coder:30b` and you have a local model in 30 seconds. I used it happily until I read a Reddit post where someone was getting 100+ tok/s on a 35B MoE model with a 4090 — same VRAM budget as my 3090. They were using llama.cpp directly, not Ollama, with explicit control over parameters Ollama doesn't expose.
 
@@ -65,9 +65,9 @@ There's also a compatibility ceiling that only became apparent when Qwen3.6 drop
 
 ---
 
-## 2. The Theory: What Actually Matters
+## 2. the theory: what actually matters
 
-### MoE — why 35B runs like 3.6B
+### MoE — why 35b runs like 3.6b
 
 Both Qwen3.5 and Qwen3.6 are Mixture of Experts models with **35B total parameters but only 3.6B active per forward pass**. The "A3B" means exactly this. A router activates only the relevant experts per token. Inference cost ≈ a 3.6B dense model. Quality ≈ a 35B dense model. This is why 100+ tok/s is achievable on consumer hardware.
 
@@ -82,7 +82,7 @@ The KV cache stores computed attention keys and values for every context token. 
 | **Q4_K_M / UD-Q4_K_XL** | **4.5** | **Very good** | **~21–23 GB** |
 | IQ3_XXS | 3.5 | Good for large | ~15 GB |
 
-### Flash Attention
+### Flash attention
 
 A fused kernel that computes attention without materializing the full N×N matrix in HBM. Cuts VRAM for attention computation by ~30%, improves throughput by keeping data on-chip. One flag: `--flash-attn on`. Free performance on the 3090 (compute capability 8.6, fully supported).
 
@@ -92,7 +92,7 @@ With `--n-gpu-layers 99`, llama.cpp pushes as many transformer layers as VRAM al
 
 ---
 
-## 3. The Setup: What I Built
+## 3. the setup: what I built
 
 The goal: Ollama stays available for quick tasks and model management, while llama.cpp handles serious sessions — with zero friction to switch and zero re-downloads.
 
@@ -126,7 +126,7 @@ local-llm-ops/
 
 **Native track (current)** — required for Qwen3.6 and newer, built from source, always latest, supports mmproj for vision models.
 
-### Key config — Qwen3.5 (Docker)
+### Key config — qwen3.5 (docker)
 
 ```yaml
 # compose/qwen3.5-35b-a3b.yml
@@ -143,7 +143,7 @@ command: >
   --temp 0.6 --top-p 0.95 --top-k 20
 ```
 
-### Key config — Qwen3.6 (native binary)
+### Key config — qwen3.6 (native binary)
 
 ```bash
 # scripts/run-qwen3.6-35b-a3b.sh
@@ -164,7 +164,7 @@ command: >
 
 ---
 
-## 4. The Obstacles I Hit
+## 4. the obstacles I hit
 
 Documenting these because they cost hours and are easy to miss.
 
@@ -201,7 +201,7 @@ sudo apt-get update && sudo apt-get install -y cuda-toolkit-12-8
 
 ---
 
-## 5. Benchmark Methodology
+## 5. benchmark methodology
 
 ### What was wrong in v1
 
@@ -232,7 +232,7 @@ Three prompts, 512 token output cap, same model file (same GGUF blob for Qwen3.5
 
 ---
 
-## 6. The Real Numbers
+## 6. the real numbers
 
 ### Generation speed (tok/s)
 
@@ -274,7 +274,7 @@ The newest frontier model only runs on the better stack. If you want to use curr
 
 ---
 
-## 7. Qwen3.6: A New Requirement
+## 7. qwen3.6: a new requirement
 
 Qwen3.6 dropped April 16, 2026. It introduced a new rope encoding format that broke every existing llama.cpp Docker image. The `server-cuda` tag on ghcr.io was already behind on release day.
 
@@ -320,7 +320,7 @@ hf download unsloth/Qwen3.6-35B-A3B-GGUF \
 
 ---
 
-## 8. Daily Workflow Reference
+## 8. daily workflow reference
 
 ### Starting models
 
@@ -410,7 +410,7 @@ make update-llamacpp
 
 ---
 
-## 9. OpenCode Integration
+## 9. opencode integration
 
 Both backends are configured as separate providers. Switching is a `/model` command mid-session — no restart needed.
 
@@ -462,7 +462,7 @@ Both backends are configured as separate providers. Switching is a `/model` comm
 
 ---
 
-## 10. Conclusions
+## 10. conclusions
 
 The honest gains from moving to llama.cpp on a 3090:
 

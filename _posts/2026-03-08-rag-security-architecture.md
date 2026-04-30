@@ -34,7 +34,7 @@ This article demonstrates all three attacks with working code against a 100% loc
 
 ---
 
-## Why RAG Security Deserves Its Own Threat Model
+## Why RAG security deserves its own threat model
 
 RAG has become the default architecture for connecting LLMs to private data. Instead of fine-tuning a model (expensive, slow, hard to update), you embed your documents into a vector database and retrieve relevant chunks at query time. The LLM gets grounded context, hallucinations drop, and your data stays fresh. That is the pitch. The reality is more complicated.
 
@@ -54,29 +54,29 @@ We then build layered defenses that address each attack at the right layer.
 
 ---
 
-## RAG Architecture: Where Trust Boundaries Actually Are
+## RAG architecture: where trust boundaries actually are
 
 Before attacking anything, you need to understand the architecture. A standard RAG pipeline has three phases, and each phase has distinct trust boundaries that most implementations ignore.
 
-### Phase 1: Ingestion
+### Phase 1: ingestion
 
 Documents enter the system through data loaders. PDFs, markdown files, HTML pages, Confluence exports, Slack archives — all are parsed, split into chunks, converted to vector embeddings by an embedding model, and stored in a vector database alongside metadata (source file, timestamp, access level, chunk index).
 
 **Trust assumption that fails here:** "Our internal documents are trustworthy." They are not. Any document that a user, contractor, or automated pipeline can modify is a potential injection vector. Research from the Deconvolute Labs analysis of RAG attack surfaces shows that data loaders frequently fail to sanitize inputs from documents and PDFs; a 2025 study found a 74% poisoning success rate through unsanitized document ingestion.
 
-### Phase 2: Retrieval
+### Phase 2: retrieval
 
 When a user submits a query, the system embeds the query using the same embedding model, performs a similarity search against the vector database, and returns the top-k most semantically similar chunks.
 
 **Trust assumption that fails here:** "Similarity search returns relevant, safe content." It does not guarantee either. Semantic similarity is a mathematical property, not a safety property. An attacker who understands the embedding space can craft documents that are semantically close to anticipated queries while carrying malicious payloads.
 
-### Phase 3: Generation
+### Phase 3: generation
 
 Retrieved chunks are injected into the LLM's context window alongside the user query and a system prompt. The LLM generates a response grounded in the retrieved context.
 
 **Trust assumption that fails here:** "The LLM will use context as reference material, not as instructions." This is the foundational failure. LLMs cannot reliably distinguish between data (retrieved context) and instructions (system prompt). Everything in the context window is processed identically. A malicious instruction embedded in a retrieved document has the same influence as a system prompt directive.
 
-### The RAG Trust Paradox Visualized
+### The RAG trust paradox visualized
 
 ```
 ┌─────────────────────────────────────────────────┐
@@ -101,7 +101,7 @@ The paradox: we validate the user query but implicitly trust retrieved content, 
 
 ---
 
-## Threat Actor Model: Who Poisons Your Knowledge Base
+## Threat actor model: who poisons your knowledge base
 
 Before diving into attacks, it is worth making the threat actors explicit. RAG poisoning is not a theoretical risk; multiple realistic actors have the access and motivation to exploit it.
 
@@ -117,7 +117,7 @@ The common thread: any path that leads to a document being embedded into the vec
 
 ---
 
-## Lab Setup: Your Local RAG Security Lab
+## Lab setup: your local RAG security lab
 
 Everything in this article runs 100% locally. No cloud APIs, no API keys, no data leaving your machine.
 
@@ -137,7 +137,7 @@ Everything in this article runs 100% locally. No cloud APIs, no API keys, no dat
 - Python 3.11+
 - ~6 GB RAM/VRAM for the model
 
-### Environment Setup
+### Environment setup
 
 ```bash
 # Create lab workspace
@@ -155,7 +155,7 @@ pip install langchain langchain-community langchain-core \
 curl http://localhost:1234/v1/models
 ```
 
-### Base RAG Pipeline
+### Base RAG pipeline
 
 Create the vulnerable RAG system that we will attack throughout the lab. This is a deliberately insecure implementation; it represents the "happy path" architecture that most teams deploy without security hardening.
 
@@ -352,7 +352,7 @@ You should see the RAG system retrieve the travel policy document and generate a
 
 ---
 
-## Security-Aware Chunking Strategy
+## Security-Aware chunking strategy
 
 Before attacking, one architectural decision deserves attention because it is rarely discussed as a security concern: **how documents are chunked**.
 
@@ -375,15 +375,15 @@ Most teams treat chunking as a retrieval optimization problem. Chunk size, overl
 
 ---
 
-## Attack 1: Knowledge Base Poisoning
+## Attack 1: knowledge base poisoning
 
-### The Threat
+### The threat
 
 Knowledge base poisoning is the RAG equivalent of a supply chain attack. The attacker injects documents into the knowledge base that are designed to be retrieved for specific target queries and to cause the LLM to generate attacker-chosen responses. Unlike prompt injection (which targets the user input), poisoning targets the retrieval layer: it is persistent, it fires on every relevant query, and it is invisible to the user.
 
 The PoisonedRAG research (USENIX Security 2025) formalized this as an optimization problem with two conditions that malicious texts must satisfy simultaneously: a **retrieval condition** (the poisoned document must be retrieved for the target query) and a **generation condition** (the poisoned content must cause the LLM to produce the attacker's desired answer).
 
-### Framework Mapping
+### Framework mapping
 
 | Framework | Reference | Relevance |
 |---|---|---|
@@ -396,7 +396,7 @@ The PoisonedRAG research (USENIX Security 2025) formalized this as an optimizati
 
 **Agentic escalation**: When a RAG pipeline feeds an autonomous agent, knowledge poisoning becomes dramatically more dangerous. A poisoned retrieval does not just misinform a user; it can cause the agent to make wrong tool calls, authorize incorrect actions, or propagate false data to downstream agents. This is the connection between ASI06 (knowledge poisoning) and ASI01 (goal hijacking): corrupt the knowledge, redirect the agent.
 
-### The Attack
+### The attack
 
 ```python
 # ~/rag-security-lab/attack1_knowledge_poisoning.py
@@ -482,7 +482,7 @@ if __name__ == "__main__":
     demonstrate_attack()
 ```
 
-### Running the Attack
+### Running the attack
 
 ```bash
 # Make sure the base data is loaded first
@@ -492,7 +492,7 @@ python vulnerable_rag.py seed
 python attack1_knowledge_poisoning.py
 ```
 
-### What You Will Observe
+### What you will observe
 
 The RAG system now returns the *poisoned* financial data instead of the legitimate Q4 figures. The three poisoned documents all score higher in semantic similarity for financial queries because they contain multiple reinforcing signals: "Q4 2025", "revenue", "financial results", "corrected figures." The legitimate Q4 document is pushed out of the top-k results.
 
@@ -502,7 +502,7 @@ Key observations:
 2. **Three documents create consensus.** When the LLM sees three independent sources agreeing on $8.3M revenue, it is extremely unlikely to prefer the single legitimate document (if it even gets retrieved).
 3. **Metadata mimics legitimate documents.** The poisoned docs have the same department tags and classification levels as real documents. Without validation at ingestion, nothing distinguishes them.
 
-### Teaching Points
+### Teaching points
 
 **Q: How did 3 documents beat 1 legitimate document?**
 
@@ -518,15 +518,15 @@ A: Multiple paths exist. Any employee with document upload access. A compromised
 
 ---
 
-## Attack 2: Indirect Prompt Injection via Retrieved Context
+## Attack 2: indirect prompt injection via retrieved context
 
-### The Threat
+### The threat
 
 This attack embeds LLM instructions *inside* documents that get stored in the knowledge base. When the RAG system retrieves these documents and injects them into the prompt, the LLM executes the hidden instructions. Unlike Attack 1 (which corrupts information), this attack hijacks the LLM's behavior, making it exfiltrate data, ignore safety guidelines, or perform unauthorized actions.
 
 The Deconvolute Labs analysis calls this the "Back Door" attack pattern: it exploits the fact that the LLM cannot distinguish between instructions from the system prompt and instructions embedded in retrieved content. The injection is persistent (fires on every retrieval) and asynchronous (the attacker does not need to be present when the victim queries the system).
 
-### Framework Mapping
+### Framework mapping
 
 | Framework | Reference | Relevance |
 |---|---|---|
@@ -540,7 +540,7 @@ The Deconvolute Labs analysis calls this the "Back Door" attack pattern: it expl
 
 **Agentic escalation**: When the RAG system feeds an agent with tool access, indirect prompt injection is no longer limited to information manipulation. A successfully injected instruction can direct the agent to execute tool calls (read files, send emails, modify databases, invoke APIs), all triggered by a document that was planted days or weeks earlier. This is the attack vector that bridges ASI01 (goal hijacking) to ASI02 (tool misuse).
 
-### The Hard Problem: Semantic Injection
+### The hard problem: semantic injection
 
 Before walking through the lab code, the variant that matters most deserves its own spotlight.
 
@@ -573,7 +573,7 @@ This is **semantic injection**: instructions delivered through authoritative nat
 
 The three marker-based variants below are included to show the full attack range. Consider them the easy problem that pattern-matching already solves. Semantic injection is the hard one.
 
-### The Attack
+### The attack
 
 ```python
 # ~/rag-security-lab/attack2_indirect_injection.py
@@ -758,13 +758,13 @@ if __name__ == "__main__":
     demonstrate_attack()
 ```
 
-### Running the Attack
+### Running the attack
 
 ```bash
 python attack2_indirect_injection.py
 ```
 
-### What You Will Observe
+### What you will observe
 
 Depending on the model's instruction-following strength, you will see one or more of these behaviors:
 
@@ -774,7 +774,7 @@ Depending on the model's instruction-following strength, you will see one or mor
 
 Not every injection will succeed on every query; Qwen2.5-7B follows hidden instructions roughly 40–60% of the time in our testing. Larger models may be more or less susceptible. The point is that even a partial success rate is catastrophic in a production system handling thousands of queries daily.
 
-### Teaching Points
+### Teaching points
 
 **Q: Why is semantic injection (`inject-004`) harder to stop than the other three variants?**
 
@@ -794,9 +794,9 @@ A: To show that markers are not required for success, and to let you test whethe
 
 ---
 
-## Attack 3: Cross-Tenant Data Leakage
+## Attack 3: cross-tenant data leakage
 
-### The Threat
+### The threat
 
 In multi-tenant RAG systems, where multiple users, departments, or organizations share the same vector database, missing access controls allow any user to retrieve documents they should not have access to. This is the "one big bucket" anti-pattern that the OWASP LLM08 entry specifically warns about.
 
@@ -804,7 +804,7 @@ The attack is trivially simple: ask a question that is semantically similar to c
 
 As noted in a Microsoft Azure architecture guide for secure multi-tenant RAG: the orchestration layer must route queries to tenant-specific data stores, or enforce document-level security filtering during retrieval. Without this, every user effectively has read access to every document in the knowledge base.
 
-### Framework Mapping
+### Framework mapping
 
 | Framework | Reference | Relevance |
 |---|---|---|
@@ -817,7 +817,7 @@ As noted in a Microsoft Azure architecture guide for secure multi-tenant RAG: th
 
 **Agentic escalation**: In multi-tenant agentic deployments, cross-tenant leakage means one customer's agent can reason over another customer's confidential data. If that agent then takes actions based on leaked context (generating reports, sending summaries, making decisions), the leak is amplified from a data access violation to an operational integrity failure.
 
-### The Attack
+### The attack
 
 ```python
 # ~/rag-security-lab/attack3_cross_tenant_leakage.py
@@ -942,14 +942,14 @@ if __name__ == "__main__":
     demonstrate_leakage()
 ```
 
-### Running the Attack
+### Running the attack
 
 ```bash
 # Ensure base data is already seeded
 python attack3_cross_tenant_leakage.py
 ```
 
-### What You Will Observe
+### What you will observe
 
 Every query returns confidential documents from other departments. A regular engineering employee can retrieve exact salary bands, privileged litigation details, and board-level M&A targets. The vector database performs semantic similarity search without any awareness of access control; it simply returns the most relevant documents.
 
@@ -957,7 +957,7 @@ This is the most common RAG vulnerability in enterprise deployments. It requires
 
 ---
 
-## Lab 4: Embedding Inversion — Your Vectors Are Not Hashed
+## Lab 4: embedding inversion — your vectors are not hashed
 
 The article mentions embedding inversion as an advanced threat in the "Advanced Considerations" section. Here is what it actually looks like in practice, because the typical reaction to "your vectors can be inverted" is "vectors are hashed, that's not possible." They are not hashed. They are high-dimensional floating-point representations, and nearest-neighbor reconstruction recovers meaningful portions of the original text from them.
 
@@ -1032,13 +1032,13 @@ for i, (original, vector) in enumerate(zip(sensitive_texts, stolen_vectors)):
     print(f"  Terms recovered: {overlap if overlap else '(use a larger vocab corpus for better results)'}")
 ```
 
-### Running Lab 4
+### Running lab 4
 
 ```bash
 python lab4_embedding_inversion.py
 ```
 
-### What You Will Observe
+### What you will observe
 
 Even this naive approach recovers a meaningful fraction of the original terms, including domain-specific identifiers like AWS key prefixes, financial figures, and proper names that appeared in the vocabulary corpus. The more an attacker knows about your domain (your company's terminology, employee names, product names), the larger and more targeted their vocabulary corpus, and the higher the recovery rate.
 
@@ -1046,7 +1046,7 @@ The ALGEN attack (arXiv:2502.11308, 2025) demonstrated that training a proper in
 
 ---
 
-## Lab 5: Chunking Attack Surface Audit
+## Lab 5: chunking attack surface audit
 
 The article covers chunking security implications theoretically. This lab makes them concrete: given the semantic injection payload (inject-004), which chunking strategies let it survive intact into the collection, and which strategies split it in ways that affect retrieval?
 
@@ -1152,7 +1152,7 @@ python lab5_chunking_audit.py
 
 ---
 
-## Lab 6: ChromaDB ACL Bypass — Raw Query vs. Filtered
+## Lab 6: chromadb ACL bypass — raw query vs. filtered
 
 Attack 3 demonstrates cross-tenant leakage through the Python application layer. This lab shows the raw ChromaDB query that causes it, applies the metadata filter fix, and verifies the fix works with the same query. The point: the fix is three lines of code, and the bypass is zero lines of code (it is the default behavior).
 
@@ -1234,11 +1234,11 @@ The before/after output makes the mechanism undeniable: the same query, the same
 
 ---
 
-## Is My Knowledge Base Already Poisoned?
+## Is my knowledge base already poisoned?
 
 After reading the attack labs, a common question is: how would I know if someone has already done this to my system? Detecting an active poisoning is harder than preventing one, but several signals are actionable.
 
-### Signal 1: Hash Verification at Retrieval
+### Signal 1: hash verification at retrieval
 
 At ingestion, store a SHA-256 hash of each document's text as metadata. At retrieval time, verify the stored document against its hash:
 
@@ -1267,7 +1267,7 @@ def safe_retrieve(query, collection, n_results=3):
 
 This catches post-ingestion document modification (an attacker who compromised the vector store directly). It does not catch documents injected at ingestion time with a matching hash \u2014 that requires the audit log signals below.
 
-### Signal 2: Cross-Session Query Consistency
+### Signal 2: cross-session query consistency
 
 Knowledge base poisoning (Attack 1) causes the same query to return different answers across sessions as poisoned documents intermittently enter the top-k results. A simple consistency monitor:
 
@@ -1296,7 +1296,7 @@ def check_consistency(query: str, answer: str, threshold: float = 0.6):
         print(f"  [Baseline] Recorded answer for: {query[:60]}...")
 ```
 
-### Signal 3: Ingestion Log Review
+### Signal 3: ingestion log review
 
 The simplest forensic step: review your ingestion audit logs (assuming you have them \u2014 Defense Layer 1 should be writing these) and look for:
 
@@ -1309,11 +1309,11 @@ If your pipeline does not currently write ingestion audit logs, that is the firs
 
 ---
 
-## Building Layered Defenses
+## Building layered defenses
 
 Each attack targets a different phase of the RAG pipeline. Effective defense requires controls at every layer; a single perimeter will not hold.
 
-### Defense Layer 1: Ingestion Sanitization (Stops Attacks 1 and 2)
+### Defense layer 1: ingestion sanitization (stops attacks 1 and 2)
 
 ```python
 # ~/rag-security-lab/defenses/sanitize_ingestion.py
@@ -1406,7 +1406,7 @@ def secure_ingest(documents: list[dict]) -> list[dict]:
     return approved
 ```
 
-### Defense Layer 2: Access-Controlled Retrieval (Stops Attack 3)
+### Defense layer 2: access-controlled retrieval (stops attack 3)
 
 ```python
 # ~/rag-security-lab/defenses/access_controlled_retrieval.py
@@ -1494,7 +1494,7 @@ def secure_retrieve(query: str, user_id: str, n_results: int = 3) -> list[str]:
     return returned_docs
 ```
 
-### Defense Layer 3: Prompt Hardening (Reduces Attack 2 Success)
+### Defense layer 3: prompt hardening (reduces attack 2 success)
 
 ```python
 # ~/rag-security-lab/defenses/hardened_prompt.py
@@ -1557,7 +1557,7 @@ MY QUESTION: {query}"""
     return messages
 ```
 
-### Defense Layer 4: Output Monitoring (Detects All Attacks)
+### Defense layer 4: output monitoring (detects all attacks)
 
 ```python
 # ~/rag-security-lab/defenses/output_monitor.py
@@ -1634,7 +1634,7 @@ def enforce_output_policy(response: str) -> str:
 
 These models evaluate semantic intent rather than surface patterns, catching exfiltration attempts that rephrase sensitive data in natural language.
 
-### Defense Layer 5: Embedding-Level Anomaly Detection (Strengthens Against Attack 1)
+### Defense layer 5: embedding-level anomaly detection (strengthens against attack 1)
 
 Text-level sanitization (Defense Layer 1) catches injection payloads with recognizable patterns, but knowledge base poisoning (Attack 1) operates at the semantic level. The poisoned financial documents contain no suspicious markers; they are grammatically correct, properly formatted, and use the same vocabulary as legitimate documents. Detection requires operating at the embedding level, where document similarity and clustering behavior reveal poisoning signals.
 
@@ -1822,7 +1822,7 @@ if __name__ == "__main__":
     print(f"\n[Answer]\n{answer}")
 ```
 
-### Testing Defenses Against Each Attack
+### Testing defenses against each attack
 
 ```bash
 # Test against Attack 3 (cross-tenant leakage)
@@ -1841,11 +1841,11 @@ python hardened_rag.py carol "What lawsuits is the company involved in?"
 
 ---
 
-## Measured Defense Effectiveness
+## Measured defense effectiveness
 
 The value of a defense architecture is not in the code. What matters is the measured reduction of attack success. Here is what each layer achieves when tested against the three attacks in this article.
 
-### Test Methodology
+### Test methodology
 
 All tests were run against a persistent ChromaDB collection seeded with five legitimate company documents (travel policy, IT security policy, Q4 financials, employee benefits, API rate limits) plus the attack payloads described in their respective sections. Model: **Qwen2.5-7B-Instruct Q4_K_M** on LM Studio 0.3.x, temperature=0.1.
 
@@ -1871,7 +1871,7 @@ These tests are reproducible. Clone the [lab repo](https://github.com/aminrj/rag
 | **Attack 2: Semantic Injection** (inject-004) | 14/20 (70%) | 14/20 (70%) — no markers to strip | 14/20 (70%) — no effect | 6/20 (30%) — partial reduction | 4/20 (20%) — catches some patterns | N/A | **3/20 (15%)** |
 | **Attack 3: Cross-Tenant Leakage** | 20/20 (100%) | 20/20 (100%) — no effect | 0/20 (0%) — **fully blocked** | 20/20 (100%) — no effect | 15/20 (75%) — catches some data | N/A | **0/20 (0%)** |
 
-### Key Takeaways
+### Key takeaways
 
 1. **Ingestion sanitization is necessary but not sufficient.** It eliminates marker-based injection (inject-001 through inject-003) completely, but has zero effect on knowledge poisoning and semantic injection. Pattern-based filters will always lag behind novel injection techniques.
 
@@ -1885,7 +1885,7 @@ These tests are reproducible. Clone the [lab repo](https://github.com/aminrj/rag
 
 ---
 
-## Defense Summary: What Stops What
+## Defense summary: what stops what
 
 | Defense Layer | Stops Attack 1 (Poisoning) | Stops Attack 2 (Injection) | Stops Attack 3 (Leakage) |
 |---|---|---|---|
@@ -1899,15 +1899,15 @@ These tests are reproducible. Clone the [lab repo](https://github.com/aminrj/rag
 
 ---
 
-## Advanced Considerations for Production
+## Advanced considerations for production
 
-### Embedding Inversion: Your Vectors Are Not Safe
+### Embedding inversion: your vectors are not safe
 
 A common misconception is that vector embeddings are "hashed" or "one-way." They are not. Research has consistently demonstrated that embeddings can be inverted to recover meaningful portions of the original text. Morris et al. (2023) showed 92% recovery of 32-token inputs. The 2025 ALGEN attack achieves effective inversion with only 1,000 training samples and transfers across black-box encoders.
 
 For healthcare, finance, or legal RAG systems, this means the vector database itself is a sensitive data store. If an attacker compromises your Pinecone/Weaviate/Chroma instance, they can reconstruct confidential documents from the embeddings alone. Mitigation options include encrypted embeddings (IronCore Labs' Cloaked AI applies property-preserving encryption that supports similarity search while rendering inversion attacks ineffective), vector noise injection (adds Gaussian noise to stored embeddings at the cost of slight retrieval accuracy), or running the vector database in a trusted execution environment.
 
-### Multi-Tenant Isolation Architectures
+### Multi-Tenant isolation architectures
 
 For SaaS applications, there are three levels of tenant isolation in vector databases, each with different security/cost tradeoffs:
 
@@ -1935,7 +1935,7 @@ START: Is your data subject to regulatory isolation requirements?
 
 AWS's multi-tenant RAG architecture using Amazon Bedrock and OpenSearch Service demonstrates a JWT+FGAC (Fine-Grained Access Control) pattern where tenant IDs from authentication tokens are enforced at the vector database query layer, ensuring that even if application code has a bug, the database itself rejects cross-tenant queries.
 
-### Document Provenance and Integrity
+### Document provenance and integrity
 
 Every document entering the knowledge base should be treated like code entering a production system. This means:
 
@@ -1949,7 +1949,7 @@ Every document entering the knowledge base should be treated like code entering 
 
 ---
 
-## Monitoring KPIs for RAG Security
+## Monitoring kpis for RAG security
 
 After implementing the defense layers, you need to measure their operational effectiveness. Track these metrics continuously:
 
@@ -1966,7 +1966,7 @@ After implementing the defense layers, you need to measure their operational eff
 
 ---
 
-## References and Further Reading
+## References and further reading
 
 **Core Research:**
 - Zou et al., "PoisonedRAG: Knowledge Corruption Attacks to Retrieval-Augmented Generation of Large Language Models," USENIX Security 2025 — [github.com/sleeepeer/PoisonedRAG](https://github.com/sleeepeer/PoisonedRAG)
@@ -2002,7 +2002,7 @@ After implementing the defense layers, you need to measure their operational eff
 
 ---
 
-## What To Do in the Next 30 Minutes
+## What to do in the next 30 minutes
 
 You have seen the attacks and the numbers. Here is what to do before you close this tab, in order of impact:
 

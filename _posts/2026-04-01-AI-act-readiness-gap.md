@@ -37,7 +37,7 @@ If you cannot explain what an agent can access, why it was allowed to act, and h
 
 ---
 
-## What the August 2026 deadline actually requires
+## What the august 2026 deadline actually requires
 
 The AI Act is risk-based. For high-risk systems under Annex III, five articles matter most to agent deployments.
 

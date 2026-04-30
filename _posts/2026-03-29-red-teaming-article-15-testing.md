@@ -29,7 +29,7 @@ That guide was written as a security practitioner's reference. This article refr
 
 ---
 
-## What Article 15 Requires
+## What Article 15 requires
 
 Article 15(3) states that high-risk AI systems must be "tested in order to identify the most appropriate and targeted risk management measures." The testing must be "suitable to achieve the intended purpose" of ensuring accuracy, robustness, and cybersecurity.
 
@@ -41,7 +41,7 @@ For agentic AI systems that make autonomous decisions through MCP tool chains, s
 
 ---
 
-## Mapping the 5-Phase Methodology to Article 15
+## Mapping the 5-phase methodology to Article 15
 
 The [red teaming methodology](https://aminrj.com/posts/attack-patterns-red-teaming/) runs five phases. Each phase maps to a specific Article 15 requirement:
 
@@ -67,7 +67,7 @@ Article 15 compliance evidence produced: before/after comparison showing measure
 
 ---
 
-## The Red Team Report as Regulatory Submission
+## The red team report as regulatory submission
 
 The output of the 5-phase assessment is a structured report. The [CISO's Playbook](https://aminrj.com/posts/ciso-playbook-red-teaming-agentic-ai/) provides reporting templates with severity frameworks and remediation tracking.
 
@@ -81,7 +81,7 @@ A red team report with these three fields becomes a regulatory submission artifa
 
 ---
 
-## Why "Fully Local, No Cloud Dependencies" Matters for Compliance
+## Why "fully local, no cloud dependencies" matters for compliance
 
 All three tools -- PyRIT, Garak, and Promptfoo -- run entirely offline in the [documented lab configuration](https://aminrj.com/posts/attack-patterns-red-teaming/). This matters for compliance because:
 
@@ -93,7 +93,7 @@ Article 9(6) requires testing to be "suitable" and "not go beyond what is necess
 
 ---
 
-## What to Do
+## What to do
 
 1. **Run Phase 1 against your MCP deployment this week.** Use the [MCP Security Top 10](https://aminrj.com/posts/owasp-mcp-top-10/) to catalog your threat surface. This takes 2-3 hours and produces the Article 9(2)(a) risk identification document.
 

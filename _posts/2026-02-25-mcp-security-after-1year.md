@@ -54,7 +54,7 @@ need to prioritize now.
 
 ---
 
-## A Brief Orientation
+## A brief orientation
 
 For readers encountering MCP for the first time: the Model Context Protocol is
 an open standard introduced by Anthropic in November 2024 that defines how AI
@@ -89,7 +89,7 @@ MCP's first year.
 
 ---
 
-## What the Scans Revealed
+## What the scans revealed
 
 An autonomous [security researcher known as Kai](https://dev.to/kai_security_ai/i-scanned-every-server-in-the-official-mcp-registry-heres-what-i-found-4p4m) has been continuously scanning
 every server in the official MCP registry since late 2025.
@@ -129,7 +129,7 @@ and called it 🤯.
 ![Authentication Gap Across the Registry](/assets/media/ai-security/MCP-security-after-one-year/mcp-authentication.png)
 Diagram 2: Authentication Gap Across the Registry
 
-## The CVE Landscape: Old Bugs in New Infrastructure
+## The CVE landscape: old bugs in new infrastructure
 
 Between January and February 2026, [security researchers documented](https://dev.to/kai_security_ai/30-cves-later-how-mcps-attack-surface-expanded-into-three-distinct-layers-ihp) 30 CVEs
 against MCP servers and related infrastructure. The breakdown tells a story
@@ -183,7 +183,7 @@ from the usual rules.
 
 ---
 
-## Three Attack Patterns That Define the Threat Model
+## Three attack patterns that define the threat model
 
 The CVE data captures implementation bugs that are important, fixable, and familiar.
 But the more significant security challenge in MCP is architectural.
@@ -191,7 +191,7 @@ But the more significant security challenge in MCP is architectural.
 Three attack patterns exploit the way the protocol itself works, not just how
 individual servers are coded.
 
-### Pattern 1: Tool Description Injection
+### Pattern 1: tool description injection
 
 Every MCP server exposes its tools to the AI assistant along with a description of what each tool does.
 These descriptions are processed by the language model as part of its context.
@@ -221,7 +221,7 @@ It doesn't trigger alerts.
 It doesn't generate anomalous logs.
 It just works, quietly, every time.
 
-### Pattern 2: Cross-Server Poisoning
+### Pattern 2: cross-server poisoning
 
 When multiple MCP servers are connected to the same AI agent, all tools from all
 servers are presented in a single flat namespace.
@@ -252,7 +252,7 @@ server.
 The AI assistant acts as the unwitting intermediary, passing data between
 servers because it was instructed to.
 
-### Pattern 3: Tool Description Mutation (The Rug Pull)
+### Pattern 3: tool description mutation (the rug pull)
 
 An MCP server presents a benign interface on initial installation.
 A code review at install time finds nothing suspicious.
@@ -276,7 +276,7 @@ ecosystem.
 
 ---
 
-## The Infrastructure Layer Is Not Immune
+## The infrastructure layer is not immune
 
 Perhaps the most concerning finding from the February 2026 CVE wave is that the
 attacks have moved beyond individual servers into the foundational
@@ -320,7 +320,7 @@ Diagram 4: MCP's Three Attack Layers
 
 ---
 
-## What Organizations Should Prioritize
+## What organizations should prioritize
 
 The good news is that most of the controls needed are not novel. MCP's security
 challenges are largely the result of deploying a new protocol without applying
@@ -356,7 +356,7 @@ no outbound internet access beyond their intended scope.
 
 ---
 
-## Looking Forward
+## Looking forward
 
 The MCP specification itself has been evolving.
 The June 2025 update introduced the StreamableHTTP transport and improvements to

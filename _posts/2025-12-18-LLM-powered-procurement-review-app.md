@@ -11,7 +11,7 @@ image:
 description: Build a complete LLM application in one file. Learn structured outputs, validation, and treating AI models as system components.
 ---
 
-## Why I Built This
+## Why I built this
 
 Most LLM tutorials teach you to write prompts. This one teaches you to write **systems**.
 
@@ -29,7 +29,7 @@ All of it runs locally through **LM Studio** using an OpenAI-compatible API. The
 
 This article documents the approach, the architecture, and the LLM engineering patterns that made it reliable.
 
-## Why Procurement Makes a Great Learning Project
+## Why procurement makes a great learning project
 
 Procurement tenders are an underrated playground for applied LLM engineering:
 
@@ -557,7 +557,7 @@ This is extremely useful early on because most failures are formatting / schema 
 
 ---
 
-## What I Learned Building This
+## What I learned building this
 
 **The one-file constraint forced every decision to be defensible.** When you can't hide complexity in microservices, every abstraction becomes obvious. Is this validation really needed? Is this retry logic correct? You can't defer those questions. That clarity is valuable—keep it as long as possible before splitting things up.
 
@@ -567,7 +567,7 @@ This is extremely useful early on because most failures are formatting / schema 
 
 ---
 
-## Resources & Next Steps
+## Resources & next steps
 
 **Read the Code**: [github.com/aminrj/procurement-ai](https://github.com/aminrj/procurement-ai) — Tag `v0.1-article-procurement-mvp` for the one-file version
 

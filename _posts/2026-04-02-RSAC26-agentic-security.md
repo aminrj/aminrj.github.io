@@ -22,7 +22,7 @@ image:
 description: "Every major vendor at RSAC 2026 shipped an agentic AI security product. None of them shipped an agent behavioral baseline. Here is what that gap means for security practitioners and what ClawHavoc — the first major supply chain attack on an AI agent ecosystem — tells us about where the threat is going."
 ---
 
-## Every major vendor shipped an agent security product. None of them shipped a behavioral baseline. Here is what that gap actually means
+## Every major vendor shipped an agent security product. none of them shipped a behavioral baseline. here is what that gap actually means
 
 San Francisco, March 2026. The RSA Conference floor looked different this year. The usual identity and endpoint vendors were there, but the dominant theme was unmistakable: **agentic AI security**. Every major platform — CrowdStrike, Cisco, Palo Alto Networks, Saviynt, Astrix, BeyondTrust, Mimecast — launched something specifically aimed at securing AI agents.
 
@@ -34,7 +34,7 @@ That gap is where attacks live.
 
 This article breaks down what actually happened at RSAC 2026, what the ClawHavoc supply chain campaign (the first major attack on an AI agent ecosystem) tells us about where the threat is going, and what security practitioners need to understand — and build — right now.
 
-## What RSAC 2026 Actually Said
+## What RSAC 2026 actually said
 
 The vendor announcements cluster into three categories.
 
@@ -54,7 +54,7 @@ RSAC 2026 gave us better tooling for that gap. It did not close it.
 
 ---
 
-## The Gap Nobody Shipped: Agent Behavioral Baselines
+## The gap nobody shipped: agent behavioral baselines
 
 In most default logging configurations, agent-initiated activity looks identical to human-initiated activity in security logs. CrowdStrike CTO Elia Zaitsev put it directly: "It looks indistinguishable if an agent runs Louis's web browser versus if Louis runs his browser." Distinguishing the two requires walking the process tree — a depth of endpoint visibility that most organizations do not have.
 
@@ -71,7 +71,7 @@ Organizations are deploying faster than they can see.
 
 ---
 
-## ClawHavoc: What the First Major AI Agent Supply Chain Attack Looks Like
+## ClawHavoc: what the first major AI agent supply chain attack looks like
 
 While the industry was shipping agent discovery tools, attackers were demonstrating why that discovery needs to happen before installation — not after.
 
@@ -102,7 +102,7 @@ Simon Willison's framing from his MCP security research applies here directly �
 {% include inline-subscribe.html %}
 
 
-## OWASP Mapping: The Attack Surface Was Documented
+## OWASP mapping: the attack surface was documented
 
 For practitioners tracking the OWASP Agentic Top 10 (ASI01–ASI10), ClawHavoc is not a surprise. It is a confirmation.
 
@@ -122,7 +122,7 @@ For practitioners tracking the OWASP Agentic Top 10 (ASI01–ASI10), ClawHavoc i
 The OWASP framework published ClawHavoc as its primary case study for the Agentic Skills Top 10. If you are teaching or briefing on agentic security and you are not citing this incident, you are missing the canonical 2026 reference.
 
 
-## What "Discovery Before Governance" Actually Means in Practice
+## What "discovery before governance" actually means in practice
 
 The theme that cut across every RSAC 2026 booth conversation: discovery and runtime protection are outpacing the foundational infrastructure — audit trails, centralized gateways, containment controls — that make governance enforceable.
 
@@ -143,7 +143,7 @@ The practical security posture for agentic AI right now comes down to four quest
 {% include inline-subscribe.html %}
 
 
-## The Practitioner's Read on RSAC 2026
+## The practitioner's read on RSAC 2026
 
 RSAC 2026 established industry consensus that agentic AI security is an urgent, unsolved problem. That consensus is valuable — it means budget conversations just got easier for security teams trying to fund this work, and it means the market is moving fast enough that practitioner knowledge now has real leverage.
 
@@ -156,7 +156,7 @@ The organizations that come out ahead in this cycle will not be the ones who bou
 ClawHavoc is the warning before the incident that forces the issue. The question is whether your organization's security posture treats it that way.
 
 
-## Go Deeper
+## Go deeper
 
 If you want to understand the technical attack surface behind everything covered in this article — MCP tool poisoning, cross-server attacks, OWASP ASI01–ASI10 in practice — the full lab guide and course materials are available at [aminrj.com](https://aminrj.com).
 

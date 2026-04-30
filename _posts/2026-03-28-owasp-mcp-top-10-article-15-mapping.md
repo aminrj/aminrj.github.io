@@ -30,7 +30,7 @@ This article provides the cross-reference.
 
 ---
 
-## How Article 15 Structures Cybersecurity Requirements
+## How Article 15 structures cybersecurity requirements
 
 Article 15 is not a single requirement. It contains four sub-clauses relevant to MCP security:
 
@@ -43,7 +43,7 @@ Each sub-clause governs different attack categories. The mapping below assigns e
 
 ---
 
-## The Cross-Reference Table
+## The cross-reference table
 
 | MCP Security Risk | Article 15 sub-clause | Rationale | Hardening control | Lab evidence |
 |---|---|---|---|---|
@@ -60,7 +60,7 @@ Each sub-clause governs different attack categories. The mapping below assigns e
 
 ---
 
-## Reading the Table as Compliance Evidence
+## Reading the table as compliance evidence
 
 A regulator assessing Article 15 compliance will ask three questions:
 
@@ -74,7 +74,7 @@ Together, the three columns form a complete Article 15(4) resilience narrative f
 
 ---
 
-## What This Table Does Not Cover
+## What this table does not cover
 
 Article 15 also requires accuracy (15(1)) and robustness (15(3)) beyond cybersecurity. For agentic AI systems, accuracy and robustness testing requires automated red teaming -- which is covered in the [LLM Red Teaming Tools](https://aminrj.com/posts/attack-patterns-red-teaming/) article and will be mapped to Article 15 compliance evidence in a dedicated piece (EUAI-005, scheduled April 20).
 
@@ -82,7 +82,7 @@ The cross-reference between the full OWASP Agentic Top 10 (not MCP-specific) and
 
 ---
 
-## What to Do
+## What to do
 
 1. **Use the table as your Article 15 work plan.** Start from the top. MSR-01 (tool description poisoning) has the most complete lab evidence and the simplest control.
 

@@ -11,7 +11,7 @@ image:
 description: Build LLM agents that work reliably in production. Step-by-step guide covering error handling, structured outputs, and testing strategies for AI systems.
 ---
 
-## Why Production LLM Agents Are Different
+## Why production LLM agents are different
 
 Over 15 years securing critical systems in banking, defense, aerospace, and automotive, I learned one truth: **what works in demos breaks in production.**
 
@@ -25,7 +25,7 @@ This article walks through building a multi-agent system from scratch.
 I’ve published all the code as interactive notebooks you can run yourself.
 I’ll explain why certain patterns matter and what breaks when you skip them.
 
-## The Problem with "Hello LLM"
+## The problem with "hello llm"
 
 Most tutorials show you this:
 
@@ -300,7 +300,7 @@ LLMs return the wrong format sometimes. They time out. They give slightly differ
 
 Production systems accept this and design accordingly: Pydantic validation to catch format errors, retries with backoff for transient failures, clear type contracts between components, logging to debug weird failures.
 
-## What I Learned Building This
+## What I learned building this
 
 **Stop fighting LLM variability—design around it.** In defense systems, components are deterministic (or they're broken). LLMs are different: probabilistic by nature. My instinct was to "fix" the variability. Wrong approach. The right move is accepting that outputs vary and building systems that tolerate it. That's where Pydantic shines—not preventing variation, but catching when it exceeds acceptable bounds.
 
@@ -310,7 +310,7 @@ Production systems accept this and design accordingly: Pydantic validation to ca
 
 ---
 
-## Resources & Next Steps
+## Resources & next steps
 
 **Read the Code**: [github.com/aminrj/procurement-ai](https://github.com/aminrj/procurement-ai)
 

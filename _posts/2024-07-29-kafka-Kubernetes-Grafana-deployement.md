@@ -44,7 +44,7 @@ $ minikube start -p kafka-cluster
 🏄  Done! kubectl is now configured to use "kafka-cluster" cluster and "default" namespace by default
 ```
 
-### Infrastructure As Code with Terraform
+### Infrastructure as code with Terraform
 
 To ease our deployment, we use Terraform as our Infrastructure As Code tool.
 
@@ -111,7 +111,7 @@ terraform apply --autor-approve
    strimzi-cluster-operator-6948497896-swlvp   1/1     Running   0          77s
 ```
 
-## Kafka Cluster with Strimzi
+## Kafka cluster with strimzi
 
 Now that our Strimzi-Kafka-Operator is up and running in our newly created Kubernetes cluster, we create the Kafka cluster by applying the following yaml file with the command :
 
@@ -222,7 +222,7 @@ Hello KafkaOnKubernetes
 
 At this point, our Kafka cluster is up and running and we can already send and receive events between different microservices running within Kubernetes.
 
-## Monitoring our Kafka Cluster with Grafana
+## Monitoring our Kafka cluster with Grafana
 
 > **Collecting metrics is critical for understanding the health and performance of our Kafka cluster.**
 > {: .prompt-warning }
@@ -285,7 +285,7 @@ Now that we have the operator up and running, we need to create the Prometheus s
 
 Note here that the name of the namespace must match otherwise Prometheus Operator won't scrap any resources we deploy.
 
-### Create the PodMonitor objects for Kafka resources
+### Create the podmonitor objects for Kafka resources
 
 In order to tell Kafka CRDs to expose Prometheus metrics, we must create the PodMonitor objects for the metrics we want to monitor:
 
@@ -499,7 +499,7 @@ kubectl apply -f kafka-metrics.yaml -n kafka
 
 For more details on how monitor Strimzi Kafka using Prometheus and Grafana, check the [Strimzi documentation](https://strimzi.io/docs/operators/latest/deploying#proc-metrics-kafka-deploy-options-str).
 
-### Deploy and Configure Grafana
+### Deploy and configure Grafana
 
 At this point, our Kafka cluster is up and running and exposes metrics for Prometheus to collect.
 
@@ -588,7 +588,7 @@ Here is my Github repository containing all the codes for this step-by-step guid
 
 To enable audit logs on a Minikube:
 
-### 1. Configure Kube-apiserver
+### 1. configure kube-apiserver
 
 Using the official [kubernetes documentation](https://kubernetes.io/docs/tasks/debug/debug-cluster/audit/) as reference, we login into our minikube VM and configure the `kube-apiserver` as follow:
 
@@ -651,7 +651,7 @@ the `kube-apiserver` from starting.
 
 However, at this point, even if you are super carefull, it wont start... 😈
 
-### 2. Create the audit-policy
+### 2. create the audit-policy
 
 This is because, we need to create the audit-policy file at the location we gave to the `kube-apiserver`.
 To keep things simple, we will use the audit-policy provided by the kubernetes documentation.
@@ -676,7 +676,7 @@ kube-scheduler-minikube            1/1     Running   0          1h
 storage-provisioner                1/1     Running   0          1h
 ```
 
-### 3. Check audit logs are generated
+### 3. check audit logs are generated
 
 Now, we can log back to the Minikube VM to check that our audit logs are
 correctly generated in the provided audit.log file.

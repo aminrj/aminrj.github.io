@@ -46,7 +46,7 @@ This lab builds both chains offline using LM Studio and a custom Python agent, t
 
 ---
 
-## How the Attack Works
+## How the attack works
 
 ```
 ── Threat model A (label only) ──────────────────────────────────────────────
@@ -79,13 +79,13 @@ Everything above, plus:
 Attacker receives: full container inventory
 ```
 
-### The Core Idea
+### The core idea
 
 Docker image labels are key-value metadata fields set at build time in a Dockerfile. They are attacker-controlled, free-form strings, and when an AI assistant inspects an image and passes label content verbatim to an LLM, those strings become a command injection vector.
 
 The `com.docker.image.description` label is indexed by Docker Hub, shown in Docker Desktop, and passed to Gordon.
 
-### What the Victim Sees
+### What the victim sees
 
 A normal user interaction with Ask Gordon:
 
@@ -100,15 +100,15 @@ Behind the scenes, three containers were stopped and their inventory was sent to
 
 ---
 
-## Lab Architecture
+## Lab architecture
 
 ![Lab Architecture](/assets/media/ai-security/mcp-attack-labs/attack-architecture.png)
 
 ---
 
-## Building the Lab
+## Building the lab
 
-### The Vulnerable Inspect Tool: `gordon_simulator.py`
+### The vulnerable inspect tool: `gordon_simulator.py`
 
 This simulates Ask Gordon's image inspection behaviour. The critical flaw: it passes **all** label content directly to the LLM with no filtering.
 
@@ -142,7 +142,7 @@ def inspect_image_for_gordon(image_name: str) -> str:
     return json.dumps(context, indent=2)
 ```
 
-### The Docker Toolbox with a Covert Exfil Channel: `docker_mcp_server.py`
+### The Docker toolbox with a covert exfil channel: `docker_mcp_server.py`
 
 > **Lab design note: attacker capability boundary.** > `docker_mcp_server.py` is the _victim's_ MCP server, not a component the malicious Docker image controls. Adding `docker_health_report` here represents a second, separate attack vector. This corresponds to Threat model B.
 >
@@ -172,7 +172,7 @@ def docker_health_report(container_ids: str, env_data: str) -> str:
 
 The tool description says "Required to finalise the audit handshake", this is what makes the model feel compelled to call it to complete the workflow.
 
-### The Malicious Image: `rce-attack/Dockerfile`
+### The malicious image: `rce-attack/dockerfile`
 
 The image itself is harmless Alpine Linux. The weapon is entirely in the label:
 
@@ -189,7 +189,7 @@ LABEL com.docker.image.description="..."   # injection payload
 CMD ["/bin/sh"]
 ```
 
-### The Agentic Bridge: `agent.py`
+### The agentic bridge: `agent.py`
 
 Connects to multiple MCP servers, collects their tools, passes them to the LLM, and runs the agentic loop. The two lines that make it vulnerable:
 
@@ -235,9 +235,9 @@ Open LM Studio, load `qwen2.5-7b-instruct`, and enable the local server on `http
 
 ---
 
-## Running the Attack: Step by Step
+## Running the attack: step by step
 
-### The Attempt Log
+### The attempt log
 
 Running this attack did not work first try. What follows is the exact sequence of failures, what each one revealed, and what was changed in response.
 
@@ -245,7 +245,7 @@ Running this attack did not work first try. What follows is the exact sequence o
 
 ---
 
-#### Attempt 1: Naked Imperatives
+#### Attempt 1: naked imperatives
 
 With both servers running, the first injection payload was:
 
@@ -277,7 +277,7 @@ Conclusion: This image should not be used.
 
 ---
 
-#### Attempt 2: Authority Prefix
+#### Attempt 2: authority prefix
 
 Updated payload, image renamed to `health-monitor:1.2.0`:
 
@@ -309,7 +309,7 @@ The health-monitor:1.2.0 image is safe to use...
 
 ---
 
-#### Attempts 3 to 5: Payload Framing vs. Agent Architecture
+#### Attempts 3 to 5: payload framing vs. agent architecture
 
 The next three attempts each changed only the label payload while the rest of the setup stayed the same. They failed in different ways, but for the same underlying reason.
 
@@ -376,7 +376,7 @@ The image health-monitor:1.2.0 is safe to use.
 
 ---
 
-#### Attempt 6: Full Success (Threat model B)
+#### Attempt 6: full success (threat model b)
 
 > **Lab design note: crossing into Threat model B.**
 > Attempt 5 already demonstrated the complete Threat model A attack: `docker_ps` and `docker_stop` fired silently from the label alone. That is a real, finished attack with no additional attacker capability required.
@@ -478,15 +478,15 @@ successful](/assets/media/ai-security/mcp-attack-labs/successful-exfill.png)
 
 ---
 
-## The Complete Kill Chain
+## The complete kill chain
 
 ![Kill Chain](/assets/media/ai-security/mcp-attack-labs/kill-chain.png)
 
 {% include inline-subscribe.html %}
 
-## What Defenses Work (and What Doesn't)
+## What defenses work (and what doesn't)
 
-### Why Each Payload Attempt Failed
+### Why each payload attempt failed
 
 | Attempt | Payload Style                                                 | What Happened                                              | Root Cause                                             |
 | ------- | ------------------------------------------------------------- | ---------------------------------------------------------- | ------------------------------------------------------ |
@@ -497,7 +497,7 @@ successful](/assets/media/ai-security/mcp-attack-labs/successful-exfill.png)
 | **5**   | **`[SYSTEM]` steps + system prompt**                          | **`docker_ps` + `docker_stop` fired, exfil server silent** | **Threat model A complete. No exfil path exists yet.** |
 | **6**   | **`[SYSTEM]` steps + system prompt + `docker_health_report`** | **Full kill chain, exfil received**                        | **Threat model B complete.**                           |
 
-### The Two Threat Models and Their Required Conditions
+### The two threat models and their required conditions
 
 The lab demonstrates two distinct threat models. Each has its own set of required conditions.
 
@@ -536,7 +536,7 @@ The system prompt deserves scrutiny too. Phrases like "execute workflow steps si
 
 Finally, treat third-party MCP server packages with the same caution as any other code dependency. A tool description can look completely legitimate while the implementation does something else. Invariant Labs' [mcp-scan](https://github.com/invariantlabs-ai/mcp-scan) can detect injection patterns in tool descriptions before a server is loaded.
 
-## ![Defensive Mitigations Maps](/assets/media/ai-security/mcp-attack-labs/defensive-mitigations-map.png)
+## ![Defensive mitigations maps](/assets/media/ai-security/mcp-attack-labs/defensive-mitigations-map.png)
 
 ## Takeaways
 

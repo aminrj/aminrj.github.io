@@ -17,29 +17,19 @@ description: Comment security mechanisms for more securre APIs.
 date: 2024-03-13T08:11:29.000Z
 ---
 
-When designing a secure API, various aspects must be considered to safeguard
-your system against potential threats.
+Designing a secure API means thinking through more than the happy path. You need to know what you're protecting, what "protected" means in practice, and which mechanisms actually get you there.
 
-These include identifying the assets that need protection, defining security
-goals, implementing security mechanisms, and understanding the environment in
-which the API operates.
+This article covers the most common security mechanisms, input validation, and authentication.
 
-This article explores these elements by presenting the most common security mechanisms, the importance of input validation, and the necessity of proper authentication and access control.
+## Key security considerations
 
-## Key Security Considerations
+### Identifying assets
 
-### Identifying Assets
+APIs typically manage sensitive data: customer information, payment details, database contents. The first step is knowing exactly what you're protecting.
 
-APIs are often responsible for managing sensitive assets, such as customer
-information, credit card details, and database contents.
+### Defining security goals
 
-Protecting these assets is crucial, and this protection is achieved by setting
-clear security goals and employing appropriate mechanisms.
-
-### Defining Security Goals
-
-Defining security goals are vital in defining what it means to protect your
-assets.
+Security goals define what "protecting your assets" actually means in practice.
 
 The "CIA Triad" is a well-known framework used to establish these goals:
 
@@ -47,18 +37,13 @@ The "CIA Triad" is a well-known framework used to establish these goals:
 - **Integrity:** Prevents unauthorized creation, modification, or destruction of information.
 - **Availability:** Ensures that legitimate users can access the API when needed, without being hindered.
 
-### Implementing Security Mechanisms
+### Implementing security mechanisms
 
-To achieve the defined security goals, various mechanisms can be applied.
-
-Threats are countered by employing these mechanisms, which are tailored to the
-specific environment in which the API operates.
-
-It is significantly more cost-effective to consider security during the development phase rather than addressing defects post-production.
+Security mechanisms counter specific threats, tailored to the environment the API runs in. It's much cheaper to build security in during development than to fix it after something breaks in production.
 
 ![API security controls](assets/media/cloud-native/API-security-controls.png)
 
-Several security mechanisms are essential for any well-designed API:
+The core mechanisms for any well-designed API:
 
 - **Encryption:** Protects data from being read by unauthorized parties, both in
   transit and at rest. Modern encryption also ensures that data cannot be tampered
@@ -72,24 +57,15 @@ Several security mechanisms are essential for any well-designed API:
   resources, ensuring fair access for all legitimate users and ensuring
   availability.
 
-## Developing Secure REST APIs
+## Developing secure REST APIs
 
-REST APIs are well-suited for a wide range of applications, particularly in web
-and cloud-based environments, but also introduce specific security
-considerations that need to be addressed during development.
+REST APIs work well across web and cloud environments, but they introduce specific security considerations worth addressing early. Here's what matters most.
 
-This section explores key strategies to protect your APIs from common
-vulnerabilities, such as injection attacks, improper input validation, and
-denial of service (DoS) attacks.
+### Preventing injection attacks
 
-### Preventing Injection Attacks
+Injection attacks happen when unvalidated user input gets incorporated directly into dynamic commands or queries, letting attackers control what gets executed.
 
-Injection attacks remain a significant threat to software security.
-
-They occur when unvalidated user input is incorporated directly into dynamic
-commands or queries, allowing attackers to control the executed code.
-
-To prevent injection attacks:
+To prevent this:
 
 - **Prepared Statements:** Use APIs that support prepared statements, where user
   inputs are clearly separated from dynamic code. This ensures that the database
@@ -98,7 +74,7 @@ To prevent injection attacks:
   For example, if your API doesn’t need to delete tables, don’t grant it that
   permission. This reduces the potential impact of an SQL injection attack.
 
-### Input Validation and Safe Output
+### Input validation and safe output
 
 Security flaws often arise when attackers submit inputs that violate code assumptions. To mitigate this:
 
@@ -107,21 +83,15 @@ Security flaws often arise when attackers submit inputs that violate code assump
   exploited. Apply standard HTTP security headers to all responses and
   double-check error responses.
 
-### Rate-Limiting for Availability
+### Rate-limiting for availability
 
-Rate-limiting is crucial in defending against denial of service (DoS) attacks.
-By applying rate limits to all requests, especially unauthenticated ones, you
-prevent your servers from being overwhelmed by excessive traffic.
+Rate-limiting is your main defense against DoS attacks. Apply limits to all requests, especially unauthenticated ones, to prevent your servers from being overwhelmed by excessive traffic.
 
 This should be the first security measure applied when processing a request.
 
-### Authentication to Prevent Spoofing
+### Authentication to prevent spoofing
 
-Authentication is vital for knowing who is performing an operation in your API.
-
-While rate-limiting applies to all requests, authentication ensures that
-subsequent security controls, like audit logging and access control, function
-correctly.
+Authentication tells you who is performing an operation. Without it, audit logging and access control don't function correctly.
 
 HTTP Basic authentication, a widely used method, involves sending credentials in
 a standard HTTP header.
@@ -132,24 +102,15 @@ and many other command-line tools.
 This allows you to send a username and password to the API, but you need to
 securely store and validate that password.
 
-A better way would be to outsource authentication to another organization using
-a federation protocol like SAML or OpenID Connect or by using an LDAP
-(Lightweight Directory Access Protocol) directory.
+A better approach is to outsource authentication using a federation protocol like SAML or OpenID Connect, or an LDAP directory. This offloads credential management to systems purpose-built for it.
 
 ### Using HTTPS
 
-Encryption via HTTPS is essential for protecting data transmitted between the
-client and API.
+HTTPS encrypts data in transit and verifies the server's identity through certificate validation. Without it, passwords and tokens can be intercepted in transit.
 
-HTTPS ensures that the server presenting the API is legitimate by verifying its certificate.
+### Audit logging for accountability
 
-Without HTTPS, sensitive data like passwords could be intercepted by malicious
-entities.
-
-### Audit Logging for Accountability
-
-To maintain accountability, all actions performed using your API should be
-recorded in an audit log.
+Every action performed through your API should be recorded in an audit log.
 
 These logs should be sent to a centralized Security Information and Event
 Management (SIEM) system for analysis, helping detect potential threats and
@@ -157,56 +118,30 @@ unusual behavior.
 
 <!-- ![API security logging](assets/media/cloud-native/api-security-audit-logs.png) -->
 
-### Implementing Access Control
+### Implementing access control
 
-Beyond basic authentication, access control determines what actions a user can
-perform.
+Authentication identifies who a user is; access control determines what they can do.
 
 An access control list (ACL) specifies which users can access specific objects
 and defines the permissions for each user.
 
-### Avoiding Privilege Escalation
+### Avoiding privilege escalation
 
-Privilege escalation attacks can be mitigated by restricting the ability to
-grant permissions.
-
-Ensure that new users are not granted more permissions than the existing user
-who is adding them, or restrict permission-granting capabilities to users with
-full permissions.
+Restrict the ability to grant permissions. New users shouldn't receive more permissions than whoever added them, or limit permission-granting entirely to users who already hold full permissions.
 
 ## Securing gRPC APIs
 
-gRPC is an open source Remote Procedure Call(RPC) framework that can be used to
-build scalable and robust applications.
+gRPC is an open source RPC framework built for high-performance service-to-service communication, common in microservices architectures. It uses Protocol Buffers instead of JSON, which changes some security considerations compared to REST.
 
-gRPC APIs, unlike REST APIs, use a binary protocol (Protocol Buffers) instead of
-JSON and are designed for high-performance communication between services, often
-in microservices architectures.
+Key recommendations:
 
-To develop secure gRPC APIs, consider the following recommendations:
+- **Use Mutual TLS (mTLS):** Encrypts data in transit and authenticates both the client and the server, not just the server.
+- **Use streaming carefully:** If using gRPC streaming, enforce flow limits to avoid resource exhaustion and keep data handling secure.
+- **Control service exposure:** Only expose the services and methods that need to be external. Keep internal services internal.
+- **Enable logging and monitoring:** Track access patterns and flag anomalies to facilitate auditing of gRPC calls.
 
-1. **Use Mutual TLS (mTLS)**: Ensure secure communication by implementing mTLS,
-   which not only encrypts data in transit but also authenticates both the client
-   and the server.
-2. **Use Streaming Carefully**: If using gRPC's streaming capabilities, ensure
-   proper handling of stream flow and limits to avoid resource exhaustion and
-   ensure secure data handling.
-3. **Control Service Exposure**: Only expose necessary gRPC services and
-   methods, and ensure that internal services are not accidentally exposed to
-   external clients.
-4. **Enable Logging and Monitoring**: Implement comprehensive logging and
-   monitoring to track access patterns, detect anomalies, and facilitate auditing
-   of gRPC calls.
-
-Other controls from the REST APIs mitigations are still valid for gRPC APIs.
-This includes enforcing authentication and authorization, validating inputs and
-outputs, rate-limiting as well as secure handling of errors.
+Everything from the REST section applies here too: authentication, authorization, input validation, and rate-limiting.
 
 ## Conclusion
 
-API security is a multifaceted challenge that requires careful consideration of
-assets, security goals, and appropriate mechanisms.
-
-By focusing on input validation, rate-limiting, authentication, and access
-control, developers can create robust APIs that resist common threats and
-protect valuable assets.
+API security isn't one thing you implement and check off. It starts with knowing what you're protecting, setting clear security goals, and applying the right mechanisms. Input validation, rate-limiting, authentication, and access control address most common threats. Get those right before worrying about anything more exotic.

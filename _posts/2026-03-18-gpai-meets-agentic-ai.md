@@ -40,11 +40,11 @@ This article maps that compliance surface to your architecture, obligation by ob
 
 ---
 
-## The GPAI Obligation Chain
+## The GPAI obligation chain
 
 The EU AI Act divides AI governance responsibilities across the supply chain. Understanding where you sit in that chain determines which obligations apply.
 
-### How the Chain Is Structured
+### How the chain is structured
 
 The AI Act creates obligations at three positions:
 
@@ -60,7 +60,7 @@ The obligation chain, annotated by Article, runs from model training to user out
 
 Each link in this chain has a compliance dimension. The deployer cannot audit the provider's Article 53 documentation unless the provider publishes it — but the deployer has an obligation to verify that it was published. If a Commission investigation begins and your deployment architecture cannot demonstrate that you checked, that gap is yours.
 
-### What Article 53 Requires from Providers
+### What Article 53 requires from providers
 
 For your compliance posture, Article 53 matters because it defines what you should be able to find. GPAI providers must publish:
 
@@ -72,7 +72,7 @@ For general-purpose AI models with systemic risk — those trained with compute 
 
 As of March 2026, Anthropic, OpenAI, and Google have all published model cards and usage policies. These are your starting documentation for the Article 53 verification step. Save them. Version them. If a provider updates their usage policy, that update changes your permitted deployment scope.
 
-### The Systemic Risk Implication
+### The systemic risk implication
 
 The March 13 delegated regulation specifically targets Article 92, the Commission's evaluation procedures for GPAI models. The evaluation procedures cover how the Commission can request API access or source code access (Article 92(1)), what time limits apply to providers (Article 92(2)), and how fines are calculated (Article 92(3)).
 
@@ -80,11 +80,11 @@ The practical implication for deployers: if a GPAI provider you use is under Com
 
 ---
 
-## Why MCP Makes This Different from a Standard API Call
+## Why MCP makes this different from a standard API call
 
 Most engineering teams think about GPAI compliance the way they think about a REST API: the provider handles their compliance, you handle yours, and the two are cleanly separated. MCP breaks that mental model.
 
-### The Structural Difference
+### The structural difference
 
 In a direct API call to an LLM, you control every token the model receives: the system prompt, the user message, any retrieved context. Your compliance surface is bounded by what you put in the request.
 
@@ -100,7 +100,7 @@ As documented in the [MCP Security Top 10]({% post_url 2026-03-16-owasp-mcp-top-
 
 This is the compliance-relevant observation: **the deployer's Article 26 obligations apply to the model's behavior, but the deployer does not control all inputs to that behavior.** MCP server authors do.
 
-### The Compliance Surface Expansion
+### The compliance surface expansion
 
 For a deployer trying to satisfy Article 26(1) — "appropriate technical and organisational measures" — a direct API deployment has a defined perimeter:
 
@@ -117,7 +117,7 @@ An MCP deployment has an expanded perimeter:
 
 The tool description scanning issue is not just a security control — it is a compliance evidence requirement. If your agent executes an action because a tool description instructed it to, and that action causes a compliance incident, the question an investigator will ask is: "What did you do to verify the tool descriptions your model was processing?"
 
-### The Breach Scenario
+### The breach scenario
 
 The following sequence illustrates how a tool description update becomes simultaneous security incident and compliance failure:
 
@@ -140,11 +140,11 @@ The tool description scanning demonstrated in [MCP Tool Poisoning PoC]({% post_u
 
 ---
 
-## Four Deployer Obligations for Agentic MCP Systems
+## Four deployer obligations for agentic MCP systems
 
 Each of the four Article 26 obligations maps to a concrete engineering control. The controls are not theoretical — they are the same controls that independently prevent real attacks. The compliance framework and the security architecture are the same thing.
 
-### Article 26(1): Appropriate Technical and Organisational Measures
+### Article 26(1): appropriate technical and organisational measures
 
 The obligation requires deployers to implement "appropriate technical and organisational measures to ensure they use the AI system in accordance with the provider documentation and the intended purpose."
 
@@ -160,7 +160,7 @@ For an MCP deployment, "appropriate technical measures" translate to a bounded t
 
 The Docker Compose configurations from the [OpenClaw secure deployment guide]({% post_url 2026-03-04-openclaw-secure-deployment %}) show one practical implementation: network namespaces, volume read-only mounts, and explicit capability drops that enforce the "minimal blast radius" principle at the container level. Your deployment architecture document can reference the Docker Compose file as the description of your technical measures.
 
-### Article 26(5): Monitor Operation and Report Serious Incidents
+### Article 26(5): monitor operation and report serious incidents
 
 Article 26(5) requires deployers to "monitor the operation of the AI system on the basis of the instructions for use and, where relevant, inform providers about serious incidents and malfunctions."
 
@@ -189,7 +189,7 @@ The `model_rationale` field captures the model's stated reason for the tool call
 
 The forward reference: EUAI-002 _(publishing March 30)_ defines a structured logging schema aligned with Article 19 retention periods and GDPR minimization requirements. Start collecting tool call events now, even if the schema needs refinement — historical event gaps cannot be filled retroactively.
 
-### Article 26(6): Keep Automatically Generated Logs
+### Article 26(6): keep automatically generated logs
 
 Article 26(6) requires deployers to "keep the logs automatically generated by the AI system, to the extent such logs are under their control." Article 19 specifies minimum retention periods and requirements for log access by national authorities.
 
@@ -206,7 +206,7 @@ The **tool description snapshot** is non-obvious but critical. If an incident oc
 
 **Immutability requirement:** Logs must not be modifiable by application processes. Use append-only storage — write-once S3 buckets with object lock, immutable CloudWatch streams, or equivalent — for compliance logs. Deployer environments that allow log deletion or modification cannot demonstrate the integrity of their Article 26(6) evidence.
 
-### Articles 14 and 26: Human Oversight
+### Articles 14 and 26: human oversight
 
 Article 14 requires that high-risk AI systems be designed to allow effective human oversight. Article 26(2) requires deployers to assign oversight to competent natural persons.
 
@@ -228,7 +228,7 @@ The **breakglass pattern** extends this: in emergency scenarios where a human ca
 
 ---
 
-## A Compliance-Annotated Reference Architecture
+## A compliance-annotated reference architecture
 
 The following architecture shows an MCP deployment with compliance controls at each layer, annotated by the Article each control satisfies.
 
@@ -243,11 +243,11 @@ The compliance framework is not overhead imposed on the security architecture. I
 
 ---
 
-## What to Do This Week
+## What to do this week
 
 The August 2, 2026 enforcement date is not far enough away to defer this. Three concrete actions for this week:
 
-### 1. Inventory Your GPAI Dependency Chain
+### 1. inventory your GPAI dependency chain
 
 List every GPAI model your agents call. For each one:
 
@@ -257,7 +257,7 @@ List every GPAI model your agents call. For each one:
 
 If you cannot locate Article 53 documentation for a GPAI model your agent calls, that is a gap requiring resolution — either by engaging the provider or by substituting one who has published it.
 
-### 2. Implement Tool Description Scanning as a Pre-Flight Check
+### 2. implement tool description scanning as a pre-flight check
 
 Before your agent's session begins, the `tools/list` response from each MCP server should be scanned against:
 
@@ -274,7 +274,7 @@ The defensive mitigations map from the [DockerDash attack analysis]({% post_url 
 
 ![Defensive Mitigations Map — each layer mapped to the attack vectors it stops](/assets/media/ai-security/mcp-attack-labs/defensive-mitigations-map.png)
 
-### 3. Start Structured Logging of Tool Calls Now
+### 3. start structured logging of tool calls now
 
 The logging schema for Article 26(6) compliance can be refined later. The data collection cannot be retroactively applied to historical sessions.
 
@@ -290,7 +290,7 @@ The EUAI-002 article _(publishing March 30)_ provides a complete schema aligned 
 
 ---
 
-## The Practical Summary
+## The practical summary
 
 | Article | Obligation | Engineering Control | Security Benefit |
 |---|---|---|---|

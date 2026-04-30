@@ -31,8 +31,7 @@ illustration example._
 
 ## 1 – Why per‑app HA Postgres?
 
-First, let's briefly present some arguments on why such setup is sound in the
-first place:
+A few reasons this setup makes sense:
 
 - **Blast radius** — a rogue migration or `DELETE FROM` only harms its own cluster.
 - **Tuned resources** — memory/CPU, WAL settings, and retention match the workload.
@@ -196,10 +195,9 @@ resource "helm_release" "argo_cd" {
 }
 ```
 
-Running `terraform apply` would get the initial infrastructure up and running in
-the Kubernetes:
+Run `terraform apply` once to install the operators:
 
-## ![Bootstraping the infrastructure with Terraform](/assets/media/cloud-native/initial-bootstrapping-with-tf.png)
+![Bootstraping the infrastructure with Terraform](/assets/media/cloud-native/initial-bootstrapping-with-tf.png)
 
 ## 6 – Kustomize manifests
 
@@ -445,8 +443,7 @@ Your application keeps running because its Service always targets the `*-rw` end
 
 ## Conclusion
 
-There you have it, our Linkding application is up and running using its own
-PostgresQL Cluster.
+Linkding is running with its own HA Postgres cluster, provisioned and reconciled entirely from Git.
 
 > You can get access to the full code example here: [Github repo](https://github.com/aminrj/devops-labs/tree/main/80-cnpg).
 

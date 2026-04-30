@@ -31,7 +31,7 @@ description: "24GB of VRAM. A 35B-parameter model. 65k context window. It should
 | Qwen3.6-35B-A3B | Ollama | — | — | — | N/A | N/A |
 | Qwen3.6-35B-A3B | **llama.cpp** | **101.7** | **98.9** | **80.9 tok/s** | **65k** | **24.2 GB** |
 
-**Three findings that hold up:**
+Three findings that hold up:
 - llama.cpp is ~**1.4× faster** than Ollama on Qwen3.5 (not 2.4× — that was a flawed benchmark)
 - llama.cpp gives **2× the context** at **lower VRAM** via KV cache quantization
 - Qwen3.6 **only runs on llama.cpp** — Ollama doesn't support it yet
@@ -59,7 +59,7 @@ Ollama is great for getting started. `ollama run qwen3-coder:30b` and you have a
 
 I was getting ~55-60 tok/s. There was a gap worth investigating.
 
-**What Ollama hides from you:** Ollama wraps llama.cpp but strips the knobs. No KV cache quantization, no explicit flash attention control, no batch size tuning, no expert offloading strategy, no context size guarantee. For a 24GB card where every MB matters, this leaves real performance on the table.
+What Ollama hides from you: Ollama wraps llama.cpp but strips the knobs. No KV cache quantization, no explicit flash attention control, no batch size tuning, no expert offloading strategy, no context size guarantee. For a 24GB card where every MB matters, this leaves real performance on the table.
 
 There's also a compatibility ceiling that only became apparent when Qwen3.6 dropped: Ollama doesn't support the latest multimodal models because of how it handles separate vision projector files. As models get more capable and multimodal, the abstraction becomes a constraint.
 

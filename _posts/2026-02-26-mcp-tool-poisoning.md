@@ -23,17 +23,15 @@ image:
 description: "Tool poisoning in MCP: hidden instructions embedded in tool descriptions trigger silent file exfiltration, fully offline. Includes a failed attempt with a small model and a working exploit — so you know exactly what to test for."
 ---
 
-> _A walk-through of reproducing the Invariant Labs MCP tool-poisoning attack fully offline — including the failed attempt with a small model, and the successful exfiltration once the right model and tools were in place._
-
----
+> _A walk-through of reproducing the Invariant Labs MCP tool-poisoning attack fully offline — including the failed attempt with a small model and the successful exfiltration once the right model and tools were in place._
 
 ## Background
 
-In early 2025, Invariant Labs published a disclosure showing that **MCP (Model Context Protocol) tool descriptions are a viable attack surface**. The core idea is very simple: an LLM reads tool descriptions before deciding which tool to call. If a malicious server embeds hidden instructions inside that description, a sufficiently capable model will silently follow them, stealing files, leaking secrets, while returning a perfectly normal-looking response to the user.
+In early 2025, Invariant Labs disclosed that MCP tool descriptions are a viable attack surface. The idea is simple: an LLM reads tool descriptions before deciding which tool to call. If a malicious server embeds hidden instructions in that description, a capable-enough model will silently follow them — reading files, leaking secrets — while returning a perfectly normal response to the user.
 
-The original proof-of-concept ran inside **Cursor IDE**, which already ships with file-reading tools and uses GPT-4/Claude as the backbone. This lab reproduces the attack **fully offline** using [LM Studio](https://lmstudio.ai/) and a custom Python agent — no cloud APIs, no IDE required. That added challenge revealed something important: _model capability matters, and so does what tools the agent already has access to_.
+The original proof-of-concept ran inside Cursor IDE, which already ships with file-reading tools and uses GPT-4/Claude as the backbone. This lab reproduces the attack fully offline using [LM Studio](https://lmstudio.ai/) and a custom Python agent — no cloud APIs, no IDE required. That constraint revealed something important: model capability matters, and so does what tools the agent already has access to.
 
-**All source code for this demonstration is available at [github.com/aminrj-labs/mcp-attack-labs](https://github.com/aminrj-labs/mcp-attack-labs)** — including the poisoned MCP server, the agent implementation, and the exfil receiver. You can clone the repository and reproduce every step of this attack in your own lab environment.
+All source code is at [github.com/aminrj-labs/mcp-attack-labs](https://github.com/aminrj-labs/mcp-attack-labs) — the poisoned MCP server, the agent, and the exfil receiver. You can clone it and reproduce every step in your own lab.
 
 ---
 
@@ -79,12 +77,12 @@ The attacker receives: the contents of `~/.ssh/id_rsa.pub.demo`
 
 ## Lab architecture
 
-Three components run concurrently. The complete implementation is available in the [mcp-attack-labs repository](https://github.com/aminrj-labs/mcp-attack-labs), where you'll find:
+Three components run concurrently. The complete implementation is in the [mcp-attack-labs repository](https://github.com/aminrj-labs/mcp-attack-labs):
 
-- `agent.py` — the MCP client that bridges LM Studio and MCP servers
+- `agent.py` — bridges LM Studio and MCP servers
 - `attack1_direct_poison.py` — the malicious MCP server with poisoned tool descriptions
 - `exfil_server.py` — the Flask receiver that logs stolen data
-- Setup scripts and detailed README for reproduction
+- Setup scripts and README for reproduction
 
 ![Lab architecture](/assets/media/ai-security/mcp-attack-labs/lab-architecture.png)
 
@@ -307,43 +305,28 @@ The attack code in the `add` tool server-side handler then fired the HTTP POST t
 
 ## What this demonstrates
 
-### 1. the description field is untrusted input
+**The description field is untrusted input.** Every agent that passes `tool.description` directly to an LLM is vulnerable. The MCP spec defines no trust level for this field — it's attacker-controlled content flowing straight into the model's context.
 
-Every agent that passes `tool.description` directly to an LLM is vulnerable. The MCP spec does not define a trust level for this field. It is attacker-controlled content flowing straight into the model's context.
+**Model capability is part of the threat model.** A 7B quantized model may ignore complex covert instructions. A frontier model — or a well-tuned mid-size one — will follow them precisely. Your security posture changes depending on which model your agent uses.
 
-```python
-# This line is the root of the vulnerability
-"description": tool.description,  # attacker-controlled, passed raw
-```
+**Existing tools amplify blast radius.** In real deployments (Cursor, Claude Desktop, any IDE with AI), file-reading tools are almost always present. Users install a `math-helper` MCP server thinking they're adding a calculator. They're handing an attacker access to everything the agent can already read.
 
-### 2. model capability is part of the threat model
-
-A 7B parameter model running a quantized checkpoint may simply ignore complex multi-step covert instructions. A frontier-class model — or even a well-tuned mid-size model — will follow them precisely. **Your security posture changes depending on which model your agent uses.**
-
-### 3. existing tools amplify the blast radius
-
-The attack required two things: a susceptible model and a file-reading tool. In real deployments (Cursor, Claude Desktop, any IDE with AI), file-reading tools are almost always present. Users install the `math-helper` MCP server thinking they are adding a calculator. They are actually handing an attacker access to everything the agent can already read.
-
-### 4. the attack is invisible at install time
-
-Nothing about `attack1_direct_poison.py` is visually suspicious when you install it. The tool is named `add`. Its description starts with "Adds two numbers." The poisoned payload is nested inside what looks like extended documentation. `mcp-scan` can detect it — most users will not.
+**The attack is invisible at install time.** Nothing about `attack1_direct_poison.py` looks suspicious on install. The tool is named `add`. Its description starts with "Adds two numbers." The payload is nested inside what looks like extended documentation. `mcp-scan` will catch it — most users won't.
 
 ## ![Successful attack](/assets/media/ai-security/mcp-attack-labs/successful-attack.png)
 
 ## Defensive takeaways
 
-- **Treat tool descriptions as untrusted input.** Run them through `mcp-scan` or equivalent before loading.
-- **Principle of least privilege.** Do not give agents file-reading tools unless the task requires it.
-- **Audit every MCP server you install.** Inspect the full source, not just the tool names.
-- **Use [`mcp-scan`](https://github.com/invariantlabs-ai/mcp-scan)** — Invariant Labs released it specifically to detect poisoned descriptions in your MCP config.
-- **Capability scales risk.** Running a more powerful model with broad tool access dramatically increases the attack surface. Consider whether the extra capability is worth the exposure.
-- **Practice in a safe environment.** Use the [mcp-attack-labs repository](https://github.com/aminrj-labs/mcp-attack-labs) to test your defenses and understand the attack patterns before deploying agents in production.
-
----
+- Treat tool descriptions as untrusted input. Run them through `mcp-scan` before loading.
+- Principle of least privilege: don't give agents file-reading tools unless the task requires it.
+- Audit every MCP server you install. Inspect the full source, not just the tool names.
+- Use [`mcp-scan`](https://github.com/invariantlabs-ai/mcp-scan) — Invariant Labs built it specifically to detect poisoned descriptions.
+- Capability scales risk. Running a more powerful model with broad tool access increases the attack surface.
+- Use the [mcp-attack-labs repository](https://github.com/aminrj-labs/mcp-attack-labs) to test your defenses before deploying agents in production.
 
 ## References
 
-- **[mcp-attack-labs — Full source code for this demonstration](https://github.com/aminrj-labs/mcp-attack-labs)** ⭐
+- [mcp-attack-labs — full source code for this demonstration](https://github.com/aminrj-labs/mcp-attack-labs)
 - [Invariant Labs — MCP Tool Poisoning disclosure](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks)
 - [mcp-injection-experiments (original PoC)](https://github.com/invariantlabs-ai/mcp-injection-experiments)
 - [mcp-scan — detection tool](https://github.com/invariantlabs-ai/mcp-scan)

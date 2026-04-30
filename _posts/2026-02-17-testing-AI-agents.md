@@ -19,38 +19,27 @@ Then I started building LLM agents. And **everything I knew about testing broke*
 
 Traditional software is deterministic: call `add(2, 3)` and you get `5` every time. When it breaks, you get errors, stack traces, obviously wrong output. But LLM agents? They fail _quietly_. They produce outputs that seem reasonable but are subtly incorrect. You can test a few examples manually, feel confident, ship to production—and discover weeks later your agent has a 35% error rate.
 
-This article documents what I learned building an evaluation framework for AI agents in a real procurement analysis system. Not theoretical best practices, but practical code and metrics that caught actual production issues before they became costly problems.
+This article documents what I learned building an evaluation framework for AI agents in a real procurement analysis system. Not theoretical best practices — practical code and metrics that caught actual production issues before they became costly problems.
 
-If you're building AI agents for production—whether they filter data, score content, or make recommendations—you need to know if they actually work. Not "it seems fine" or "the output looks reasonable." You need **quantitative evidence**.
+If you're building AI agents for production, you need to know if they actually work. Not "it seems fine" or "the output looks reasonable." You need quantitative evidence.
 
-This guide walks through building an evaluation framework for AI agents. We'll cover why evaluation matters, what metrics to use, and how to implement a system that lets you measure performance scientifically. All code examples are production-ready and tested.
-
-**This is Part 4 of the LLM Engineering series.** If you haven't read the earlier parts, start with [Part 1: Building a Procurement Analyst AI](/posts/LLM-engineering-building-a-procurements-analyst-ai/), which covers the initial implementation. [Part 2: Production-Ready LLM Agents](/posts/Build-production-ready-llam-agents/) discusses architecture patterns, and [Part 3: From MVP to Production SaaS](/posts/from-mvp-to-prod/) covers deployment. This article focuses on the evaluation framework that lets you measure and improve agent performance scientifically.
+**This is Part 4 of the LLM Engineering series.** If you haven't read the earlier parts, start with [Part 1: Building a Procurement Analyst AI](/posts/LLM-engineering-building-a-procurements-analyst-ai/). [Part 2](/posts/Build-production-ready-llam-agents/) covers architecture patterns, and [Part 3](/posts/from-mvp-to-prod/) covers deployment. This article focuses on the evaluation framework.
 
 ## What you'll learn
 
-- **Why AI agents fail silently** and how to catch these failures
-- **Building test datasets** that reveal actual agent performance
-- **Essential metrics**: Precision, Recall, F1, MAE, RMSE, and Calibration
-- **Scientific iteration**: Using data to improve agents systematically
-- **CI/CD integration**: Preventing quality regressions in production
+- Why AI agents fail silently and how to catch those failures
+- How to build test datasets that reveal actual performance
+- Essential metrics: Precision, Recall, F1, MAE, RMSE, and Calibration
+- How to iterate on agents scientifically instead of by gut feel
+- CI/CD integration to prevent quality regressions
 
 ## Prerequisites
 
-To follow along, you should understand:
-
-- **Python** basics (classes, async/await)
-- **Basic statistics** (means, percentages)
-- **LLM concepts** (prompts, confidence scores)
-- Familiarity with **classification tasks** (yes/no decisions)
-
-No advanced ML knowledge required—we'll explain all the metrics from first principles.
+To follow along, you should understand Python basics (classes, async/await), basic statistics (means, percentages), and what an LLM confidence score is. No advanced ML knowledge required — we'll explain all the metrics from first principles.
 
 ## Context: why this matters
 
-**The Problem**: Most AI agent failures are invisible. Your agent might be making wrong decisions 30-40% of the time, but without systematic evaluation, you won't know until customers complain.
-
-**The Solution**: Treat AI agent evaluation like software testing. Create test suites, measure performance, set quality gates, and iterate based on data—not hunches.
+Most AI agent failures are invisible. Your agent might be making wrong decisions 30–40% of the time, but without systematic evaluation, you won't know until customers complain. The fix is treating AI agent evaluation like software testing: test suites, performance metrics, quality gates, and iteration based on data — not hunches.
 
 ## Why AI agents need different testing approaches
 
@@ -105,11 +94,7 @@ The approach is straightforward:
 3. **Calculate metrics** comparing predictions to ground truth
 4. **Iterate and improve** based on data, not guesses
 
-**Why This Works:**
-
-This gives you a **scientific loop**: measure baseline → make changes → measure again → decide what to keep.
-
-Instead of guessing "does this prompt change help?", you can prove it with numbers:
+This creates a scientific feedback loop: measure baseline → make change → measure again → decide what to keep. Instead of guessing "does this prompt change help?", you prove it:
 
 - Baseline F1: 0.73
 - After change F1: 0.87 (+14%)
@@ -552,10 +537,6 @@ print(f"MAE: {metrics.mae:.2f}")
 
 RMSE is similar to MAE but punishes large errors more heavily:
 
-### Root mean squared error (rmse): penalizing large mistakes
-
-RMSE is similar to MAE but punishes large errors more heavily:
-
 ```python
 @property
 def rmse(self) -> float:
@@ -752,19 +733,7 @@ ECE = 0.18  # Poor calibration
 
 **Real-World Impact:**
 
-**Poorly Calibrated** (ECE = 0.25):
-
-- Agent says: "95% confident"
-- Actual accuracy: 70%
-- Result: Auto-approval systems fail 30% of the time
-
-**Well Calibrated** (ECE = 0.05):
-
-- Agent says: "95% confident"
-- Actual accuracy: 93%
-- Result: Safe to use confidence thresholds for automation
-
-## Part 5: building the complete evaluator
+A well-calibrated agent (ECE 0.05) is safe to use for automated decisions. An overconfident one (ECE 0.25) needs human review.
 
 ## Part 5: building the complete evaluator
 
@@ -1208,75 +1177,27 @@ For many use cases, F1 > 0.85 is perfectly acceptable.
 
 ## What I learned building this evaluation framework
 
-Looking back at 6-8 hours invested in building this evaluation system, three insights stand out:
+Three things stood out after 6–8 hours building this:
 
-**1. Metrics Reveal What Manual Testing Cannot**
+I manually tested the agent on 5–6 examples and thought it worked great. The evaluation framework showed the real story: 67% precision and 80% recall (F1 = 0.73). Manual testing gives you false confidence because you unconsciously pick obvious cases. A structured test set with edge cases shows you where the agent actually struggles.
 
-I manually tested the agent on 5-6 examples and thought it worked great. The evaluation framework showed the real story: 67% precision and 80% recall (F1 = 0.73). Manual testing gives you false confidence because you unconsciously pick obvious test cases. A structured test dataset with edge cases shows you where the agent actually struggles. In systems I tested for defense contractors, we saw similar patterns—manual QA caught obvious bugs but missed subtle failure modes that only appeared under systematic testing.
+The agent would predict "relevant" with 95% confidence and be completely wrong. Without calibration metrics, I trusted those scores. After measuring, I discovered an ECE of 0.18 — the agent was systematically overconfident. That killed my plans for automated decision-making and forced me to add human review.
 
-**2. Confidence Scores Are Often Lies**
-
-The agent would predict "relevant" with 95% confidence and be completely wrong. Without calibration metrics like ECE (Expected Calibration Error), I trusted these scores. After measuring, I discovered an ECE of 0.18—meaning the agent was systematically overconfident. This killed my plans for automated decision-making and forced me to add human review. In banking systems, this is why we never trust a model's self-assessment—always validate confidence distributions against ground truth outcomes.
-
-**3. Quality Gates Prevent 3 AM Debugging Sessions**
-
-The CI integration caught three separate regressions before they reached production. One prompt tweak improved readability but dropped recall by 8%. Without automated evaluation in CI, that would have shipped Friday evening and ruined my weekend. In aerospace projects, we learned this lesson the expensive way—manual pre-deployment testing always misses something. Automated quality gates don't get tired or skip steps.
-
-The cost of _not_ having this framework: invisible failures, wasted time on false positives, missed opportunities, production incidents. The cost of building it: 6-8 hours. It paid for itself in the first week.
+CI integration caught three separate regressions before they reached production. One prompt tweak improved readability but dropped recall by 8%. Without automated evaluation, that would have shipped Friday evening. The investment: 6–8 hours. It paid for itself in the first week.
 
 ## Conclusion: from guesswork to science
 
-The difference between **hobby AI development** and **professional AI development** is measurement.
+Without evaluation, you can't prove changes help, regressions ship to production, and decisions are based on "it looks good." With a measurement system, you know your baseline, you can A/B test changes with numbers, and regressions get caught in CI before they reach users.
 
-### Without evaluation
-
-- You don't know if your system works
-- You can't prove changes help
-- Regressions ship to production
-- You debug with no data
-- Decisions based on "it looks good"
-
-### With systematic evaluation
-
-- You know your baseline performance
-- You can A/B test changes scientifically
-- You catch regressions before they ship
-- You make data-driven decisions
-- You build trust through transparency
-
-## Real-World impact
-
-Building the evaluation framework in this guide—**18 test cases, metrics module, evaluator, and CLI**—took about **6-8 hours**. That investment has already paid for itself by:
-
-1. **Identifying precision issues**: Discovered agent was accepting too many irrelevant tenders (67% precision)
-2. **Proving improvements**: Showed few-shot prompting improved F1 by 14% (0.73 → 0.87)
-3. **Catching overconfidence**: ECE of 0.18 revealed confidence scores couldn't be trusted for automation
-4. **Preventing 3 regressions**: CI caught prompt changes that degraded recall
-5. **Saving ~10 hours/week**: Team no longer manually reviews obvious false positives
-
-**ROI**: 6 hours invested, 40+ hours saved in first month, plus avoided production issues.
+The 18 test cases, metrics module, evaluator, and CLI in this guide took about 6–8 hours to build. That investment has already paid for itself by identifying precision issues, proving a 14% F1 improvement from few-shot prompting, revealing overconfident confidence scores, and catching 3 regressions in CI.
 
 ## Your next steps
 
-**Day 1** (2-3 hours):
+**Day 1** (2–3 hours): create 10–15 test cases, implement basic `FilterMetrics`, run first evaluation, record baseline.
 
-- Create 10-15 test cases
-- Implement basic `FilterMetrics` class
-- Run first evaluation, record baseline
+**Week 1** (4–6 hours): add 10 more test cases from production data, implement calibration tracking, try one improvement and measure it.
 
-**Week 1** (4-6 hours):
-
-- Add 10 more test cases from production data
-- Implement calibration tracking
-- Try one improvement, measure impact
-
-**Week 2-3** (ongoing):
-
-- Integrate into CI/CD
-- Set quality thresholds
-- Make evaluation part of your development workflow
-
-**Remember**: Start with the basics—10 test cases, precision/recall/F1, and a simple evaluation script. Run it. Analyze results. Iterate. Expand as you find issues.
+**Week 2–3** (ongoing): integrate into CI/CD, set quality thresholds, make evaluation part of your development workflow.
 
 Your AI agents deserve the same rigor as your traditional software.
 
@@ -1307,32 +1228,15 @@ This article is based on the evaluation framework built for a real procurement A
 
 ---
 
-## Ready to Build Production AI Systems?
+## Ready to build production AI systems?
 
-This evaluation framework is just one piece of building reliable AI agents. If you're:
+If you're deploying LLM agents to production, building AI systems for regulated industries, or struggling with AI reliability, I offer technical consulting and architecture reviews drawing on 15+ years of experience across banking, defense, aerospace, and automotive systems.
 
-- **Deploying LLM agents to production** and need help with testing strategies
-- **Building AI systems** for regulated industries (banking, defense, healthcare)
-- **Struggling with AI reliability** and want systematic approaches to quality assurance
-- **Setting up CI/CD for AI** and need guidance on quality gates and metrics
+[Schedule a consultation](/consultation/) or connect on [LinkedIn](https://www.linkedin.com/in/aminebennaji/).
 
-I offer **technical consulting and security architecture reviews** drawing on 15+ years of experience across banking, defense, aerospace, and automotive systems. Let's discuss your specific challenges.
+## Continue the LLM Engineering series
 
-**[Schedule a consultation](/consultation/)** or connect on [LinkedIn](https://www.linkedin.com/in/aminebennaji/) to explore how I can help.
-
----
-
-## Continue the LLM Engineering Series
-
-This is Part 4 of a comprehensive series on building production LLM systems:
-
-- **[Part 1: Building a Procurement Analyst AI](/posts/LLM-engineering-building-a-procurements-analyst-ai/)** — Initial implementation, schema design, and basic agent architecture
-- **[Part 2: Production-Ready LLM Agents](/posts/Build-production-ready-llam-agents/)** — Architecting for reliability, error handling, and observability patterns
-- **[Part 3: From MVP to Production SaaS](/posts/from-mvp-to-prod/)** — Multi-tenancy, database persistence, and deployment strategies
-- **Part 4: Evaluating AI Agents** (you are here) — Testing, metrics, and quality assurance
-
-Each article builds on the previous, taking you from prototype to production-ready system.
-
----
-
-**Thanks for reading.** If you found this valuable, share it with your team or star the repo.
+- [Part 1: Building a Procurement Analyst AI](/posts/LLM-engineering-building-a-procurements-analyst-ai/) — initial implementation and basic agent architecture
+- [Part 2: Production-Ready LLM Agents](/posts/Build-production-ready-llam-agents/) — error handling and observability
+- [Part 3: From MVP to Production SaaS](/posts/from-mvp-to-prod/) — multi-tenancy, persistence, and deployment
+- Part 4: Evaluating AI Agents (you are here)

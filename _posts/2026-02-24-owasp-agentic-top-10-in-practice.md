@@ -468,37 +468,21 @@ invoking any MCP tool.
 
 ## The OWASP agentic top 10: framework mapping
 
-The three attacks above map to a consistent subset of the OWASP Agentic Top 10.
-The framework provides a shared vocabulary for discussing these risks across
-different systems and implementations.
+The three attacks above map to a consistent subset of the OWASP Agentic Top 10:
 
-**ASI01 — Agent Goal Hijacking.** The agent is redirected from its intended task
-*to the attacker's task. Present in all three attacks: arithmetic becomes
-*credential exfiltration, trivia becomes message forwarding, image inspection
-\*becomes container termination.
+- **ASI01 — Agent Goal Hijacking.** The agent is redirected from its intended task to the attacker's. Present in all three: arithmetic becomes credential exfiltration, trivia becomes message forwarding, image inspection becomes container termination.
 
-**ASI02 — Tool Misuse & Exploitation.** The agent's tools are weaponized via
-*manipulated inputs. Docker MCP tools, WhatsApp's `send_message()`, and file
-*operations in tool poisoning all fall here.
+- **ASI02 — Tool Misuse & Exploitation.** The agent's tools are weaponized via manipulated inputs. Docker MCP tools, WhatsApp's `send_message()`, and file operations in tool poisoning all fall here.
 
-**ASI03 — Agent Identity & Authorization Failures.** The MCP Gateway's failure
-*to distinguish between user-authorized requests and LLM-forwarded instructions
-*derived from manipulated context. The agent executes with user credentials on
-\*behalf of attacker instructions.
+- **ASI03 — Agent Identity & Authorization Failures.** The MCP Gateway fails to distinguish user-authorized requests from LLM-forwarded instructions derived from manipulated context. The agent executes with user credentials on behalf of attacker instructions.
 
-**ASI04 — Knowledge & Memory Poisoning.** DockerDash: the agent's contextual
-\*knowledge about its environment is corrupted before it reasons over it.
+- **ASI04 — Knowledge & Memory Poisoning.** In DockerDash, the agent's contextual knowledge about its environment is corrupted before it reasons over it.
 
-**ASI06 — Rogue Agents.** Servers that misrepresent their behavior — through
-*static deception (malicious tool descriptions) or dynamic mutation (rug-pull
-*attacks).
+- **ASI06 — Rogue Agents.** Servers that misrepresent their behavior — through static deception (malicious tool descriptions) or dynamic mutation (rug-pull attacks).
 
-**ASI07 — Sensitive Information Disclosure.** Data exfiltration in DockerDash;
-\*credential exfiltration in tool poisoning.
+- **ASI07 — Sensitive Information Disclosure.** Data exfiltration in DockerDash; credential exfiltration in tool poisoning.
 
-**ASI08 — Insecure Agent-Agent Communication.** Cross-server poisoning: no
-*authentication between MCP servers, no restriction on cross-server tool
-*invocation.
+- **ASI08 — Insecure Agent-Agent Communication.** Cross-server poisoning: no authentication between MCP servers, no restriction on cross-server tool invocation.
 
 ---
 
@@ -683,13 +667,13 @@ explicit re-authorization for consequential actions, and maintaining sufficient
 observability to reconstruct the agent's reasoning and tool call sequence after
 an incident.
 
-Three diagnostic questions worth asking before any agent deployment:
+Three questions worth asking before any agent deployment:
 
-1. **What data sources does this agent read?** Can any of them contain instructions that will reach the LLM unvalidated?
-2. **What actions can this agent take?** Does each consequential action require re-authorization, or does initial trust propagate indefinitely?
-3. **What logs exist?** Can you reconstruct exactly what the agent did, what it read, and which tool calls it made?
+1. What data sources does this agent read? Can any of them contain instructions that will reach the LLM unvalidated?
+2. What actions can this agent take? Does each consequential action require re-authorization, or does initial trust propagate indefinitely?
+3. What logs exist? Can you reconstruct exactly what the agent did, what it read, and which tool calls it made?
 
-Most current deployments cannot answer all three cleanly. That is the work.
+Most current deployments can't answer all three cleanly. That's the work.
 
 ---
 

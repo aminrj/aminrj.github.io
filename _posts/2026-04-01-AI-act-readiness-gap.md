@@ -21,9 +21,7 @@ description: The EU AI Act readiness gap is widening because AI agents still lac
 
 78% of organizations have not taken meaningful steps toward EU AI Act compliance, and the high-risk rules start applying on 2 August 2026. For teams deploying AI agents, this is not mainly a legal problem. It is a security architecture problem.
 
-That would already be serious. It is more serious because the AI Act's high-risk obligations start applying on August 2, 2026. The fine ceiling is EUR 35 million or 7% of global annual turnover.
-
-The supporting numbers matter just as much:
+The fine ceiling is EUR 35 million or 7% of global annual turnover. The supporting numbers are worse:
 
 - 74% of organizations have no dedicated AI compliance governance body.
 - 61% have no process for producing the technical documentation the Act requires.

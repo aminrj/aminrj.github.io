@@ -21,10 +21,6 @@ When the LLM boom hit, I saw this mistake scaling across the entire industry. Co
 
 This article walks through exactly what changes when you move from "it works on my laptop" to "it works for 1,000 customers in production."
 
----
-
-This article is a practical walkthrough of what it takes to move a working LLM application into a production-ready SaaS MVP, using the `procurement-ai` project as the reference implementation.
-
 The first two articles covered:
 
 - Building the first working Procurement Analyst AI.
@@ -280,16 +276,9 @@ Current local result:
 - `3 skipped` (environment-dependent PostgreSQL workflows)
 - `4 deselected` (default markers exclude e2e/wip)
 
-This gives a reliable quality baseline for iterative delivery.
-
-## 8. step seven: make it deployable by default
-
-A SaaS MVP should run in one command locally and in CI/staging with minimal differences.
+This gives a reliable quality baseline for iterative delivery. and in CI/staging with minimal differences.
 
 This project includes:
-
-- `docker-compose.yml` for Postgres/Redis/API.
-- `deployment/Dockerfile.api` for containerized API.
 - Operational scripts for setup and smoke testing.
 
 ```yaml
@@ -306,13 +295,9 @@ services:
     command: uvicorn procurement_ai.api.main:app --host 0.0.0.0 --port 8000 --reload
 ```
 
-This is a strong MVP packaging baseline for demos, pilots, and early customer validation.
-
 ## 9. what still needs work before "production at scale"
 
-This is the critical part. A good production-readiness article should not pretend the MVP is complete.
-
-Priority backlog from current architecture:
+Priority backlog from the current architecture:
 
 1. Replace FastAPI in-process background tasks with a real queue-worker model (Celery/RQ/Arq) for reliability under restarts.
 2. Add observability: structured logs, request IDs, model latency/cost metrics, tracing.
@@ -358,19 +343,19 @@ The strongest signal of maturity in this project is not just that it generates a
 
 ## What I learned building this
 
-**The hardest part wasn't the LLM integration—it was the boring stuff.**
+The hardest part wasn't the LLM integration. It was the boring stuff.
 
 Multi-tenant isolation, idempotent writes, status state machines, background job reliability, and database migrations are not exciting. But they're the difference between a demo and a product.
 
-If I were to rebuild this from scratch, I'd:
+If I were to rebuild this from scratch:
 
-1. **Start with multi-tenancy from line one** instead of adding organization_id columns later
-2. **Design the status state machine first** before writing any orchestration code
-3. **Use a real job queue from day one** instead of FastAPI background tasks (this will bite you during deployments)
-4. **Add structured logging and request IDs immediately** - debugging production issues without correlation IDs is painful
-5. **Write integration tests as I build features** not after "the MVP works"
+1. Start with multi-tenancy from line one instead of adding `organization_id` columns later.
+2. Design the status state machine first, before writing any orchestration code.
+3. Use a real job queue from day one instead of FastAPI background tasks (this will bite you during deployments).
+4. Add structured logging and request IDs immediately — debugging production issues without correlation IDs is painful.
+5. Write integration tests as I build features, not after "the MVP works."
 
-The good news: because I made these mistakes in this project, you won't have to.
+Because I made these mistakes in this project, you won't have to.
 
 ---
 
@@ -393,8 +378,6 @@ Like what you read ?
 
 Want to discuss more around AI and how to code with LLM strategies?
 
-Connect with me on [LinkedIn](https://linkedin.com/in/araji) or follow my journey where I share real-world insights from my experiments and research.
+Connect with me on [LinkedIn](https://linkedin.com/in/araji) if you want to discuss this.
 
-Also, make sure to star ⭐️ the [Git repo for this article](https://github.com/aminrj/procurement-ai) 😉.
-
-Thanks for reading.
+The [Git repo for this article](https://github.com/aminrj/procurement-ai) is open-source and worth a star if it's useful.

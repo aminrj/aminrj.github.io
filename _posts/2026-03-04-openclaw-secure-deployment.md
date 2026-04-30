@@ -19,20 +19,13 @@ image:
 
 _A hands-on guide to deploying OpenClaw as your AI-powered research assistant while controlling the blast radius. Built from real operational experience and the latest community security research._
 
-**Amine Raji** · AI Security Consultant · Molntek  
-March 2026
-
----
-
 ## Why this guide exists
 
-OpenClaw is one of the most powerful open-source AI agent platforms available today. It can execute shell commands, control browsers, read and write files, manage calendars, send messages — and it does all of this through the messaging apps you already use. That power is exactly why security professionals should care about it, and exactly why deploying it carelessly is dangerous.
+OpenClaw is a capable open-source AI agent platform. It can execute shell commands, control browsers, read and write files, manage calendars, send messages — and it does all of this through the messaging apps you already use. That's exactly why deploying it carelessly is dangerous.
 
-I started using OpenClaw as my AI security research assistant — automating daily briefings, curating threat intelligence, tracking publications in the AI security space, and managing content workflows. I interact with it through Discord, use Ollama for local models, Claude for deep reasoning, and Obsidian to persist everything important.
+I started using OpenClaw as my AI security research assistant — automating daily briefings, curating threat intelligence, tracking publications, and managing content workflows. I interact with it through Discord, use Ollama for local models, Claude for deep reasoning, and Obsidian to persist what matters.
 
-This guide documents how I set it up, the security decisions I made along the way, and what I learned from the community's hard-won experience — including the ClawHavoc supply chain attack that compromised roughly 20% of skills on ClawHub, nine disclosed CVEs (three with public exploit code), and over 135,000 OpenClaw instances found exposed to the public internet with insecure defaults.
-
-The goal is practical: help you get the productivity benefits of an always-on AI agent without creating new attack surfaces in your infrastructure.
+This guide documents how I set it up, the security decisions I made, and what I learned from the community's hard-won experience — including the ClawHavoc supply chain attack, nine disclosed CVEs (three with public exploit code), and over 135,000 OpenClaw instances found exposed to the public internet with insecure defaults.
 
 ---
 
@@ -60,13 +53,13 @@ The key architectural components from a security standpoint are:
 
 The OpenClaw project documents a clear threat model: **personal assistant security, one trusted operator boundary per gateway.** This is not a multi-tenant platform. If multiple people can message your bot, they all share the same delegated tool authority.
 
-The real-world threats break into three categories:
+The real-world threats fall into three categories:
 
-**1. Prompt Injection via Inbound Messages:** Anyone who can message your bot can attempt to manipulate it via prompt injection. If your agent has tool access, a successful injection can chain into file reads, command execution, or data exfiltration. This risk is amplified by OpenClaw's persistent memory. In other words, a single successful injection can plant instructions that persist across sessions.
+1. **Prompt injection via inbound messages:** Anyone who can message your bot can attempt to manipulate it. If your agent has tool access, a successful injection can chain into file reads, command execution, or data exfiltration. OpenClaw's persistent memory amplifies this — a single successful injection can plant instructions that persist across sessions.
 
-**2. Supply Chain Poisoning (ClawHub Skills):** The ClawHavoc campaign demonstrated this at scale. Attackers registered as ClawHub developers and uploaded over 1,184 malicious skills disguised as productivity tools. These skills contained everything from infostealers targeting API keys and SSH credentials to reverse shell backdoors granting full remote access. The campaign specifically targeted macOS users running OpenClaw on always-on machines.
+2. **Supply chain poisoning (ClawHub skills):** The ClawHavoc campaign demonstrated this at scale. Attackers registered as ClawHub developers and uploaded over 1,184 malicious skills disguised as productivity tools, including infostealers targeting API keys and SSH credentials, and reverse shell backdoors. The campaign specifically targeted macOS users running OpenClaw on always-on machines.
 
-**3. Infrastructure Exposure:** Shodan scans have found tens of thousands of OpenClaw instances exposed to the public internet. Over 93% of those had authentication bypasses. CVE-2026-25253 (CVSS 8.8) demonstrated that even localhost-bound deployments could be compromised through WebSocket origin validation failures — a malicious webpage could silently connect to the local gateway, steal the auth token, and execute arbitrary commands.
+3. **Infrastructure exposure:** Shodan scans found tens of thousands of OpenClaw instances exposed to the public internet. Over 93% had authentication bypasses. CVE-2026-25253 (CVSS 8.8) demonstrated that even localhost-bound deployments could be compromised through WebSocket origin validation failures.
 
 ---
 
@@ -387,21 +380,21 @@ For my course students and fellow security professionals, here is how OpenClaw's
 
 ---
 
-## Common mistakes and how to avoid them
+## Common mistakes
 
-**Mistake: Running OpenClaw on your primary machine.** An agent compromise gives attackers access to everything you have: SSH keys, password manager vaults, browser sessions, personal files. Use a dedicated, disposable environment.
+**Running OpenClaw on your primary machine.** An agent compromise gives attackers access to everything you have: SSH keys, password manager vaults, browser sessions, personal files. Use a dedicated, disposable environment.
 
-**Mistake: Using `dmPolicy: open`.** This lets anyone message your bot. Combined with tool access, it is effectively an open remote code execution endpoint. Use `pairing` or `allowlist` exclusively.
+**Using `dmPolicy: open`.** This lets anyone message your bot. Combined with tool access, it's an open remote code execution endpoint. Use `pairing` or `allowlist` exclusively.
 
-**Mistake: Mounting your home directory into the container.** Convenience is the enemy of security here. Mount only the specific directories the agent needs, with appropriate read/write restrictions.
+**Mounting your home directory into the container.** Mount only the specific directories the agent needs, with appropriate read/write restrictions.
 
-**Mistake: Installing skills without review.** After ClawHavoc, the only safe approach is manual verification of every skill before installation. Automated scanning tools help, but they catch patterns, novel attacks will bypass them.
+**Installing skills without review.** After ClawHavoc, the only safe approach is manual verification of every skill. Automated scanning tools help but they catch patterns — novel attacks will bypass them.
 
-**Mistake: Using the same model for everything.** Match model strength to task risk. Cheap local models for low-risk summarization. Frontier models for anything involving tool execution. This is not about capability, it is about prompt injection resistance.
+**Using the same model for everything.** Match model strength to task risk. Cheap local models for low-risk summarization. Frontier models for anything involving tool execution. This is about prompt injection resistance, not capability.
 
-**Mistake: Forgetting that memory is an attack vector.** OpenClaw's persistent memory injects stored content into the system prompt. A single successful injection that writes to memory creates a persistent backdoor that fires on every subsequent interaction. Review memory contents periodically and have a clean rebuild procedure.
+**Forgetting that memory is an attack vector.** OpenClaw's persistent memory injects stored content into the system prompt. A single successful injection that writes to memory creates a persistent backdoor. Review memory contents periodically.
 
-**Mistake: Trusting the gateway is safe because it is on localhost.** CVE-2026-25253 proved this wrong. A malicious webpage in your browser could exploit WebSocket origin validation to hijack a localhost gateway. Keep your OpenClaw version current and the auth token strong.
+**Trusting the gateway is safe because it's on localhost.** CVE-2026-25253 proved otherwise. A malicious webpage could exploit WebSocket origin validation to hijack a localhost gateway. Keep your OpenClaw version current.
 
 ---
 
@@ -460,11 +453,9 @@ Use this checklist when setting up a new OpenClaw deployment or auditing an exis
 
 ## Final thoughts
 
-OpenClaw represents the cutting edge of what personal AI agents can do — and by extension, the cutting edge of what can go wrong. The ClawHavoc campaign, the exposed instances, and the CVE disclosures are not edge cases. They are the predictable consequences of deploying powerful autonomous systems without security-first design.
+The ClawHavoc campaign, the exposed instances, and the CVE disclosures are not edge cases. They're the predictable consequences of deploying powerful autonomous systems without security-first design.
 
-The approach I have documented here is not theoretical. It is what I run daily to stay current on AI security research while maintaining the operational discipline that my background in security demands. The core principle is simple: **treat your AI agent like a junior employee with root access.** Give it the minimum permissions it needs, verify its work, and always have a way to shut it down.
-
-The future of personal AI is agentic. The question is not whether you will use tools like OpenClaw, but whether you will use them securely. I hope this guide helps you make the right choice.
+What I've documented here is what I actually run. The core principle is simple: treat your AI agent like a junior employee with root access. Give it the minimum permissions it needs, verify its work, and always have a way to shut it down.
 
 ---
 

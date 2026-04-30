@@ -127,13 +127,13 @@ None of these is hypothetical. The agent you build in this guide will have all f
 
 ### The real value proposition for security teams
 
-Before we write any code, let us be specific about what this buys you — and what it does not.
+Before we write any code, let us be specific about what this buys you.
 
-**What it buys you:** The agent performs in under four minutes what takes a junior analyst thirty to sixty minutes when done manually across multiple browser tabs and tool switches. That is: live threat intel gathering, CVE correlation, log pattern matching, and structured report output. For routine triage — an unfamiliar IP in your logs, a newly published CVE that affects software you run, a threat actor name that appeared in a client report — this is exactly the right tool.
+The agent performs in under four minutes what takes a junior analyst thirty to sixty minutes when done manually across multiple browser tabs and tool switches. That is: live threat intel gathering, CVE correlation, log pattern matching, and structured report output. For routine triage — an unfamiliar IP in your logs, a newly published CVE that affects software you run, a threat actor name that appeared in a client report — this is exactly the right tool.
 
-**What it does not buy you:** Judgment about your organization's specific risk posture. Knowledge of your architecture beyond what you put in the logs. An understanding of which finding is highest priority in your environment this week. The agent is a first-pass triage tool. It raises the quality floor for the first fifteen minutes of an investigation. A human analyst still owns the decision.
+What it does not buy you: judgment about your organization's specific risk posture, knowledge of your architecture beyond what you put in the logs, or an understanding of which finding is highest priority in your environment this week. The agent is a first-pass triage tool. It raises the quality floor for the first fifteen minutes of an investigation. A human analyst still owns the decision.
 
-**The transparency advantage:** Unlike a black-box AI assistant that gives you an answer with no provenance, this agent shows its work. Verbose mode (`-v`) exposes every search query, every source URL, every tool call. When the report says "LockBit 5.0 was released in February 2026," you can see that it came from a Broadcom threat report published in January 2026. If the source does not support the claim, you know before you act on it.
+Unlike a black-box AI assistant that gives you an answer with no provenance, this agent shows its work. Verbose mode (`-v`) exposes every search query, every source URL, every tool call. When the report says "LockBit 5.0 was released in February 2026," you can see that it came from a Broadcom threat report published in January 2026. If the source does not support the claim, you know before you act on it.
 
 ### Why langgraph (and not something else)
 
@@ -938,9 +938,9 @@ In order of impact:
 
 Let us be precise.
 
-It **does**: autonomously decide which analysis tools to run for a given target, retrieve current threat intelligence from live sources with visible provenance, query the real NIST NVD API, search through local log data for matching indicators, extract structured IOCs from technical content (and correctly report their absence from narrative content), route between analysis phases without human intervention, produce a structured report in under four minutes on local hardware, and persist all state for session resumption.
+The agent autonomously decides which analysis tools to run for a given target, retrieves current threat intelligence from live sources with visible provenance, queries the real NIST NVD API, searches through local log data for matching indicators, extracts structured IOCs from technical content (and correctly reports their absence from narrative content), routes between analysis phases without human intervention, produces a structured report in under four minutes on local hardware, and persists all state for session resumption.
 
-It **does not**: replace a human analyst. It has no understanding of your organization's specific risk posture, no knowledge of your architecture beyond what you put in the logs, and no judgment about which finding matters most in your context this week. It is a first-pass triage tool — one that raises the quality floor for the first phase of an investigation and hands the analyst a structured starting point rather than a blank page.
+It does not replace a human analyst. It has no understanding of your organization's specific risk posture, no knowledge of your architecture beyond what you put in the logs, and no judgment about which finding matters most in your context this week. It is a first-pass triage tool — one that raises the quality floor for the first phase of an investigation and hands the analyst a structured starting point rather than a blank page.
 
 The production version — the one that earns trust in a real security operation — requires one additional layer this article has not covered: **security controls on the agent itself.** The same properties that make this agent useful (autonomous tool use, external data ingestion, MCP-based tool sharing) are the properties that make it attackable. A single poisoned CVE description, a malicious entry in your log file, or a compromised MCP package can redirect the agent's actions in ways that are invisible in the output.
 

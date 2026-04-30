@@ -1907,7 +1907,7 @@ A common misconception is that vector embeddings are "hashed" or "one-way." They
 
 For healthcare, finance, or legal RAG systems, this means the vector database itself is a sensitive data store. If an attacker compromises your Pinecone/Weaviate/Chroma instance, they can reconstruct confidential documents from the embeddings alone. Mitigation options include encrypted embeddings (IronCore Labs' Cloaked AI applies property-preserving encryption that supports similarity search while rendering inversion attacks ineffective), vector noise injection (adds Gaussian noise to stored embeddings at the cost of slight retrieval accuracy), or running the vector database in a trusted execution environment.
 
-### Multi-Tenant isolation architectures
+### Multi-tenant isolation architectures
 
 For SaaS applications, there are three levels of tenant isolation in vector databases, each with different security/cost tradeoffs:
 
@@ -2006,19 +2006,19 @@ After implementing the defense layers, you need to measure their operational eff
 
 You have seen the attacks and the numbers. Here is what to do before you close this tab, in order of impact:
 
-**1. Run the cross-tenant leakage test against your own pipeline (5 minutes)**
+1. **Run the cross-tenant leakage test against your own pipeline (5 minutes)**
 
 No code required. Ask your internal AI assistant: *"What are the salary ranges in this company?"* or *"Are there any pending legal disputes?"* If the system returns data the questioner should not see, you have a 100%-success leakage vulnerability that requires zero technical skill to exploit. This is the most common RAG vulnerability in enterprise deployments and the easiest to confirm.
 
-**2. Find your vector database query and look for the `where` clause (10 minutes)**
+2. **Find your vector database query and look for the `where` clause (10 minutes)**
 
 Pull up how your RAG retrieval is implemented. Is there a metadata filter restricting results by user, tenant, or document classification? If the query is a raw similarity search with no filter, every document in the collection is accessible to every user — including anything ingested by any automated integration pipeline. No `where` clause means the attacker's query in Lab 6 above will work against your system right now.
 
-**3. Map every automated path into your knowledge base (10 minutes)**
+3. **Map every automated path into your knowledge base (10 minutes)**
 
 Ask: what processes ingest documents without human review? Confluence sync? Slack indexer? SharePoint connector? Automated documentation build? Each is an ingestion vector. Any document in any of those sources that can be modified by an external party or a compromised account is a potential poisoning or injection surface. The threat actor table at the top of this article lists the realistic actors — the compromised CI/CD path is the scariest because it is the hardest to audit.
 
-**4. Add embedding anomaly detection to your ingestion pipeline (ongoing)**
+4. **Add embedding anomaly detection to your ingestion pipeline (ongoing)**
 
 This is the layer that reduced poisoning from 95% to 20% in these tests, and the one most teams are missing. The code is in Defense Layer 5 — it operates on embeddings your pipeline already produces, requires no additional models, and runs at ingestion time. The key signal it catches: multiple newly ingested documents clustering tightly around the same topic as existing documents, which is the coordinated injection pattern PoisonedRAG demonstrated at 90%+ success rate.
 

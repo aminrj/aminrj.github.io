@@ -24,9 +24,9 @@ image:
 description: "LLM tool execution security: attack techniques, real incidents, and defenses for AI agents with tool access. Covers prompt injection, RAG poisoning, tool misuse, and supply chain attacks — with production examples."
 ---
 
-# Your AI agent just became an attack surface — and most teams don't know it yet
+# Your AI agent just became an attack surface
 
-_A practitioner's guide to the real security risks hiding inside your LLM deployments_
+_A practitioner's guide to the real security risks inside your LLM deployments_
 
 ---
 
@@ -213,47 +213,17 @@ extension into AI systems.
 
 ## What security teams can do right now
 
-This isn't a "we need to wait for the industry to figure this out" situation.
 There are concrete things you can implement today.
 
-**Treat every agent input as untrusted.** This sounds obvious but almost no one
-*does it consistently. Every piece of text that enters your agent's context,
-*user input, retrieved documents, API responses, emails, web content, is a
-\*potential injection vector.
+**Treat every agent input as untrusted.** Every piece of text that enters your agent's context — user input, retrieved documents, API responses, emails, web content — is a potential injection vector. Build input validation and sanitization into your ingestion pipeline from the start.
 
-Build input validation and sanitization into your \*ingestion pipeline, not as an afterthought.
+**Define explicit tool authorization policies.** Before deploying an agent with tool access, write down exactly what it should be able to do. Not just which tools it has access to, but which operations within those tools are in scope. "Can query the CRM" is not a policy. "Can read customer records for accounts assigned to the requesting user, cannot write, cannot delete, cannot export bulk records" is a policy.
 
-**Define explicit tool authorization policies.** Before deploying an agent with
-*tool access, write down exactly what it should be able to do, not just what
-*tools it has access to, but what operations within those tools are in scope.
+**Add agent observability from day one.** You cannot detect anomalous agent behavior if you're not logging it. Every tool call, every external API invocation, every decision the agent makes should be captured with enough context to reconstruct what happened and why. Most observability tooling isn't built for agents yet — you'll probably need to add this at the application layer for now.
 
-*"Can query the CRM" is not a policy. "Can read customer records for accounts
-*assigned to the requesting user, cannot write, cannot delete, cannot export
-\*bulk records" is a policy.
+**Conduct adversarial testing before production deployment.** This means more than functional QA. It means specifically attempting to manipulate the agent — trying to get it to leak system prompts, exceed its authorized scope, invoke tools it shouldn't invoke, or behave differently than intended through crafted inputs. Tools like [Garak](https://github.com/NVIDIA/garak/) and [PyRIT](https://github.com/Azure/PyRIT) automate parts of this, but human red teamers who understand the specific deployment context will find things automated tools miss.
 
-**Add agent observability from day one.** You cannot detect anomalous agent
-*behavior if you're not logging it. Every tool call, every external API
-*invocation, every decision the agent makes should be captured with enough
-*context to reconstruct what happened and why. Most observability tooling isn't
-*built for agents yet, you'll probably need to add this at the application
-\*layer for now.
-
-**Conduct adversarial testing before production deployment.** This means more
-*than functional QA.
-It means specifically attempting to manipulate the agent,*trying to get it to
-leak system prompts, exceed its authorized scope, invoke *tools it shouldn't
-invoke, or behave differently than intended through crafted*inputs.
-
-Tools like [Garak](https://github.com/NVIDIA/garak/) and [PyRIT](https://github.com/Azure/PyRIT) automate parts of this, but human red *teamers who
-understand the specific deployment context will find things*automated tools
-miss.
-
-**Audit your MCP servers and plugin integrations.** If you're using the Model
-*Context Protocol or any plugin architecture, treat those integrations with the
-*same scrutiny you'd give a third-party library that runs with elevated
-*privileges, because that's functionally what they are.
-Review what tool*descriptions they expose to the model. Monitor them for changes after
-\*installation.
+**Audit your MCP servers and plugin integrations.** If you're using the Model Context Protocol or any plugin architecture, treat those integrations with the same scrutiny you'd give a third-party library that runs with elevated privileges — because that's functionally what they are. Review what tool descriptions they expose to the model. Monitor them for changes after installation.
 
 ![Defense in depth for agentic systems](assets/media/ai-security/ai-agents-attack-surface/defense-in-depth-for-agentic-systems.png)
 _Diagram 5: Defense-in-depth for agentic systems. No single control is sufficient — each layer reduces the blast radius of the attacks that bypass the layer above it._
@@ -280,13 +250,7 @@ Agents that can autonomously access enterprise systems, make decisions, send
 communications, and execute code represent a qualitatively different risk
 profile than a web form that didn't sanitize its inputs.
 
-The organizations that get ahead of this, that build security thinking into
-their AI deployment process rather than bolting it on after the first incident,
-will have a significant advantage.
-
-Not just in terms of reduced breach risk, but in terms of being able to deploy
-more capable agents with more confidence, because they've built the trust
-infrastructure that makes expanded autonomy defensible.
+The organizations that get ahead of this — that build security thinking into their AI deployment process rather than bolting it on after the first incident — will be able to deploy more capable agents with more confidence. They've built the trust infrastructure that makes expanded autonomy defensible.
 
 The field is moving fast.
 The frameworks are being written in real time. But the

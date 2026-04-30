@@ -28,19 +28,11 @@ description: "A structured, actionable playbook for security leaders and their t
 
 ---
 
-## How to Use This Playbook
+## How to use this playbook
 
-This playbook is a standalone operational reference. Each section is designed to be used independently:
+This playbook is a standalone operational reference — each section is designed to be used independently. Section 1 frames the strategic risk for executive stakeholders. Sections 2–3 cover pre-assessment preparation. Section 4 is a quick-reference attack pattern catalog with severity and detection data. Section 5 maps all three major frameworks for compliance alignment. Sections 6–8 structure the assessment engagement. Sections 9–10 provide reporting and remediation templates. Section 11 is a one-page brief for board or leadership presentations.
 
-- **Section 1** frames the strategic risk for executive stakeholders.
-- **Sections 2–3** provide pre-assessment preparation checklists.
-- **Section 4** is a quick-reference attack pattern catalog with severity and detection data.
-- **Section 5** maps all three major frameworks to each other for compliance alignment.
-- **Sections 6–8** structure the assessment engagement itself.
-- **Sections 9–10** provide ready-to-use reporting and remediation templates.
-- **Section 11** is a one-page executive brief for board or leadership presentations.
-
-Print the sections relevant to your current phase. Return to this document at each stage of your assessment program.
+Print the sections relevant to your current phase and return here at each stage.
 
 ---
 

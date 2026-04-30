@@ -285,7 +285,7 @@ Knowledge base poisoning is not a theoretical threat. [PoisonedRAG](https://www.
 
 The right defense layer is ingestion, not output.
 
-The full lab code — attack scripts, all five defense layers, and the measurement framework — is in [aminrj-labs/mcp-attack-labs/labs/04-rag-security](https://github.com/aminrj-labs/mcp-attack-labs/tree/main/labs/04-rag-security). If you run it, a ⭐ on the repo helps others find it. The next article covers indirect prompt injection via retrieved context and cross-tenant data leakage, with the same local stack and the same defense architecture.
+The full lab code — attack scripts, all five defense layers, and the measurement framework — is in [aminrj-labs/mcp-attack-labs/labs/04-rag-security](https://github.com/aminrj-labs/mcp-attack-labs/tree/main/labs/04-rag-security). The next article covers indirect prompt injection via retrieved context and cross-tenant data leakage, with the same local stack and the same defense architecture.
 
 ---
 

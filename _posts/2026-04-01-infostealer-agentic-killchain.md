@@ -147,7 +147,7 @@ What the LLM actually receives in its context window:
 
 The hidden instructions are invisible to the user but fully visible to the LLM — because tool descriptions are part of the prompt context. The LLM was designed to follow instructions in its context. It does exactly that.
 
-**What the attack flow looks like:**
+The attack flow:
 
 ```
  User prompt: "What is 47 + 38?"
@@ -644,14 +644,8 @@ The attacks described in this post are reproducible using the lab environment fr
 
 The full lab guide covers tool poisoning (OWASP ASI02), cross-server attacks (ASI08), and mitigation implementation including `mcp-scan` and the human approval gate.
 
-**Live Attack Demo — April 29, 2026:** I am running a free 2-hour public workshop covering the complete MCP attack chain, live. Register at [Eventbrite link].
-
 **AI Security Intelligence newsletter** — weekly coverage of agentic AI threat developments at [newsletter.aminrj.com](https://newsletter.aminrj.com).
 
 ---
 
 *Sources: Flashpoint 2026 Global Threat Intelligence Report (via Help Net Security, March 12 2026). Invariant Labs: Tool Poisoning in MCP (April 2025). Noma Labs: DockerDash Research (November 2025). OWASP Agentic Top 10 2026: genai.owasp.org.*
-
----
-
-*Amine Raji is an AI security practitioner with 15+ years in banking, defense, and automotive security. He writes about agentic AI attack surfaces, MCP security, and the OWASP Agentic Top 10 at [aminrj.com](https://aminrj.com).*

@@ -21,24 +21,17 @@ image:
 description: "A hands-on walkthrough of reproducing the Invariant Labs MCP tool-poisoning attack fully offline. Learn why model capability and available tools determine exploit success—and what defenses actually work."
 ---
 
-> _A walk-through of chaining a supply chain attack with prompt injection against a Docker AI assistant — including every failed attempt along the way, and what each failure taught us about how LLMs actually behave as autonomous agents._
-
----
+> _A walk-through of chaining a supply chain attack with prompt injection against a Docker AI assistant — including every failed attempt along the way, and what each failure taught about how LLMs actually behave as autonomous agents._
 
 ## Background
 
-In late 2024, Docker shipped **Ask Gordon**: an AI assistant integrated directly into the Docker CLI and Docker Desktop. Gordon connects to Docker's own MCP (Model Context Protocol) gateway, which exposes tools like `docker_ps`, `docker_inspect`, and `docker_stop` to an LLM.
+In late 2024, Docker shipped Ask Gordon: an AI assistant integrated into the Docker CLI and Docker Desktop. Gordon connects to Docker's own MCP gateway, which exposes tools like `docker_ps`, `docker_inspect`, and `docker_stop` to an LLM.
 
-The idea is compelling: ask Gordon "is this image safe?" and it will inspect the image metadata and give you an informed answer.
+The idea is compelling: ask Gordon "is this image safe?" and it inspects the image metadata and gives you an answer. That design creates an attack surface. Being explicit about who controls what matters here — the two threat models below have different attacker requirements and different blast radius.
 
-That design creates an attack surface that this lab explores through two related but distinct threat models. Being explicit about who controls what is important, the two models have different attacker requirements and different blast radius.
+**Threat model A, pure label injection (attacker controls only the Docker image):** The attacker publishes a poisoned image to Docker Hub. Any user who asks Gordon about it silently triggers `docker_ps` and `docker_stop` — their containers are killed. The attacker needs no foothold in the victim's environment.
 
-**Threat model A, pure label injection (attacker controls only the Docker image):**
-The attacker publishes a poisoned image to Docker Hub. Any user who asks Gordon about it silently triggers `docker_ps` and `docker_stop`, their containers are killed. The attacker needs no foothold in the victim's environment.
-
-**Threat model B, label injection + covert MCP tool (attacker also controls one MCP server):**
-If the victim has also installed a compromised or attacker-supplied MCP server that provides an HTTP-capable tool, the injected label can chain into that tool to exfiltrate data.
-The label injection activates the planted tool; the planted tool creates the outbound channel.
+**Threat model B, label injection + covert MCP tool (attacker also controls one MCP server):** If the victim has also installed a compromised or attacker-supplied MCP server that provides an HTTP-capable tool, the injected label can chain into that tool to exfiltrate data.
 
 The two models are independent and composable. Threat model A requires only a Docker registry account. Threat model B requires that _plus_ a planted MCP tool in the victim's environment. This lab demonstrates both, and is explicit about which parts require which attacker capabilities.
 
@@ -501,9 +494,7 @@ successful](/assets/media/ai-security/mcp-attack-labs/successful-exfill.png)
 
 The lab demonstrates two distinct threat models. Each has its own set of required conditions.
 
-**Threat model A — Destructive-only (attacker controls only the Docker image):**
-
-| Condition              | Where it lives                                               | What breaks without it                                            |
+**Threat model A — Destructive-only (attacker controls only the Docker image):**              | Where it lives                                               | What breaks without it                                            |
 | ---------------------- | ------------------------------------------------------------ | ----------------------------------------------------------------- |
 | Unfiltered tool output | `gordon_simulator.py` — labels passed raw to LLM             | Injection payload never seen by the model                         |
 | Agentic system prompt  | `agent.py` — model primed to execute tool workflows silently | Model describes the injection to the user instead of following it |

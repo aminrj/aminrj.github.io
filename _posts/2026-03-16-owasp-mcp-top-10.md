@@ -37,9 +37,7 @@ description: "MCP Security Top 10: a practitioner's threat model mapping 10 MCP-
 
 ---
 
-The [OWASP GenAI Security Project published a Secure MCP Server Development guide](https://genai.owasp.org/resource/a-practical-guide-for-secure-mcp-server-development/) in February 2026 covering defensive controls for server developers. This article is the complementary attack evidence layer — the threat model behind those mitigations. Use both: OWASP for institutional sign-off and defensive controls; this article for the lab-confirmed attack chains that explain why those controls are necessary.
-
-This article is the gap-filler. It maps 10 MCP-specific security risks to the OWASP LLM Top 10 categories they belong to, documents the attacks that confirmed them in production environments, and ends with a pre-deployment checklist your security team can actually use.
+The [OWASP GenAI Security Project published a Secure MCP Server Development guide](https://genai.owasp.org/resource/a-practical-guide-for-secure-mcp-server-development/) in February 2026 covering defensive controls for server developers. This article is the complementary attack evidence layer. Use both: OWASP for institutional sign-off and defensive controls; this article for the lab-confirmed attack chains that explain why those controls matter.
 
 All 10 risks are lab-confirmed — either through [my own documented attack series]({% post_url 2026-02-20-llm-attack-surface %}) or through disclosed CVEs and published security research. The full lab code is in the **[mcp-attack-labs repository](https://github.com/aminrj-labs/mcp-attack-labs)** — every attack here is reproducible.
 
@@ -532,9 +530,9 @@ uvx snyk-agent-scan@latest ~/.claude/claude_desktop_config.json
 
 ---
 
-## Pre-Deployment checklist
+## Pre-deployment checklist
 
-Before you connect any MCP server to an agent that has access to sensitive data, tools, or credentials:
+Before connecting any MCP server to an agent that has access to sensitive data, tools, or credentials:
 
 ### Server verification
 
@@ -569,7 +567,7 @@ Before you connect any MCP server to an agent that has access to sensitive data,
 
 The OWASP GenAI Security Project has published MCP security guidance (lead author: Idan Habler, Cisco/OWASP). That document is the right starting point for teams that need an institutional reference. This article is the attack evidence layer behind it.
 
-Specifically, the OWASP document's vulnerability landscape section covers prompt injection, supply chain risks, and authentication weaknesses at a conceptual level. It does not include lab-confirmed exploit chains, model-specific behavior analysis (why the LLM follows hidden instructions, not just that it can), or the five attack categories documented here:
+The OWASP document covers prompt injection, supply chain risks, and authentication weaknesses at a conceptual level. It doesn't include lab-confirmed exploit chains or model-specific behavior analysis. Five categories here aren't covered there at all:
 
 | This article | Status in OWASP MCP document |
 |---|---|

@@ -19,11 +19,7 @@ LLMs amplify this pattern. Calling an API and getting text back is trivial. Maki
 
 I built a system that processes government tenders using LLM agents. It filters thousands of procurement opportunities, scores them, and generates bid documents. The code works. But "works" in production means something very different than "works on my laptop."
 
-This article shows you how to build LLM agents that don't just work once—they work reliably, handle failures gracefully, and maintain quality under production load.
-
-This article walks through building a multi-agent system from scratch.
-I’ve published all the code as interactive notebooks you can run yourself.
-I’ll explain why certain patterns matter and what breaks when you skip them.
+This article walks through building a multi-agent system from scratch, covering the patterns that separate a prototype from something you can actually run in production. All the code is published as interactive notebooks you can run yourself.
 
 ## The problem with "hello llm"
 
@@ -43,7 +39,7 @@ Random markdown formatting
 Answers that don’t match what you asked for
 The real work begins when you need the same input to produce predictable output. Notebook 01 covers the basics, but Notebook 02 is where things get interesting.
 
-Structured Outputs: Making LLMs Predictable
+Structured outputs: making LLMs predictable
 
 The solution is to stop treating LLM responses as free text. Instead, define exactly what you want back using Python’s type system.
 
@@ -80,7 +76,7 @@ Invalid responses fail immediately during development, not in production
 You can pass these objects between different parts of your system without parsing strings
 But there’s a problem: LLMs still occasionally return malformed JSON. About 3–5% of the time in my testing. That’s where retries come in.
 
-Retry Logic: When LLMs Mess Up
+Retry logic: when LLMs mess up
 
 LLMs fail sometimes. Not often — about 3–5% of the time in my testing — but that’s 50 failures per 1,000 requests.
 
@@ -103,7 +99,7 @@ Your failure rate drops from 3% to 0.01%.
 
 Build retries in from the start — see the full implementation in Notebook 07.
 
-Building Your First Agent
+Building your first agent
 
 An “agent” sounds complicated. It’s really just a function with well-defined inputs and outputs:
 
@@ -114,11 +110,9 @@ That’s it. Take a Tender object, build a prompt, call the LLM, return a Filter
 
 The trick is in the details — Notebook 03 walks through three decisions that matter:
 
-1. Temperature choice: Use 0.1 for classification tasks. You want consistency, not creativity. Same tender should get same result every time.
+1. **Temperature:** Use 0.1 for classification tasks. You want consistency, not creativity. Same tender should get the same result every time. Higher values (0.7+) are for creative tasks where you want variety.
 
-2. Prompt engineering: This controls randomness in the LLM’s output. Use 0.1 for classification tasks — you want the same tender to get the same result every time. Higher values (0.7+) are for creative tasks where you want variety.
-
-3. Prompt specificity: Don’t say “analyze this tender.” Tell the LLM exactly what you’re looking for:
+2. **Prompt specificity:** Don't say "analyze this tender." Tell the LLM exactly what you're looking for:
 
 CRITERIA FOR RELEVANCE:
 A tender is relevant if it involves:
@@ -134,9 +128,9 @@ NOT relevant if only:
 - Non-technical services
   Vague prompts get vague results. Specific criteria get consistent classification.
 
-1. Reasoning field: Always ask the LLM to explain its answer. This actually improves accuracy (researchers call it “chain-of-thought prompting”), and you get Binary yes/no decisions are easy.
+3. **Reasoning field:** Always ask the LLM to explain its answer. This improves accuracy (researchers call it "chain-of-thought prompting"), and you get an audit trail.
 
-Business decisions need nuance. That’s why Notebook 04 introduces multi-dimensional scoring:
+Binary yes/no is easy to classify but tells you nothing useful for prioritization. Business decisions need nuance. That’s why Notebook 04 introduces multi-dimensional scoring:
 
 class RatingResult(BaseModel):
 overall_score: float = Field(ge=0, le=10)
@@ -155,7 +149,7 @@ Require both strengths and risks: LLMs are optimistic by default. They’ll tell
 
 Calibrate in the prompt: Tell the LLM “most opportunities should score 5–7, not 8–10.” Otherwise everything gets rated 8.5 and the scores become meaningless.
 
-Creative Generation: When You Need Variety
+Creative generation: when you need variety
 
 Document generation is different from classification.
 You don’t want the same tender to produce identical bid documents every time — that’s robotic.
@@ -185,7 +179,7 @@ value_proposition: str
 timeline_estimate: str
 You get creative writing that fits a predictable format. The content varies, but you always get all four sections.
 
-Orchestration: Connecting the Agents
+Orchestration: connecting the agents
 
 You now have three agents: one filters, one rates, one generates documents. Notebook 06 shows how to connect them:
 
@@ -217,7 +211,7 @@ You only need complex graph-based orchestration (like LangGraph or similar frame
 
 Start simple, and keep it simple whenever possible.
 
-Production Readiness: The Last 50% of the Work
+Production readiness: the last 50% of the work
 
 Code that works on your laptop isn’t production-ready. Notebook 07 covers what needs to change:
 
@@ -262,26 +256,20 @@ Model differences: Prompts that worked perfectly on Llama locally failed on GPT-
 
 Cost: Processing 10,000 tenders locally is free. In production with API calls, it’s hundreds of dollars. Aggressive filtering before expensive operations isn’t optimization — it’s survival.
 
-Nondeterminism: Temperature 0.1 isn’t truly deterministic. Same input occasionally produces different outputs. You can’t prevent this — design your system to handle Rate limits.
+Nondeterminism: Temperature 0.1 isn't truly deterministic. The same input can occasionally produce different outputs. You can't prevent this — design your system to handle it.
 
-Local LLMs don’t have them. Production APIs do. Add rate limiting at the service layer, not in individual agents.
-Why This Progression Matters
+Rate limits: Local LLMs don't have them. Production APIs do. Add rate limiting at the service layer, not in individual agents.
 
-Each notebook builds on the previous one:
+## Why this progression matters
 
-Notebook 01 — Make your first LLM call
-Notebook 02 — Add Pydantic validation
-Notebooks 03–05 — Build individual agents
-Notebook 06 — Connect them into a pipeline
-Notebook 07 — Add production patterns
-Here’s why this approach works: each step builds on the previous one without breaking it.
+Each notebook builds on the previous one without breaking it:
 
-Start with raw LLM calls (Notebook 01)
-Add structured outputs (Notebook 02)
-Build single agents (Notebooks 03–05)
-Connect them (Notebook 06)
-Harden for production (Notebook 07)
-Running the Code Yourself
+- Notebook 01 — raw LLM calls
+- Notebook 02 — Pydantic validation
+- Notebooks 03–05 — individual agents
+- Notebook 06 — pipeline
+- Notebook 07 — production hardening
+Running the code yourself
 
 All code is in the GitHub repository. The learning path covers zero to production in 7 notebooks, about 6 hours total.
 
@@ -292,9 +280,9 @@ LM Studio running locally (or an API key for Groq/OpenAI/Anthropic)
 About 30 minutes per notebook
 Start with 01_hello_llm.ipynb. Each notebook solves a problem you’ll hit in the previous one, so do them in order.
 
-The Real Takeaway
+The real takeaway
 
-Building LLM agents isn't about prompt engineering or picking the best model. It's about accepting that LLMs are unreliable and designing around it.
+Building LLM agents isn't about prompt engineering or picking the right model. It's about accepting that LLMs are unreliable and designing around that.
 
 LLMs return the wrong format sometimes. They time out. They give slightly different answers to the same question. They work 100 times in a row and fail on request 101.
 
@@ -302,11 +290,11 @@ Production systems accept this and design accordingly: Pydantic validation to ca
 
 ## What I learned building this
 
-**Stop fighting LLM variability—design around it.** In defense systems, components are deterministic (or they're broken). LLMs are different: probabilistic by nature. My instinct was to "fix" the variability. Wrong approach. The right move is accepting that outputs vary and building systems that tolerate it. That's where Pydantic shines—not preventing variation, but catching when it exceeds acceptable bounds.
+In defense systems, components are deterministic (or they're broken). LLMs are different: probabilistic by nature. My instinct was to "fix" the variability. Wrong approach. Accept that outputs vary and build systems that tolerate it. That's where Pydantic shines—not preventing variation, but catching when it exceeds acceptable bounds.
 
-**Every LLM call is a security boundary.** Banking systems taught me to treat every external input as hostile. LLM outputs? Same rule applies. They cross a trust boundary into your application. Would you take user input and execute it directly? No. Would you parse API responses without validation? No. Don't treat LLM outputs differently just because they sound confident.
+Banking taught me to treat every external input as hostile. LLM outputs are no different. They cross a trust boundary into your application. Don't treat them differently just because they sound confident—validate everything.
 
-**Production debugging requires observability from day one.** The first time something fails mysteriously at 2 AM, you'll wish you'd added structured logging and retry counters. Don't wait for production to add observability. Your future self (or your on-call teammate) will thank you.
+The first time something fails mysteriously at 2 AM, you'll wish you'd added structured logging and retry counters from the start. Observability is not an afterthought.
 
 ---
 

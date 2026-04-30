@@ -34,13 +34,13 @@ I measured each against a full attack suite on a local ChromaDB + LM Studio stac
 
 ## Defense 1: embedding anomaly detection on ingestion
 
-**What it is:** Before a document enters your vector collection, compute its embedding and compare it against your existing collection. Flag documents that are suspiciously similar to existing content, and flag batches of documents that cluster too tightly together.
+Before a document enters your vector collection, compute its embedding and compare it against your existing collection. Flag documents that are suspiciously similar to existing content, and flag batches of documents that cluster too tightly together.
 
-**Why it matters:** Knowledge base poisoning — injecting fabricated documents designed to override legitimate data — works by exploiting retrieval math. The attacker crafts documents with high cosine similarity to target queries. Embedding anomaly detection catches this at ingestion time, before any user can ever retrieve the poisoned content.
+Knowledge base poisoning — injecting fabricated documents designed to override legitimate data — works by exploiting retrieval math. The attacker crafts documents with high cosine similarity to target queries. Embedding anomaly detection catches this at ingestion time, before any user can ever retrieve the poisoned content.
 
-**The measured impact:** In my tests, this single control reduced knowledge poisoning success from **95% to 20%**. No other single control came close.
+In my tests, this single control reduced knowledge poisoning success from **95% to 20%**. No other single control came close.
 
-**Two signals to check:**
+Two signals to watch:
 
 ```python
 # Signal 1: New document too similar to existing content
@@ -54,11 +54,11 @@ if mean_pairwise_similarity(new_doc_batch) > 0.90:
     flag("TIGHT_CLUSTER — potential coordinated injection, review required")
 ```
 
-**Why most teams skip it:** It feels like over-engineering. "Our contributors aren't going to inject malicious documents." Until a Confluence integration gets compromised. Until an adversarial customer uploads content in a multi-tenant deployment. Until an insider with legitimate wiki access decides to plant something.
+Most teams skip this because it feels like over-engineering. "Our contributors aren't going to inject malicious documents." Until a Confluence integration gets compromised. Until an adversarial customer uploads content in a multi-tenant deployment. Until an insider with legitimate wiki access decides to plant something.
 
 The check runs at ingestion time, on embeddings you're already computing, using under 50 lines of Python. The cost is negligible. The blast radius of not having it is substantial.
 
-**Check your implementation now:**
+Check your implementation:
 
 - [ ] Does your ingestion pipeline compute embeddings before storage?
 - [ ] Is there any similarity check between incoming and existing documents?
@@ -72,13 +72,13 @@ If all three are "no," you have no detection mechanism for coordinated knowledge
 
 ## Defense 2: access-controlled retrieval (the `where` clause nobody adds)
 
-**What it is:** A metadata filter on every vector database query that restricts which documents a given user is permitted to retrieve, based on their identity and access level.
+This defense applies a metadata filter on every vector database query that restricts which documents a given user is permitted to retrieve, based on their identity and access level.
 
-**Why it matters:** Without this, every document in your vector collection is reachable by every user. Not through an exploit — through a normal query. Ask an AI assistant "what are the salary ranges here?" and it retrieves whatever is semantically similar, regardless of who you are.
+Without this, every document in your vector collection is reachable by every user. Not through an exploit — through a normal query. Ask an AI assistant "what are the salary ranges here?" and it retrieves whatever is semantically similar, regardless of who you are.
 
 I ran this against a test system with three restricted documents: salary data (HR-only), litigation details (attorney-client privilege), and M&A targets (board-level only). Regular engineering employee asking natural questions. **20 out of 20 queries leaked confidential data.** 100% success rate. Zero technical sophistication required.
 
-**The fix is one line:**
+The fix is one line:
 
 Without access control:
 
@@ -100,7 +100,7 @@ results = collection.query(
 
 That `where` filter is the only complete defense against cross-tenant data leakage. It's structural — it prevents unauthorized data from entering the context window at all. Output monitoring, prompt hardening, and every other heuristic defense fail against this attack because the data has already been retrieved by the time those controls run.
 
-**A minimal access model:**
+A minimal access model:
 
 | User Role | Permitted Classifications |
 |---|---|
@@ -113,7 +113,7 @@ You don't need a sophisticated RBAC system to start. A simple mapping of user id
 
 ![ACL RAG Mitigaiton](/assets/media/ai-security/mcp-attack-labs/ACL-RAG-mitigation.png)
 
-**Check your implementation now:**
+Check your implementation:
 
 - [ ] Find every vector database query in your codebase (`collection.query`, `similarity_search`, equivalent)
 - [ ] Verify each has a metadata filter based on the requesting user's identity
@@ -125,9 +125,9 @@ If there's no filter on retrieval, every document in your collection is reachabl
 
 ## Defense 3: prompt structure hardening (data vs. instructions separation)
 
-**What it is:** A deliberate structural separation between the LLM's operator instructions and the retrieved documents, combined with explicit instructions that retrieved content is data-only.
+This defense applies a deliberate structural separation between the LLM's operator instructions and the retrieved documents, combined with explicit instructions that retrieved content is data-only.
 
-**Why it matters:** The default RAG prompt template looks like this:
+The default RAG prompt template looks like this:
 
 ```bash
 You are a helpful company assistant. Use the following context
@@ -172,7 +172,7 @@ The LLM receives retrieved documents and the user query in a single message. It 
 
 This structure does two things: it separates operator instructions into the system message (which the model weights more heavily), and it visually and semantically fences retrieved content as data, not instructions.
 
-**Measured impact against injection attacks:**
+Measured impact against injection attacks:
 
 | Injection Type | Vulnerable Pipeline | + Prompt Hardening |
 |---|---|---|
@@ -181,9 +181,9 @@ This structure does two things: it separates operator instructions into the syst
 
 Prompt hardening alone reduces marker-based injection by roughly 65% and semantic injection by roughly 55%. It's not a complete defense — nothing heuristic is — but it's the right structural foundation.
 
-**What it doesn't stop:** Semantic injection — instructions delivered through convincing natural language without any structural markers. A document written as a plausible corporate policy, citing a compliance requirement and a SOC2 audit cycle, can still direct the LLM's behavior at a 15–30% success rate even with hardened prompts. That residual requires ML-based intent classifiers (Llama Guard, NeMo Guardrails, ShieldGemma) to close.
+It doesn't stop semantic injection — instructions delivered through convincing natural language without any structural markers. A document written as a plausible corporate policy, citing a compliance requirement and a SOC2 audit cycle, can still direct the LLM's behavior at a 15–30% success rate even with hardened prompts. That residual requires ML-based intent classifiers (Llama Guard, NeMo Guardrails, ShieldGemma) to close.
 
-**Check your implementation now:**
+Check your implementation:
 
 - [ ] Are your retrieved documents placed in the system message or the user message? (user message is correct — the system message should be reserved for operator instructions only, which the model weights more heavily)
 - [ ] Are retrieved documents individually fenced, or concatenated into a block?

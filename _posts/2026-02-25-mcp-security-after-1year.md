@@ -285,8 +285,7 @@ infrastructure.
 **The SDK itself leaks data.** `CVE-2026-25536` affects the official MCP
 TypeScript SDK (versions up to 1.25.3). When a single `McpServer` instance
 handles multiple client connections, a common configuration in stateless
-deployments, JSON-RPC message ID collisions cause responses to route to the
-\*wrong client.
+deployments, JSON-RPC message ID collisions cause responses to route to the wrong client.
 
 Client A receives Client B's data. No attack is required. No authentication
 bypass is needed. The vulnerability is in how the SDK manages concurrent
@@ -328,31 +327,15 @@ the practices the industry already knows how to implement.
 
 Five measures deserve immediate attention:
 
-**1. Inventory every MCP server in your environment.** This sounds basic because it is.
-Every developer running Claude Desktop, Cursor, or a VS Code extension with MCP
-support likely has servers installed. Most organizations have no visibility
-into what those servers are, what tools they expose, or what permissions they
-hold. You cannot secure what you have not inventoried.
+1. **Inventory every MCP server in your environment.** Every developer running Claude Desktop, Cursor, or a VS Code extension with MCP support likely has servers installed. Most organizations have no visibility into what those servers are, what tools they expose, or what permissions they hold. You can't secure what you haven't inventoried.
 
-**2. Scan tool descriptions before loading any server.** Invariant Labs released `mcp-scan`
-alongside their original research. It detects suspicious patterns in tool
-description metadata before a server is connected to an agent. This single step
-addresses the entire tool poisoning attack class at install time.
+2. **Scan tool descriptions before loading any server.** Invariant Labs released `mcp-scan` alongside their original research. It detects suspicious patterns in tool description metadata before a server is connected to an agent. This single step addresses the entire tool poisoning attack class at install time.
 
-**3. Enforce human approval for sensitive operations.** The MCP specification states that
-human confirmation SHOULD be required before tools execute file reads, network
-requests, or data mutations. Most client implementations skip this. Enabling it
-introduces friction. That friction is the control.
+3. **Enforce human approval for sensitive operations.** The MCP specification says human confirmation SHOULD be required before tools execute file reads, network requests, or data mutations. Most client implementations skip this. Enabling it introduces friction. That friction is the control.
 
-**4. Hash tool descriptions at first load and alert on any change.** If a tool's description
-mutates between sessions, that is either a rug pull or an unauthorized update.
-Either way, it warrants investigation. This is a straightforward integrity
-check that no major MCP client currently implements by default^w
+4. **Hash tool descriptions at first load and alert on any change.** If a tool's description mutates between sessions, that's either a rug pull or an unauthorized update. Either way it warrants investigation. No major MCP client currently implements this by default.
 
-**5. Restrict network egress from MCP server processes.** If a compromised server cannot
-make outbound HTTP requests, the exfiltration step in every attack chain
-documented above fails silently. Run MCP servers in sandboxed environments with
-no outbound internet access beyond their intended scope.
+5. **Restrict network egress from MCP server processes.** If a compromised server can't make outbound HTTP requests, the exfiltration step in every attack chain above fails silently. Run MCP servers in sandboxed environments with no outbound internet access beyond their intended scope.
 
 ---
 

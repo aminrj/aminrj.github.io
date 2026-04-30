@@ -11,7 +11,7 @@ tags:
   - Grafana
 image:
   path: /assets/media/kafka-k8s/banner2.png
-description: Deploy a Kafka cluster within Kubernetes using Strimzi Kafka Operator and enable monitoring of usefull Kafka metrics with Prometheus and Grafana.
+description: Deploy a Kafka cluster within Kubernetes using Strimzi Kafka Operator and enable monitoring of useful Kafka metrics with Prometheus and Grafana.
 date: 2024-07-16T07:19:50.000Z
 preview: /media/kafka-k8s/banner2.png
 ---
@@ -24,7 +24,7 @@ configuration, rolling upgrades, and scaling.
 This tutorial walks through how to:
 
 - Deploy a Kafka cluster within Kubernetes using Strimzi Kafka Operator
-- Enable monitoring of usefull Kafka metrics with Prometheus and Grafana
+- Enable monitoring of useful Kafka metrics with Prometheus and Grafana
 
 ## Deploy Kafka on Kubernetes (using Minikube)
 
@@ -49,7 +49,7 @@ $ minikube start -p kafka-cluster
 To ease our deployment, we use Terraform as our Infrastructure As Code tool.
 
 > :memo: **Note: on IaC**
-> If you’re not familiar with Terraform, don’t be scared, it is just an automation tool that uses code to declare infrastructures. [Install](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli) Terraform on you machine and run the two terraform commands bellow in the same folder where you put the \*.tf files. that’s it.
+> If you’re not familiar with Terraform, don’t be scared, it is just an automation tool that uses code to declare infrastructures. [Install](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli) Terraform on your machine and run the two terraform commands below in the same folder where you put the \*.tf files. that’s it.
 
 This Terraform code declares the necessary providers, and creates the namespaces before installing the “strimiz-cluster-operator” helm-chart:
 
@@ -602,7 +602,7 @@ docker@minikube:~$ sudo vi /etc/kubernetes/manifests/kube-apiserver.yaml
 
 We need to instruct the `kube-apiserver` to start using an `audit-policy` that
 will define what logs we want to capture, then where to which file we want to send them.
-This is done by adding these two lines bellow the kube-apiserver command:
+This is done by adding these two lines below the kube-apiserver command:
 
 ```shell
   - command:
@@ -646,10 +646,10 @@ volumes:
     type: DirectoryOrCreate
 ```
 
-Be carefull with the number of spaces you add before each line, this can prevent
+Be careful with the number of spaces you add before each line, this can prevent
 the `kube-apiserver` from starting.
 
-However, at this point, even if you are super carefull, it wont start... 😈
+However, at this point, even if you are super careful, it won't start... 😈
 
 ### 2. create the audit-policy
 

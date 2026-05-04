@@ -1,7 +1,7 @@
 ---
 title: "The AI Security Validation Crisis Nobody Is Talking About"
-date: 2026-05-13
-uuid: 202605130000
+date: 2026-05-03
+uuid: 202605030000
 status: published
 published: true
 content-type: article

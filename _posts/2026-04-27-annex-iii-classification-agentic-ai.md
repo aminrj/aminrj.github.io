@@ -1,10 +1,7 @@
 ---
-title: "Annex III Classification Decision Tree for Agentic AI: Is Your Agent High-Risk?"
+title: "Is Your Agent High-Risk? Classification Decision Tree for Agentic AI"
 date: 2026-04-27
 uuid: 202604270000
-draft: true
-status: draft
-published: false
 content-type: article
 target-audience: advanced
 categories: [AI Security, EU AI Act, Compliance]

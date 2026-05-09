@@ -1,7 +1,8 @@
 ---
+title: MCP servers just tripled. Here's the full attack map.
 Subject: MCP servers just tripled. Here's the full attack map.
 Preview text: 1,467 exposed servers. 9 of 11 registries poisoned. Memory that spreads across users. The week in MCP security.
-Issue: 11
+issue: 11
 Date: 2026-05-09
 ---
 

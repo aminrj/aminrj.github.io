@@ -1,4 +1,13 @@
+---
+title: Closed Agent Harness = threat model blind spot
+Subject: Closed Agent Harness = threat model blind spot
+Preview text: A persistent context window is a persistent attack surface. Three agents, one security control, and why managed memory is a black box.
+issue: 8
+Date: 2026-03-30
+---
+
 [AI Sec Intel] #8 — Closed Agent Harness = threat model blind spot
+
 I built a 3-agent coding system this week. First control I added: repo isolation on the write-capable agent.
 
 Hi 👋

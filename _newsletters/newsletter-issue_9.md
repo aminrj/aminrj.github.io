@@ -3,7 +3,7 @@ title: 8 agent exploits in Q1. 200,000 vulnerable MCP servers. Anthropic won't f
 Subject: 8 agent exploits in Q1. 200,000 vulnerable MCP servers. Anthropic won't fix the protocol.
 Preview text: A persistent context window is a persistent attack surface. Eight production incidents this quarter prove it.
 issue: 9
-Date: 2026-04-22
+date: 2026-04-22
 ---
 
 Hi 👋,

@@ -251,13 +251,6 @@ html[data-mode="dark"] .newsletter-hero-cta:hover {
 </div>
 
 <!-- ── Intro ─────────────────────────────────────────────────────────── -->
-<div class="text-center my-4">
-  <a href="https://newsletter.aminrj.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg px-5">
-    <i class="fas fa-external-link-alt me-2"></i>Read on Beehiiv
-  </a>
-  <p class="text-muted small mt-2">newsletter.aminrj.com</p>
-</div>
-
 <p class="mb-4">Weekly analysis of the threats, vulnerabilities, and defensive innovations shaping AI security. Written for security engineers and CTOs who need signal, not hype.</p>
 
 <!-- ── Recent issues ─────────────────────────────────────────────────── -->
@@ -312,15 +305,24 @@ html[data-mode="dark"] .newsletter-hero-cta:hover {
 </div>
 {% endif %}
 
-<!-- ── Archive ───────────────────────────────────────────────────────── -->
-<h3 class="newsletter-section-title">Archive</h3>
+<!-- ── Archive (Issues 1–7) ──────────────────────────────────────────── -->
+<h3 class="newsletter-section-title">Earlier Issues</h3>
 
-{% assign older = site.newsletters | where_exp:'n','n.url contains "newsletter-2025"' | sort: 'date' | reverse %}
-{% if older.size > 0 %}
+{% assign n7  = site.newsletters | where_exp:'n','n.url contains "newsletter-issue-7"' | first %}
+{% assign n6  = site.newsletters | where_exp:'n','n.url contains "newsletter-issue-6"' | first %}
+{% assign n5  = site.newsletters | where_exp:'n','n.url contains "newsletter-issue-5"' | first %}
+{% assign n4  = site.newsletters | where_exp:'n','n.url contains "newsletter-issue-4"' | first %}
+{% assign n3  = site.newsletters | where_exp:'n','n.url contains "newsletter-issue-3"' | first %}
+{% assign n2  = site.newsletters | where_exp:'n','n.url contains "newsletter-issue-2"' | first %}
+{% assign n1  = site.newsletters | where_exp:'n','n.url contains "newsletter-issue-1"' | first %}
+{% assign all_issues = site.newsletters | where_exp:'n','n.url contains "newsletter-issue-"' | sort: 'date' | reverse %}
+{% if n7 or n6 or n5 or n4 or n3 or n2 or n1 %}
 <ul class="newsletter-archive-list">
-{% for newsletter in older %}
+{% for newsletter in all_issues %}
+  {% assign num = newsletter.url | remove: "/newsletter/newsletter-issue-" | remove: "/" %}
+  {% if num == "1" or num == "2" or num == "3" or num == "4" or num == "5" or num == "6" or num == "7" %}
   <li class="newsletter-archive-item">
-    <a href="{{ newsletter.url }}" class="newsletter-archive-title">
+    <a href="{{ site.baseurl }}{{ newsletter.url }}" class="newsletter-archive-title">
       {% if newsletter.title != "AI Security Intelligence Digest" %}
         {{ newsletter.title }}
       {% else %}
@@ -329,11 +331,20 @@ html[data-mode="dark"] .newsletter-hero-cta:hover {
     </a>
     <span class="newsletter-archive-date">{{ newsletter.date | date: '%b %d, %Y' }}</span>
   </li>
+  {% endif %}
 {% endfor %}
 </ul>
 {% else %}
-<p class="text-muted">No older issues available.</p>
+<p class="text-muted">No earlier issues available.</p>
 {% endif %}
+
+<!-- ── Read on Beehiiv ────────────────────────────────────────────────── -->
+<div class="text-center my-4">
+  <a href="https://newsletter.aminrj.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg px-5">
+    <i class="fas fa-external-link-alt me-2"></i>Read on Beehiiv
+  </a>
+  <p class="text-muted small mt-2">newsletter.aminrj.com</p>
+</div>
 
 <!-- ── Subscribe CTA ─────────────────────────────────────────────────── -->
 <div class="mt-5 p-4" style="background:var(--card-bg);border:1px solid var(--main-border-color);border-radius:0.5rem;border-left:4px solid var(--bs-primary,rgba(13,110,253,0.15));">

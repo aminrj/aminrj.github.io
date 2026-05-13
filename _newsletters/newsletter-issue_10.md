@@ -3,7 +3,7 @@ title: No caller auth on most MCP servers. CVE-2026-35616 actively exploited. Th
 Subject: No caller auth on most MCP servers. CVE-2026-35616 actively exploited. The checklist that closes both gaps.
 Preview text: New research confirms MCP servers trust every request by default. Here's what to do before it becomes someone else's exploit.
 issue: 10
-Date: 2026-04-29
+date: 2026-04-29
 ---
 
 Hey 👋,

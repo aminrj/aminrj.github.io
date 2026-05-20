@@ -8,11 +8,11 @@ date: 2026-05-20
 
 Hey 👋,
 
-Last night I spoke at OWASP Stockholm — two talks on AI agents and MCP security at Epicenter, about 40 security practitioners in the room. Linus Lagerhjelm from Builders opened with how they've deployed AI coding agents across their organization securely. I followed with the MCP security threat model: tool poisoning, cross-server attacks, the architectural RCE findings, what defenders need to implement before the next incident.
+Last night I spoke at OWASP Stockholm's Epicenter event — one talk on MCP security, about 40 practitioners in the room. Linus Lagerhjelm from Builders opened with how they've deployed AI coding agents across their organization securely. I followed with the MCP security threat model: tool poisoning, cross-server attacks, the architectural RCE findings, what defenders need to implement before the next incident.
 
 The discussion afterwards was the best part. The question that kept coming back — from people running agents in production financial and healthcare systems — wasn't "can we prevent these attacks." It was "how do we know when we've been hit." No behavioral baseline. No standard audit trail. Agents acting with legitimate credentials, on trusted tools, following instructions that came from untrusted content they processed upstream. Traditional controls see nothing.
 
-That question is also the gap three new research papers published this month all converge on independently.
+That gap — the one between detection and response — is exactly what three new research papers published this month converge on.
 
 ---
 
@@ -24,7 +24,7 @@ If you haven't seen SAFE-MCP yet, fix that this week. Built by Frederick Kautz (
 
 Technique examples that will be familiar from previous issues: SAFE-T1001 (Tool Poisoning), SAFE-T1102 (Prompt Injection), OAuth token theft and replay, capability chaining (combining individually benign tool calls to achieve an unauthorized outcome), rug-pull via `tools/list` mutation, memory poisoning across sessions.
 
-The value for red teams: a structured reference for designing MCP-specific test cases. The value for defenders: each technique links to MITRE ATT&CK equivalents where applicable, so you can map coverage to existing controls rather than starting from scratch. The value for compliance: it gives you a vocabulary for documenting MCP threat coverage that existing frameworks don't have.
+For red teams, it's a structured reference for designing MCP-specific test cases. Defenders get technique-by-technique links to MITRE ATT&CK equivalents, so you can map coverage to existing controls instead of starting from scratch. Compliance folks get a vocabulary for documenting MCP threat coverage that existing frameworks don't have.
 
 > **[GREY CALLOUT]**
 > **Why this matters now and not later:** the OWASP Agentic Top 10 covers what can go wrong. SAFE-MCP covers *how* attackers achieve it — the specific mechanics at the protocol level. For anyone building a threat model or running a red team exercise against an MCP deployment, these are complementary tools. Start with OWASP ASI codes to prioritize risk categories, then use SAFE-MCP techniques to design the actual test cases.
@@ -82,7 +82,7 @@ Over 99% of Mythos-discovered vulnerabilities remain unpatched — not because t
 
 **Semantic Kernel CVE-2026-25592 (CVSS 10.0) + CVE-2026-26030 (CVSS 9.9): prompt injection → host RCE in default configurations. Both patched.**
 
-Microsoft published the research May 7. Two vulnerabilities in Semantic Kernel — the open-source AI orchestration framework powering Copilot integrations — that turned a crafted prompt into host-level code execution.
+Microsoft published the research May 7. Two vulnerabilities in Semantic Kernel — the open-source AI orchestration framework powering Copilot integrations — turned a crafted prompt into host-level code execution.
 
 CVE-2026-26030 (Python SDK, patched in ≥1.39.4): the In-Memory Vector Store's filter used `eval()` with a user-controlled parameter interpolated directly. A prompt injection reached `eval()` and executed arbitrary code. Microsoft's demo: a hotel-finder agent, one prompt, `calc.exe` running on the server.
 

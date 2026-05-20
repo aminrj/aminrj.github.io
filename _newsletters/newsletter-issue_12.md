@@ -1,10 +1,9 @@
 ---
 title: "Claude Mythos, SAFE-MCP, MCPShield: the week the research caught up with the threat."
 Subject: "Claude Mythos, SAFE-MCP, MCPShield: the week the research caught up with the threat."
-Preview text: "Claude Mythos found thousands of zero-days in 20 hours. Three new MCP research papers landed. And no existing defense covers the full attack surface."
+preview_text: "Claude Mythos found thousands of zero-days in 20 hours. Three new MCP research papers landed. And no existing defense covers the full attack surface."
 issue: 12
 date: 2026-05-20
-image: /assets/media/newsletters/newsletter-12-claude-mythos-found-thousands-of-zero-days.jpg
 ---
 
 Hey 👋,
@@ -27,13 +26,10 @@ Technique examples that will be familiar from previous issues: SAFE-T1001 (Tool 
 
 For red teams, it's a structured reference for designing MCP-specific test cases. Defenders get technique-by-technique links to MITRE ATT&CK equivalents, so you can map coverage to existing controls instead of starting from scratch. Compliance folks get a vocabulary for documenting MCP threat coverage that existing frameworks don't have.
 
-> **[GREY CALLOUT]**
 > **Why this matters now and not later:** the OWASP Agentic Top 10 covers what can go wrong. SAFE-MCP covers *how* attackers achieve it — the specific mechanics at the protocol level. For anyone building a threat model or running a red team exercise against an MCP deployment, these are complementary tools. Start with OWASP ASI codes to prioritize risk categories, then use SAFE-MCP techniques to design the actual test cases.
 
 [safemcp.org →](https://www.safemcp.org)
 [github.com/safe-agentic-framework/safe-mcp →](https://github.com/safe-agentic-framework/safe-mcp)
-
----
 
 **MCPShield (arXiv:2604.05969): formal framework with one uncomfortable finding — no existing defense provides complete coverage**
 
@@ -43,12 +39,9 @@ The four attack surfaces the taxonomy organizes around: tool invocation (the req
 
 If you followed the OX Security architectural RCE from Issue #11, this finding on tool attestation will be familiar: signed tool manifests would prevent malicious STDIO configurations from being trusted without verification. This is the protocol-level fix Anthropic declined to implement. The academic community is now formalizing it as a required control.
 
-> **[GREY CALLOUT]**
 > **The gap MCPShield quantifies:** action-capable tools went from 27% to 65% of the MCP ecosystem between late 2024 and early 2026. That shift from "read data" to "change state" is the attack surface expansion no single existing defense covers end-to-end. Behavioral baselining, cross-session drift detection, and fleet-scale tool description fingerprinting are all identified as open research problems — not solved by any current tool.
 
 [arXiv:2604.05969 →](https://arxiv.org/abs/2604.05969)
-
----
 
 **MCP-38 (arXiv:2603.18063): 38 threat categories derived from examining every line of the MCP spec**
 
@@ -59,8 +52,6 @@ The result covers attack patterns that appear in no existing framework because t
 This is the paper to read before designing MCP security controls — not because it tells you what to build, but because it tells you where the spec itself creates attack surface that implementation-level defenses can't address.
 
 [arXiv:2603.18063 →](https://arxiv.org/abs/2603.18063)
-
----
 
 ## This week in AI security
 
@@ -74,16 +65,12 @@ Over 99% of Mythos-discovered vulnerabilities remain unpatched — not because t
 
 I wrote a longer analysis on what comes after discovery — the validation crisis that most Mythos commentary is missing. [Read it here →](https://aminrj.com/posts/ai-security-validation-crisis/)
 
-> **[GREY CALLOUT]
 > **The economics, not the capability:** Mythos matters because it changes the cost of vulnerability discovery. Finding bugs and writing working exploits are becoming cheaper and less dependent on scarce human expertise. Attackers who previously needed a specialist team now need a model and a task. What's slower to change is the defender side: patch cycles, disclosure coordination, remediation capacity. That asymmetry is the risk.
 
-> **[AMBER CALLOUT]**
 > **Posture change:** if your vulnerability management program runs on periodic scans and CVSS-scored ticket queues, the Mythos disclosure is the moment to start moving toward continuous monitoring with risk-based prioritization. Patch cycles measured in days, not weeks. Each new Glasswing disclosure is a signal — to you and to attackers simultaneously.
 
 [AISI evaluation →](https://www.aisi.gov.uk/blog/our-evaluation-of-claude-mythos-previews-cyber-capabilities)
 [TechRadar analysis →](https://www.techradar.com/pro/claude-mythos-turns-years-of-security-research-into-20-hour-ai-exploits)
-
----
 
 **CVSS 10.0: Semantic Kernel's accidental tool exposure turned prompts into host RCE. Patched. The pattern isn't.**
 
@@ -95,15 +82,11 @@ CVE-2026-25592 (CVSS 10.0, .NET SDK, patched in ≥1.71.0): `DownloadFileAsync`,
 
 Both patched. The `[KernelFunction]` pattern is not.
 
-> **[GREY CALLOUT]**
 > **The accidental exposure class:** any function tagged as LLM-callable is a security boundary. CVE-2026-25592 happened because a developer convenience became an LLM-callable tool with no path validation. This pattern exists in any framework where tool registration is automatic or convention-based. Audit every tagged function for path, URL, or query parameters — those are your injection sinks.
 
-> **[AMBER CALLOUT]**
 > **If you use Semantic Kernel:** upgrade Python SDK to ≥1.39.4 and .NET SDK to ≥1.71.0. Disable `AutoInvokeKernelFunctions` on any agent with disk, shell, or production data access. Microsoft packaged the vulnerable hotel-finder agent as a CTF challenge — worth running in a sandbox before your next security training session.
 
 [Microsoft security blog →](https://www.microsoft.com/en-us/security/blog/2026/05/07/prompts-become-shells-rce-vulnerabilities-ai-agent-frameworks/)
-
----
 
 **ShareLeak + PipeLeak: Microsoft patched. Salesforce patched the URL channel. The email path still works.**
 
@@ -113,15 +96,11 @@ PipeLeak hit Salesforce Agentforce through Web-to-Lead forms. Structurally ident
 
 Both attacks exploited the same configuration: untrusted input, sensitive data access, and outbound communication. That configuration is also what makes agents useful. It cannot be patched out of the design.
 
-> **[GREY CALLOUT]**
 > **The patch closes one syntax. The architecture remains.** Any Copilot Studio agent triggered by untrusted external input with access to SharePoint data and Outlook is exposed to injection variants. Defense requires governance-plane enforcement at the action layer — not model-layer safety filters that can be overridden by a sufficiently crafted payload. ShareLeak proved that even when the safety filter fires, the action can still execute.
 
-> **[AMBER CALLOUT]**
 > **If you run Copilot Studio:** the exposure window for ShareLeak was November 24, 2025 → January 15, 2026. Audit agents triggered by SharePoint forms for IoCs in that window. For PipeLeak: if your Agentforce agents process untrusted form input and can send email, the attack path exists. No CVE, no patch, no official advisory.
 
 [Dark Reading →](https://www.darkreading.com/cloud-security/microsoft-salesforce-patch-ai-agent-data-leak-flaws) · [VentureBeat deep-dive →](https://venturebeat.com/security/microsoft-salesforce-copilot-agentforce-prompt-injection-cve-agent-remediation-playbook)
-
----
 
 ## Tooling worth knowing
 
@@ -133,13 +112,9 @@ Both attacks exploited the same configuration: untrusted input, sensitive data a
 
 - **mcp-attack-labs** — lab code for all the attacks covered in this newsletter's MCP series, updated with the OX Security four-family taxonomy. Runs locally. [github.com/aminrj-labs/mcp-attack-labs →](https://github.com/aminrj-labs/mcp-attack-labs)
 
----
-
 ## One thing to check this week
 
 If SAFE-MCP is new to you: spend 20 minutes on the technique table. Filter for techniques tagged "Execution" and "Credential Access" — those are the two tactic categories most likely to produce an incident you don't detect until later. For each technique, ask whether your current MCP deployment has a detection mechanism or a prevention control. Most teams will find gaps in both columns. That's your hardening backlog.
-
----
 
 ## What I'm watching
 
@@ -151,79 +126,9 @@ If SAFE-MCP is new to you: spend 20 minutes on the technique table. Filter for t
 
 → **SAFE-MCP adoption** — adopted by the Linux Foundation and OpenID Foundation. If this becomes a compliance reference the way ATT&CK did, MCP threat modeling shifts from optional to expected. Worth getting ahead of.
 
----
-
 If you were at OWASP Stockholm last night — thanks for the conversation. The question about production system detection is the one I'm taking back to the lab.
 
 Questions, pushback, topics — reply directly, I read everything.
 
 Cheers,
 **Amine**
-
----
-
-## Beehiiv HTML callouts — all blocks ready to paste
-
-**Grey — SAFE-MCP/OWASP relationship:**
-
-```html
-<div style="background:#f5f5f4;border-left:3px solid #a8a29e;padding:12px 16px;border-radius:0 6px 6px 0;font-family:Georgia,serif;font-size:15px;line-height:1.7;color:#1c1917;">
-  <b>Why this matters now and not later:</b> the OWASP Agentic Top 10 covers what can go wrong. SAFE-MCP covers <em>how</em> attackers achieve it — the specific mechanics at the protocol level. Start with OWASP ASI codes to prioritize risk categories, then use SAFE-MCP techniques to design the actual test cases.
-</div>
-```
-
-**Grey — MCPShield coverage gap:**
-
-```html
-<div style="background:#f5f5f4;border-left:3px solid #a8a29e;padding:12px 16px;border-radius:0 6px 6px 0;font-family:Georgia,serif;font-size:15px;line-height:1.7;color:#1c1917;">
-  <b>The gap MCPShield quantifies:</b> action-capable tools went from 27% to 65% of the MCP ecosystem between late 2024 and early 2026. Behavioral baselining, cross-session drift detection, and fleet-scale tool description fingerprinting are identified as open research problems — not solved by any current tool.
-</div>
-```
-
-**Grey — Mythos economics:**
-
-```html
-<div style="background:#f5f5f4;border-left:3px solid #a8a29e;padding:12px 16px;border-radius:0 6px 6px 0;font-family:Georgia,serif;font-size:15px;line-height:1.7;color:#1c1917;">
-  <b>The economics, not the capability:</b> Mythos matters because it changes the cost of vulnerability discovery. Finding bugs and writing working exploits are becoming cheaper and less dependent on scarce human expertise. What's slower to change is the defender side: patch cycles, disclosure coordination, remediation capacity. That asymmetry is the risk.
-</div>
-```
-
-**Amber — Mythos posture change:**
-
-```html
-<div style="background:#fefce8;border-left:3px solid #ca8a04;padding:12px 16px;border-radius:0 6px 6px 0;font-family:Georgia,serif;font-size:15px;line-height:1.7;color:#1c1917;">
-  <b>Posture change:</b> if your vulnerability management program runs on periodic scans and CVSS-scored ticket queues, the Mythos disclosure is the moment to start moving toward continuous monitoring with risk-based prioritization. Patch cycles measured in days, not weeks. Each new Glasswing disclosure is a signal — to you and to attackers simultaneously.
-</div>
-```
-
-**Grey — KernelFunction pattern:**
-
-```html
-<div style="background:#f5f5f4;border-left:3px solid #a8a29e;padding:12px 16px;border-radius:0 6px 6px 0;font-family:Georgia,serif;font-size:15px;line-height:1.7;color:#1c1917;">
-  <b>The accidental exposure class:</b> any function tagged as LLM-callable is a security boundary. CVE-2026-25592 happened because a developer convenience became an LLM-callable tool with no path validation. Audit every tagged function for path, URL, or query parameters — those are your injection sinks.
-</div>
-```
-
-**Amber — Semantic Kernel action:**
-
-```html
-<div style="background:#fefce8;border-left:3px solid #ca8a04;padding:12px 16px;border-radius:0 6px 6px 0;font-family:Georgia,serif;font-size:15px;line-height:1.7;color:#1c1917;">
-  <b>If you use Semantic Kernel:</b> upgrade Python SDK to ≥1.39.4 and .NET SDK to ≥1.71.0. Disable AutoInvokeKernelFunctions on any agent with disk, shell, or production data access.
-</div>
-```
-
-**Grey — ShareLeak architecture:**
-
-```html
-<div style="background:#f5f5f4;border-left:3px solid #a8a29e;padding:12px 16px;border-radius:0 6px 6px 0;font-family:Georgia,serif;font-size:15px;line-height:1.7;color:#1c1917;">
-  <b>The patch closes one syntax. The architecture remains.</b> Any Copilot Studio agent triggered by untrusted external input with access to SharePoint data and Outlook is exposed to injection variants. ShareLeak proved that even when the safety filter fires, the action can still execute.
-</div>
-```
-
-**Amber — ShareLeak/PipeLeak audit:**
-
-```html
-<div style="background:#fefce8;border-left:3px solid #ca8a04;padding:12px 16px;border-radius:0 6px 6px 0;font-family:Georgia,serif;font-size:15px;line-height:1.7;color:#1c1917;">
-  <b>If you run Copilot Studio:</b> audit agents triggered by SharePoint forms for IoCs in the Nov 24, 2025 → Jan 15, 2026 window. For PipeLeak: if your Agentforce agents process untrusted form input and can send email, the attack path exists. No CVE, no patch, no official advisory from Salesforce.
-</div>
-```

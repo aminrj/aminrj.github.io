@@ -12,35 +12,43 @@ hook: >-
 
 ## About
 
-Amine Raji is an AI security practitioner, independent researcher, and Cloud Cybersecurity Leader at Volvo Cars, where he leads cloud security strategy across a global engineering organisation.
+Amine Raji is an AI security practitioner and independent researcher with a PhD and CISSP certification, and 15+ years of applied security experience spanning banking, defense, aerospace, and automotive sectors.
 
-He holds a PhD and CISSP certification, with 15+ years of applied security experience spanning banking, defense, aerospace, and automotive sectors. He now focuses at the intersection of cloud infrastructure and AI security — specifically how agentic architectures, MCP deployments, and LLM-integrated pipelines inherit and amplify cloud misconfigurations into a new class of attack.
+He focuses at the intersection of cloud infrastructure and AI security — specifically how agentic architectures, MCP deployments, and LLM-integrated pipelines inherit and amplify cloud misconfigurations into a new class of attack.
 
 His work is empirical: every claim he makes in front of an audience has been reproduced in a local lab first. He writes at [aminrj.com](https://aminrj.com), publishes the *AI Security Intelligence* newsletter, and contributes to the OWASP Agentic Security project.
 
-He speaks to practitioners, security architects, and engineering leaders who are deploying AI into cloud infrastructure and need to understand the attack surface before it becomes an incident.
+He speaks to practitioners, security architects, and engineering leaders who are deploying AI to production and need to understand the attack surface before it becomes an incident.
 
 ---
 
-## Talks
+## Previous Talks
+
+<div class="speaking-section">
+
+<div class="speaking-recording-card">
+  <a href="/assets/media/speaking/mcp-security-after-one-year.pdf" target="_blank" rel="noopener noreferrer">
+    <img src="/assets/media/speaking/mcp-security-after-one-year-thumb.png" alt="OWASP Stockholm MCP Security talk - first slide" loading="lazy" class="speaking-recording-thumb">
+  </a>
+  <div class="speaking-recording-info">
+    <h4 class="speaking-recording-title">MCP Security, One Year In</h4>
+    <p class="speaking-recording-meta">OWASP Stockholm · May 2026</p>
+    <p class="speaking-recording-desc">Walks through three real MCP attack patterns — tool poisoning, meta-context injection, and cross-server hijacking — with live demonstrations and a concrete threat model for securing agent tool integrations.</p>
+    <a href="/assets/media/speaking/mcp-security-after-one-year.pdf" target="_blank" rel="noopener noreferrer" class="speaking-recording-link">View slides →</a>
+  </div>
+</div>
+
+</div>
+
+---
+
+## Available Talks
 
 <div class="speaking-section">
 
 <div class="speaking-talk-card">
   <div class="speaking-talk-header">
     <span class="speaking-talk-number">1</span>
-    <h3 class="speaking-talk-title">Your Cloud Infrastructure Is a Prompt Injection Surface</h3>
-  </div>
-  <div class="speaking-talk-meta">
-    <span class="speaking-talk-badge audience"><i class="fas fa-users"></i> Cloud security engineers, DevSecOps teams, platform architects</span>
-    <span class="speaking-talk-badge format"><i class="fas fa-clock"></i> 30–45 min keynote or technical session</span>
-  </div>
-  <p class="speaking-talk-abstract">CloudTrail events, resource tags, monitoring alerts, and pipeline output all flow through trusted cloud channels into AI agent context windows — bypassing every model-layer defense because they arrive as internal, trusted data. This talk demonstrates that a single crafted CloudTrail entry, a poisoned AWS resource tag, or a compromised runbook indexed into a RAG pipeline can redirect an agent with IAM credentials to take destructive actions against its own infrastructure. The fix isn't in the model — it's in the cloud configuration. Attendees leave with a new threat model for cloud-native AI deployments and five concrete AWS and Azure controls that eliminate the most impactful attack paths.</p>
-</div>
-
-<div class="speaking-talk-card">
-  <div class="speaking-talk-header">
-    <span class="speaking-talk-number">2</span>
     <h3 class="speaking-talk-title">The MCP Attack Surface: What Your Developers Are Installing Right Now</h3>
   </div>
   <div class="speaking-talk-meta">
@@ -52,7 +60,7 @@ He speaks to practitioners, security architects, and engineering leaders who are
 
 <div class="speaking-talk-card">
   <div class="speaking-talk-header">
-    <span class="speaking-talk-number">3</span>
+    <span class="speaking-talk-number">2</span>
     <h3 class="speaking-talk-title">OWASP Agentic Top 10 in Practice: Real Attack Chains, Real Mitigations</h3>
   </div>
   <div class="speaking-talk-meta">
@@ -64,7 +72,7 @@ He speaks to practitioners, security architects, and engineering leaders who are
 
 <div class="speaking-talk-card">
   <div class="speaking-talk-header">
-    <span class="speaking-talk-number">4</span>
+    <span class="speaking-talk-number">3</span>
     <h3 class="speaking-talk-title">Red Teaming AI Agents: A Practitioner's Field Guide</h3>
   </div>
   <div class="speaking-talk-meta">
@@ -76,26 +84,14 @@ He speaks to practitioners, security architects, and engineering leaders who are
 
 <div class="speaking-talk-card">
   <div class="speaking-talk-header">
-    <span class="speaking-talk-number">5</span>
-    <h3 class="speaking-talk-title">When Agents Delegate: Security Failures in Multi-Agent Systems</h3>
+    <span class="speaking-talk-number">4</span>
+    <h3 class="speaking-talk-title">AI Security Threat Modeling Before You Ship</h3>
   </div>
   <div class="speaking-talk-meta">
-    <span class="speaking-talk-badge audience"><i class="fas fa-users"></i> Platform engineers, AI architects, security teams</span>
-    <span class="speaking-talk-badge format"><i class="fas fa-clock"></i> 30–45 min keynote or panel anchor</span>
+    <span class="speaking-talk-badge audience"><i class="fas fa-users"></i> Security architects, engineering leaders, CISOs</span>
+    <span class="speaking-talk-badge format"><i class="fas fa-clock"></i> 45–60 min keynote or workshop</span>
   </div>
-  <p class="speaking-talk-abstract">Single-agent security is hard enough. Multi-agent systems — where agents delegate tasks to other agents, pass credentials through chains, and trust messages without authentication — introduce an entirely different class of failure. This talk examines the trust assumptions embedded in today's agent frameworks, maps them to documented incident patterns, and makes the case for treating inter-agent communication with the same skepticism we apply to untrusted API calls. Includes a live demonstration of an identity spoofing attack across a three-agent pipeline.</p>
-</div>
-
-<div class="speaking-talk-card">
-  <div class="speaking-talk-header">
-    <span class="speaking-talk-number">6</span>
-    <h3 class="speaking-talk-title">The State of Agentic AI Security: What 2025 Taught Us and What 2026 Will Demand</h3>
-  </div>
-  <div class="speaking-talk-meta">
-    <span class="speaking-talk-badge audience"><i class="fas fa-users"></i> CISOs, security leaders, technical executives</span>
-    <span class="speaking-talk-badge format"><i class="fas fa-clock"></i> 20–30 min keynote, conference opener or closer</span>
-  </div>
-  <p class="speaking-talk-abstract">2025 was the year AI agents moved from demos to production — and the year the first serious wave of agentic AI incidents landed. Tool poisoning, credential theft via cloud-connected agents, cascading failures triggered by a single poisoned document. This talk synthesises the key lessons from that first year: which threat categories materialised, which mitigations actually worked, and what the arrival of the OWASP Agentic Top 10, EU AI Act enforcement, and NIST CAISI mean for security teams trying to keep pace. Framed for decision-makers, grounded in technical evidence.</p>
+  <p class="speaking-talk-abstract">A complete 7-phase methodology for AI threat modeling in production, synthesizing MAESTRO, Microsoft's red team practice, and OWASP frameworks. This talk walks through a real-world threat register example, shows what deliverables look like at the end of a threat modeling exercise, and provides a pre-production checklist mapped to OWASP LLM Top 10 and Agentic Top 10. Practical, evidence-based, no vendor agenda.</p>
 </div>
 
 </div>

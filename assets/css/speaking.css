@@ -302,6 +302,99 @@ html:not([data-mode="dark"]) .speaking-topic-tag {
   margin-top: 0.75rem;
 }
 
+/* ── Recording Cards ───────────────────────────────────────────────── */
+.speaking-recording-card {
+  display: flex;
+  gap: 1.5rem;
+  background: var(--card-bg, #1e293b);
+  border: 1px solid var(--card-border-color, rgba(99,102,241,0.2));
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.speaking-recording-card:hover {
+  box-shadow: 0 4px 24px rgba(99, 102, 241, 0.12);
+  border-color: rgba(99, 102, 241, 0.45);
+}
+
+.speaking-recording-thumb {
+  width: 280px;
+  height: 158px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+  transition: opacity 0.2s ease;
+}
+
+.speaking-recording-card:hover .speaking-recording-thumb {
+  opacity: 0.9;
+}
+
+.speaking-recording-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.speaking-recording-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--heading-color);
+  margin: 0 0 0.4rem 0;
+  line-height: 1.35;
+}
+
+.speaking-recording-meta {
+  font-size: 0.9rem;
+  color: #818cf8;
+  font-weight: 700;
+  margin: 0 0 0.6rem 0;
+  display: inline-block;
+  background: rgba(99, 102, 241, 0.1);
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+}
+
+.speaking-recording-desc {
+  color: var(--text-muted-color, #94a3b8);
+  line-height: 1.65;
+  font-size: 0.92rem;
+  margin: 0 0 0.75rem 0;
+}
+
+.speaking-recording-link {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #818cf8;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.speaking-recording-link:hover {
+  color: #a5b4fc;
+}
+
+/* Light mode recording cards */
+[data-mode="light"] .speaking-recording-card,
+html:not([data-mode="dark"]) .speaking-recording-card {
+  background: var(--card-bg, #ffffff);
+  border-color: var(--card-border-color, rgba(99,102,241,0.15));
+}
+
+[data-mode="light"] .speaking-recording-meta,
+html:not([data-mode="dark"]) .speaking-recording-meta {
+  color: #4f46e5;
+  background: rgba(79, 70, 229, 0.08);
+  border-color: rgba(79, 70, 229, 0.2);
+}
+
+[data-mode="light"] .speaking-recording-link,
+html:not([data-mode="dark"]) .speaking-recording-link {
+  color: #4f46e5;
+}
+
 /* ── Video Placeholder ─────────────────────────────────────────────── */
 .speaking-video-placeholder {
   border: 2px dashed rgba(99, 102, 241, 0.3);
@@ -430,5 +523,14 @@ html:not([data-mode="dark"]) .speaking-cta-desc {
 
   .speaking-formats-grid {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .speaking-recording-card {
+    flex-direction: column;
+  }
+
+  .speaking-recording-thumb {
+    width: 100%;
+    height: auto;
   }
 }

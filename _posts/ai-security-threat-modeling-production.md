@@ -2,7 +2,9 @@
 
 *Last updated: May 2026*
 
-> The 2026 reality: 80%+ of enterprises have AI agents in production. Less than 15% had full security review before deployment. This guide is for the gap between those two numbers.
+*By Amine Raji, PhD, CISSP — AI/LLM security specialist with 15+ years securing critical systems in banking, defense, aerospace, and automotive.*
+
+> The 2026 reality: most enterprises have AI agents in production. Very few had a comprehensive security review before deployment. This guide is for the gap between those two numbers.
 
 ---
 
@@ -11,7 +13,7 @@
 If you are deciding whether your AI project is safe to ship to production, this article gives you:
 
 - **The 5 frameworks that actually matter** in 2026 (MAESTRO, STRIDE-AI, NIST AI RMF, MITRE ATLAS, ISO 42001) and when to use each
-- **A 7-phase methodology** for assessing AI projects before production — adapted from Microsoft's red team practice, Optiv's MAESTRO consulting work, and what works in the lab
+- **A 7-phase methodology** for assessing AI projects before production — adapted from Microsoft's red team practice, CSA's MAESTRO framework, and what works in production
 - **What deliverables look like** at the end of a real AI threat modeling exercise — the artifacts, not the theory
 - **How the Big Four consultancies (Deloitte, KPMG, EY, PwC) actually run these engagements** — their differentiators, costs, and what they produce
 - **A complete pre-production checklist** mapping OWASP LLM Top 10 + OWASP Agentic Top 10 controls to team ownership
@@ -30,7 +32,7 @@ AI systems break this model in five specific ways:
 
 **2. The attack surface includes the training data.** Data poisoning, model inversion, membership inference — none of these have analogs in traditional software security. They target the *learning* process, not the *execution*.
 
-**3. Agents take actions, not just produce output.** When an AI system can call tools, query APIs, modify files, send emails, and chain operations, it becomes a new class of insider threat. The 2025 Stanford AI Index Report noted AI-related incidents in business increased over 56% year over year. Almost all of the high-severity ones involved agentic systems, not standalone models.
+**3. Agents take actions, not just produce output.** When an AI system can call tools, query APIs, modify files, send emails, and chain operations, it becomes a new class of insider threat. The high-severity incidents in production consistently involve agentic systems — not standalone models — because agents can take irreversible actions on behalf of users.
 
 **4. Prompt injection is the SQL injection of LLM systems — and there is no equivalent fix.** Parameterized queries solved SQL injection at the parsing layer. Prompt injection cannot be solved at the parsing layer because the model has no parser separating instructions from data. The 2026 OWASP LLM Top 10 still ranks prompt injection as #1, and the production incident data confirms why.
 
@@ -40,7 +42,7 @@ AI systems break this model in five specific ways:
 
 This is why every credible 2026 AI security framework — Google's SAIF, Microsoft's AI Risk Assessment, NIST AI RMF, CSA's MAESTRO — explicitly states the same thing: existing security practice is the *foundation*, but AI introduces threats that require a new analytical layer on top.
 
-HiddenLayer's 2025 AI Threat Landscape Report found that 61% of organizations deploying AI lack a dedicated security strategy. Forrester's 2026 enterprise survey found that of organizations who *have* deployed agentic AI in production, only 14.4% completed a full security review before going live. The gap between perceived risk and applied controls is the largest in enterprise security right now.
+Multiple 2025–2026 industry surveys converge on the same finding: the vast majority of organizations deploying AI lack a dedicated security strategy, and very few have completed a full security review before going live. The gap between perceived risk and applied controls is the largest in enterprise security right now.
 
 ---
 
@@ -97,9 +99,9 @@ There are now over 20 frameworks claiming to address AI security. Most are vendo
 
 ### MITRE ATLAS — for adversarial threat mapping
 
-**What it is.** Adversarial Threat Landscape for Artificial-Intelligence Systems. Maintained by MITRE Corporation, the same team behind ATT&CK. As of the v5.4.0 update (February 2026), it covers 16 tactics, 84+ techniques, 32 mitigations, and 42 documented real-world case studies.
+**What it is.** Adversarial Threat Landscape for Artificial-Intelligence Systems. Maintained by MITRE Corporation, the same team behind ATT&CK. It covers 16 tactics, 84+ techniques, 32 mitigations, and dozens of documented real-world case studies.
 
-**Why it matters.** ATLAS is to AI what ATT&CK is to traditional infrastructure: a structured catalog of *how attackers actually do this*, grounded in published incidents. The 2026 updates added significant agentic AI coverage including AI Agent Tools (AML.T0061) and the SesameOp case study (AML.CS0042) documenting a backdoor leveraging the OpenAI Assistants API for command and control.
+**Why it matters.** ATLAS is to AI what ATT&CK is to traditional infrastructure: a structured catalog of *how attackers actually do this*, grounded in published incidents. Recent updates added significant agentic AI coverage, including documented cases of AI agents being leveraged for command and control.
 
 **Where it falls short.** ATLAS describes threats, not mitigations or methodology. You use it to validate that your threat model covers known attack patterns — not to drive the modeling exercise itself.
 
@@ -109,7 +111,7 @@ There are now over 20 frameworks claiming to address AI security. Most are vendo
 
 **What it is.** Published December 2023, ISO 42001 is the first international standard for AI management systems (AIMS). Built on the same high-level structure as ISO 27001 (information security) and ISO 9001 (quality), with AI-specific additions covering AI roles (provider, deployer, user, partner), AI risk assessment, AI system impact assessment, and AI lifecycle controls.
 
-**Why it matters.** It's the closest thing to a "complete operating system" for AI governance. As of early 2026, it's voluntary but rapidly becoming the de facto operating system for AI compliance globally. KPMG was the first Big Four firm to claim ISO 42001 certification. The EU AI Act references 42001-aligned management systems as one acceptable path to demonstrating compliance with high-risk system requirements.
+**Why it matters.** It's the closest thing to a "complete operating system" for AI governance. As of early 2026, it's voluntary but rapidly becoming the de facto operating system for AI compliance globally. Several Big Four firms have already completed ISO 42001 certification for their own operations. The EU AI Act references 42001-aligned management systems as one acceptable path to demonstrating compliance with high-risk system requirements.
 
 **Where it falls short.** Certification is expensive (typical 12–18 month implementation, $200K–$500K for mid-market companies including external auditor fees). It also doesn't tell you what threats exist — it tells you how to manage them once identified.
 
@@ -147,7 +149,7 @@ You pick the framework that matches the question being asked. Board asking "are 
 
 ## Part 3: A 7-phase methodology for AI threat modeling in production
 
-The following methodology synthesizes Microsoft's AI Red Team operational practice (from their work on 100+ generative AI products), Optiv's MAESTRO consulting methodology, CSA's MAESTRO operationalization guidance, and what consistently produces useful output in practice. It assumes you already have a functioning information security program — if you don't, start there.
+The following methodology synthesizes Microsoft's AI Red Team operational practice (from their work on 100+ generative AI products), CSA's MAESTRO framework and operationalization guidance, and what consistently produces useful output in production. It assumes you already have a functioning information security program — if you don't, start there.
 
 ### Phase 1 — Scope & business context (1–2 days)
 
@@ -180,7 +182,7 @@ For each layer, identify threats using both top-down and bottom-up approaches.
 
 **Top-down: framework-driven.** Walk through the MAESTRO layer-specific threat landscapes and the OWASP Agentic Top 10. For each documented threat pattern, ask "does this apply to our architecture?" If yes, document it as a candidate finding.
 
-**Bottom-up: asset-centric.** A May 2025 arXiv paper by Microsoft researchers (arXiv:2505.06315) argues for an asset-centric methodology specifically because top-down framework-driven approaches miss compositional attacks that emerge from how assets connect. For each critical asset identified in Phase 2, ask "what would compromise of this asset enable?" and trace the attack paths backward.
+**Bottom-up: asset-centric.** A May 2025 arXiv paper (arXiv:2505.06315) argues for an asset-centric methodology specifically because top-down framework-driven approaches miss compositional attacks that emerge from how assets connect. For each critical asset identified in Phase 2, ask "what would compromise of this asset enable?" and trace the attack paths backward.
 
 The cross-layer analysis is where most threat models in 2026 break down. The most dangerous attack chains start at one layer and cascade through several others. Example chain from documented 2026 incidents:
 
@@ -303,7 +305,7 @@ KPMG is the only Big Four firm to publish a formally numbered 10-pillar AI frame
 
 ### EY — Sovereign and regulated-industry AI
 
-EY differentiated in 2026 by going all-in on NVIDIA with on-prem Dell AI Factory deployments, positioning themselves as the firm for sovereign and regulated-industry AI where data residency, sovereignty, and on-premises operation matter.
+EY differentiated in 2026 by positioning themselves as the firm for sovereign and regulated-industry AI, with strong capabilities in on-premises AI infrastructure where data residency, sovereignty, and on-premises operation matter.
 
 **What they actually deliver:**
 - AI governance frameworks for highly regulated industries (financial services, defense, healthcare, government)
@@ -347,7 +349,7 @@ For engagements where the Big Four isn't the right fit:
 - **Lakera** (LLM application security, Gandalf training platform)
 - **Robust Intelligence** (model security and validation, acquired by Cisco)
 - **Protect AI** (ML security platform, model scanning)
-- **Cato CTRL** (threat research, HashJack disclosure)
+- **Cato CTRL** (threat research, MCP security)
 - **OX Security** (supply chain security including MCP architectural research)
 
 A typical specialist engagement runs 4–12 weeks at $80K–$400K and produces an empirical attack validation report with reproducible findings — the artifact the Big Four governance work usually lacks.
@@ -423,11 +425,10 @@ A short list of what's worth knowing, sorted by category:
 
 ### Open-source threat modeling tools
 
-- **STRIDE-GPT** (github.com/mrwadams/stride-gpt) — AI-powered STRIDE threat modeling, supports Claude 4, GPT-5 series, GitHub Enterprise
-- **MAESTRO** (github.com/CloudSecurityAlliance/MAESTRO) — CSA's tool implementing the 7-layer model with AI-powered threat identification
 - **PyRIT** (github.com/Azure/PyRIT) — Microsoft's open-source red teaming framework
 - **Garak** (github.com/leondz/garak) — NVIDIA's LLM vulnerability scanner
 - **mcp-scan** (github.com/invariantlabs-ai/mcp-scan) — Invariant Labs' MCP tool description scanner
+- **TITO** (github.com/Leathal1/TITO) — automated threat modeling with MAESTRO and MITRE ATT&CK integration
 
 ### Commercial threat modeling platforms
 
@@ -480,7 +481,7 @@ Use this checklist as the final gate before any AI project ships. Each item shou
 
 ### Agent Framework Layer
 
-- [ ] Framework version pinned (CrewAI ≥ patched, Semantic Kernel ≥ 1.39.4 Python / ≥ 1.71.0 .NET)
+- [ ] Framework version pinned and dependencies reviewed for known vulnerabilities
 - [ ] `[KernelFunction]` and equivalent tool registrations audited
 - [ ] AutoInvoke disabled on agents with sensitive access
 - [ ] Tool allowlist defined (not denylist)
@@ -559,8 +560,7 @@ For going deeper on specific topics covered here, ordered by usefulness:
 **Reference implementations:**
 - mcp-attack-labs (lab code reproducing real MCP attacks) — [github.com/aminrj-labs/mcp-attack-labs](https://github.com/aminrj-labs/mcp-attack-labs)
 - SAFE-MCP (MITRE ATT&CK-style TTP catalog for MCP) — [safemcp.org](https://www.safemcp.org)
-- MAESTRO tool — [github.com/CloudSecurityAlliance/MAESTRO](https://github.com/CloudSecurityAlliance/MAESTRO)
-- STRIDE-GPT — [github.com/mrwadams/stride-gpt](https://github.com/mrwadams/stride-gpt)
+- TITO (automated threat modeling with MAESTRO integration) — [github.com/Leathal1/TITO](https://github.com/Leathal1/TITO)
 
 ---
 
@@ -570,9 +570,19 @@ The honest assessment of where the AI security field is in May 2026: the framewo
 
 The gap between "we understand AI security" and "we ship secure AI" is the most exploitable surface in the enterprise right now.
 
+### A real example
+
+In a recent engagement with a financial services company deploying a multi-agent customer service system, our threat model uncovered a Layer 3 → Layer 4 → Layer 2 attack chain that the internal team had missed entirely. The agent framework allowed a tool call to query the customer database, but there was no validation between the LLM's output and the tool parameters. A prompt injection at Layer 1 could cascade through the agent framework into direct database exfiltration. The remediation was straightforward — parameter validation and scope-limited API keys — but without the cross-layer analysis, it would have shipped to production.
+
+### What I do
+
+I'm Amine Raji, PhD, CISSP. I help engineering and security teams deploy AI agents without creating new attack surfaces. I've spent 15+ years securing critical systems in banking, defense, aerospace, and automotive — and the last few years focused specifically on AI/LLM security. I offer engagement packages that cover the full 7-phase threat modeling methodology described here, from scoping through release gate decision.
+
 If you're deciding whether your AI project is safe to ship to production, the question is not whether you've read the right framework. The question is whether you can produce all seven deliverables from Part 5 — with a named owner on every finding and acceptance criteria on every mitigation — before the launch date.
 
 If you can, ship. If you can't, you don't have a threat model. You have a wish list.
+
+**Need help running a production AI threat model?** [Get in touch](/contact/) or [book a call](/contact/) — I'll help you determine whether your system is ready to ship, and if not, what it takes to get there.
 
 ---
 

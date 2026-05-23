@@ -25,6 +25,7 @@ tags:
 image:
   path: /assets/media/ai-security/ai-security-in-production.png
 description: "A complete 7-phase methodology for AI threat modeling in production, synthesizing MAESTRO, Microsoft's red team practice, and OWASP frameworks. Includes a pre-production checklist and real-world examples."
+mermaid: true
 ---
 
 # AI Security in Production: A Practitioner's Guide to Threat Modeling Before You Ship
@@ -170,31 +171,47 @@ Use it for enterprises selling AI products to regulated buyers (financial servic
 
 These five frameworks don't compete. Mature AI security programs use them as a stack:
 
-```
-┌────────────────────────────────────────────────────────────┐
-│ ISO 42001 — Management System / Operating Model            │
-│ ┌──────────────────────────────────────────────────────┐   │
-│ │ NIST AI RMF — Governance Functions (GOVERN/MAP/      │   │
-│ │ MEASURE/MANAGE)                                      │   │
-│ │ ┌────────────────────────────────────────────────┐   │   │
-│ │ │ MAESTRO or STRIDE-AI — Threat Modeling          │   │   │
-│ │ │ Methodology (the actual analytical work)        │   │   │
-│ │ │ ┌──────────────────────────────────────────┐    │   │   │
-│ │ │ │ MITRE ATLAS — Adversarial Threat Mapping │    │   │   │
-│ │ │ │ (coverage validation)                    │    │   │   │
-│ │ │ │ ┌────────────────────────────────────┐   │    │   │   │
-│ │ │ │ │ OWASP LLM Top 10 / Agentic Top 10  │   │    │   │   │
-│ │ │ │ │ (specific control catalog)         │   │    │   │   │
-│ │ │ │ └────────────────────────────────────┘   │    │   │   │
-│ │ │ └──────────────────────────────────────────┘    │   │   │
-│ │ └────────────────────────────────────────────────┘   │   │
-│ └──────────────────────────────────────────────────────┘   │
-└────────────────────────────────────────────────────────────┘
-```
+<pre class="mermaid">
+%%{init: {"theme": "base", "themeVariables": {"primaryColor": "#e8f4fd", "primaryBorderColor": "#3182ce", "secondaryColor": "#fde8e8", "tertiaryColor": "#fff9e6", "fontSize": "14px", "fontFamily": "system-ui, -apple-system, sans-serif"}}}%%
+flowchart TD
+    ISO["ISO 42001<br/>Management System / Operating Model"] --> NIST["NIST AI RMF<br/>Governance: GOVERN · MAP · MEASURE · MANAGE"]
+    NIST --> MAESTRO["MAESTRO / STRIDE-AI<br/>Threat Modeling Methodology"]
+    MAESTRO --> ATLAS["MITRE ATLAS<br/>Adversarial Threat Mapping<br/>Coverage Validation"]
+    ATLAS --> OWASP["OWASP LLM Top 10 / Agentic Top 10<br/>Specific Control Catalog"]
+    classDef outer fill:#2c3e50,stroke:#1a252f,color:#fff,stroke-width:2px
+    classDef mid fill:#3498db,stroke:#2980b9,color:#fff,stroke-width:2px
+    classDef inner fill:#e67e22,stroke:#d35400,color:#fff,stroke-width:2px
+    classDef core fill:#e74c3c,stroke:#c0392b,color:#fff,stroke-width:2px
+    class ISO outer
+    class NIST mid
+    class MAESTRO inner
+    class ATLAS inner
+    class OWASP core
+</pre>
 
 Pick the framework that matches the question. Board asking "are we governing AI risk properly?" → NIST AI RMF and ISO 42001. Security architect asking "what could go wrong with this agent before we ship?" → MAESTRO. Red team asking "have we covered the known attack techniques?" → MITRE ATLAS.
 
 Other frameworks exist, from ISO/IEC 23894 (AI risk management) to the EU AI Act's own risk taxonomy to Google's SAIF, but these five are the ones that actually matter for threat modeling. The others are either governance-level (not threat modeling), regulatory checklists (not analytical), or vendor marketing disguised as frameworks.
+
+### Which framework to pick
+
+You don't need all five at once. Pick the one that matches the question being asked:
+
+<pre class="mermaid">
+%%{init: {"theme": "base", "themeVariables": {"primaryColor": "#e8f4fd", "primaryBorderColor": "#3182ce", "secondaryColor": "#fde8e8", "tertiaryColor": "#fff9e6", "fontSize": "14px", "fontFamily": "system-ui, -apple-system, sans-serif"}}}%%
+flowchart LR
+    Q1["Board: 'Are we governing AI risk properly?'" ] --> GOV["NIST AI RMF + ISO 42001"]
+    Q2["Security Architect: 'What could go wrong<br/>before we ship?'" ] --> TM["MAESTRO or STRIDE-AI"]
+    Q3["Red Team: 'Have we covered the known<br/>attack techniques?'" ] --> MAP["MITRE ATLAS"]
+    classDef question fill:#f8f9fa,stroke:#6c757d,color:#333,stroke-width:1.5px
+    classDef gov fill:#2c3e50,stroke:#1a252f,color:#fff,stroke-width:2px
+    classDef tm fill:#e67e22,stroke:#d35400,color:#fff,stroke-width:2px
+    classDef map fill:#3498db,stroke:#2980b9,color:#fff,stroke-width:2px
+    class Q1,Q2,Q3 question
+    class GOV gov
+    class TM tm
+    class MAP map
+</pre>
 
 ---
 
@@ -391,7 +408,7 @@ PwC's AI practice emphasizes AI risk assurance and audit-readiness, with an inte
 A few honest observations about engaging the Big Four for AI security work:
 
 - **Hands-on red teaming.** None of the Big Four field deep AI red teaming capability comparable to Microsoft's AI Red Team or specialist firms like Adversa AI, Repello AI, or HiddenLayer. If you need actual attack validation, you'll need a specialist on top of or instead of the Big Four.
-- **Custom MCP and agent framework security.** The Big Four tend to be framework-strong and implementation-light. Engagements heavy on attack chain analysis and exploit reproduction go better with specialist firms that publish research (Cato CTRL, OX Security, Invariant Labs).
+- **Custom MCP and agent framework security.** The Big Four tend to be framework-strong and implementation-light. Engagements heavy on attack chain analysis and exploit reproduction go better with specialist firms that publish research (OX Security, Invariant Labs).
 - **Speed.** Big Four engagements run on 6–18 month timelines. If you need a production-readiness assessment in 4 weeks before a launch, a boutique or in-house team will move faster.
 
 ### Specialist AI security firms worth knowing in 2026
@@ -402,9 +419,7 @@ For engagements where the Big Four isn't the right fit:
 - **Repello AI** (LLM pentesting, OWASP coverage)
 - **HiddenLayer** (AI threat intelligence, model security)
 - **Lakera** (LLM application security, Gandalf training platform)
-- **Robust Intelligence** (model security and validation, acquired by Cisco)
 - **Protect AI** (ML security platform, model scanning)
-- **Cato CTRL** (threat research, MCP security)
 - **OX Security** (supply chain security including MCP architectural research)
 
 A typical specialist engagement runs 4–12 weeks at $80K–$400K and produces an empirical attack validation report with reproducible findings — the artifact the Big Four governance work usually lacks.
@@ -503,30 +518,29 @@ A short list, sorted by category:
 
 ### Open-source threat modeling tools
 
-- **PyRIT** (github.com/Azure/PyRIT) — Microsoft's open-source red teaming framework
-- **Garak** (github.com/leondz/garak) — NVIDIA's LLM vulnerability scanner
-- **mcp-scan** (github.com/invariantlabs-ai/mcp-scan) — Invariant Labs' MCP tool description scanner
+- **PyRIT** (github.com/microsoft/PyRIT) — Microsoft's open-source red teaming framework for generative AI
+- **Garak** (github.com/NVIDIA/garak) — NVIDIA's LLM vulnerability scanner
+- **Snyk Agent Scan** (github.com/snyk/agent-scan) — MCP server and agent skill security scanner
 - **TITO** (github.com/Leathal1/TITO) — automated threat modeling with MAESTRO and MITRE ATT&CK integration
+- **Promptfoo** (github.com/promptfoo/promptfoo) — declarative prompt testing, red teaming, and vulnerability scanning for AI
 
 ### Commercial threat modeling platforms
 
-- **IriusRisk** — has MAESTRO integration for agentic AI threat modeling
-- **Devici** — Chris Romeo's threat modeling platform with AI capabilities
-- **Apiiro** — graph-powered AI threat modeling integrated into SDLC
-- **Microsoft Threat Modeling Tool** + the AI/ML guidance — works if you're a Microsoft shop already
+- **IriusRisk** — AI threat modeling platform with MAESTRO integration for agentic AI
+- **Apiiro** — agentic application security platform with graph-powered threat modeling integrated into SDLC
 
 ### AI-specific security platforms
 
-- **Microsoft AI Red Teaming Agent** (Azure Foundry) — managed PyRIT with reporting
-- **Adversa AI Red Teaming Platform** — commercial red teaming with continuous coverage
-- **Lakera Guard** — runtime LLM application firewall
-- **Protect AI Radar** — ML model security scanning
-- **HiddenLayer** — AI threat intelligence and model integrity
+- **Microsoft AI Red Teaming Agent** (Azure Foundry) — managed PyRIT with reporting (learn.microsoft.com/en-us/azure/ai-foundry/concepts/ai-red-teaming-agent)
+- **Adversa AI** — commercial red teaming platform for agents, LLMs, and GenAI apps
+- **Lakera** — AI-native security platform with runtime LLM application firewall capabilities
+- **Protect AI** — platform for AI security with ML model scanning
+- **HiddenLayer** — total AI security platform with threat intelligence and model integrity monitoring
 
 ### Runtime monitoring
 
 - **Sysdig Falco rules for AI coding agents** — syscall-level detection for Claude Code, Gemini CLI, Codex CLI
-- **Sentinely** — runtime security gate scoring each agent action against a behavioral model
+- **Sentinely** — AI agent security platform that scores each agent action against a behavioral model
 - **StepSecurity Harden Runner** — GitHub Actions hardening, blocks egress to unknown endpoints
 
 ---
@@ -544,7 +558,7 @@ If you don't have time for the full checklist, these seven items catch the major
 - [ ] **Parameter validation on every tool input** — prevents the LLM-to-tool injection chain
 - [ ] **Per-agent identity with scope-limited API keys** — contains blast radius if an agent is compromised
 - [ ] **All agent actions logged with cryptographic signing** — without this, you can't detect or investigate incidents
-- [ ] **mcp-scan run before any new MCP server installation** — catches malicious tool descriptions before they reach the model
+- [ ] **Snyk Agent Scan run before any new MCP server installation** — catches malicious tool descriptions before they reach the model
 - [ ] **Output validation in place for sensitive data patterns** — prevents data leakage through model outputs
 
 ### Full checklist
@@ -585,7 +599,7 @@ If you don't have time for the full checklist, these seven items catch the major
 ### MCP / Tool Ecosystem
 
 - [ ] MCP server inventory complete (no shadow MCP)
-- [ ] mcp-scan run before any new server installation
+- [ ] Snyk Agent Scan run before any new server installation
 - [ ] Tool descriptions hash-verified at every reconnection
 - [ ] No MCP server has shell execution unless strictly required
 - [ ] No MCP server has cloud credentials in plaintext configuration

@@ -26,19 +26,17 @@ mermaid: false
 
 # How a Malicious MCP Server Can Drain Your Database in 5 Steps
 
-*By Amine Raji, PhD, CISSP*
-
 ---
 
 The attack doesn't start at your model. It starts at your tool marketplace.
 
-Here is the attack chain that production security teams missed in 2026 because their threat model was looking at the wrong layer. It is grounded in documented incident patterns, not a theoretical exercise.
-
 ---
 
-## The setup
+## Step 1: The payload is text, not code
 
-Your team is building an agentic customer service system. The agent connects to your CRM, your ticketing system, and your knowledge base via MCP servers. It can look up customer records, create tickets, and search documentation. Standard agentic workflow, deployed across hundreds of organizations this year.
+Here is the attack chain that production security teams missed in 2026 because their threat model was looking at the wrong layer.
+
+Your team is building an agentic customer service system. The agent connects to your CRM, your ticketing system, and your knowledge base via MCP servers. It can look up customer records, create tickets, and search documentation.
 
 A developer installs an MCP server from a community registry. It handles calendar integrations. Nothing sensitive-looking. They run a malware scan. Clean. They install it.
 
@@ -64,7 +62,7 @@ That sentence is not a vulnerability. It is a string. A string that a language m
 
 ---
 
-## Step 2: The developer installs the server
+## Step 2: The model has no mechanism to check the source
 
 The server passes every standard check. No malware. No known CVEs. No suspicious network behavior during installation. It is added to the tool registry, registered with the agent framework, and added to the allowlist.
 
@@ -86,7 +84,7 @@ The model produced no harmful output. It made a normal-looking tool call with no
 
 ---
 
-## Step 5: The data reaches the attacker
+## Step 5: No exploit. No vulnerability. Just instructions.
 
 The `data_export` tool call goes to an endpoint the attacker controls. Every customer record the agent touches during its operational lifetime gets forwarded.
 
@@ -119,11 +117,15 @@ As of mid-2026, no dedicated scanning tool exists for MCP tool descriptions. The
 
 **Control 2: Hash-verify tool descriptions at every reconnection.**
 
-When your agent framework loads an MCP server, compute a hash of its tool descriptions and compare against the hash recorded at your last verified install. If anything changed, block the load and flag for human review. This catches server-side modifications made after installation that no pre-install scan would find.
+When your agent framework loads an MCP server, compute a SHA-256 hash of its tool descriptions and compare against the hash recorded at your last verified install. Store the hash in your deployment configuration, not in the MCP server package itself. If anything changed, block the load and flag for human review. This catches server-side modifications made after installation that no pre-install scan would find.
+
+For example, in a LangGraph or AutoGen setup, add the hash check to the MCP server initialization hook — before the agent framework registers the tools. In a custom agent, add it to the `on_connect` event handler. The check should run at every reconnection, not just initial install.
 
 **Control 3: Scope-limit agent credentials.**
 
 Even if the model follows a malicious instruction, scope-limited credentials contain the blast radius. An agent that can only read records for the current active session cannot exfiltrate the full database, regardless of what it is instructed to do. Credential scope is your reliable last line of defense when semantic-layer controls fail.
+
+In practice: a customer service agent that needs CRM access should get a read-only token scoped to the current session's customer ID, not a full-access service account. If the agent is also responsible for creating support tickets, the token should include write access only to the ticketing API, not to the CRM's customer export endpoint. The difference between a scoped token and a broad-access key is the difference between a single record leak and a database drain.
 
 These three controls require no changes to your model, your system prompt, or your agent logic. They are infrastructure controls. They are also absent from most pre-production checklists because MCP supply chain attacks became a significant attack class only in 2025-2026.
 
@@ -131,7 +133,7 @@ These three controls require no changes to your model, your system prompt, or yo
 
 ## The broader pattern
 
-This attack chain is specific to MCP, but the structure generalizes to any agentic system. The trust boundary between the model and the tools it calls is a new attack surface that has no equivalent in traditional software. Anything that crosses that boundary, tool descriptions, tool outputs, retrieved documents, agent-to-agent messages, is a potential injection vector.
+This attack chain is specific to MCP, but the structure generalizes to any agentic system. The trust boundary between the model and the tools it calls is a new attack surface that has no equivalent in traditional software. Anything that crosses that boundary — tool descriptions, tool outputs, retrieved documents, agent-to-agent messages — is a potential injection vector.
 
 Your threat model needs to follow the full instruction flow through the system. From the source of each instruction, through the model, to the tool call, to the downstream system. The attacks that hurt production agentic systems in 2026 don't exploit the model directly. They route through the deployment stack and use the model as the execution layer.
 

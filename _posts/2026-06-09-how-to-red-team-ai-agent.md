@@ -138,6 +138,8 @@ Garak's probe catalog includes prompt injection (direct, encoding, payload split
 
 Run Garak first for breadth. Use PyRIT for depth against the attack categories Garak flags.
 
+The setup above points PyRIT at your agent endpoint generically. The four sections below describe what to look for in the output — and what to inject where — for each of the attack categories that matter most.
+
 **Datasets to start with:**
 
 - `HarmBench` — comprehensive jailbreak benchmark, good baseline coverage for prompt injection
@@ -185,7 +187,7 @@ In multi-turn conversations or systems with conversation history, test whether c
 
 Before running any red team engagement, establish the following:
 
-- **Scope and authorization.** Document in writing which systems, endpoints, and data are in scope. Red teaming production systems without explicit authorization is illegal in most jurisdictions, even if your intent is security improvement.
+
 - **Data handling.** Red team tests may produce outputs that contain sensitive data, toxic content, or personal information. Define a retention policy and destruction procedure for test artifacts.
 - **Responsible disclosure.** If your testing reveals vulnerabilities in third-party components (an MCP server, a model provider's API, a dependency), coordinate disclosure through the appropriate channels before publishing findings.
 - **Rate limiting.** Automated testing tools can generate hundreds or thousands of requests per minute. Coordinate with your infrastructure team to avoid triggering rate limits, DDoS protections, or incident alerts that waste your team's time.

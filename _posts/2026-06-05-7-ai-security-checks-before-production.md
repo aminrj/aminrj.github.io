@@ -1,5 +1,5 @@
 ---
-title: "The 7 AI Security Checks That Catch 80% of Production Incidents"
+title: "Most AI Production Incidents Trace to These 7 Missing Controls"
 date: 2026-06-05
 uuid: 202606050000
 status: published
@@ -24,17 +24,15 @@ description: "If you have one day for an AI security review before launch, run t
 mermaid: false
 ---
 
-# The 7 AI Security Checks That Catch Most Production Incidents
-
-*By Amine Raji, PhD, CISSP*
+# Most AI Production Incidents Trace to These 7 Missing Controls
 
 ---
 
-Most AI security checklists are long. Forty items. Sixty items. Organized by framework category. Useful eventually. Not useful when your launch is in three days and your security review has been allocated one afternoon.
+Most AI security checklists have 40+ items. If you're three days from launch and have one afternoon, that list is not the tool you need.
 
-These 7 checks are what I run first on a constrained pre-production review. They come from analyzing production AI incidents in 2025-2026 and identifying which missing controls appear most frequently in post-incident reviews.
+These 7 checks target the controls whose absence appears most frequently in production incident post-mortems. Cisco's 2026 audit found prompt injection vulnerabilities in 73% of production AI deployments. The majority of those could have been caught by Check 1 alone.
 
-Cisco's State of AI Security 2026 found prompt injection vulnerabilities in 73% of audited production AI deployments. Prompt manipulation techniques were tied to 60% of AI-driven data-privacy incidents. These 7 checks target the controls whose absence most frequently appears in post-incident reports.
+Cisco's State of AI Security 2026 found prompt injection vulnerabilities in 73% of audited production AI deployments. Prompt manipulation techniques were tied to 60% of AI-driven data-privacy incidents.
 
 They will not make your system bulletproof. They will catch the majority of issues that cause incidents. If your system passes all 7, you have a defensible baseline to build from.
 
@@ -66,7 +64,9 @@ They will not make your system bulletproof. They will catch the majority of issu
 
 ## Check 3: Validate every tool input parameter
 
-**What it is:** Before any tool call is executed, validate the model-generated parameters against a defined schema.
+**What it is:** Check 2 restricted which tools the agent can call. This check restricts what the model can pass into those tools once called. Both controls are necessary; neither is sufficient alone.
+
+Before any tool call is executed, validate the model-generated parameters against a defined schema.
 
 **What failure looks like:** The model generates a tool call with attacker-influenced parameters. A file path that traverses outside the allowed directory. A database query with injected content. An API call to an unauthorized endpoint. The model did not produce harmful output. The harm is in the parameters it passed to a legitimate tool.
 
@@ -94,7 +94,11 @@ They will not make your system bulletproof. They will catch the majority of issu
 
 **What failure looks like:** Agents produce logs, but the logs are stored in a location the agent has write access to, or are stored without integrity protection. Post-incident investigation cannot establish what the agent actually did because the log chain cannot be trusted.
 
-**How to run it:** Route all agent action logs to a write-once or append-only logging system with no agent write permissions. Apply a cryptographic hash or HMAC to each log entry at write time. Before any investigation relies on the logs, verify the chain integrity. If you cannot verify the logs, you cannot investigate incidents.
+**How to run it:** Three tiers, depending on your infrastructure:
+
+- **Cloud-native (easiest):** If running on AWS, GCP, or Azure, route agent action logs to CloudTrail, GCP Cloud Audit Logs, or Azure Monitor. These services provide integrity protection by default.
+- **Self-hosted (medium):** Use an append-only log store (e.g., OpenSearch with index lifecycle management) with HMAC-SHA256 on each entry using a key the agent cannot access.
+- **Minimal viable:** At minimum, log to a separate service account with no agent write permissions and verify hashes manually before any investigation relies on the logs.
 
 **What most teams do instead:** Use standard application logging with the assumption that only legitimate processes write to the log store. AI agents create a new threat model for logging. A manipulated agent may be instructed to write misleading entries or overwrite records.
 
@@ -118,7 +122,7 @@ They will not make your system bulletproof. They will catch the majority of issu
 
 **What failure looks like:** The model includes a user's full account details, another user's information, or internal system credentials in a response. The model did not "decide" to leak this data. It was responding naturally to its context. No input validation was violated. No prompt injection was detected. The output was simply never checked.
 
-**How to run it:** Define the categories of sensitive data your system handles. Implement a post-generation filter that scans every output against those patterns before delivery. For regulated data (PII, PHI, PCI-relevant), the filter should be a hard block with logging, not a soft warning. The filter should run server-side, not in the client.
+**How to run it:** At minimum, scan every response with a regex for common PII patterns (SSN, credit card numbers, email addresses, phone numbers) and block if matched. Layer on a secondary model call for contextual PII if your system handles health or financial data. For regulated environments, integrate with your existing DLP provider rather than building a custom filter. The filter should run server-side, not in the client.
 
 **What most teams do instead:** Focus security investment on input controls and assume that if the input was clean, the output will be safe. Output validation is the control that catches what input validation missed. It catches an entire class of data leakage that has no corresponding input-side trigger.
 
@@ -138,7 +142,7 @@ If your system passes all 7 checks, you have addressed the controls that appear 
 
 ---
 
-**The full production checklist, 40+ controls organized by MAESTRO layer and mapped to OWASP LLM Top 10 and Agentic Top 10, with a named owner and acceptance criteria for each item, is [on my website here.](/posts/2026-05-23-ai-security-threat-modeling-production/) It is part of the complete 7-phase AI threat modeling methodology.**
+**The full production checklist expands these 7 into 40+ controls with named owners and acceptance criteria — including a PyRIT configuration template for Check 1 and IAM policy templates for Check 4. [Read it here.](/posts/2026-05-23-ai-security-threat-modeling-production/)
 
 For weekly AI security coverage, production incidents, framework updates, and what teams are actually missing before launch: [subscribe to the AI Security Intelligence newsletter.](/newsletter/)
 

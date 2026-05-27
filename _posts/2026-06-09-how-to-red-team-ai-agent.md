@@ -54,6 +54,8 @@ When you test only the model endpoint, you are evaluating content safety. Does t
 
 All four categories produce normal-looking model outputs at the model endpoint. The anomaly is downstream, in the tool calls, the data operations, or the agent interactions.
 
+[[VISUAL: Model-level vs System-level testing comparison — two-panel diagram. Left: "Model-level" (adversarial prompt → model endpoint → output check, labeled "what most teams do"). Right: "System-level" (adversarial prompt → agent → tool calls → downstream systems → data operations, labeled "what you should do"). This is the article's central argument. Place after the four attack classes list.]]
+
 ---
 
 ## Three principles from Microsoft's AI Red Team
@@ -108,6 +110,8 @@ Standard PyRIT sends prompts directly to the model API. For agentic systems, rou
 
 The key instrumentation addition for agents: log tool calls alongside model outputs. You are not just looking for harmful model responses. You are looking for unexpected tool calls, tool calls with anomalous parameters, and tool calls the agent made but that no user-facing output reflects.
 
+[[VISUAL: PyRIT setup architecture — a diagram showing: PyRIT → Agent endpoint → Tool integrations → MCP servers → Backend APIs, with the tool call logging layer highlighted between Agent endpoint and Tool integrations. This makes the "point at the agent, not the model" principle concrete. Place after the "log tool calls alongside model outputs" paragraph.]]
+
 ## Garak: model-level vulnerability scanning
 
 [Garak](https://github.com/NVIDIA/garak) is NVIDIA's open-source LLM vulnerability scanner (Apache 2.0, 7.9k+ stars). While PyRIT focuses on automated red teaming with orchestrated attack strategies, Garak focuses on systematic probing of model endpoints for known weakness categories.
@@ -138,9 +142,18 @@ Garak's probe catalog includes prompt injection (direct, encoding, payload split
 
 Run Garak first for breadth. Use PyRIT for depth against the attack categories Garak flags.
 
+[[VISUAL: Garak scan output screenshot — a screenshot of actual Garak output showing probe results: the categories, pass/fail rates, and confidence intervals. This grounds the tool description in something real. Place after the Garak code examples, before the "When to use which tool" table.]]
+
 The setup above points PyRIT at your agent endpoint generically. The four sections below describe what to look for in the output — and what to inject where — for each of the attack categories that matter most.
 
-**Datasets to start with:**
+[[VISUAL: Attack category matrix — a 4x4 grid:
+| Attack Type | Where to Inject | Where to Detect | What to Instrument |
+|---|---|---|---|
+| Direct prompt injection | User input | Tool call log | Endpoint |
+| Indirect prompt injection | Retrieval corpus | Tool call + retrieval log | Retrieval layer |
+| Tool parameter manipulation | User input | Validation layer | Tool layer |
+| Context window contamination | Extended conversation | Model output at turn N | Conversation store |
+This is the most actionable reference in the article. Place at the start of the "The four attack categories" section, before the detailed descriptions.]]
 
 - `HarmBench` — comprehensive jailbreak benchmark, good baseline coverage for prompt injection
 - `AdvBench` — adversarial instructions, useful for testing instruction-following safety

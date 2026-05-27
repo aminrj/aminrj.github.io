@@ -95,6 +95,17 @@ Certification is resource-intensive. Typically 12-18 months and $200K-$500K for 
 
 ## The decision in three questions
 
+[[VISUAL: Decision flowchart — a simple flowchart:
+Who is asking?
+  → Board/Regulators → NIST AI RMF + ISO 42001
+  → Security team → What are you building?
+      → Agentic system → MAESTRO
+      → Standalone LLM → STRIDE-AI
+      → Regulated industry → STRIDE-AI + NIST
+  → Red team → MAESTRO + MITRE ATLAS
+  → Enterprise sales → ISO 42001
+This is the article's core decision logic. A flowchart is the right format. Place at the top of this section, replacing or supplementing the three tables.]]
+
 **Question 1: Who is asking?**
 
 | Audience | Framework |
@@ -138,6 +149,19 @@ These frameworks do not compete. Mature AI security programs use them as a layer
 You don't need all five layers at once. Identify your current gap, fill it, add the next layer when you've exhausted the first.
 
 A fintech deploying its first customer service agent: run MAESTRO for the threat model, check findings against ATLAS, then prepare NIST AI RMF documentation for your banking partners. You don't start all four at once.
+
+[[VISUAL: Framework layering stack — a vertical stack diagram showing 6 layers, each with its role:
+┌─────────────────────────────────┐
+│ Garak / PyRIT                   │ ← Operationalize testing
+│ OWASP LLM / Agentic Top 10      │ ← Map findings to vuln categories
+│ MITRE ATLAS                     │ ← Validate coverage
+│ MAESTRO or STRIDE-AI            │ ← Identify threats
+│ NIST AI RMF                     │ ← Governance functions
+│ ISO 42001                       │ ← Management system
+└─────────────────────────────────┘
+Caption: "Frameworks as a stack, not a competition." Place after the layered stack bullet list.]]
+
+[[VISUAL: Framework comparison matrix — a table with rows for each framework and columns: Purpose, Output, Cost, Time to Implement, Mandatory? This complements the prose descriptions and gives readers a quick reference. Place after the layering stack visual.]]
 
 ---
 

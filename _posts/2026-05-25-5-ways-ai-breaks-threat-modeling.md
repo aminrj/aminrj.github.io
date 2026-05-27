@@ -45,6 +45,8 @@ A financial services team ran prompt injection tests before deployment and found
 
 **What changes:** You need automated statistical evaluation. Tools like PyRIT that run thousands of variations and report attack success rates with confidence intervals, not binary pass/fail results. You also need re-testing on a schedule tied to model updates, not just pre-deployment snapshots.
 
+[[VISUAL: STRIDE-AI mapping diagram — show traditional STRIDE categories (Spoofing, Tampering, Repudiation, Info Disclosure, DoS, Elevation of Privilege) on the left, their AI counterparts (Identity Confusion, Training Data Contamination, Audit Bypass, Model Inversion, Context Overflow, Jailbreak) on the right, with arrows connecting each pair. This is the article's core conceptual contribution — a reference diagram readers will screenshot. Place after the "What changes" paragraph in Section 1.]]
+
 ---
 
 ## 2. The attack surface includes the training data
@@ -64,6 +66,8 @@ A healthcare company fine-tuned a model on de-identified patient records. Member
 - Poisoning resistance evaluation
 
 These don't fit on a traditional data flow diagram.
+
+[[VISUAL: Threat model comparison — two side-by-side diagrams. Left: traditional system (one box labeled "Application" with arrows labeled "Network" and "Source Code" pointing at it, threat model covers these two surfaces). Right: agentic system (7 stacked layers from MAESTRO: Foundation Models → Data Operations → Agent Frameworks → Deployment Infrastructure → Evaluation & Observability → Security & Compliance → Agent Ecosystem, with arrows crossing between layers showing cross-layer attack paths). Caption: "The structure of the threat model changes, not just the threats." Place after the healthcare membership inference example in Section 2.]]
 
 ---
 

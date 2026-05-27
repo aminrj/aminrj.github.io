@@ -36,6 +36,8 @@ Cisco's State of AI Security 2026 found prompt injection vulnerabilities in 73% 
 
 They will not make your system bulletproof. They will catch the majority of issues that cause incidents. If your system passes all 7, you have a defensible baseline to build from.
 
+[[VISUAL: Checklist visual — a simple numbered list of the 7 checks with a status indicator (pass/fail/na) for each. Think of it as a screenshot of what the completed checklist looks like. The kind of thing teams would pin to their wall or put in a confluence page. Place right before the "## Check 1" heading.]]
+
 ---
 
 ## Check 1: Test prompt injection resistance with an automated tool
@@ -100,6 +102,12 @@ Before any tool call is executed, validate the model-generated parameters agains
 - **Self-hosted (medium):** Use an append-only log store (e.g., OpenSearch with index lifecycle management) with HMAC-SHA256 on each entry using a key the agent cannot access.
 - **Minimal viable:** At minimum, log to a separate service account with no agent write permissions and verify hashes manually before any investigation relies on the logs.
 
+[[VISUAL: Check 5 logging architecture — a three-path diagram showing:
+Cloud-native: Agent → CloudTrail/Azure Monitor (integrity by default)
+Self-hosted: Agent → OpenSearch + HMAC key (separate service account)
+Minimal: Agent → Separate service account + manual hash verification
+Each path showing the data flow and the integrity protection mechanism. Place after the three-tier implementation list in Check 5.]]
+
 **What most teams do instead:** Use standard application logging with the assumption that only legitimate processes write to the log store. AI agents create a new threat model for logging. A manipulated agent may be instructed to write misleading entries or overwrite records.
 
 ---
@@ -123,6 +131,10 @@ Before any tool call is executed, validate the model-generated parameters agains
 **What failure looks like:** The model includes a user's full account details, another user's information, or internal system credentials in a response. The model did not "decide" to leak this data. It was responding naturally to its context. No input validation was violated. No prompt injection was detected. The output was simply never checked.
 
 **How to run it:** At minimum, scan every response with a regex for common PII patterns (SSN, credit card numbers, email addresses, phone numbers) and block if matched. Layer on a secondary model call for contextual PII if your system handles health or financial data. For regulated environments, integrate with your existing DLP provider rather than building a custom filter. The filter should run server-side, not in the client.
+
+[[VISUAL: Check 7 output filter pipeline — a flow diagram:
+Model Output → Regex PII scan → [match?] → Block + Log / [no match?] → Secondary model scan → [match?] → Block + Log / [no match?] → Deliver
+This shows the layered approach described in the article. Place after the implementation steps in Check 7.]]
 
 **What most teams do instead:** Focus security investment on input controls and assume that if the input was clean, the output will be safe. Output validation is the control that catches what input validation missed. It catches an entire class of data leakage that has no corresponding input-side trigger.
 

@@ -21,7 +21,7 @@ tags:
   ]
 image:
   path: /assets/media/ai-security/ai-security-frameworks-guide.png
-description: "There are 20+ AI security frameworks in 2026. Most teams either try to implement all of them or pick one at random. Here's the decision that actually matters."
+description: "There are 20+ AI security frameworks in 2026. Most teams either try to implement all of them or pick one at random. Here is the decision that actually matters."
 mermaid: false
 ---
 
@@ -49,7 +49,7 @@ Here is the decision guide.
 
 Over 20 frameworks exist. Most are vendor positioning built on top of one of these five. These are the ones with analytical depth worth your time:
 
-### MAESTRO — for agentic AI systems
+### MAESTRO, for agentic AI systems
 
 Multi-Agent Environment, Security, Threat, Risk, and Outcome. Developed by the Cloud Security Alliance, released February 2025. It is the only major framework purpose-built for agentic AI.
 
@@ -57,33 +57,33 @@ MAESTRO gives you a 7-layer reference architecture for decomposing agent systems
 
 **Use it when:** You are deploying agents, using MCP, or building any multi-step autonomous workflow. For agentic systems in 2026, MAESTRO is the default starting point.
 
-### STRIDE-AI — for organizations already using STRIDE
+### STRIDE-AI, for organizations already using STRIDE
 
 A formal adaptation of Microsoft's STRIDE methodology to AI systems, published May 2026 (arXiv:2605.17163). It reinterprets each STRIDE category for AI: spoofing becomes identity confusion in multi-agent systems, tampering covers training data contamination, information disclosure covers model inversion and training data extraction, and elevation of privilege covers jailbreaking and prompt injection bypassing safety controls.
 
 **Use it when:** Your security organization already runs STRIDE-based reviews and you need AI threat modeling that integrates with your existing SDL. Adding a parallel methodology creates governance fragmentation. STRIDE-AI extends what you already have rather than replacing it.
 
-### NIST AI RMF — for governance and compliance
+### NIST AI RMF, for governance and compliance
 
 The NIST AI Risk Management Framework provides four functions: GOVERN, MAP, MEASURE, MANAGE. It is the governance vocabulary for AI risk in the US, with adoption across federal agencies, financial institutions, and major technology organizations. The EU AI Act explicitly references NIST AI RMF alignment as demonstrating state-of-the-art risk management.
 
-Critical distinction: NIST AI RMF is a governance framework, not a threat modeling methodology. It tells you *what to manage*. It does not tell you *how to identify what to manage* — for that you still need MAESTRO or STRIDE-AI.
+Critical distinction: NIST AI RMF is a governance framework, not a threat modeling methodology. It tells you *what to manage*. It does not tell you *how to identify what to manage*. For that you still need MAESTRO or STRIDE-AI.
 
 **Use it when:** You need to demonstrate AI governance to regulators, customers, or your board. In 2026, most enterprises deploying AI need RMF alignment regardless of whether they use it for hands-on threat modeling.
 
-### MITRE ATLAS — as a coverage check
+### MITRE ATLAS, as a coverage check
 
 Adversarial Threat Landscape for Artificial-Intelligence Systems. Maintained by MITRE, the same team behind ATT&CK. It catalogs 16 tactics, 84+ techniques, and documented real-world case studies of how attackers actually attack AI systems.
 
 ATLAS describes threats. It does not prescribe methodology or mitigations. You use it *after* completing a MAESTRO or STRIDE-AI exercise to verify that your coverage addresses known adversarial techniques. If you cannot map your threat model's findings to ATLAS techniques, you have gaps.
 
-**Use it always** — as a coverage validation step, not as the primary modeling tool.
+**Use it always**, as a coverage validation step, not as the primary modeling tool.
 
-### ISO 42001 — for selling to regulated buyers
+### ISO 42001, for selling to regulated buyers
 
 Published December 2023, ISO 42001 is the first international standard for AI management systems. Built on the same structure as ISO 27001. It defines AI roles, AI risk assessment processes, AI system impact assessments, and AI lifecycle controls.
 
-Certification is resource-intensive: typically 12-18 months and $200K-$500K for mid-market organizations. It is a management system standard, not a threat modeling tool. It tells you how to govern AI risk once identified — not how to find it.
+Certification is resource-intensive. Typically 12-18 months and $200K-$500K for mid-market organizations. It is a management system standard, not a threat modeling tool. It tells you how to govern AI risk once identified, not how to find it.
 
 **Use it when:** You are selling AI products to regulated buyers in financial services, healthcare, government, or defense. Certification is increasingly a requirement to close enterprise deals. If you already have ISO 27001, you are approximately 40% of the way there since the management system structure is identical.
 
@@ -124,12 +124,12 @@ Certification is resource-intensive: typically 12-18 months and $200K-$500K for 
 
 These frameworks do not compete. Mature AI security programs use them as a layered stack:
 
-- **ISO 42001** defines the management system — the operating model for how AI risk is governed organizationally
+- **ISO 42001** defines the management system, the operating model for how AI risk is governed organizationally
 - **NIST AI RMF** provides the governance functions (GOVERN, MAP, MEASURE, MANAGE)
-- **MAESTRO or STRIDE-AI** is the threat modeling methodology — how you actually identify threats
-- **MITRE ATLAS** validates coverage — did you find what attackers actually do?
+- **MAESTRO or STRIDE-AI** is the threat modeling methodology, how you actually identify threats
+- **MITRE ATLAS** validates coverage, did you find what attackers actually do
 - **OWASP LLM Top 10 / Agentic Top 10** maps findings to specific vulnerability categories
-- **Garak or PyRIT** operationalize testing — the tools that prove your threat model is correct
+- **Garak or PyRIT** operationalize testing, the tools that prove your threat model is correct
 
 You don't need all five layers at once. Identify your current gap, fill it, add the next layer when you've exhausted the first.
 
@@ -141,16 +141,16 @@ Teams read all five frameworks and then try to build a unified super-framework i
 
 The practical approach: pick the one framework that matches the question being asked right now. Run it. Produce output. Use that output to make a decision. Then add the next framework when you need what it specifically provides.
 
-For most teams in 2026 deploying their first production AI agent: **start with MAESTRO**. Read the CSA whitepaper. Decompose your system against the 7 layers. Identify the top five threats per layer. That is a usable threat model you can complete in a week — without waiting to also implement NIST AI RMF mapping and ISO 42001 alignment first.
+For most teams in 2026 deploying their first production AI agent: **start with MAESTRO**. Read the CSA whitepaper. Decompose your system against the 7 layers. Identify the top five threats per layer. That is a usable threat model you can complete in a week, without waiting to also implement NIST AI RMF mapping and ISO 42001 alignment first.
 
 ---
 
 **Once you know which framework to use, the next step is running the threat modeling process end-to-end. I've written a complete 7-phase methodology that synthesizes all five frameworks into a practical pre-production workflow. [Read it here.](/posts/2026-05-23-ai-security-threat-modeling-production/)**
 
-For weekly analysis of how these frameworks are being applied in production — and where they fall short: [subscribe to the AI Security Intelligence newsletter.](/newsletter/)
+For weekly analysis of how these frameworks are being applied in production, and where they fall short: [subscribe to the AI Security Intelligence newsletter.](/newsletter/)
 
 If you need help running a framework assessment on your specific system, [get in touch](/contact/).
 
 ---
 
-*Amine Raji, PhD, CISSP — AI and LLM security. [Get in touch](/contact/) if you need help running a threat model before your next AI deployment.*
+*Amine Raji, PhD, CISSP. AI and LLM security. [Get in touch](/contact/) if you need help running a threat model before your next AI deployment.*

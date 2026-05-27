@@ -34,6 +34,8 @@ Most AI security checklists are long. Forty items. Sixty items. Organized by fra
 
 These 7 checks are what I run first on a constrained pre-production review. They come from analyzing production AI incidents in 2025-2026 and identifying which missing controls appear most frequently in post-incident reviews.
 
+Cisco's State of AI Security 2026 found prompt injection vulnerabilities in 73% of audited production AI deployments — and prompt manipulation techniques were tied to 60% of AI-driven data-privacy incidents. These 7 checks target the controls whose absence most frequently appears in post-incident reports.
+
 They will not make your system bulletproof. They will catch the majority of issues that cause incidents. If your system passes all 7, you have a defensible baseline to build from.
 
 ---
@@ -102,7 +104,7 @@ They will not make your system bulletproof. They will catch the majority of issu
 
 **What it is:** Before installing any MCP server, scan it — including its tool descriptions — for adversarial content.
 
-**What failure looks like:** A developer installs an MCP server from a community registry. It passes malware scanning. Its tool descriptions contain embedded instructions that the agent will execute once the descriptions are loaded into its context window. The payload is not code. It is a text string that standard security tooling has no mechanism to flag.
+**What failure looks like:** A developer installs an MCP server from a community registry. It passes malware scanning. Its tool descriptions contain embedded instructions that the agent will execute once the descriptions are loaded into its context window. The payload is not code. It is a text string that standard security tooling has no mechanism to flag. (As of mid-2026, no dedicated scanning tool exists for MCP tool descriptions — most teams rely on manual review.)
 
 **How to run it:** Run `snyk agent-scan` on the MCP server package before installation. Review tool descriptions manually for instruction-like language that is not clearly operational documentation. Compute a hash of the tool descriptions at installation and store it. At every future reconnection, recompute the hash and compare — tool descriptions can change server-side after you install the package.
 
@@ -131,6 +133,8 @@ They do not cover: training data security, model provenance verification, fine-t
 Those matter. They come after you have these 7 in place.
 
 If your system passes all 7 checks, you have addressed the controls that appear most frequently in production incident post-mortems. You have a defensible baseline. You do not yet have a complete AI security program.
+
+**Prioritization tip:** If you can only do 3 of the 7, start with Check 1 (prompt injection testing), Check 2 (tool allowlist), and Check 4 (scope-limited credentials). These three alone block the most common attack paths.
 
 ---
 

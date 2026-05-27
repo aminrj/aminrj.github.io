@@ -78,16 +78,16 @@ Attack Success Rate tells you how often the attack works. The prompt sequences, 
 
 ## Practical setup: PyRIT for agentic systems
 
-[PyRIT](https://github.com/microsoft/PyRIT) (Python Risk Identification Toolkit) is Microsoft's open-source red teaming framework for generative AI. MIT-licensed, actively maintained, with 53+ built-in datasets.
+[PyRIT](https://github.com/microsoft/PyRIT) (Python Risk Identification Tool) is Microsoft's open-source red teaming framework for generative AI. MIT-licensed, actively maintained, with 53+ built-in datasets.
 
 **Basic setup targeting a model endpoint:**
 
 ```python
-from pyrit.common import initialize_pyrit
-from pyrit.orchestrator import PromptSendingOrchestrator
+from pyrit.executor.attack import ConsoleAttackResultPrinter, PromptSendingAttack
 from pyrit.prompt_target import OpenAIChatTarget
+from pyrit.setup import IN_MEMORY, initialize_pyrit_async
 
-initialize_pyrit()
+await initialize_pyrit_async(memory_db_type=IN_MEMORY)
 
 target = OpenAIChatTarget(
     endpoint="your-model-endpoint",
@@ -95,9 +95,11 @@ target = OpenAIChatTarget(
     model_name="your-model-name"
 )
 
-orchestrator = PromptSendingOrchestrator(
-    objective_target=target
-)
+attack = PromptSendingAttack(objective_target=target)
+result = await attack.execute_async(objective="Your test prompt here")
+
+printer = ConsoleAttackResultPrinter()
+await printer.print_conversation_async(result=result)
 ```
 
 **For agentic systems: point at the agent, not the model.**
@@ -105,6 +107,36 @@ orchestrator = PromptSendingOrchestrator(
 Standard PyRIT sends prompts directly to the model API. For agentic systems, route your test prompts through the full agent stack — the same interface your users hit, with all tool integrations active and all MCP servers connected. Point PyRIT at your agent endpoint.
 
 The key instrumentation addition for agents: log tool calls alongside model outputs. You are not just looking for harmful model responses. You are looking for unexpected tool calls, tool calls with anomalous parameters, and tool calls the agent made but that no user-facing output reflects.
+
+## Garak: model-level vulnerability scanning
+
+[Garak](https://github.com/NVIDIA/garak) is NVIDIA's open-source LLM vulnerability scanner (Apache 2.0, 7.9k+ stars). While PyRIT focuses on automated red teaming with orchestrated attack strategies, Garak focuses on systematic probing of model endpoints for known weakness categories.
+
+Garak is the tool you run *before* PyRIT — it gives you a baseline of which vulnerability classes your model is susceptible to. Think of it as `nmap` for LLMs: it scans for known attack surfaces and reports which probes fail.
+
+```bash
+# Scan an OpenAI model for encoding-based prompt injection
+export OPENAI_API_KEY="sk-..."
+garak --target_type openai --target_name gpt-4o --probes encoding
+
+# Scan a local model via llama.cpp
+garak --target_type llama_cpp --target_name /path/to/model.gguf
+
+# Scan for a specific probe category
+garak --target_type openai --target_name gpt-4o --probes dan
+```
+
+Garak's probe catalog includes: prompt injection (direct, encoding, payload splitting), jailbreaks (DAN variants, role-play escalation), data leakage (training data replay), toxicity generation, hallucination, and more. Run the full probe suite against your model before writing custom PyRIT attacks — it tells you which categories need deeper investigation.
+
+**When to use which tool:**
+
+| Tool | Best for | Limitation |
+|------|----------|------------|
+| Garak | Baseline model-level vulnerability scan | Tests model in isolation, not the full agentic system |
+| PyRIT | Orchestrated multi-turn attacks against the full system | Requires more setup and custom objective definitions |
+| CoPyRIT (PyRIT GUI) | Manual/human-led red teaming with session tracking | Not automated; scales with team size |
+
+Run Garak first for breadth. Use PyRIT for depth against the attack categories Garak flags.
 
 **Datasets to start with:**
 
@@ -145,7 +177,18 @@ This category requires instrumenting the tool layer, not just the model output. 
 
 In multi-turn conversations or systems with conversation history, test whether content from one session influences behavior in another. Test whether extended conversations can effectively push the system prompt out of the model's effective attention range, degrading safety controls over time.
 
+**How to test this:** Send a long, benign conversation (hundreds of turns or near the context window limit) and then issue a prompt that would normally be refused. If the model complies, the extended context has degraded the system prompt's influence. Also test cross-session contamination: after a conversation ends, start a new session and check whether residual context from the previous session leaks in (this can happen with improperly isolated conversation stores or shared embedding caches).
+
 ---
+
+## Legal and ethical considerations
+
+Before running any red team engagement, establish the following:
+
+- **Scope and authorization.** Document in writing which systems, endpoints, and data are in scope. Red teaming production systems without explicit authorization is illegal in most jurisdictions, even if your intent is security improvement.
+- **Data handling.** Red team tests may produce outputs that contain sensitive data, toxic content, or personal information. Define a retention policy and destruction procedure for test artifacts.
+- **Responsible disclosure.** If your testing reveals vulnerabilities in third-party components (an MCP server, a model provider's API, a dependency), coordinate disclosure through the appropriate channels before publishing findings.
+- **Rate limiting.** Automated testing tools can generate hundreds or thousands of requests per minute. Coordinate with your infrastructure team to avoid triggering rate limits, DDoS protections, or incident alerts that waste your team's time.
 
 ## What to do with the findings
 
@@ -164,6 +207,8 @@ The red team report is not the end of the security process. It is the input to y
 **Red teaming is Phase 5 of the 7-phase AI threat modeling methodology I have published on my website. The full methodology covers how red team findings feed into the mitigation matrix, release gate decision, and continuous monitoring plan. [Read it here.](/posts/2026-05-23-ai-security-threat-modeling-production/)**
 
 For weekly coverage of AI red teaming techniques, new tooling, and production incident analysis: [subscribe to the AI Security Intelligence newsletter.](/newsletter/)
+
+If you need help setting up a red teaming pipeline for your system, [get in touch](/contact/).
 
 ---
 

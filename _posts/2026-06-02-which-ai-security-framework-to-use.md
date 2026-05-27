@@ -59,7 +59,7 @@ MAESTRO gives you a 7-layer reference architecture for decomposing agent systems
 
 ### STRIDE-AI — for organizations already using STRIDE
 
-A formal adaptation of Microsoft's STRIDE methodology to AI systems, published May 2026. It reinterprets each STRIDE category for AI: spoofing becomes identity confusion in multi-agent systems, tampering covers training data contamination, information disclosure covers model inversion and training data extraction, and elevation of privilege covers jailbreaking and prompt injection bypassing safety controls.
+A formal adaptation of Microsoft's STRIDE methodology to AI systems, published May 2026 (arXiv:2605.17163). It reinterprets each STRIDE category for AI: spoofing becomes identity confusion in multi-agent systems, tampering covers training data contamination, information disclosure covers model inversion and training data extraction, and elevation of privilege covers jailbreaking and prompt injection bypassing safety controls.
 
 **Use it when:** Your security organization already runs STRIDE-based reviews and you need AI threat modeling that integrates with your existing SDL. Adding a parallel methodology creates governance fragmentation. STRIDE-AI extends what you already have rather than replacing it.
 
@@ -128,7 +128,8 @@ These frameworks do not compete. Mature AI security programs use them as a layer
 - **NIST AI RMF** provides the governance functions (GOVERN, MAP, MEASURE, MANAGE)
 - **MAESTRO or STRIDE-AI** is the threat modeling methodology — how you actually identify threats
 - **MITRE ATLAS** validates coverage — did you find what attackers actually do?
-- **OWASP LLM Top 10** maps findings to specific controls
+- **OWASP LLM Top 10 / Agentic Top 10** maps findings to specific vulnerability categories
+- **Garak or PyRIT** operationalize testing — the tools that prove your threat model is correct
 
 You don't need all five layers at once. Identify your current gap, fill it, add the next layer when you've exhausted the first.
 
@@ -147,6 +148,8 @@ For most teams in 2026 deploying their first production AI agent: **start with M
 **Once you know which framework to use, the next step is running the threat modeling process end-to-end. I've written a complete 7-phase methodology that synthesizes all five frameworks into a practical pre-production workflow. [Read it here.](/posts/2026-05-23-ai-security-threat-modeling-production/)**
 
 For weekly analysis of how these frameworks are being applied in production — and where they fall short: [subscribe to the AI Security Intelligence newsletter.](/newsletter/)
+
+If you need help running a framework assessment on your specific system, [get in touch](/contact/).
 
 ---
 

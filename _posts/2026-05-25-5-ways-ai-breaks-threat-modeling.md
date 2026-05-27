@@ -43,7 +43,7 @@ Traditional threat modeling works because controls are testable. A SQL injection
 
 AI doesn't work that way. The same prompt can produce different outputs across runs. A prompt reliably refused yesterday may be accepted today after a model update, a temperature change, or a shift in the conversational context preceding it. Your test suite has no predictive power over behavior it didn't observe.
 
-A financial services team ran prompt injection tests before deployment and found zero bypasses. Eleven days after launch, a user reported a bypass. A model update between test and production had shifted the response distribution. Every test passed. None of them predicted what the model would do in production.
+A financial services team ran prompt injection tests before deployment and found zero bypasses. Days after launch, a user reported a bypass — a model update between testing and production had shifted the response distribution. Every test passed. None of them predicted what the model would do in production. This pattern — tests passing in staging while the production model behaves differently — is one of the most common sources of surprise in AI deployments.
 
 **What changes:** You need automated statistical evaluation — tools like PyRIT that run thousands of variations and report attack success rates with confidence intervals, not binary pass/fail results. You also need re-testing on a schedule tied to model updates, not just pre-deployment snapshots.
 
@@ -57,7 +57,7 @@ There is no traditional software equivalent to training data. You can audit sour
 
 **Membership inference** means an attacker can query your deployed model to determine with statistical confidence which records were in its training set. No breach required. The model itself is the information leak.
 
-A healthcare company fine-tuned a model on de-identified patient records. Membership inference attacks against the deployed model allowed researchers to identify which records had been included in training. The model had not been compromised. It was operating exactly as designed. The design was the vulnerability.
+A healthcare company fine-tuned a model on de-identified patient records. Membership inference attacks against the deployed model allowed researchers to identify which records had been included in training — a finding consistent with the attack class first demonstrated by Shokri et al. (IEEE S&P 2017). The model had not been compromised. It was operating exactly as designed. The design was the vulnerability.
 
 **What changes:** Your asset inventory now includes training corpora, fine-tuning datasets, and embedding stores. Each needs provenance documentation, access controls, and poisoning resistance evaluation. These don't fit on a traditional data flow diagram.
 
@@ -93,7 +93,7 @@ Traditional supply chain security has a defined scope: source code, open-source 
 
 An AI supply chain adds: training datasets, model weights, fine-tuning corpora, embedding stores, MCP servers, agent skill marketplaces, and shared prompt template libraries. Most of these are not versioned, not audited, and not covered by your existing SBOM process. A single poisoned dataset cascades into every downstream model trained on it.
 
-A malicious MCP server was published to a community registry and appeared legitimate. When an agent loaded it, the tool descriptions — the natural-language strings explaining what the tool does — contained embedded instructions. The model processed those instructions as operational guidance and executed them via tool calls. No vulnerable code was deployed. The exploit was a text string in a configuration file.
+A malicious MCP server was published to a community registry and appeared legitimate. When an agent loaded it, the tool descriptions — the natural-language strings explaining what the tool does — contained embedded instructions. The model processed those instructions as operational guidance and executed them via tool calls. No vulnerable code was deployed. The exploit was a text string in a configuration file. (As of mid-2026, no dedicated scanning tool exists for MCP tool descriptions — most teams rely on manual review, which is precisely why this attack class is so dangerous.)
 
 **What changes:** Your pre-deployment process needs to include MCP server scanning (tools like Snyk Agent Scan), tool description hash verification, and a supply chain review that covers components that never appear in your code repository. Standard SCA tools don't see prompt-level payloads.
 
@@ -111,7 +111,7 @@ If your AI security review for a production agent deployment looks identical to 
 
 **The complete 7-phase methodology for AI threat modeling in production — covering all five of these gaps, with a pre-production checklist mapped to OWASP LLM Top 10 and Agentic Top 10 — is [on my website here.](/posts/2026-05-23-ai-security-threat-modeling-production/)**
 
-For weekly analysis of AI security incidents, new frameworks, and production gaps: [subscribe to the AI Security Intelligence newsletter.](/newsletter/)
+For practical guides on MCP security, agentic AI red teaming, and production incident analysis: [subscribe to the AI Security Intelligence newsletter.](/newsletter/)
 
 ---
 

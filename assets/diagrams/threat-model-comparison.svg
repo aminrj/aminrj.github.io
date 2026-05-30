@@ -1,127 +1,534 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 570" width="920" height="570">
-  <style>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 920 570"
+   width="920"
+   height="570"
+   version="1.1"
+   id="svg22"
+   sodipodi:docname="threat-model-comparison.svg"
+   inkscape:version="1.4.3 (0d15f75, 2025-12-25)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs22" />
+  <sodipodi:namedview
+     id="namedview22"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="3.1842105"
+     inkscape:cx="460.08264"
+     inkscape:cy="285"
+     inkscape:window-width="3840"
+     inkscape:window-height="2054"
+     inkscape:window-x="1609"
+     inkscape:window-y="-11"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg22" />
+  <style
+     id="style1">
     .title { font-family: -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 24px; font-weight: 700; fill: #0f172a; }
     .header { font-family: -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 12px; font-weight: 600; fill: #334155; letter-spacing: 0.5px; text-transform: uppercase; }
     .body { font-family: -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 500; fill: #0f172a; }
     .caption { font-family: -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 12px; font-weight: 400; fill: #64748b; }
   </style>
-
-  <rect width="920" height="570" fill="#ffffff"/>
-
+  <rect
+     width="920"
+     height="570"
+     fill="#ffffff"
+     id="rect1" />
   <!-- Title -->
-  <text x="460" y="40" class="title" text-anchor="middle">The Structure of the Threat Model Changes, Not Just the Threats</text>
-  <line x1="120" y1="56" x2="800" y2="56" stroke="#f1f5f9" stroke-width="1"/>
-
+  <text
+     x="460"
+     y="40"
+     class="title"
+     text-anchor="middle"
+     id="text1">The Structure of the Threat Model Changes, Not Just the Threats</text>
+  <line
+     x1="120"
+     y1="56"
+     x2="800"
+     y2="56"
+     stroke="#f1f5f9"
+     stroke-width="1"
+     id="line1" />
   <!-- Divider between columns -->
-  <line x1="460" y1="68" x2="460" y2="520" stroke="#f1f5f9" stroke-width="1" stroke-dasharray="4,4"/>
-
+  <line
+     x1="460"
+     y1="68"
+     x2="460"
+     y2="520"
+     stroke="#f1f5f9"
+     stroke-width="1"
+     stroke-dasharray="4,4"
+     id="line2" />
   <!-- Column headers -->
-  <rect x="50" y="78" width="350" height="28" rx="6" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
-  <text x="225" y="97" class="header" text-anchor="middle">Traditional Threat Model</text>
-
-  <rect x="520" y="78" width="350" height="28" rx="6" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
-  <text x="695" y="97" class="header" text-anchor="middle">Agentic Threat Model</text>
-
+  <rect
+     x="50"
+     y="78"
+     width="350"
+     height="28"
+     rx="6"
+     fill="#f8fafc"
+     stroke="#e2e8f0"
+     stroke-width="1"
+     id="rect2" />
+  <text
+     x="225"
+     y="97"
+     class="header"
+     text-anchor="middle"
+     id="text2">Traditional Threat Model</text>
+  <rect
+     x="520"
+     y="78"
+     width="350"
+     height="28"
+     rx="6"
+     fill="#f8fafc"
+     stroke="#e2e8f0"
+     stroke-width="1"
+     id="rect3" />
+  <text
+     x="695"
+     y="97"
+     class="header"
+     text-anchor="middle"
+     id="text3">Agentic Threat Model</text>
   <!-- ========== LEFT: TRADITIONAL ========== -->
-
   <!-- Network box -->
-  <rect x="60" y="120" width="140" height="36" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
-  <text x="130" y="143" class="body" text-anchor="middle">Network</text>
-
+  <rect
+     x="60"
+     y="120"
+     width="140"
+     height="36"
+     rx="6"
+     fill="#ffffff"
+     stroke="#e2e8f0"
+     stroke-width="1.5"
+     id="rect4" />
+  <text
+     x="130"
+     y="143"
+     class="body"
+     text-anchor="middle"
+     id="text4">Network</text>
   <!-- Source Code box -->
-  <rect x="60" y="172" width="140" height="36" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
-  <text x="130" y="195" class="body" text-anchor="middle">Source Code</text>
-
+  <rect
+     x="60"
+     y="172"
+     width="140"
+     height="36"
+     rx="6"
+     fill="#ffffff"
+     stroke="#e2e8f0"
+     stroke-width="1.5"
+     id="rect5" />
+  <text
+     x="130"
+     y="195"
+     class="body"
+     text-anchor="middle"
+     id="text5">Source Code</text>
   <!-- Arrows to Application (curved, left to right) -->
-  <path d="M 200 138 Q 235 144 265 154" fill="none" stroke="#0f172a" stroke-width="2"/>
-  <polygon points="260,150 270,154 260,158" fill="#0f172a"/>
-
-  <path d="M 200 188 Q 235 180 265 166" fill="none" stroke="#0f172a" stroke-width="2"/>
-  <polygon points="260,168 270,164 260,160" fill="#0f172a"/>
-
+  <path
+     d="M 200 138 Q 235 144 265 154"
+     fill="none"
+     stroke="#0f172a"
+     stroke-width="2"
+     id="path5" />
+  <polygon
+     points="260,150 270,154 260,158"
+     fill="#0f172a"
+     id="polygon5" />
+  <path
+     d="M 200 188 Q 235 180 265 166"
+     fill="none"
+     stroke="#0f172a"
+     stroke-width="2"
+     id="path6" />
+  <polygon
+     points="260,168 270,164 260,160"
+     fill="#0f172a"
+     id="polygon6" />
   <!-- Application box (filled, key element) -->
-  <rect x="265" y="148" width="110" height="64" rx="6" fill="#0f172a"/>
-  <text x="320" y="174" class="body" text-anchor="middle" fill="#ffffff">Application</text>
-  <text x="320" y="192" font-family="-apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11px" font-weight="400" fill="#94a3b8" text-anchor="middle">Attack surface</text>
-
+  <rect
+     x="265"
+     y="148"
+     width="110"
+     height="64"
+     rx="6"
+     fill="#0f172a"
+     id="rect6" />
+  <text
+     x="320"
+     y="174"
+     class="body"
+     text-anchor="middle"
+     fill="#ffffff"
+     id="text6"
+     style="fill:#ffffff;fill-opacity:1">Application</text>
+  <text
+     x="320"
+     y="192"
+     font-family="-apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
+     font-size="11px"
+     font-weight="400"
+     fill="#94a3b8"
+     text-anchor="middle"
+     id="text7"
+     style="fill:#ff4d5b;fill-opacity:1">Attack surface</text>
   <!-- Arrow down to Data -->
-  <line x1="320" y1="212" x2="320" y2="238" stroke="#0f172a" stroke-width="2"/>
-  <polygon points="316,233 320,243 324,233" fill="#0f172a"/>
-
+  <line
+     x1="320"
+     y1="212"
+     x2="320"
+     y2="238"
+     stroke="#0f172a"
+     stroke-width="2"
+     id="line7" />
+  <polygon
+     points="316,233 320,243 324,233"
+     fill="#0f172a"
+     id="polygon7" />
   <!-- Data cylinder -->
-  <ellipse cx="320" cy="268" rx="44" ry="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
-  <rect x="276" y="268" width="88" height="30" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
-  <ellipse cx="320" cy="298" rx="44" ry="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
-  <text x="320" y="288" class="body" text-anchor="middle">Data</text>
-
+  <ellipse
+     cx="320"
+     cy="268"
+     rx="44"
+     ry="12"
+     fill="#ffffff"
+     stroke="#e2e8f0"
+     stroke-width="1.5"
+     id="ellipse7" />
+  <rect
+     x="276"
+     y="268"
+     width="88"
+     height="30"
+     fill="#ffffff"
+     stroke="#e2e8f0"
+     stroke-width="1.5"
+     id="rect7" />
+  <ellipse
+     cx="320"
+     cy="298"
+     rx="44"
+     ry="12"
+     fill="#ffffff"
+     stroke="#e2e8f0"
+     stroke-width="1.5"
+     id="ellipse8" />
+  <text
+     x="320"
+     y="288"
+     class="body"
+     text-anchor="middle"
+     id="text8">Data</text>
   <!-- Coverage note -->
-  <rect x="70" y="324" width="330" height="48" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
-  <text x="235" y="345" font-family="-apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12px" font-weight="600" fill="#334155" text-anchor="middle">Threat model covers 2 surfaces:</text>
-  <text x="235" y="361" font-family="-apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12px" font-weight="500" fill="#0f172a" text-anchor="middle">Network plus Source Code</text>
-
+  <rect
+     x="70"
+     y="324"
+     width="330"
+     height="48"
+     rx="8"
+     fill="#f8fafc"
+     stroke="#e2e8f0"
+     stroke-width="1"
+     id="rect8" />
+  <text
+     x="235"
+     y="345"
+     font-family="-apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
+     font-size="12px"
+     font-weight="600"
+     fill="#334155"
+     text-anchor="middle"
+     id="text9">Threat model covers 2 surfaces:</text>
+  <text
+     x="235"
+     y="361"
+     font-family="-apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
+     font-size="12px"
+     font-weight="500"
+     fill="#0f172a"
+     text-anchor="middle"
+     id="text10">Network plus Source Code</text>
   <!-- ========== RIGHT: AGENTIC ========== -->
-
   <!-- Layer 1: Foundation Models (filled, key element) -->
-  <rect x="520" y="120" width="330" height="34" rx="6" fill="#0f172a"/>
-  <text x="685" y="142" class="body" text-anchor="middle" fill="#ffffff">Foundation Models</text>
-
+  <rect
+     x="520"
+     y="120"
+     width="330"
+     height="34"
+     rx="6"
+     fill="#0f172a"
+     id="rect10" />
+  <text
+     x="685"
+     y="142"
+     class="body"
+     text-anchor="middle"
+     fill="#ffffff"
+     id="text11"
+     style="fill:#ffffff;fill-opacity:1">Foundation Models</text>
   <!-- Arrow down -->
-  <line x1="685" y1="154" x2="685" y2="164" stroke="#64748b" stroke-width="1.5"/>
-  <polygon points="681,160 685,168 689,160" fill="#64748b"/>
-
+  <line
+     x1="685"
+     y1="154"
+     x2="685"
+     y2="164"
+     stroke="#64748b"
+     stroke-width="1.5"
+     id="line11" />
+  <polygon
+     points="681,160 685,168 689,160"
+     fill="#64748b"
+     id="polygon11" />
   <!-- Layer 2: Data Operations -->
-  <rect x="520" y="164" width="330" height="34" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
-  <text x="685" y="186" class="body" text-anchor="middle">Data Operations</text>
-
-  <line x1="685" y1="198" x2="685" y2="208" stroke="#64748b" stroke-width="1.5"/>
-  <polygon points="681,204 685,212 689,204" fill="#64748b"/>
-
+  <rect
+     x="520"
+     y="164"
+     width="330"
+     height="34"
+     rx="6"
+     fill="#ffffff"
+     stroke="#e2e8f0"
+     stroke-width="1.5"
+     id="rect11" />
+  <text
+     x="685"
+     y="186"
+     class="body"
+     text-anchor="middle"
+     id="text12">Data Operations</text>
+  <line
+     x1="685"
+     y1="198"
+     x2="685"
+     y2="208"
+     stroke="#64748b"
+     stroke-width="1.5"
+     id="line12" />
+  <polygon
+     points="681,204 685,212 689,204"
+     fill="#64748b"
+     id="polygon12" />
   <!-- Layer 3: Agent Frameworks -->
-  <rect x="520" y="208" width="330" height="34" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
-  <text x="685" y="230" class="body" text-anchor="middle">Agent Frameworks</text>
-
-  <line x1="685" y1="242" x2="685" y2="252" stroke="#64748b" stroke-width="1.5"/>
-  <polygon points="681,248 685,256 689,248" fill="#64748b"/>
-
+  <rect
+     x="520"
+     y="208"
+     width="330"
+     height="34"
+     rx="6"
+     fill="#ffffff"
+     stroke="#e2e8f0"
+     stroke-width="1.5"
+     id="rect12" />
+  <text
+     x="685"
+     y="230"
+     class="body"
+     text-anchor="middle"
+     id="text13">Agent Frameworks</text>
+  <line
+     x1="685"
+     y1="242"
+     x2="685"
+     y2="252"
+     stroke="#64748b"
+     stroke-width="1.5"
+     id="line13" />
+  <polygon
+     points="681,248 685,256 689,248"
+     fill="#64748b"
+     id="polygon13" />
   <!-- Layer 4: Deployment Infrastructure -->
-  <rect x="520" y="252" width="330" height="34" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
-  <text x="685" y="274" class="body" text-anchor="middle">Deployment Infrastructure</text>
-
-  <line x1="685" y1="286" x2="685" y2="296" stroke="#64748b" stroke-width="1.5"/>
-  <polygon points="681,292 685,300 689,292" fill="#64748b"/>
-
+  <rect
+     x="520"
+     y="252"
+     width="330"
+     height="34"
+     rx="6"
+     fill="#ffffff"
+     stroke="#e2e8f0"
+     stroke-width="1.5"
+     id="rect13" />
+  <text
+     x="685"
+     y="274"
+     class="body"
+     text-anchor="middle"
+     id="text14">Deployment Infrastructure</text>
+  <line
+     x1="685"
+     y1="286"
+     x2="685"
+     y2="296"
+     stroke="#64748b"
+     stroke-width="1.5"
+     id="line14" />
+  <polygon
+     points="681,292 685,300 689,292"
+     fill="#64748b"
+     id="polygon14" />
   <!-- Layer 5: Evaluation &amp; Observability -->
-  <rect x="520" y="296" width="330" height="34" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
-  <text x="685" y="318" class="body" text-anchor="middle">Evaluation &amp; Observability</text>
-
-  <line x1="685" y1="330" x2="685" y2="340" stroke="#64748b" stroke-width="1.5"/>
-  <polygon points="681,336 685,344 689,336" fill="#64748b"/>
-
+  <rect
+     x="520"
+     y="296"
+     width="330"
+     height="34"
+     rx="6"
+     fill="#ffffff"
+     stroke="#e2e8f0"
+     stroke-width="1.5"
+     id="rect14" />
+  <text
+     x="685"
+     y="318"
+     class="body"
+     text-anchor="middle"
+     id="text15">Evaluation &amp; Observability</text>
+  <line
+     x1="685"
+     y1="330"
+     x2="685"
+     y2="340"
+     stroke="#64748b"
+     stroke-width="1.5"
+     id="line15" />
+  <polygon
+     points="681,336 685,344 689,336"
+     fill="#64748b"
+     id="polygon15" />
   <!-- Layer 6: Security &amp; Compliance -->
-  <rect x="520" y="340" width="330" height="34" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
-  <text x="685" y="362" class="body" text-anchor="middle">Security &amp; Compliance</text>
-
-  <line x1="685" y1="374" x2="685" y2="384" stroke="#64748b" stroke-width="1.5"/>
-  <polygon points="681,380 685,388 689,380" fill="#64748b"/>
-
+  <rect
+     x="520"
+     y="340"
+     width="330"
+     height="34"
+     rx="6"
+     fill="#ffffff"
+     stroke="#e2e8f0"
+     stroke-width="1.5"
+     id="rect15" />
+  <text
+     x="685"
+     y="362"
+     class="body"
+     text-anchor="middle"
+     id="text16">Security &amp; Compliance</text>
+  <line
+     x1="685"
+     y1="374"
+     x2="685"
+     y2="384"
+     stroke="#64748b"
+     stroke-width="1.5"
+     id="line16" />
+  <polygon
+     points="681,380 685,388 689,380"
+     fill="#64748b"
+     id="polygon16" />
   <!-- Layer 7: Agent Ecosystem -->
-  <rect x="520" y="384" width="330" height="34" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
-  <text x="685" y="406" class="body" text-anchor="middle">Agent Ecosystem</text>
-
+  <rect
+     x="520"
+     y="384"
+     width="330"
+     height="34"
+     rx="6"
+     fill="#ffffff"
+     stroke="#e2e8f0"
+     stroke-width="1.5"
+     id="rect16" />
+  <text
+     x="685"
+     y="406"
+     class="body"
+     text-anchor="middle"
+     id="text17">Agent Ecosystem</text>
   <!-- Feedback loop -->
-  <path d="M 520 401 Q 470 401 470 137 Q 470 137 520 154" fill="none" stroke="#059669" stroke-width="2" stroke-dasharray="5,4"/>
-  <polygon points="515,150 523,154 515,158" fill="#059669"/>
-
+  <path
+     d="m 520,401 c -33.33333,0 -36.80992,-28.64463 -36.80992,-204.64463 0,0 -1.51576,-29.19583 5.0085,-36.16958 C 494.72284,153.21203 520,154 520,154"
+     fill="none"
+     stroke="#059669"
+     stroke-width="2"
+     stroke-dasharray="5, 4"
+     id="path17"
+     sodipodi:nodetypes="cczc" />
+  <polygon
+     points="515,150 523,154 515,158"
+     fill="#059669"
+     id="polygon17" />
   <!-- Feedback label -->
-  <rect x="420" y="264" width="76" height="40" rx="8" fill="#f8fafc" stroke="#059669" stroke-width="1"/>
-  <text x="458" y="282" font-family="-apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12px" font-weight="600" fill="#059669" text-anchor="middle">Cross-layer</text>
-  <text x="458" y="298" font-family="-apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12px" font-weight="600" fill="#059669" text-anchor="middle">attack paths</text>
-
+  <rect
+     x="420"
+     y="264"
+     width="76"
+     height="40"
+     rx="8"
+     fill="#f8fafc"
+     stroke="#059669"
+     stroke-width="1"
+     id="rect17" />
+  <text
+     x="458"
+     y="282"
+     font-family="-apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
+     font-size="12px"
+     font-weight="600"
+     fill="#059669"
+     text-anchor="middle"
+     id="text18">Cross-layer</text>
+  <text
+     x="458"
+     y="298"
+     font-family="-apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
+     font-size="12px"
+     font-weight="600"
+     fill="#059669"
+     text-anchor="middle"
+     id="text19">attack paths</text>
   <!-- Coverage note -->
-  <rect x="530" y="438" width="330" height="48" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
-  <text x="695" y="459" font-family="-apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12px" font-weight="600" fill="#334155" text-anchor="middle">Threat model covers 7 interacting layers</text>
-  <text x="695" y="475" font-family="-apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12px" font-weight="500" fill="#0f172a" text-anchor="middle">Plus cross-layer attack paths</text>
-
+  <rect
+     x="530"
+     y="438"
+     width="330"
+     height="48"
+     rx="8"
+     fill="#f8fafc"
+     stroke="#e2e8f0"
+     stroke-width="1"
+     id="rect19" />
+  <text
+     x="695"
+     y="459"
+     font-family="-apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
+     font-size="12px"
+     font-weight="600"
+     fill="#334155"
+     text-anchor="middle"
+     id="text20">Threat model covers 7 interacting layers</text>
+  <text
+     x="695"
+     y="475"
+     font-family="-apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
+     font-size="12px"
+     font-weight="500"
+     fill="#0f172a"
+     text-anchor="middle"
+     id="text21">Plus cross-layer attack paths</text>
   <!-- Caption -->
-  <text x="460" y="520" class="caption" text-anchor="middle">The feedback loop from Agent Ecosystem back to Foundation Models captures how threats propagate through the entire stack.</text>
+  <text
+     x="460"
+     y="520"
+     class="caption"
+     text-anchor="middle"
+     id="text22">The feedback loop from Agent Ecosystem back to Foundation Models captures how threats propagate through the entire stack.</text>
 </svg>

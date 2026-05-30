@@ -1,5 +1,5 @@
 ---
-title: "5 Ways AI Systems Break Traditional Threat Modeling"
+title: "5 Ways AI Systems Break Traditional Threat Model"
 date: 2026-05-25
 uuid: 202605250000
 status: published
@@ -18,13 +18,9 @@ tags:
     STRIDE
   ]
 image:
-  path: /assets/media/ai-security/ai-threat-modeling-limits.png
+  path: /assets/media/ai/threat-modeling-ai-applications.png
 description: "Your security process was built for deterministic systems. Here are the 5 specific ways AI breaks it, and what you need to add before you ship."
 mermaid: false
----
-
-# 5 Ways AI Systems Break Traditional Threat Modeling
-
 ---
 
 Most engineering teams deploying AI in 2026 already have a security process. STRIDE reviews, threat registers, penetration tests before major launches.
@@ -45,7 +41,9 @@ A financial services team ran prompt injection tests before deployment and found
 
 **What changes:** You need automated statistical evaluation. Tools like PyRIT that run thousands of variations and report attack success rates with confidence intervals, not binary pass/fail results. You also need re-testing on a schedule tied to model updates, not just pre-deployment snapshots.
 
-[[VISUAL: STRIDE-AI mapping diagram — show traditional STRIDE categories (Spoofing, Tampering, Repudiation, Info Disclosure, DoS, Elevation of Privilege) on the left, their AI counterparts (Identity Confusion, Training Data Contamination, Audit Bypass, Model Inversion, Context Overflow, Jailbreak) on the right, with arrows connecting each pair. This is the article's core conceptual contribution — a reference diagram readers will screenshot. Place after the "What changes" paragraph in Section 1.]]
+The STRIDE categories still apply to AI systems, but each maps to a different attack class:
+
+![STRIDE-AI mapping](/assets/diagrams/stride-ai-mapping.svg)
 
 ---
 
@@ -59,15 +57,19 @@ There is no traditional software equivalent to training data. You can audit sour
 
 A healthcare company fine-tuned a model on de-identified patient records. Membership inference attacks against the deployed model allowed researchers to identify which records had been included in training, a finding consistent with the attack class first demonstrated by Shokri et al. (IEEE S&P 2017). The model had not been compromised. It was operating exactly as designed. That's the unsettling part. The design was the vulnerability.
 
+This is why the structure of the threat model itself changes, not just the threats it catalogs. A traditional system has two surfaces to model: the network and the source code. An agentic system has seven interacting layers, each introducing its own attack vectors:
+
+![Threat model comparison](/assets/diagrams/threat-model-comparison.svg)
+
+The feedback loop from Agent Ecosystem back to Foundation Models captures how poisoned model weights, compromised MCP servers, or malicious skill packages can propagate through the entire stack. A threat in one layer becomes an attack vector in another.
+
 **What changes:** Your asset inventory now includes training corpora, fine-tuning datasets, and embedding stores. Each needs:
 
-- Provenance documentation
-- Access controls
-- Poisoning resistance evaluation
+- **Provenance documentation** — Where did the data come from? Who curated it? Is there a chain of custody for fine-tuning datasets?
+- **Poisoning resistance evaluation** — Run statistical anomaly detection on training corpora (tools like `cleanlab` can flag suspicious data points). Test with membership inference attacks using frameworks like `membership-inference-attack`. Verify differential privacy guarantees if applicable.
+- **Access controls** — Restrict write access to training data and embedding stores. Treat them with the same seriousness as source code repositories.
 
-These don't fit on a traditional data flow diagram.
-
-[[VISUAL: Threat model comparison — two side-by-side diagrams. Left: traditional system (one box labeled "Application" with arrows labeled "Network" and "Source Code" pointing at it, threat model covers these two surfaces). Right: agentic system (7 stacked layers from MAESTRO: Foundation Models → Data Operations → Agent Frameworks → Deployment Infrastructure → Evaluation & Observability → Security & Compliance → Agent Ecosystem, with arrows crossing between layers showing cross-layer attack paths). Caption: "The structure of the threat model changes, not just the threats." Place after the healthcare membership inference example in Section 2.]]
+These don't fit on a traditional data flow diagram because the attack surface isn't a boundary — it's a learning process.
 
 ---
 
@@ -77,7 +79,15 @@ The biggest security shift in AI isn't LLMs. It's agents. AI systems that call t
 
 A standalone LLM producing harmful text is a content moderation problem. An agent acting on that content is an operational security problem. When an AI agent has access to your CRM, your cloud credentials, and your internal APIs, it has a larger effective permission set than most employees. It can also be manipulated through its inputs in ways no human employee can be.
 
-An agentic customer support system was manipulated through a customer's incoming message to query the database for other customers' account records. No code vulnerability was exploited. The model interpreted the attacker's message as a legitimate operational request. The agent executed it.
+An agentic customer support system was manipulated through a customer's incoming message. Here's the attack flow:
+
+1. **The attacker sends a message** that appears to be a legitimate support request: "Hi, I forgot my account email. My username is john_doe and I need to verify my identity to reset my password."
+2. **The model interprets the message** as a genuine identity verification request — the kind it's been designed to handle. It doesn't flag the request as suspicious because the language is natural and the intent appears benign.
+3. **The agent framework dispatches a tool call** — `get_account_info(username="john_doe")` — with the attacker-supplied username as the parameter.
+4. **The database returns the account record**, including the email address associated with john_doe's account.
+5. **The model relays the email back** to the user as part of the identity verification response.
+
+No code vulnerability was exploited. No injection technique, no prompt escaping, no special syntax. The model interpreted ambiguous input as a legitimate operational request and the agent framework executed it. The vulnerability wasn't in the code — it was in the gap between what the attacker said and what the model thought it was being asked to do.
 
 **What changes:** Every tool your agent can call is attack surface. You need a tool allowlist, not a denylist. Parameter validation on every tool input. Scope-limited credentials per agent. Full logging of every action taken. These don't appear on traditional threat modeling checklists because traditional systems don't have "tools."
 
@@ -103,9 +113,17 @@ Traditional supply chain security has a defined scope: source code, open-source 
 
 An AI supply chain adds training datasets, model weights, fine-tuning corpora, embedding stores, MCP servers, agent skill marketplaces, and shared prompt template libraries. Most of these are not versioned, not audited, and not covered by your existing SBOM process. A single poisoned dataset cascades into every downstream model trained on it.
 
-A malicious MCP server was published to a community registry and appeared legitimate. When an agent loaded it, the tool descriptions, the natural-language strings explaining what the tool does, contained embedded instructions. The model processed those instructions as operational guidance and executed them via tool calls. No vulnerable code was deployed. The exploit was a text string in a configuration file. As of mid-2026, no dedicated scanning tool exists for MCP tool descriptions. Most teams rely on manual review, which is precisely why this attack class is so dangerous.
+A malicious MCP server was published to a community registry and appeared legitimate. When an agent loaded it, the tool descriptions — the natural-language strings explaining what each tool does — contained embedded instructions. The model processed those instructions as operational guidance and executed them via tool calls. No vulnerable code was deployed. The exploit was a text string in a configuration file.
 
-**What changes:** Your pre-deployment process needs to include MCP server scanning, tool description hash verification, and a supply chain review that covers components that never appear in your code repository. Standard SCA tools don't see prompt-level payloads.
+This attack class was documented in the OWASP Agentic AI Top 10 (2025) under tool description poisoning and reported to MCP registry maintainers in early 2026. MITRE ATLAS also catalogs this as an AI supply chain risk (ATK0047 — Model Supply Chain Poisoning). As of mid-2026, no dedicated scanning tool exists for MCP tool descriptions. Most teams rely on manual review, which is precisely why this attack class is so dangerous.
+
+**What changes:** Your pre-deployment process needs to include the following:
+
+- **MCP server scanning** — Run static analysis on tool descriptions looking for suspicious patterns: references to unexpected system paths, credential access, outbound network calls, or instructions that conflict with the tool's stated purpose.
+- **Tool description hash verification** — Hash tool descriptions and compare against known-good baselines. Any change, even a single word, should trigger a security review before the agent loads the updated server.
+- **Sandboxing** — Run MCP servers in isolated environments with network egress controls. Treat them like untrusted plugins.
+- **Tool call monitoring** — Log every tool call with its input parameters and expected output schema. Alert on calls that deviate from the tool's documented purpose.
+- **Supply chain review** — Extend your SBOM to cover datasets, model weights, embedding stores, and MCP servers. Standard SCA tools don't see prompt-level payloads.
 
 This is the gap that catches most teams off guard: the components that matter most to your AI system's security are the ones you can't find in your dependency tree.
 

@@ -1,12 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 490" width="860" height="490">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap');
-
-    .title { font-family: 'IBM Plex Sans', sans-serif; font-size: 24px; font-weight: 700; fill: #0f172a; }
-    .header { font-family: 'IBM Plex Sans', sans-serif; font-size: 12px; font-weight: 600; fill: #334155; letter-spacing: 0.5px; text-transform: uppercase; }
-    .body { font-family: 'IBM Plex Sans', sans-serif; font-size: 14px; font-weight: 500; fill: #0f172a; }
-    .caption { font-family: 'IBM Plex Sans', sans-serif; font-size: 12px; font-weight: 400; fill: #64748b; }
-    .tag { font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 500; fill: #334155; letter-spacing: 0.5px; text-transform: uppercase; }
+    .title { font-family: -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 24px; font-weight: 700; fill: #0f172a; }
+    .header { font-family: -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 12px; font-weight: 600; fill: #334155; letter-spacing: 0.5px; text-transform: uppercase; }
+    .body { font-family: -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 500; fill: #0f172a; }
+    .caption { font-family: -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 12px; font-weight: 400; fill: #64748b; }
   </style>
 
   <rect width="860" height="490" fill="#ffffff"/>
@@ -31,7 +28,7 @@
 
   <rect x="500" y="118" width="300" height="36" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
   <text x="650" y="134" class="body" text-anchor="middle">Identity Confusion</text>
-  <text x="650" y="150" font-family="'IBM Plex Sans', sans-serif" font-size="11px" font-weight="400" fill="#64748b" text-anchor="middle">Prompt injection impersonates</text>
+  <text x="650" y="150" font-family="-apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11px" font-weight="400" fill="#64748b" text-anchor="middle">Prompt injection impersonates</text>
 
   <!-- Row 2: Tampering -->
   <rect x="60" y="166" width="300" height="36" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
@@ -42,7 +39,7 @@
 
   <rect x="500" y="166" width="300" height="36" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
   <text x="650" y="182" class="body" text-anchor="middle">Training Data Contamination</text>
-  <text x="650" y="198" font-family="'IBM Plex Sans', sans-serif" font-size="11px" font-weight="400" fill="#64748b" text-anchor="middle">Poisoned data produces</text>
+  <text x="650" y="198" font-family="-apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11px" font-weight="400" fill="#64748b" text-anchor="middle">Poisoned data produces</text>
 
   <!-- Row 3: Repudiation -->
   <rect x="60" y="214" width="300" height="36" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
@@ -53,7 +50,7 @@
 
   <rect x="500" y="214" width="300" height="36" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
   <text x="650" y="230" class="body" text-anchor="middle">Audit Bypass</text>
-  <text x="650" y="246" font-family="'IBM Plex Sans', sans-serif" font-size="11px" font-weight="400" fill="#64748b" text-anchor="middle">Non-deterministic outputs make</text>
+  <text x="650" y="246" font-family="-apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11px" font-weight="400" fill="#64748b" text-anchor="middle">Non-deterministic outputs make</text>
 
   <!-- Row 4: Information Disclosure -->
   <rect x="60" y="262" width="300" height="36" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
@@ -64,7 +61,7 @@
 
   <rect x="500" y="262" width="300" height="36" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
   <text x="650" y="278" class="body" text-anchor="middle">Model Inversion</text>
-  <text x="650" y="294" font-family="'IBM Plex Sans', sans-serif" font-size="11px" font-weight="400" fill="#64748b" text-anchor="middle">Membership Inference</text>
+  <text x="650" y="294" font-family="-apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11px" font-weight="400" fill="#64748b" text-anchor="middle">Membership Inference</text>
 
   <!-- Row 5: Denial of Service -->
   <rect x="60" y="310" width="300" height="36" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>

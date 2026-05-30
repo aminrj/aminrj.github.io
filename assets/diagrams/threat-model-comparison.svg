@@ -1,12 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 570" width="920" height="570">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap');
-
-    .title { font-family: 'IBM Plex Sans', sans-serif; font-size: 24px; font-weight: 700; fill: #0f172a; }
-    .header { font-family: 'IBM Plex Sans', sans-serif; font-size: 12px; font-weight: 600; fill: #334155; letter-spacing: 0.5px; text-transform: uppercase; }
-    .body { font-family: 'IBM Plex Sans', sans-serif; font-size: 14px; font-weight: 500; fill: #0f172a; }
-    .caption { font-family: 'IBM Plex Sans', sans-serif; font-size: 12px; font-weight: 400; fill: #64748b; }
-    .tag { font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 500; fill: #334155; letter-spacing: 0.5px; text-transform: uppercase; }
+    .title { font-family: -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 24px; font-weight: 700; fill: #0f172a; }
+    .header { font-family: -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 12px; font-weight: 600; fill: #334155; letter-spacing: 0.5px; text-transform: uppercase; }
+    .body { font-family: -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 500; fill: #0f172a; }
+    .caption { font-family: -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 12px; font-weight: 400; fill: #64748b; }
   </style>
 
   <rect width="920" height="570" fill="#ffffff"/>
@@ -45,7 +42,7 @@
   <!-- Application box (filled, key element) -->
   <rect x="265" y="148" width="110" height="64" rx="6" fill="#0f172a"/>
   <text x="320" y="174" class="body" text-anchor="middle" fill="#ffffff">Application</text>
-  <text x="320" y="192" font-family="'IBM Plex Sans', sans-serif" font-size="11px" font-weight="400" fill="#94a3b8" text-anchor="middle">Attack surface</text>
+  <text x="320" y="192" font-family="-apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11px" font-weight="400" fill="#94a3b8" text-anchor="middle">Attack surface</text>
 
   <!-- Arrow down to Data -->
   <line x1="320" y1="212" x2="320" y2="238" stroke="#0f172a" stroke-width="2"/>
@@ -59,11 +56,10 @@
 
   <!-- Coverage note -->
   <rect x="70" y="324" width="330" height="48" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
-  <text x="235" y="345" font-family="'IBM Plex Sans', sans-serif" font-size="12px" font-weight="600" fill="#334155" text-anchor="middle">Threat model covers 2 surfaces:</text>
-  <text x="235" y="361" font-family="'IBM Plex Sans', sans-serif" font-size="12px" font-weight="500" fill="#0f172a" text-anchor="middle">Network plus Source Code</text>
+  <text x="235" y="345" font-family="-apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12px" font-weight="600" fill="#334155" text-anchor="middle">Threat model covers 2 surfaces:</text>
+  <text x="235" y="361" font-family="-apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12px" font-weight="500" fill="#0f172a" text-anchor="middle">Network plus Source Code</text>
 
   <!-- ========== RIGHT: AGENTIC ========== -->
-  <!-- All boxes outlined (white fill, dark text) except Layer 1 which is filled (dark bg, white text) -->
 
   <!-- Layer 1: Foundation Models (filled, key element) -->
   <rect x="520" y="120" width="330" height="34" rx="6" fill="#0f172a"/>
@@ -73,58 +69,58 @@
   <line x1="685" y1="154" x2="685" y2="164" stroke="#64748b" stroke-width="1.5"/>
   <polygon points="681,160 685,168 689,160" fill="#64748b"/>
 
-  <!-- Layer 2: Data Operations (outlined) -->
+  <!-- Layer 2: Data Operations -->
   <rect x="520" y="164" width="330" height="34" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
   <text x="685" y="186" class="body" text-anchor="middle">Data Operations</text>
 
   <line x1="685" y1="198" x2="685" y2="208" stroke="#64748b" stroke-width="1.5"/>
   <polygon points="681,204 685,212 689,204" fill="#64748b"/>
 
-  <!-- Layer 3: Agent Frameworks (outlined) -->
+  <!-- Layer 3: Agent Frameworks -->
   <rect x="520" y="208" width="330" height="34" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
   <text x="685" y="230" class="body" text-anchor="middle">Agent Frameworks</text>
 
   <line x1="685" y1="242" x2="685" y2="252" stroke="#64748b" stroke-width="1.5"/>
   <polygon points="681,248 685,256 689,248" fill="#64748b"/>
 
-  <!-- Layer 4: Deployment Infrastructure (outlined) -->
+  <!-- Layer 4: Deployment Infrastructure -->
   <rect x="520" y="252" width="330" height="34" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
   <text x="685" y="274" class="body" text-anchor="middle">Deployment Infrastructure</text>
 
   <line x1="685" y1="286" x2="685" y2="296" stroke="#64748b" stroke-width="1.5"/>
   <polygon points="681,292 685,300 689,292" fill="#64748b"/>
 
-  <!-- Layer 5: Evaluation & Observability (outlined) -->
+  <!-- Layer 5: Evaluation &amp; Observability -->
   <rect x="520" y="296" width="330" height="34" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
   <text x="685" y="318" class="body" text-anchor="middle">Evaluation &amp; Observability</text>
 
   <line x1="685" y1="330" x2="685" y2="340" stroke="#64748b" stroke-width="1.5"/>
   <polygon points="681,336 685,344 689,336" fill="#64748b"/>
 
-  <!-- Layer 6: Security & Compliance (outlined) -->
+  <!-- Layer 6: Security &amp; Compliance -->
   <rect x="520" y="340" width="330" height="34" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
   <text x="685" y="362" class="body" text-anchor="middle">Security &amp; Compliance</text>
 
   <line x1="685" y1="374" x2="685" y2="384" stroke="#64748b" stroke-width="1.5"/>
   <polygon points="681,380 685,388 689,380" fill="#64748b"/>
 
-  <!-- Layer 7: Agent Ecosystem (outlined) -->
+  <!-- Layer 7: Agent Ecosystem -->
   <rect x="520" y="384" width="330" height="34" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
   <text x="685" y="406" class="body" text-anchor="middle">Agent Ecosystem</text>
 
-  <!-- Feedback loop (curved, on the left side of the stack) -->
+  <!-- Feedback loop -->
   <path d="M 520 401 Q 470 401 470 137 Q 470 137 520 154" fill="none" stroke="#059669" stroke-width="2" stroke-dasharray="5,4"/>
   <polygon points="515,150 523,154 515,158" fill="#059669"/>
 
   <!-- Feedback label -->
   <rect x="420" y="264" width="76" height="40" rx="8" fill="#f8fafc" stroke="#059669" stroke-width="1"/>
-  <text x="458" y="282" font-family="'IBM Plex Sans', sans-serif" font-size="12px" font-weight="600" fill="#059669" text-anchor="middle">Cross-layer</text>
-  <text x="458" y="298" font-family="'IBM Plex Sans', sans-serif" font-size="12px" font-weight="600" fill="#059669" text-anchor="middle">attack paths</text>
+  <text x="458" y="282" font-family="-apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12px" font-weight="600" fill="#059669" text-anchor="middle">Cross-layer</text>
+  <text x="458" y="298" font-family="-apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12px" font-weight="600" fill="#059669" text-anchor="middle">attack paths</text>
 
   <!-- Coverage note -->
   <rect x="530" y="438" width="330" height="48" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
-  <text x="695" y="459" font-family="'IBM Plex Sans', sans-serif" font-size="12px" font-weight="600" fill="#334155" text-anchor="middle">Threat model covers 7 interacting layers</text>
-  <text x="695" y="475" font-family="'IBM Plex Sans', sans-serif" font-size="12px" font-weight="500" fill="#0f172a" text-anchor="middle">Plus cross-layer attack paths</text>
+  <text x="695" y="459" font-family="-apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12px" font-weight="600" fill="#334155" text-anchor="middle">Threat model covers 7 interacting layers</text>
+  <text x="695" y="475" font-family="-apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12px" font-weight="500" fill="#0f172a" text-anchor="middle">Plus cross-layer attack paths</text>
 
   <!-- Caption -->
   <text x="460" y="520" class="caption" text-anchor="middle">The feedback loop from Agent Ecosystem back to Foundation Models captures how threats propagate through the entire stack.</text>

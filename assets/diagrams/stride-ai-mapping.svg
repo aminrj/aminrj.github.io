@@ -1,84 +1,117 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 460" width="820" height="460">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 480" width="840" height="480">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap');
 
-  <!-- Background -->
-  <rect width="820" height="460" fill="#ffffff"/>
+    :root {
+      --bg: #ffffff;
+      --bg-subtle: #f8fafc;
+      --border: #e2e8f0;
+      --border-subtle: #f1f5f9;
+      --text: #0f172a;
+      --text-secondary: #334155;
+      --text-muted: #94a3b8;
+      --accent: #0f172a;
+      --accent-secondary: #2563eb;
+      --accent-green: #059669;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0b1120;
+        --bg-subtle: #1e293b;
+        --border: #334155;
+        --border-subtle: #1e293b;
+        --text: #f1f5f9;
+        --text-secondary: #cbd5e1;
+        --text-muted: #64748b;
+        --accent: #f1f5f9;
+        --accent-secondary: #60a5fa;
+        --accent-green: #34d399;
+      }
+    }
+
+    .title { font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 700; fill: var(--text); }
+    .label { font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 500; fill: var(--text-secondary); }
+    .body { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 400; fill: var(--text); }
+    .body-sm { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 400; fill: var(--text-muted); }
+    .caption { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 400; fill: var(--text-muted); }
+    .header { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 600; fill: var(--text-secondary); letter-spacing: 0.8px; text-transform: uppercase; }
+  </style>
+
+  <rect width="840" height="480" fill="var(--bg)"/>
 
   <!-- Title -->
-  <text x="410" y="36" font-family="system-ui, -apple-system, 'SF Pro Display', 'Inter', sans-serif" font-size="22" font-weight="600" fill="#0f172a" text-anchor="middle">STRIDE Categories — Traditional vs. AI</text>
-  <line x1="160" y1="50" x2="660" y2="50" stroke="#f1f5f9" stroke-width="1"/>
+  <text x="420" y="40" class="title" text-anchor="middle">STRIDE Categories — Traditional vs. AI</text>
+  <line x1="140" y1="56" x2="700" y2="56" stroke="var(--border-subtle)" stroke-width="1"/>
 
   <!-- Column headers -->
-  <rect x="50" y="68" width="300" height="28" rx="6" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
-  <text x="200" y="87" font-family="system-ui, -apple-system, 'SF Pro Display', 'Inter', sans-serif" font-size="12" font-weight="500" fill="#334155" text-anchor="middle" letter-spacing="0.5">TRADITIONAL STRIDE</text>
-
-  <rect x="470" y="68" width="300" height="28" rx="6" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
-  <text x="620" y="87" font-family="system-ui, -apple-system, 'SF Pro Display', 'Inter', sans-serif" font-size="12" font-weight="500" fill="#334155" text-anchor="middle" letter-spacing="0.5">AI COUNTERPART</text>
+  <text x="200" y="84" class="header" text-anchor="middle">Traditional STRIDE</text>
+  <text x="640" y="84" class="header" text-anchor="middle">AI Counterpart</text>
 
   <!-- Row 1: Spoofing -->
-  <rect x="60" y="112" width="280" height="36" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
-  <text x="200" y="135" font-family="system-ui, -apple-system, 'SF Pro Display', 'Inter', sans-serif" font-size="14" font-weight="500" fill="#0f172a" text-anchor="middle">Spoofing</text>
+  <rect x="60" y="104" width="280" height="36" rx="6" fill="var(--bg)" stroke="var(--border)" stroke-width="1.5"/>
+  <text x="200" y="127" class="body" text-anchor="middle">Spoofing</text>
 
-  <line x1="340" y1="130" x2="450" y2="130" stroke="#94a3b8" stroke-width="1.5"/>
-  <polygon points="445,126 455,130 445,134" fill="#94a3b8"/>
+  <line x1="340" y1="122" x2="440" y2="122" stroke="var(--text-muted)" stroke-width="1.5"/>
+  <polygon points="435,118 445,122 435,126" fill="var(--text-muted)"/>
 
-  <rect x="470" y="112" width="290" height="36" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
-  <text x="615" y="130" font-family="system-ui, -apple-system, 'SF Pro Display', 'Inter', sans-serif" font-size="13" font-weight="500" fill="#0f172a" text-anchor="middle">Identity Confusion</text>
-  <text x="615" y="144" font-family="system-ui, -apple-system, 'SF Pro Display', 'Inter', sans-serif" font-size="10" fill="#94a3b8" text-anchor="middle">Prompt injection impersonates</text>
+  <rect x="460" y="104" width="320" height="36" rx="6" fill="var(--bg)" stroke="var(--border)" stroke-width="1.5"/>
+  <text x="620" y="120" class="body" text-anchor="middle">Identity Confusion</text>
+  <text x="620" y="134" class="body-sm" text-anchor="middle">Prompt injection impersonates</text>
 
   <!-- Row 2: Tampering -->
-  <rect x="60" y="162" width="280" height="36" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
-  <text x="200" y="185" font-family="system-ui, -apple-system, 'SF Pro Display', 'Inter', sans-serif" font-size="14" font-weight="500" fill="#0f172a" text-anchor="middle">Tampering</text>
+  <rect x="60" y="152" width="280" height="36" rx="6" fill="var(--bg)" stroke="var(--border)" stroke-width="1.5"/>
+  <text x="200" y="175" class="body" text-anchor="middle">Tampering</text>
 
-  <line x1="340" y1="180" x2="450" y2="180" stroke="#94a3b8" stroke-width="1.5"/>
-  <polygon points="445,176 455,180 445,184" fill="#94a3b8"/>
+  <line x1="340" y1="170" x2="440" y2="170" stroke="var(--text-muted)" stroke-width="1.5"/>
+  <polygon points="435,166 445,170 435,174" fill="var(--text-muted)"/>
 
-  <rect x="470" y="162" width="290" height="36" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
-  <text x="615" y="180" font-family="system-ui, -apple-system, 'SF Pro Display', 'Inter', sans-serif" font-size="13" font-weight="500" fill="#0f172a" text-anchor="middle">Training Data Contamination</text>
-  <text x="615" y="194" font-family="system-ui, -apple-system, 'SF Pro Display', 'Inter', sans-serif" font-size="10" fill="#94a3b8" text-anchor="middle">Poisoned data produces</text>
+  <rect x="460" y="152" width="320" height="36" rx="6" fill="var(--bg)" stroke="var(--border)" stroke-width="1.5"/>
+  <text x="620" y="168" class="body" text-anchor="middle">Training Data Contamination</text>
+  <text x="620" y="182" class="body-sm" text-anchor="middle">Poisoned data produces</text>
 
   <!-- Row 3: Repudiation -->
-  <rect x="60" y="212" width="280" height="36" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
-  <text x="200" y="235" font-family="system-ui, -apple-system, 'SF Pro Display', 'Inter', sans-serif" font-size="14" font-weight="500" fill="#0f172a" text-anchor="middle">Repudiation</text>
+  <rect x="60" y="200" width="280" height="36" rx="6" fill="var(--bg)" stroke="var(--border)" stroke-width="1.5"/>
+  <text x="200" y="223" class="body" text-anchor="middle">Repudiation</text>
 
-  <line x1="340" y1="230" x2="450" y2="230" stroke="#94a3b8" stroke-width="1.5"/>
-  <polygon points="445,226 455,230 445,234" fill="#94a3b8"/>
+  <line x1="340" y1="218" x2="440" y2="218" stroke="var(--text-muted)" stroke-width="1.5"/>
+  <polygon points="435,214 445,218 435,222" fill="var(--text-muted)"/>
 
-  <rect x="470" y="212" width="290" height="36" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
-  <text x="615" y="230" font-family="system-ui, -apple-system, 'SF Pro Display', 'Inter', sans-serif" font-size="13" font-weight="500" fill="#0f172a" text-anchor="middle">Audit Bypass</text>
-  <text x="615" y="244" font-family="system-ui, -apple-system, 'SF Pro Display', 'Inter', sans-serif" font-size="10" fill="#94a3b8" text-anchor="middle">Non-deterministic outputs make</text>
+  <rect x="460" y="200" width="320" height="36" rx="6" fill="var(--bg)" stroke="var(--border)" stroke-width="1.5"/>
+  <text x="620" y="216" class="body" text-anchor="middle">Audit Bypass</text>
+  <text x="620" y="230" class="body-sm" text-anchor="middle">Non-deterministic outputs make</text>
 
   <!-- Row 4: Information Disclosure -->
-  <rect x="60" y="262" width="280" height="36" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
-  <text x="200" y="285" font-family="system-ui, -apple-system, 'SF Pro Display', 'Inter', sans-serif" font-size="13" font-weight="500" fill="#0f172a" text-anchor="middle">Information Disclosure</text>
+  <rect x="60" y="248" width="280" height="36" rx="6" fill="var(--bg)" stroke="var(--border)" stroke-width="1.5"/>
+  <text x="200" y="271" class="body" text-anchor="middle">Information Disclosure</text>
 
-  <line x1="340" y1="280" x2="450" y2="280" stroke="#94a3b8" stroke-width="1.5"/>
-  <polygon points="445,276 455,280 445,284" fill="#94a3b8"/>
+  <line x1="340" y1="266" x2="440" y2="266" stroke="var(--text-muted)" stroke-width="1.5"/>
+  <polygon points="435,262 445,266 435,270" fill="var(--text-muted)"/>
 
-  <rect x="470" y="262" width="290" height="36" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
-  <text x="615" y="280" font-family="system-ui, -apple-system, 'SF Pro Display', 'Inter', sans-serif" font-size="13" font-weight="500" fill="#0f172a" text-anchor="middle">Model Inversion /</text>
-  <text x="615" y="296" font-family="system-ui, -apple-system, 'SF Pro Display', 'Inter', sans-serif" font-size="13" font-weight="500" fill="#0f172a" text-anchor="middle">Membership Inference</text>
+  <rect x="460" y="248" width="320" height="36" rx="6" fill="var(--bg)" stroke="var(--border)" stroke-width="1.5"/>
+  <text x="620" y="264" class="body" text-anchor="middle">Model Inversion /</text>
+  <text x="620" y="280" class="body" text-anchor="middle">Membership Inference</text>
 
   <!-- Row 5: Denial of Service -->
-  <rect x="60" y="312" width="280" height="36" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
-  <text x="200" y="335" font-family="system-ui, -apple-system, 'SF Pro Display', 'Inter', sans-serif" font-size="13" font-weight="500" fill="#0f172a" text-anchor="middle">Denial of Service</text>
+  <rect x="60" y="296" width="280" height="36" rx="6" fill="var(--bg)" stroke="var(--border)" stroke-width="1.5"/>
+  <text x="200" y="319" class="body" text-anchor="middle">Denial of Service</text>
 
-  <line x1="340" y1="330" x2="450" y2="330" stroke="#94a3b8" stroke-width="1.5"/>
-  <polygon points="445,326 455,330 445,334" fill="#94a3b8"/>
+  <line x1="340" y1="314" x2="440" y2="314" stroke="var(--text-muted)" stroke-width="1.5"/>
+  <polygon points="435,310 445,314 435,318" fill="var(--text-muted)"/>
 
-  <rect x="470" y="312" width="290" height="36" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
-  <text x="615" y="335" font-family="system-ui, -apple-system, 'SF Pro Display', 'Inter', sans-serif" font-size="13" font-weight="500" fill="#0f172a" text-anchor="middle">Context Overflow</text>
+  <rect x="460" y="296" width="320" height="36" rx="6" fill="var(--bg)" stroke="var(--border)" stroke-width="1.5"/>
+  <text x="620" y="319" class="body" text-anchor="middle">Context Overflow</text>
 
   <!-- Row 6: Elevation of Privilege -->
-  <rect x="60" y="362" width="280" height="36" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
-  <text x="200" y="385" font-family="system-ui, -apple-system, 'SF Pro Display', 'Inter', sans-serif" font-size="13" font-weight="500" fill="#0f172a" text-anchor="middle">Elevation of Privilege</text>
+  <rect x="60" y="344" width="280" height="36" rx="6" fill="var(--bg)" stroke="var(--border)" stroke-width="1.5"/>
+  <text x="200" y="367" class="body" text-anchor="middle">Elevation of Privilege</text>
 
-  <line x1="340" y1="380" x2="450" y2="380" stroke="#94a3b8" stroke-width="1.5"/>
-  <polygon points="445,376 455,380 445,384" fill="#94a3b8"/>
+  <line x1="340" y1="362" x2="440" y2="362" stroke="var(--text-muted)" stroke-width="1.5"/>
+  <polygon points="435,358 445,362 435,366" fill="var(--text-muted)"/>
 
-  <rect x="470" y="362" width="290" height="36" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
-  <text x="615" y="385" font-family="system-ui, -apple-system, 'SF Pro Display', 'Inter', sans-serif" font-size="13" font-weight="500" fill="#0f172a" text-anchor="middle">Jailbreak</text>
+  <rect x="460" y="344" width="320" height="36" rx="6" fill="var(--bg)" stroke="var(--border)" stroke-width="1.5"/>
+  <text x="620" y="367" class="body" text-anchor="middle">Jailbreak</text>
 
   <!-- Caption -->
-  <text x="410" y="430" font-family="system-ui, -apple-system, 'SF Pro Display', 'Inter', sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">These are conceptual analogies — not direct translations. Each AI threat class requires its own analysis methodology.</text>
-
+  <text x="420" y="440" class="caption" text-anchor="middle">These are conceptual analogies — not direct translations. Each AI threat class requires its own analysis methodology.</text>
 </svg>

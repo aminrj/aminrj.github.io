@@ -63,9 +63,9 @@
   <text x="235" y="361" font-family="'IBM Plex Sans', sans-serif" font-size="12px" font-weight="500" fill="#0f172a" text-anchor="middle">Network plus Source Code</text>
 
   <!-- ========== RIGHT: AGENTIC ========== -->
+  <!-- All boxes outlined (white fill, dark text) except Layer 1 which is filled (dark bg, white text) -->
 
-  <!-- 7 layers, top to bottom flow -->
-  <!-- Layer 1: Foundation Models (darkest, top) -->
+  <!-- Layer 1: Foundation Models (filled, key element) -->
   <rect x="520" y="120" width="330" height="34" rx="6" fill="#0f172a"/>
   <text x="685" y="142" class="body" text-anchor="middle" fill="#ffffff">Foundation Models</text>
 
@@ -73,42 +73,42 @@
   <line x1="685" y1="154" x2="685" y2="164" stroke="#64748b" stroke-width="1.5"/>
   <polygon points="681,160 685,168 689,160" fill="#64748b"/>
 
-  <!-- Layer 2: Data Operations -->
-  <rect x="520" y="164" width="330" height="34" rx="6" fill="#1e293b"/>
-  <text x="685" y="186" class="body" text-anchor="middle" fill="#ffffff">Data Operations</text>
+  <!-- Layer 2: Data Operations (outlined) -->
+  <rect x="520" y="164" width="330" height="34" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="685" y="186" class="body" text-anchor="middle">Data Operations</text>
 
   <line x1="685" y1="198" x2="685" y2="208" stroke="#64748b" stroke-width="1.5"/>
   <polygon points="681,204 685,212 689,204" fill="#64748b"/>
 
-  <!-- Layer 3: Agent Frameworks -->
-  <rect x="520" y="208" width="330" height="34" rx="6" fill="#334155"/>
-  <text x="685" y="230" class="body" text-anchor="middle" fill="#ffffff">Agent Frameworks</text>
+  <!-- Layer 3: Agent Frameworks (outlined) -->
+  <rect x="520" y="208" width="330" height="34" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="685" y="230" class="body" text-anchor="middle">Agent Frameworks</text>
 
   <line x1="685" y1="242" x2="685" y2="252" stroke="#64748b" stroke-width="1.5"/>
   <polygon points="681,248 685,256 689,248" fill="#64748b"/>
 
-  <!-- Layer 4: Deployment Infrastructure -->
-  <rect x="520" y="252" width="330" height="34" rx="6" fill="#475569"/>
-  <text x="685" y="274" class="body" text-anchor="middle" fill="#ffffff">Deployment Infrastructure</text>
+  <!-- Layer 4: Deployment Infrastructure (outlined) -->
+  <rect x="520" y="252" width="330" height="34" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="685" y="274" class="body" text-anchor="middle">Deployment Infrastructure</text>
 
   <line x1="685" y1="286" x2="685" y2="296" stroke="#64748b" stroke-width="1.5"/>
   <polygon points="681,292 685,300 689,292" fill="#64748b"/>
 
-  <!-- Layer 5: Evaluation & Observability -->
-  <rect x="520" y="296" width="330" height="34" rx="6" fill="#64748b"/>
-  <text x="685" y="318" class="body" text-anchor="middle" fill="#ffffff">Evaluation &amp; Observability</text>
+  <!-- Layer 5: Evaluation & Observability (outlined) -->
+  <rect x="520" y="296" width="330" height="34" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="685" y="318" class="body" text-anchor="middle">Evaluation &amp; Observability</text>
 
   <line x1="685" y1="330" x2="685" y2="340" stroke="#64748b" stroke-width="1.5"/>
   <polygon points="681,336 685,344 689,336" fill="#64748b"/>
 
-  <!-- Layer 6: Security & Compliance -->
-  <rect x="520" y="340" width="330" height="34" rx="6" fill="#94a3b8"/>
-  <text x="685" y="362" class="body" text-anchor="middle" fill="#0f172a">Security &amp; Compliance</text>
+  <!-- Layer 6: Security & Compliance (outlined) -->
+  <rect x="520" y="340" width="330" height="34" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="685" y="362" class="body" text-anchor="middle">Security &amp; Compliance</text>
 
   <line x1="685" y1="374" x2="685" y2="384" stroke="#64748b" stroke-width="1.5"/>
   <polygon points="681,380 685,388 689,380" fill="#64748b"/>
 
-  <!-- Layer 7: Agent Ecosystem (lightest, bottom) -->
+  <!-- Layer 7: Agent Ecosystem (outlined) -->
   <rect x="520" y="384" width="330" height="34" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
   <text x="685" y="406" class="body" text-anchor="middle">Agent Ecosystem</text>
 

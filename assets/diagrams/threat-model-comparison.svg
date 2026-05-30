@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 540" width="860" height="540">
+
+  <!-- Background -->
+  <rect width="860" height="540" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="430" y="36" font-family="system-ui, -apple-system, 'SF Pro Display', 'Inter', sans-serif" font-size="22" font-weight="600" fill="#0f172a" text-anchor="middle">The Structure of the Threat Model Changes — Not Just the Threats</text>
+  <line x1="140" y1="50" x2="720" y2="50" stroke="#f1f5f9" stroke-width="1"/>
+
+  <!-- Divider between columns -->
+  <line x1="430" y1="60" x2="430" y2="500" stroke="#f1f5f9" stroke-width="1" stroke-dasharray="4,4"/>
+
+  <!-- ========== LEFT: TRADITIONAL ========== -->
+  <text x="215" y="84" font-family="system-ui, -apple-system, 'SF Pro Display', 'Inter', sans-serif" font-size="12" font-weight="500" fill="#334155" text-anchor="middle" letter-spacing="0.5">TRADITIONAL THREAT MODEL</text>
+
+  <!-- Network box -->
+  <rect x="60" y="105" width="130" height="36" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="125" y="128" font-family="system-ui, -apple-system, 'SF Pro Display', 'Inter', sans-serif" font-size="13" font-weight="500" fill="#0f172a" text-anchor="middle">Network</text>
+
+  <!-- Source Code box -->
+  <rect x="60" y="155" width="130" height="36" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="125" y="178" font-family="system-ui, -apple-system, 'SF Pro Display', 'Inter', sans-serif" font-size="13" font-weight="500" fill="#0f172a" text-anchor="middle">Source Code</text>
+
+  <!-- Arrows to Application (curved) -->
+  <path d="M 190 123 Q 225 130 255 140" fill="none" stroke="#0f172a" stroke-width="2"/>
+  <polygon points="250,136 260,138 254,142" fill="#0f172a"/>
+
+  <path d="M 190 173 Q 225 165 255 155" fill="none" stroke="#0f172a" stroke-width="2"/>
+  <polygon points="250,158 260,154 254,152" fill="#0f172a"/>
+
+  <!-- Application box (filled — key element) -->
+  <rect x="260" y="130" width="110" height="60" rx="6" fill="#0f172a"/>
+  <text x="315" y="156" font-family="system-ui, -apple-system, 'SF Pro Display', 'Inter', sans-serif" font-size="13" font-weight="500" fill="#ffffff" text-anchor="middle">Application</text>
+  <text x="315" y="174" font-family="system-ui, -apple-system, 'SF Pro Display', 'Inter', sans-serif" font-size="10" fill="#94a3b8" text-anchor="middle">Attack surface</text>
+
+  <!-- Arrow to Data -->
+  <line x1="315" y1="190" x2="315" y2="215" stroke="#0f172a" stroke-width="2"/>
+  <polygon points="311,210 315,220 319,210" fill="#0f172a"/>
+
+  <!-- Data cylinder -->
+  <ellipse cx="315" cy="242" rx="42" ry="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <rect x="273" y="242" width="84" height="28" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <ellipse cx="315" cy="270" rx="42" ry="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="315" y="261" font-family="system-ui, -apple-system, 'SF Pro Display', 'Inter', sans-serif" font-size="12" font-weight="500" fill="#0f172a" text-anchor="middle">Data</text>
+
+  <!-- Coverage note -->
+  <rect x="70" y="295" width="290" height="44" rx="6" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="215" y="314" font-family="system-ui, -apple-system, 'SF Pro Display', 'Inter', sans-serif" font-size="11" font-weight="500" fill="#334155" text-anchor="middle">Threat model covers 2 surfaces:</text>
+  <text x="215" y="330" font-family="system-ui, -apple-system, 'SF Pro Display', 'Inter', sans-serif" font-size="11" fill="#0f172a" text-anchor="middle">Network + Source Code</text>
+
+  <!-- ========== RIGHT: AGENTIC ========== -->
+  <text x="645" y="84" font-family="system-ui, -apple-system, 'SF Pro Display', 'Inter', sans-serif" font-size="12" font-weight="500" fill="#334155" text-anchor="middle" letter-spacing="0.5">AGENTIC THREAT MODEL</text>
+
+  <!-- 7 layers — single hue, varying weight -->
+  <!-- Layer 1: Foundation Models (darkest) -->
+  <rect x="460" y="105" width="300" height="32" rx="6" fill="#0f172a"/>
+  <text x="610" y="125" font-family="system-ui, -apple-system, 'SF Pro Display', 'Inter', sans-serif" font-size="12" font-weight="500" fill="#ffffff" text-anchor="middle">Foundation Models</text>
+
+  <!-- Arrow down -->
+  <line x1="610" y1="137" x2="610" y2="147" stroke="#94a3b8" stroke-width="1.5"/>
+  <polygon points="606,143 610,150 614,143" fill="#94a3b8"/>
+
+  <!-- Layer 2: Data Operations -->
+  <rect x="460" y="147" width="300" height="32" rx="6" fill="#1e293b"/>
+  <text x="610" y="167" font-family="system-ui, -apple-system, 'SF Pro Display', 'Inter', sans-serif" font-size="12" font-weight="500" fill="#ffffff" text-anchor="middle">Data Operations</text>
+
+  <line x1="610" y1="179" x2="610" y2="189" stroke="#94a3b8" stroke-width="1.5"/>
+  <polygon points="606,185 610,192 614,185" fill="#94a3b8"/>
+
+  <!-- Layer 3: Agent Frameworks -->
+  <rect x="460" y="189" width="300" height="32" rx="6" fill="#334155"/>
+  <text x="610" y="209" font-family="system-ui, -apple-system, 'SF Pro Display', 'Inter', sans-serif" font-size="12" font-weight="500" fill="#ffffff" text-anchor="middle">Agent Frameworks</text>
+
+  <line x1="610" y1="221" x2="610" y2="231" stroke="#94a3b8" stroke-width="1.5"/>
+  <polygon points="606,227 610,234 614,227" fill="#94a3b8"/>
+
+  <!-- Layer 4: Deployment Infrastructure -->
+  <rect x="460" y="231" width="300" height="32" rx="6" fill="#475569"/>
+  <text x="610" y="251" font-family="system-ui, -apple-system, 'SF Pro Display', 'Inter', sans-serif" font-size="12" font-weight="500" fill="#ffffff" text-anchor="middle">Deployment Infrastructure</text>
+
+  <line x1="610" y1="263" x2="610" y2="273" stroke="#94a3b8" stroke-width="1.5"/>
+  <polygon points="606,269 610,276 614,269" fill="#94a3b8"/>
+
+  <!-- Layer 5: Evaluation &amp; Observability -->
+  <rect x="460" y="273" width="300" height="32" rx="6" fill="#64748b"/>
+  <text x="610" y="293" font-family="system-ui, -apple-system, 'SF Pro Display', 'Inter', sans-serif" font-size="12" font-weight="500" fill="#ffffff" text-anchor="middle">Evaluation &amp; Observability</text>
+
+  <line x1="610" y1="305" x2="610" y2="315" stroke="#94a3b8" stroke-width="1.5"/>
+  <polygon points="606,311 610,318 614,311" fill="#94a3b8"/>
+
+  <!-- Layer 6: Security &amp; Compliance -->
+  <rect x="460" y="315" width="300" height="32" rx="6" fill="#94a3b8"/>
+  <text x="610" y="335" font-family="system-ui, -apple-system, 'SF Pro Display', 'Inter', sans-serif" font-size="12" font-weight="500" fill="#ffffff" text-anchor="middle">Security &amp; Compliance</text>
+
+  <line x1="610" y1="347" x2="610" y2="357" stroke="#94a3b8" stroke-width="1.5"/>
+  <polygon points="606,353 610,360 614,353" fill="#94a3b8"/>
+
+  <!-- Layer 7: Agent Ecosystem (lightest) -->
+  <rect x="460" y="357" width="300" height="32" rx="6" fill="#cbd5e1"/>
+  <text x="610" y="377" font-family="system-ui, -apple-system, 'SF Pro Display', 'Inter', sans-serif" font-size="12" font-weight="500" fill="#0f172a" text-anchor="middle">Agent Ecosystem</text>
+
+  <!-- Feedback loop (curved, on the left side of the stack) -->
+  <path d="M 460 373 Q 410 373 410 121 Q 410 121 460 137" fill="none" stroke="#059669" stroke-width="2" stroke-dasharray="5,4"/>
+  <polygon points="455,133 463,137 455,141" fill="#059669"/>
+
+  <!-- Feedback label -->
+  <rect x="360" y="240" width="70" height="36" rx="6" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1"/>
+  <text x="395" y="256" font-family="system-ui, -apple-system, 'SF Pro Display', 'Inter', sans-serif" font-size="10" font-weight="500" fill="#059669" text-anchor="middle">Cross-layer</text>
+  <text x="395" y="270" font-family="system-ui, -apple-system, 'SF Pro Display', 'Inter', sans-serif" font-size="10" font-weight="500" fill="#059669" text-anchor="middle">attack paths</text>
+
+  <!-- Coverage note -->
+  <rect x="460" y="405" width="300" height="44" rx="6" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="610" y="424" font-family="system-ui, -apple-system, 'SF Pro Display', 'Inter', sans-serif" font-size="11" font-weight="500" fill="#334155" text-anchor="middle">Threat model covers 7 interacting layers</text>
+  <text x="610" y="440" font-family="system-ui, -apple-system, 'SF Pro Display', 'Inter', sans-serif" font-size="11" fill="#0f172a" text-anchor="middle">+ cross-layer attack paths</text>
+
+</svg>

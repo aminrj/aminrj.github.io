@@ -1,164 +1,131 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 570" width="900" height="570">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 570" width="920" height="570">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
 
-    :root {
-      --bg: #ffffff;
-      --bg-subtle: #f8fafc;
-      --border: #e2e8f0;
-      --border-subtle: #f1f5f9;
-      --text: #0f172a;
-      --text-secondary: #334155;
-      --text-muted: #94a3b8;
-      --accent: #0f172a;
-      --accent-secondary: #2563eb;
-      --accent-green: #059669;
-      --text-on-accent: #ffffff;
-      --text-on-bg-subtle: #0f172a;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #0b1120;
-        --bg-subtle: #1e293b;
-        --border: #334155;
-        --border-subtle: #1e293b;
-        --text: #f1f5f9;
-        --text-secondary: #cbd5e1;
-        --text-muted: #64748b;
-        --accent: #f1f5f9;
-        --accent-secondary: #60a5fa;
-        --accent-green: #34d399;
-        --text-on-accent: #0f172a;
-        --text-on-bg-subtle: #f1f5f9;
-      }
-    }
-
-    .title { font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 700; fill: var(--text); }
-    .header { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 600; fill: var(--text-secondary); letter-spacing: 0.8px; text-transform: uppercase; }
-    .body { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 400; fill: var(--text); }
-    .body-sm { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 400; fill: var(--text-muted); }
-    .caption { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 400; fill: var(--text-muted); }
-    .label { font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 500; fill: var(--text-secondary); }
+    .title { font-family: 'IBM Plex Sans', sans-serif; font-size: 24px; font-weight: 700; fill: #0f172a; }
+    .header { font-family: 'IBM Plex Sans', sans-serif; font-size: 12px; font-weight: 600; fill: #334155; letter-spacing: 0.5px; text-transform: uppercase; }
+    .body { font-family: 'IBM Plex Sans', sans-serif; font-size: 14px; font-weight: 500; fill: #0f172a; }
+    .caption { font-family: 'IBM Plex Sans', sans-serif; font-size: 12px; font-weight: 400; fill: #64748b; }
+    .tag { font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 500; fill: #334155; letter-spacing: 0.5px; text-transform: uppercase; }
   </style>
 
-  <rect width="900" height="570" fill="var(--bg)"/>
+  <rect width="920" height="570" fill="#ffffff"/>
 
   <!-- Title -->
-  <text x="450" y="40" class="title" text-anchor="middle">The Structure of the Threat Model Changes, Not Just the Threats</text>
-  <line x1="120" y1="56" x2="780" y2="56" stroke="var(--border-subtle)" stroke-width="1"/>
+  <text x="460" y="40" class="title" text-anchor="middle">The Structure of the Threat Model Changes, Not Just the Threats</text>
+  <line x1="120" y1="56" x2="800" y2="56" stroke="#f1f5f9" stroke-width="1"/>
 
   <!-- Divider between columns -->
-  <line x1="450" y1="68" x2="450" y2="520" stroke="var(--border-subtle)" stroke-width="1" stroke-dasharray="4,4"/>
+  <line x1="460" y1="68" x2="460" y2="520" stroke="#f1f5f9" stroke-width="1" stroke-dasharray="4,4"/>
 
   <!-- Column headers -->
-  <rect x="50" y="78" width="340" height="28" rx="6" fill="var(--bg-subtle)" stroke="var(--border)" stroke-width="1"/>
-  <text x="220" y="97" class="header" text-anchor="middle">Traditional Threat Model</text>
+  <rect x="50" y="78" width="350" height="28" rx="6" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="225" y="97" class="header" text-anchor="middle">Traditional Threat Model</text>
 
-  <rect x="510" y="78" width="340" height="28" rx="6" fill="var(--bg-subtle)" stroke="var(--border)" stroke-width="1"/>
-  <text x="680" y="97" class="header" text-anchor="middle">Agentic Threat Model</text>
+  <rect x="520" y="78" width="350" height="28" rx="6" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="695" y="97" class="header" text-anchor="middle">Agentic Threat Model</text>
 
   <!-- ========== LEFT: TRADITIONAL ========== -->
 
   <!-- Network box -->
-  <rect x="60" y="118" width="140" height="36" rx="6" fill="var(--bg)" stroke="var(--border)" stroke-width="1.5"/>
-  <text x="130" y="141" class="body" text-anchor="middle">Network</text>
+  <rect x="60" y="120" width="140" height="36" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="130" y="143" class="body" text-anchor="middle">Network</text>
 
   <!-- Source Code box -->
-  <rect x="60" y="170" width="140" height="36" rx="6" fill="var(--bg)" stroke="var(--border)" stroke-width="1.5"/>
-  <text x="130" y="193" class="body" text-anchor="middle">Source Code</text>
+  <rect x="60" y="172" width="140" height="36" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="130" y="195" class="body" text-anchor="middle">Source Code</text>
 
   <!-- Arrows to Application (curved, left to right) -->
-  <path d="M 200 136 Q 235 142 265 152" fill="none" stroke="var(--accent)" stroke-width="2"/>
-  <polygon points="260,148 270,152 260,156" fill="var(--accent)"/>
+  <path d="M 200 138 Q 235 144 265 154" fill="none" stroke="#0f172a" stroke-width="2"/>
+  <polygon points="260,150 270,154 260,158" fill="#0f172a"/>
 
-  <path d="M 200 186 Q 235 178 265 164" fill="none" stroke="var(--accent)" stroke-width="2"/>
-  <polygon points="260,166 270,162 260,158" fill="var(--accent)"/>
+  <path d="M 200 188 Q 235 180 265 166" fill="none" stroke="#0f172a" stroke-width="2"/>
+  <polygon points="260,168 270,164 260,160" fill="#0f172a"/>
 
   <!-- Application box (filled, key element) -->
-  <rect x="265" y="144" width="110" height="64" rx="6" fill="var(--accent)"/>
-  <text x="320" y="170" class="body" text-anchor="middle" fill="var(--text-on-accent)">Application</text>
-  <text x="320" y="188" class="body-sm" text-anchor="middle" fill="var(--text-muted)">Attack surface</text>
+  <rect x="265" y="148" width="110" height="64" rx="6" fill="#0f172a"/>
+  <text x="320" y="174" class="body" text-anchor="middle" fill="#ffffff">Application</text>
+  <text x="320" y="192" font-family="'IBM Plex Sans', sans-serif" font-size="11px" font-weight="400" fill="#94a3b8" text-anchor="middle">Attack surface</text>
 
   <!-- Arrow down to Data -->
-  <line x1="320" y1="208" x2="320" y2="234" stroke="var(--accent)" stroke-width="2"/>
-  <polygon points="316,229 320,239 324,229" fill="var(--accent)"/>
+  <line x1="320" y1="212" x2="320" y2="238" stroke="#0f172a" stroke-width="2"/>
+  <polygon points="316,233 320,243 324,233" fill="#0f172a"/>
 
   <!-- Data cylinder -->
-  <ellipse cx="320" cy="264" rx="44" ry="12" fill="var(--bg)" stroke="var(--border)" stroke-width="1.5"/>
-  <rect x="276" y="264" width="88" height="30" fill="var(--bg)" stroke="var(--border)" stroke-width="1.5"/>
-  <ellipse cx="320" cy="294" rx="44" ry="12" fill="var(--bg)" stroke="var(--border)" stroke-width="1.5"/>
-  <text x="320" y="284" class="body" text-anchor="middle">Data</text>
+  <ellipse cx="320" cy="268" rx="44" ry="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <rect x="276" y="268" width="88" height="30" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <ellipse cx="320" cy="298" rx="44" ry="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="320" y="288" class="body" text-anchor="middle">Data</text>
 
   <!-- Coverage note -->
-  <rect x="70" y="320" width="320" height="48" rx="8" fill="var(--bg-subtle)" stroke="var(--border)" stroke-width="1"/>
-  <text x="230" y="341" class="label" text-anchor="middle">Threat model covers 2 surfaces:</text>
-  <text x="230" y="359" class="body" text-anchor="middle">Network plus Source Code</text>
+  <rect x="70" y="324" width="330" height="48" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="235" y="345" font-family="'IBM Plex Sans', sans-serif" font-size="12px" font-weight="600" fill="#334155" text-anchor="middle">Threat model covers 2 surfaces:</text>
+  <text x="235" y="361" font-family="'IBM Plex Sans', sans-serif" font-size="12px" font-weight="500" fill="#0f172a" text-anchor="middle">Network plus Source Code</text>
 
   <!-- ========== RIGHT: AGENTIC ========== -->
 
   <!-- 7 layers, top to bottom flow -->
   <!-- Layer 1: Foundation Models (darkest, top) -->
-  <rect x="510" y="118" width="320" height="34" rx="6" fill="var(--accent)"/>
-  <text x="670" y="140" class="body" text-anchor="middle" fill="var(--text-on-accent)">Foundation Models</text>
+  <rect x="520" y="120" width="330" height="34" rx="6" fill="#0f172a"/>
+  <text x="685" y="142" class="body" text-anchor="middle" fill="#ffffff">Foundation Models</text>
 
   <!-- Arrow down -->
-  <line x1="670" y1="152" x2="670" y2="162" stroke="var(--text-muted)" stroke-width="1.5"/>
-  <polygon points="666,158 670,166 674,158" fill="var(--text-muted)"/>
+  <line x1="685" y1="154" x2="685" y2="164" stroke="#64748b" stroke-width="1.5"/>
+  <polygon points="681,160 685,168 689,160" fill="#64748b"/>
 
   <!-- Layer 2: Data Operations -->
-  <rect x="510" y="162" width="320" height="34" rx="6" fill="var(--text-secondary)"/>
-  <text x="670" y="184" class="body" text-anchor="middle" fill="var(--text-on-accent)">Data Operations</text>
+  <rect x="520" y="164" width="330" height="34" rx="6" fill="#1e293b"/>
+  <text x="685" y="186" class="body" text-anchor="middle" fill="#ffffff">Data Operations</text>
 
-  <line x1="670" y1="196" x2="670" y2="206" stroke="var(--text-muted)" stroke-width="1.5"/>
-  <polygon points="666,202 670,210 674,202" fill="var(--text-muted)"/>
+  <line x1="685" y1="198" x2="685" y2="208" stroke="#64748b" stroke-width="1.5"/>
+  <polygon points="681,204 685,212 689,204" fill="#64748b"/>
 
   <!-- Layer 3: Agent Frameworks -->
-  <rect x="510" y="206" width="320" height="34" rx="6" fill="var(--border)"/>
-  <text x="670" y="228" class="body" text-anchor="middle">Agent Frameworks</text>
+  <rect x="520" y="208" width="330" height="34" rx="6" fill="#334155"/>
+  <text x="685" y="230" class="body" text-anchor="middle" fill="#ffffff">Agent Frameworks</text>
 
-  <line x1="670" y1="240" x2="670" y2="250" stroke="var(--text-muted)" stroke-width="1.5"/>
-  <polygon points="666,246 670,254 674,246" fill="var(--text-muted)"/>
+  <line x1="685" y1="242" x2="685" y2="252" stroke="#64748b" stroke-width="1.5"/>
+  <polygon points="681,248 685,256 689,248" fill="#64748b"/>
 
   <!-- Layer 4: Deployment Infrastructure -->
-  <rect x="510" y="250" width="320" height="34" rx="6" fill="var(--bg-subtle)" stroke="var(--border)" stroke-width="1"/>
-  <text x="670" y="272" class="body" text-anchor="middle">Deployment Infrastructure</text>
+  <rect x="520" y="252" width="330" height="34" rx="6" fill="#475569"/>
+  <text x="685" y="274" class="body" text-anchor="middle" fill="#ffffff">Deployment Infrastructure</text>
 
-  <line x1="670" y1="284" x2="670" y2="294" stroke="var(--text-muted)" stroke-width="1.5"/>
-  <polygon points="666,290 670,298 674,290" fill="var(--text-muted)"/>
+  <line x1="685" y1="286" x2="685" y2="296" stroke="#64748b" stroke-width="1.5"/>
+  <polygon points="681,292 685,300 689,292" fill="#64748b"/>
 
-  <!-- Layer 5: Evaluation &amp; Observability -->
-  <rect x="510" y="294" width="320" height="34" rx="6" fill="var(--bg-subtle)" stroke="var(--border)" stroke-width="1"/>
-  <text x="670" y="316" class="body" text-anchor="middle">Evaluation &amp; Observability</text>
+  <!-- Layer 5: Evaluation & Observability -->
+  <rect x="520" y="296" width="330" height="34" rx="6" fill="#64748b"/>
+  <text x="685" y="318" class="body" text-anchor="middle" fill="#ffffff">Evaluation &amp; Observability</text>
 
-  <line x1="670" y1="328" x2="670" y2="338" stroke="var(--text-muted)" stroke-width="1.5"/>
-  <polygon points="666,334 670,342 674,334" fill="var(--text-muted)"/>
+  <line x1="685" y1="330" x2="685" y2="340" stroke="#64748b" stroke-width="1.5"/>
+  <polygon points="681,336 685,344 689,336" fill="#64748b"/>
 
-  <!-- Layer 6: Security &amp; Compliance -->
-  <rect x="510" y="338" width="320" height="34" rx="6" fill="var(--bg)" stroke="var(--border)" stroke-width="1.5"/>
-  <text x="670" y="360" class="body" text-anchor="middle">Security &amp; Compliance</text>
+  <!-- Layer 6: Security & Compliance -->
+  <rect x="520" y="340" width="330" height="34" rx="6" fill="#94a3b8"/>
+  <text x="685" y="362" class="body" text-anchor="middle" fill="#0f172a">Security &amp; Compliance</text>
 
-  <line x1="670" y1="372" x2="670" y2="382" stroke="var(--text-muted)" stroke-width="1.5"/>
-  <polygon points="666,378 670,386 674,378" fill="var(--text-muted)"/>
+  <line x1="685" y1="374" x2="685" y2="384" stroke="#64748b" stroke-width="1.5"/>
+  <polygon points="681,380 685,388 689,380" fill="#64748b"/>
 
   <!-- Layer 7: Agent Ecosystem (lightest, bottom) -->
-  <rect x="510" y="382" width="320" height="34" rx="6" fill="var(--bg)" stroke="var(--border)" stroke-width="1.5"/>
-  <text x="670" y="404" class="body" text-anchor="middle">Agent Ecosystem</text>
+  <rect x="520" y="384" width="330" height="34" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="685" y="406" class="body" text-anchor="middle">Agent Ecosystem</text>
 
   <!-- Feedback loop (curved, on the left side of the stack) -->
-  <path d="M 510 399 Q 460 399 460 135 Q 460 135 510 152" fill="none" stroke="var(--accent-green)" stroke-width="2" stroke-dasharray="5,4"/>
-  <polygon points="505,148 513,152 505,156" fill="var(--accent-green)"/>
+  <path d="M 520 401 Q 470 401 470 137 Q 470 137 520 154" fill="none" stroke="#059669" stroke-width="2" stroke-dasharray="5,4"/>
+  <polygon points="515,150 523,154 515,158" fill="#059669"/>
 
   <!-- Feedback label -->
-  <rect x="410" y="260" width="76" height="40" rx="8" fill="var(--bg-subtle)" stroke="var(--accent-green)" stroke-width="1"/>
-  <text x="448" y="278" class="label" text-anchor="middle" fill="var(--accent-green)">Cross-layer</text>
-  <text x="448" y="292" class="label" text-anchor="middle" fill="var(--accent-green)">attack paths</text>
+  <rect x="420" y="264" width="76" height="40" rx="8" fill="#f8fafc" stroke="#059669" stroke-width="1"/>
+  <text x="458" y="282" font-family="'IBM Plex Sans', sans-serif" font-size="12px" font-weight="600" fill="#059669" text-anchor="middle">Cross-layer</text>
+  <text x="458" y="298" font-family="'IBM Plex Sans', sans-serif" font-size="12px" font-weight="600" fill="#059669" text-anchor="middle">attack paths</text>
 
   <!-- Coverage note -->
-  <rect x="520" y="435" width="320" height="48" rx="8" fill="var(--bg-subtle)" stroke="var(--border)" stroke-width="1"/>
-  <text x="680" y="456" class="label" text-anchor="middle">Threat model covers 7 interacting layers</text>
-  <text x="680" y="474" class="body" text-anchor="middle">Plus cross-layer attack paths</text>
+  <rect x="530" y="438" width="330" height="48" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="695" y="459" font-family="'IBM Plex Sans', sans-serif" font-size="12px" font-weight="600" fill="#334155" text-anchor="middle">Threat model covers 7 interacting layers</text>
+  <text x="695" y="475" font-family="'IBM Plex Sans', sans-serif" font-size="12px" font-weight="500" fill="#0f172a" text-anchor="middle">Plus cross-layer attack paths</text>
 
   <!-- Caption -->
-  <text x="450" y="520" class="caption" text-anchor="middle">The feedback loop from Agent Ecosystem back to Foundation Models captures how threats propagate through the entire stack.</text>
+  <text x="460" y="520" class="caption" text-anchor="middle">The feedback loop from Agent Ecosystem back to Foundation Models captures how threats propagate through the entire stack.</text>
 </svg>

@@ -1,121 +1,89 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 490" width="860" height="490">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
 
-    :root {
-      --bg: #ffffff;
-      --bg-subtle: #f8fafc;
-      --border: #e2e8f0;
-      --border-subtle: #f1f5f9;
-      --text: #0f172a;
-      --text-secondary: #334155;
-      --text-muted: #94a3b8;
-      --accent: #0f172a;
-      --accent-secondary: #2563eb;
-      --accent-green: #059669;
-      --text-on-accent: #ffffff;
-      --text-on-bg-subtle: #0f172a;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #0b1120;
-        --bg-subtle: #1e293b;
-        --border: #334155;
-        --border-subtle: #1e293b;
-        --text: #f1f5f9;
-        --text-secondary: #cbd5e1;
-        --text-muted: #64748b;
-        --accent: #f1f5f9;
-        --accent-secondary: #60a5fa;
-        --accent-green: #34d399;
-        --text-on-accent: #0f172a;
-        --text-on-bg-subtle: #f1f5f9;
-      }
-    }
-
-    .title { font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 700; fill: var(--text); }
-    .header { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 600; fill: var(--text-secondary); letter-spacing: 0.8px; text-transform: uppercase; }
-    .body { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 400; fill: var(--text); }
-    .body-sm { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 400; fill: var(--text-muted); }
-    .caption { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 400; fill: var(--text-muted); }
+    .title { font-family: 'IBM Plex Sans', sans-serif; font-size: 24px; font-weight: 700; fill: #0f172a; }
+    .header { font-family: 'IBM Plex Sans', sans-serif; font-size: 12px; font-weight: 600; fill: #334155; letter-spacing: 0.5px; text-transform: uppercase; }
+    .body { font-family: 'IBM Plex Sans', sans-serif; font-size: 14px; font-weight: 500; fill: #0f172a; }
+    .caption { font-family: 'IBM Plex Sans', sans-serif; font-size: 12px; font-weight: 400; fill: #64748b; }
+    .tag { font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 500; fill: #334155; letter-spacing: 0.5px; text-transform: uppercase; }
   </style>
 
-  <rect width="860" height="490" fill="var(--bg)"/>
+  <rect width="860" height="490" fill="#ffffff"/>
 
   <!-- Title -->
   <text x="430" y="40" class="title" text-anchor="middle">STRIDE Categories vs AI Threat Classes</text>
-  <line x1="140" y1="56" x2="720" y2="56" stroke="var(--border-subtle)" stroke-width="1"/>
+  <line x1="140" y1="56" x2="720" y2="56" stroke="#f1f5f9" stroke-width="1"/>
 
   <!-- Column headers -->
-  <rect x="60" y="74" width="300" height="28" rx="6" fill="var(--bg-subtle)" stroke="var(--border)" stroke-width="1"/>
+  <rect x="60" y="74" width="300" height="28" rx="6" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
   <text x="210" y="93" class="header" text-anchor="middle">Traditional STRIDE</text>
 
-  <rect x="500" y="74" width="300" height="28" rx="6" fill="var(--bg-subtle)" stroke="var(--border)" stroke-width="1"/>
+  <rect x="500" y="74" width="300" height="28" rx="6" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
   <text x="650" y="93" class="header" text-anchor="middle">AI Counterpart</text>
 
   <!-- Row 1: Spoofing -->
-  <rect x="60" y="118" width="300" height="36" rx="6" fill="var(--bg)" stroke="var(--border)" stroke-width="1.5"/>
+  <rect x="60" y="118" width="300" height="36" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
   <text x="210" y="141" class="body" text-anchor="middle">Spoofing</text>
 
-  <line x1="360" y1="136" x2="480" y2="136" stroke="var(--text-muted)" stroke-width="1.5"/>
-  <polygon points="475,132 485,136 475,140" fill="var(--text-muted)"/>
+  <line x1="360" y1="136" x2="480" y2="136" stroke="#64748b" stroke-width="1.5"/>
+  <polygon points="475,132 485,136 475,140" fill="#64748b"/>
 
-  <rect x="500" y="118" width="300" height="36" rx="6" fill="var(--bg)" stroke="var(--border)" stroke-width="1.5"/>
+  <rect x="500" y="118" width="300" height="36" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
   <text x="650" y="134" class="body" text-anchor="middle">Identity Confusion</text>
-  <text x="650" y="148" class="body-sm" text-anchor="middle">Prompt injection impersonates</text>
+  <text x="650" y="150" font-family="'IBM Plex Sans', sans-serif" font-size="11px" font-weight="400" fill="#64748b" text-anchor="middle">Prompt injection impersonates</text>
 
   <!-- Row 2: Tampering -->
-  <rect x="60" y="166" width="300" height="36" rx="6" fill="var(--bg)" stroke="var(--border)" stroke-width="1.5"/>
+  <rect x="60" y="166" width="300" height="36" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
   <text x="210" y="189" class="body" text-anchor="middle">Tampering</text>
 
-  <line x1="360" y1="184" x2="480" y2="184" stroke="var(--text-muted)" stroke-width="1.5"/>
-  <polygon points="475,180 485,184 475,188" fill="var(--text-muted)"/>
+  <line x1="360" y1="184" x2="480" y2="184" stroke="#64748b" stroke-width="1.5"/>
+  <polygon points="475,180 485,184 475,188" fill="#64748b"/>
 
-  <rect x="500" y="166" width="300" height="36" rx="6" fill="var(--bg)" stroke="var(--border)" stroke-width="1.5"/>
+  <rect x="500" y="166" width="300" height="36" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
   <text x="650" y="182" class="body" text-anchor="middle">Training Data Contamination</text>
-  <text x="650" y="196" class="body-sm" text-anchor="middle">Poisoned data produces</text>
+  <text x="650" y="198" font-family="'IBM Plex Sans', sans-serif" font-size="11px" font-weight="400" fill="#64748b" text-anchor="middle">Poisoned data produces</text>
 
   <!-- Row 3: Repudiation -->
-  <rect x="60" y="214" width="300" height="36" rx="6" fill="var(--bg)" stroke="var(--border)" stroke-width="1.5"/>
+  <rect x="60" y="214" width="300" height="36" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
   <text x="210" y="237" class="body" text-anchor="middle">Repudiation</text>
 
-  <line x1="360" y1="232" x2="480" y2="232" stroke="var(--text-muted)" stroke-width="1.5"/>
-  <polygon points="475,228 485,232 475,236" fill="var(--text-muted)"/>
+  <line x1="360" y1="232" x2="480" y2="232" stroke="#64748b" stroke-width="1.5"/>
+  <polygon points="475,228 485,232 475,236" fill="#64748b"/>
 
-  <rect x="500" y="214" width="300" height="36" rx="6" fill="var(--bg)" stroke="var(--border)" stroke-width="1.5"/>
+  <rect x="500" y="214" width="300" height="36" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
   <text x="650" y="230" class="body" text-anchor="middle">Audit Bypass</text>
-  <text x="650" y="244" class="body-sm" text-anchor="middle">Non-deterministic outputs make</text>
+  <text x="650" y="246" font-family="'IBM Plex Sans', sans-serif" font-size="11px" font-weight="400" fill="#64748b" text-anchor="middle">Non-deterministic outputs make</text>
 
   <!-- Row 4: Information Disclosure -->
-  <rect x="60" y="262" width="300" height="36" rx="6" fill="var(--bg)" stroke="var(--border)" stroke-width="1.5"/>
+  <rect x="60" y="262" width="300" height="36" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
   <text x="210" y="285" class="body" text-anchor="middle">Information Disclosure</text>
 
-  <line x1="360" y1="280" x2="480" y2="280" stroke="var(--text-muted)" stroke-width="1.5"/>
-  <polygon points="475,276 485,280 475,284" fill="var(--text-muted)"/>
+  <line x1="360" y1="280" x2="480" y2="280" stroke="#64748b" stroke-width="1.5"/>
+  <polygon points="475,276 485,280 475,284" fill="#64748b"/>
 
-  <rect x="500" y="262" width="300" height="36" rx="6" fill="var(--bg)" stroke="var(--border)" stroke-width="1.5"/>
+  <rect x="500" y="262" width="300" height="36" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
   <text x="650" y="278" class="body" text-anchor="middle">Model Inversion</text>
-  <text x="650" y="294" class="body-sm" text-anchor="middle">Membership Inference</text>
+  <text x="650" y="294" font-family="'IBM Plex Sans', sans-serif" font-size="11px" font-weight="400" fill="#64748b" text-anchor="middle">Membership Inference</text>
 
   <!-- Row 5: Denial of Service -->
-  <rect x="60" y="310" width="300" height="36" rx="6" fill="var(--bg)" stroke="var(--border)" stroke-width="1.5"/>
+  <rect x="60" y="310" width="300" height="36" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
   <text x="210" y="333" class="body" text-anchor="middle">Denial of Service</text>
 
-  <line x1="360" y1="328" x2="480" y2="328" stroke="var(--text-muted)" stroke-width="1.5"/>
-  <polygon points="475,324 485,328 475,332" fill="var(--text-muted)"/>
+  <line x1="360" y1="328" x2="480" y2="328" stroke="#64748b" stroke-width="1.5"/>
+  <polygon points="475,324 485,328 475,332" fill="#64748b"/>
 
-  <rect x="500" y="310" width="300" height="36" rx="6" fill="var(--bg)" stroke="var(--border)" stroke-width="1.5"/>
+  <rect x="500" y="310" width="300" height="36" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
   <text x="650" y="333" class="body" text-anchor="middle">Context Overflow</text>
 
   <!-- Row 6: Elevation of Privilege -->
-  <rect x="60" y="358" width="300" height="36" rx="6" fill="var(--bg)" stroke="var(--border)" stroke-width="1.5"/>
+  <rect x="60" y="358" width="300" height="36" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
   <text x="210" y="381" class="body" text-anchor="middle">Elevation of Privilege</text>
 
-  <line x1="360" y1="376" x2="480" y2="376" stroke="var(--text-muted)" stroke-width="1.5"/>
-  <polygon points="475,372 485,376 475,380" fill="var(--text-muted)"/>
+  <line x1="360" y1="376" x2="480" y2="376" stroke="#64748b" stroke-width="1.5"/>
+  <polygon points="475,372 485,376 475,380" fill="#64748b"/>
 
-  <rect x="500" y="358" width="300" height="36" rx="6" fill="var(--bg)" stroke="var(--border)" stroke-width="1.5"/>
+  <rect x="500" y="358" width="300" height="36" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
   <text x="650" y="381" class="body" text-anchor="middle">Jailbreak</text>
 
   <!-- Caption -->

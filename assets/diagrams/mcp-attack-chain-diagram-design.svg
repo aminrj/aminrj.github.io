@@ -1,0 +1,87 @@
+<svg viewBox="0 0 1000 736" width="1000" height="736" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="arrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#4f5d75"/></marker>
+        <marker id="arrow-accent" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#eb6c36"/></marker>
+        <marker id="arrow-link" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#2e5aa8"/></marker>
+      </defs>
+
+      <rect width="100%" height="100%" fill="#ffffff"/>
+
+      <!-- ===== ARROWS (drawn before nodes for z-order) ===== -->
+
+      <!-- Start → Step 1: gap 40px, arrow 76→112 -->
+      <line x1="500" y1="76" x2="500" y2="112" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+      <!-- Step 1 → Step 2: gap 40px, arrow 212→248 -->
+      <line x1="500" y1="212" x2="500" y2="248" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+      <!-- Step 2 → Step 3 (focal): gap 40px, arrow 348→384 -->
+      <line x1="500" y1="348" x2="500" y2="384" stroke="#eb6c36" stroke-width="1.2" marker-end="url(#arrow-accent)"/>
+
+      <!-- Step 3 → Step 4: gap 40px, arrow 484→520 -->
+      <line x1="500" y1="484" x2="500" y2="520" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+      <!-- Step 4 → End: gap 32px, arrow 620→652 -->
+      <line x1="500" y1="620" x2="500" y2="652" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+      <!-- ===== NODES ===== -->
+
+      <!-- Start: Malicious MCP server published -->
+      <rect x="420" y="36" width="160" height="40" rx="20" fill="#2d3142"/>
+      <text x="500" y="60" fill="#ffffff" font-size="12" font-weight="600" font-family="-apple-system, 'Segoe UI', Roboto, sans-serif" text-anchor="middle">Malicious MCP</text>
+      <text x="500" y="76" fill="#ffffff" font-size="12" font-weight="600" font-family="-apple-system, 'Segoe UI', Roboto, sans-serif" text-anchor="middle">server published</text>
+
+      <!-- Step 1: Tool description contains adversarial instruction -->
+      <rect x="340" y="116" width="320" height="96" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+      <rect x="356" y="124" width="40" height="16" rx="2" fill="transparent" stroke="#2d3142" stroke-width="0.8" stroke-opacity="0.4"/>
+      <text x="376" y="136" fill="#2d3142" font-size="8" font-family="-apple-system, 'Segoe UI', Roboto, monospace" text-anchor="middle" letter-spacing="0.08em">STEP 1</text>
+      <text x="500" y="160" fill="#2d3142" font-size="12" font-weight="600" font-family="-apple-system, 'Segoe UI', Roboto, sans-serif" text-anchor="middle">Tool description</text>
+      <text x="500" y="176" fill="#4f5d75" font-size="8" font-family="-apple-system, 'Segoe UI', Roboto, monospace" text-anchor="middle">payload hidden in natural language</text>
+      <text x="500" y="192" fill="#7a8399" font-size="8" font-family="-apple-system, 'Segoe UI', Roboto, sans-serif" text-anchor="middle">Adversarial instruction embedded in documentation text</text>
+
+      <!-- Step 2: Agent framework loads descriptions into context -->
+      <rect x="340" y="252" width="320" height="96" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+      <rect x="356" y="260" width="40" height="16" rx="2" fill="transparent" stroke="#2d3142" stroke-width="0.8" stroke-opacity="0.4"/>
+      <text x="376" y="272" fill="#2d3142" font-size="8" font-family="-apple-system, 'Segoe UI', Roboto, monospace" text-anchor="middle" letter-spacing="0.08em">STEP 2</text>
+      <text x="500" y="296" fill="#2d3142" font-size="12" font-weight="600" font-family="-apple-system, 'Segoe UI', Roboto, sans-serif" text-anchor="middle">Model loads context</text>
+      <text x="500" y="312" fill="#4f5d75" font-size="8" font-family="-apple-system, 'Segoe UI', Roboto, monospace" text-anchor="middle">descriptions → context window</text>
+      <text x="500" y="328" fill="#7a8399" font-size="8" font-family="-apple-system, 'Segoe UI', Roboto, sans-serif" text-anchor="middle">No mechanism to distinguish docs from instructions</text>
+
+      <!-- Step 3: Model treats instruction as operational guidance (FOCAL) -->
+      <rect x="340" y="388" width="320" height="96" rx="6" fill="rgba(235,108,54,0.08)" stroke="#eb6c36" stroke-width="1.2"/>
+      <rect x="356" y="396" width="40" height="16" rx="2" fill="transparent" stroke="#eb6c36" stroke-width="0.8" stroke-opacity="0.5"/>
+      <text x="376" y="408" fill="#eb6c36" font-size="8" font-family="-apple-system, 'Segoe UI', Roboto, monospace" text-anchor="middle" letter-spacing="0.08em">STEP 3</text>
+      <text x="500" y="432" fill="#2d3142" font-size="12" font-weight="600" font-family="-apple-system, 'Segoe UI', Roboto, sans-serif" text-anchor="middle">Model follows instruction</text>
+      <text x="500" y="448" fill="#4f5d75" font-size="8" font-family="-apple-system, 'Segoe UI', Roboto, monospace" text-anchor="middle">text → operational guidance</text>
+      <text x="500" y="464" fill="#7a8399" font-size="8" font-family="-apple-system, 'Segoe UI', Roboto, sans-serif" text-anchor="middle">Model produced no harmful output — normal tool call</text>
+
+      <!-- Step 4: Model calls data_export with customer records -->
+      <rect x="340" y="524" width="320" height="96" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+      <rect x="356" y="532" width="40" height="16" rx="2" fill="transparent" stroke="#2d3142" stroke-width="0.8" stroke-opacity="0.4"/>
+      <text x="376" y="544" fill="#2d3142" font-size="8" font-family="-apple-system, 'Segoe UI', Roboto, monospace" text-anchor="middle" letter-spacing="0.08em">STEP 4</text>
+      <text x="500" y="568" fill="#2d3142" font-size="12" font-weight="600" font-family="-apple-system, 'Segoe UI', Roboto, sans-serif" text-anchor="middle">Data export executed</text>
+      <text x="500" y="584" fill="#4f5d75" font-size="8" font-family="-apple-system, 'Segoe UI', Roboto, monospace" text-anchor="middle">data_export → attacker endpoint</text>
+      <text x="500" y="600" fill="#7a8399" font-size="8" font-family="-apple-system, 'Segoe UI', Roboto, sans-serif" text-anchor="middle">Every customer record forwarded to attacker</text>
+
+      <!-- End: Customer data exfiltrated -->
+      <rect x="420" y="652" width="160" height="40" rx="20" fill="#2d3142"/>
+      <text x="500" y="676" fill="#ffffff" font-size="12" font-weight="600" font-family="-apple-system, 'Segoe UI', Roboto, sans-serif" text-anchor="middle">Data</text>
+      <text x="500" y="692" fill="#ffffff" font-size="12" font-weight="600" font-family="-apple-system, 'Segoe UI', Roboto, sans-serif" text-anchor="middle">exfiltrated</text>
+
+      <!-- ===== KEY INSIGHT CALLOUT ===== -->
+      <line x1="680" y1="436" x2="756" y2="436" stroke="#eb6c36" stroke-width="0.8" stroke-dasharray="4,4"/>
+      <rect x="756" y="408" width="212" height="56" rx="4" fill="#f5f5f5" stroke="rgba(45,49,66,0.12)" stroke-width="0.8"/>
+      <text x="768" y="428" fill="#2d3142" font-size="12" font-style="italic" font-family="Georgia, serif">The payload is text, not code.</text>
+      <text x="768" y="444" fill="#4f5d75" font-size="8" font-family="-apple-system, 'Segoe UI', Roboto, monospace">No malware. No CVE. No suspicious traffic.</text>
+
+      <!-- ===== LEGEND ===== -->
+      <line x1="60" y1="724" x2="940" y2="724" stroke="rgba(45,49,66,0.12)" stroke-width="0.8"/>
+      <text x="60" y="736" fill="#4f5d75" font-size="8" font-family="-apple-system, 'Segoe UI', Roboto, monospace" letter-spacing="0.14em">LEGEND</text>
+      <rect x="132" y="728" width="12" height="12" rx="2" fill="#fdf2e9" stroke="#eb6c36" stroke-width="0.8"/>
+      <text x="152" y="738" fill="#4f5d75" font-size="8" font-family="-apple-system, 'Segoe UI', Roboto, monospace">Focal node</text>
+      <line x1="260" y1="734" x2="272" y2="734" stroke="#eb6c36" stroke-width="1.2"/>
+      <polygon points="272,731 278,734 272,737" fill="#eb6c36"/>
+      <text x="284" y="738" fill="#4f5d75" font-size="8" font-family="-apple-system, 'Segoe UI', Roboto, monospace">Accent path</text>
+      <rect x="408" y="728" width="12" height="12" rx="2" fill="#ffffff" stroke="#2d3142" stroke-width="0.8"/>
+      <text x="428" y="738" fill="#4f5d75" font-size="8" font-family="-apple-system, 'Segoe UI', Roboto, monospace">Standard step</text>
+    </svg>

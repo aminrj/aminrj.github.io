@@ -1,0 +1,152 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 480" width="880" height="480">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap');
+
+    .title { font-family: 'Instrument Serif', Georgia, serif; font-size: 24; fill: #0f172a; }
+    .annotation { font-family: 'Instrument Serif', Georgia, serif; font-size: 13; font-style: italic; fill: #64748b; }
+    .node-name { font-family: 'Geist', sans-serif; font-size: 13; font-weight: 600; fill: #0f172a; }
+    .node-body { font-family: 'Geist', sans-serif; font-size: 12; fill: #334155; }
+    .caption { font-family: 'Geist', sans-serif; font-size: 12; fill: #64748b; }
+    .tag { font-family: 'Geist Mono', monospace; font-size: 8; font-weight: 500; fill: #64748b; letter-spacing: 0.08em; }
+    .sublabel { font-family: 'Geist Mono', monospace; font-size: 10; fill: #64748b; }
+    .layer-label { font-family: 'Geist Mono', monospace; font-size: 8; font-weight: 500; fill: #64748b; letter-spacing: 0.06em; }
+
+    .arrow { stroke: #64748b; stroke-width: 1.5; marker-end: url(#arrow); }
+    .arrow-accent { stroke: #0f172a; stroke-width: 1.5; marker-end: url(#arrow-accent); }
+    .arrow-threat { stroke: #c2410c; stroke-width: 1.5; stroke-dasharray: 5,4; marker-end: url(#arrow-threat); }
+  </style>
+
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#64748b"/>
+    </marker>
+    <marker id="arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#0f172a"/>
+    </marker>
+    <marker id="arrow-threat" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#c2410c"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="880" height="480" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="440" y="40" text-anchor="middle" class="title">MCP Supply Chain Attack: 5-Step Chain</text>
+  <line x1="40" y1="56" x2="840" y2="56" stroke="#f1f5f9" stroke-width="1"/>
+
+  <!-- ═══════════════════════════════════════════════
+       ARROWS (drawn first, before all boxes)
+       ═══════════════════════════════════════════════ -->
+
+  <!-- Arrow 1: Step 1 → Step 2 -->
+  <line x1="216" y1="140" x2="248" y2="140" class="arrow"/>
+
+  <!-- Arrow 2: Step 2 → Step 3 -->
+  <line x1="376" y1="140" x2="408" y2="140" class="arrow"/>
+
+  <!-- Arrow 3: Step 3 → Step 4 (threat path) -->
+  <line x1="536" y1="140" x2="568" y2="140" class="arrow-threat"/>
+
+  <!-- Arrow 4: Step 4 → Step 5 -->
+  <line x1="696" y1="140" x2="728" y2="140" class="arrow"/>
+
+  <!-- ═══════════════════════════════════════════════
+       NODES (drawn on top of arrows)
+       ═══════════════════════════════════════════════ -->
+
+  <!-- Step 1: Malicious MCP Server -->
+  <rect x="40" y="104" width="176" height="72" rx="6" fill="#ffffff"/>
+  <rect x="40" y="104" width="176" height="72" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <rect x="52" y="116" width="24" height="12" rx="2" fill="transparent" stroke="rgba(100,116,139,0.40)" stroke-width="0.8"/>
+  <text x="64" y="124" text-anchor="middle" class="tag">STEP 1</text>
+  <text x="128" y="152" text-anchor="middle" class="node-name">Malicious MCP Server</text>
+  <text x="128" y="168" text-anchor="middle" class="node-body">Publishes legitimate-looking</text>
+  <text x="128" y="180" text-anchor="middle" class="node-body">tool with hidden payload</text>
+
+  <!-- Layer label -->
+  <text x="128" y="204" text-anchor="middle" class="layer-label">Agent Ecosystem</text>
+
+  <!-- Step 2: Tool Description Payload -->
+  <rect x="248" y="104" width="128" height="72" rx="6" fill="#ffffff"/>
+  <rect x="248" y="104" width="128" height="72" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <rect x="260" y="116" width="24" height="12" rx="2" fill="transparent" stroke="rgba(100,116,139,0.40)" stroke-width="0.8"/>
+  <text x="272" y="124" text-anchor="middle" class="tag">STEP 2</text>
+  <text x="312" y="152" text-anchor="middle" class="node-name">Description</text>
+  <text x="312" y="168" text-anchor="middle" class="node-name">Payload</text>
+  <text x="312" y="180" text-anchor="middle" class="node-body">Hidden instruction</text>
+  <text x="312" y="192" text-anchor="middle" class="node-body">in natural language</text>
+
+  <!-- Layer label -->
+  <text x="312" y="216" text-anchor="middle" class="layer-label">Framework</text>
+
+  <!-- Step 3: Model Loads Context -->
+  <rect x="408" y="104" width="128" height="72" rx="6" fill="#ffffff"/>
+  <rect x="408" y="104" width="128" height="72" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <rect x="420" y="116" width="24" height="12" rx="2" fill="transparent" stroke="rgba(100,116,139,0.40)" stroke-width="0.8"/>
+  <text x="432" y="124" text-anchor="middle" class="tag">STEP 3</text>
+  <text x="472" y="152" text-anchor="middle" class="node-name">Model Loads</text>
+  <text x="472" y="168" text-anchor="middle" class="node-name">Context</text>
+  <text x="472" y="180" text-anchor="middle" class="node-body">Description enters</text>
+  <text x="472" y="192" text-anchor="middle" class="node-body">operational context</text>
+
+  <!-- Layer label -->
+  <text x="472" y="216" text-anchor="middle" class="layer-label">Foundation Model</text>
+
+  <!-- Step 4: Model Follows Instruction (FOCAL) -->
+  <rect x="568" y="104" width="128" height="72" rx="6" fill="#ffffff"/>
+  <rect x="568" y="104" width="128" height="72" rx="6" fill="#0f172a" stroke="#0f172a" stroke-width="1.5"/>
+  <rect x="580" y="116" width="24" height="12" rx="2" fill="transparent" stroke="rgba(255,255,255,0.40)" stroke-width="0.8"/>
+  <text x="592" y="124" text-anchor="middle" class="tag" fill="rgba(255,255,255,0.80)">STEP 4</text>
+  <text x="632" y="152" text-anchor="middle" class="node-name" fill="#ffffff">Model Follows</text>
+  <text x="632" y="168" text-anchor="middle" class="node-name" fill="#ffffff">Instruction</text>
+  <text x="632" y="180" text-anchor="middle" class="node-body" fill="rgba(255,255,255,0.70)">Treats text as</text>
+  <text x="632" y="192" text-anchor="middle" class="node-body" fill="rgba(255,255,255,0.70)">operational guidance</text>
+
+  <!-- Layer label -->
+  <text x="632" y="216" text-anchor="middle" class="layer-label" fill="rgba(255,255,255,0.70)">Model Layer</text>
+
+  <!-- Step 5: Data Exfiltration (FOCAL) -->
+  <rect x="728" y="104" width="112" height="72" rx="6" fill="#ffffff"/>
+  <rect x="728" y="104" width="112" height="72" rx="6" fill="#0f172a" stroke="#0f172a" stroke-width="1.5"/>
+  <rect x="740" y="116" width="24" height="12" rx="2" fill="transparent" stroke="rgba(255,255,255,0.40)" stroke-width="0.8"/>
+  <text x="752" y="124" text-anchor="middle" class="tag" fill="rgba(255,255,255,0.80)">STEP 5</text>
+  <text x="784" y="152" text-anchor="middle" class="node-name" fill="#ffffff">Data</text>
+  <text x="784" y="168" text-anchor="middle" class="node-name" fill="#ffffff">Exfiltration</text>
+  <text x="784" y="180" text-anchor="middle" class="node-body" fill="rgba(255,255,255,0.70)">All records</text>
+  <text x="784" y="192" text-anchor="middle" class="node-body" fill="rgba(255,255,255,0.70)">forwarded to attacker</text>
+
+  <!-- Layer label -->
+  <text x="784" y="216" text-anchor="middle" class="layer-label" fill="rgba(255,255,255,0.70)">Data Operations</text>
+
+  <!-- ═══════════════════════════════════════════════
+       KEY INSIGHT CALLOUT
+       ═══════════════════════════════════════════════ -->
+  <rect x="40" y="248" width="800" height="48" rx="6" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="440" y="276" text-anchor="middle" class="node-name">Key insight: The payload is text, not code</text>
+  <text x="440" y="292" text-anchor="middle" class="node-body">No malware. No CVE. No suspicious traffic.</text>
+
+  <!-- ═══════════════════════════════════════════════
+       LEGEND STRIP
+       ═══════════════════════════════════════════════ -->
+  <line x1="40" y1="336" x2="840" y2="336" stroke="rgba(15,23,42,0.10)" stroke-width="0.8"/>
+  <text x="40" y="352" text-anchor="middle" class="tag" letter-spacing="0.14em">LEGEND</text>
+
+  <!-- Standard node -->
+  <rect x="116" y="344" width="12" height="12" rx="2" fill="#ffffff" stroke="#e2e8f0" stroke-width="0.8"/>
+  <text x="136" y="352" class="node-body" font-size="11">Standard step</text>
+
+  <!-- Focal node -->
+  <rect x="260" y="344" width="12" height="12" rx="2" fill="#0f172a" stroke="#0f172a" stroke-width="0.8"/>
+  <text x="280" y="352" class="node-body" font-size="11">Focal node</text>
+
+  <!-- Threat path -->
+  <line x1="380" y1="350" x2="392" y2="350" stroke="#c2410c" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <polygon points="392,347 398,350 392,353" fill="#c2410c"/>
+  <text x="408" y="352" class="node-body" font-size="11">Threat path</text>
+
+  <!-- ═══════════════════════════════════════════════
+       CAPTION
+       ═══════════════════════════════════════════════ -->
+  <text x="440" y="440" text-anchor="middle" class="caption">No single-layer control addresses the full chain. Source: MCP attack chain analysis.</text>
+</svg>

@@ -55,6 +55,13 @@ permalink: /resources/
     margin: 1.5rem 0 2.5rem;
   }
 
+  /* ── Card wrapper (clickable) ──────────────────────────────────────── */
+  .resource-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
   /* ── Card ───────────────────────────────────────────────────────────── */
   .resource-card {
     background: var(--rm-paper);
@@ -63,6 +70,7 @@ permalink: /resources/
     transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
     display: flex;
     flex-direction: column;
+    cursor: pointer;
   }
   .resource-card:hover {
     border-color: var(--rm-accent);
@@ -190,49 +198,59 @@ permalink: /resources/
 <div class="resources-grid">
 
   <!-- Field Guide -->
-  <div class="resource-card">
-    <div class="resource-badge">Field Guide</div>
-    <h3>AI Agent Security Field Guide</h3>
-    <p class="desc">20+ pages mapping the OWASP Agentic Top 10 to real attack patterns and production-ready mitigations.</p>
-    <div class="resource-meta">PDF · 20+ pages · Free</div>
-    <a href="/assets/pdfs/ai-agent-security-field-guide.pdf" class="resource-download" target="_blank">Download<span class="arrow">→</span></a>
-  </div>
+  <a href="/resources/field-guide/" class="resource-card-link">
+    <div class="resource-card">
+      <div class="resource-badge">Field Guide</div>
+      <h3>AI Agent Security Field Guide</h3>
+      <p class="desc">20+ pages mapping the OWASP Agentic Top 10 to real attack patterns and production-ready mitigations.</p>
+      <div class="resource-meta">PDF · 20+ pages · Free</div>
+      <a href="/assets/pdfs/ai-agent-security-field-guide.pdf" class="resource-download" target="_blank" onclick="event.stopPropagation()">Download<span class="arrow">→</span></a>
+    </div>
+  </a>
 
   <!-- Pre-Deployment Checklist -->
-  <div class="resource-card">
-    <div class="resource-badge">Checklist</div>
-    <h3>Agent Pre-Deployment Security Checklist</h3>
-    <p class="desc">25 controls across 5 families: probabilistic testing, supply chain, tool controls, injection defense, and sign-off.</p>
-    <div class="resource-meta">PDF · 5 pages · Free</div>
-    <a href="/assets/pdfs/predeployment-checklist.pdf" class="resource-download" target="_blank">Download<span class="arrow">→</span></a>
-  </div>
+  <a href="/resources/predeployment-checklist/" class="resource-card-link">
+    <div class="resource-card">
+      <div class="resource-badge">Checklist</div>
+      <h3>Agent Pre-Deployment Security Checklist</h3>
+      <p class="desc">25 controls across 5 families: probabilistic testing, supply chain, tool controls, injection defense, and sign-off.</p>
+      <div class="resource-meta">PDF · 5 pages · Free</div>
+      <a href="/assets/pdfs/predeployment-checklist.pdf" class="resource-download" target="_blank" onclick="event.stopPropagation()">Download<span class="arrow">→</span></a>
+    </div>
+  </a>
 
   <!-- Threat Model Checklist -->
-  <div class="resource-card">
-    <div class="resource-badge">Checklist</div>
-    <h3>5 Ways AI Breaks Threat Modeling</h3>
-    <p class="desc">A practical checklist for security teams deploying agentic AI — with what you need to add before you ship.</p>
-    <div class="resource-meta">PDF · 6 pages · Free</div>
-    <a href="/assets/pdfs/threat-model-checklist.pdf" class="resource-download" target="_blank">Download<span class="arrow">→</span></a>
-  </div>
+  <a href="/resources/threat-model-checklist/" class="resource-card-link">
+    <div class="resource-card">
+      <div class="resource-badge">Checklist</div>
+      <h3>5 Ways AI Breaks Threat Modeling</h3>
+      <p class="desc">A practical checklist for security teams deploying agentic AI — with what you need to add before you ship.</p>
+      <div class="resource-meta">PDF · 6 pages · Free</div>
+      <a href="/assets/pdfs/threat-model-checklist.pdf" class="resource-download" target="_blank" onclick="event.stopPropagation()">Download<span class="arrow">→</span></a>
+    </div>
+  </a>
 
   <!-- Identity Readiness Checklist -->
-  <div class="resource-card">
-    <div class="resource-badge">Checklist</div>
-    <h3>AI Agent Identity Readiness Checklist</h3>
-    <p class="desc">Five dimensions to verify before any AI agent enters production: governance, risk, capability, procurement, operations.</p>
-    <div class="resource-meta">PDF · 5 pages · Free</div>
-    <a href="/assets/pdfs/identity-readiness-checklist.pdf" class="resource-download" target="_blank">Download<span class="arrow">→</span></a>
-  </div>
+  <a href="/resources/identity-readiness-checklist/" class="resource-card-link">
+    <div class="resource-card">
+      <div class="resource-badge">Checklist</div>
+      <h3>AI Agent Identity Readiness Checklist</h3>
+      <p class="desc">Five dimensions to verify before any AI agent enters production: governance, risk, capability, procurement, operations.</p>
+      <div class="resource-meta">PDF · 5 pages · Free</div>
+      <a href="/assets/pdfs/identity-readiness-checklist.pdf" class="resource-download" target="_blank" onclick="event.stopPropagation()">Download<span class="arrow">→</span></a>
+    </div>
+  </a>
 
   <!-- Containment Rubric -->
-  <div class="resource-card">
-    <div class="resource-badge rubric">Rubric</div>
-    <h3>AI Agent Containment Rubric</h3>
-    <p class="desc">Assess your team's ability to contain AI-specific incidents across detection, isolation, response, communication, and improvement.</p>
-    <div class="resource-meta">PDF · 5 pages · Free</div>
-    <a href="/assets/pdfs/containment-rubric.pdf" class="resource-download" target="_blank">Download<span class="arrow">→</span></a>
-  </div>
+  <a href="/resources/containment-rubric/" class="resource-card-link">
+    <div class="resource-card">
+      <div class="resource-badge rubric">Rubric</div>
+      <h3>AI Agent Containment Rubric</h3>
+      <p class="desc">Assess your team's ability to contain AI-specific incidents across detection, isolation, response, communication, and improvement.</p>
+      <div class="resource-meta">PDF · 5 pages · Free</div>
+      <a href="/assets/pdfs/containment-rubric.pdf" class="resource-download" target="_blank" onclick="event.stopPropagation()">Download<span class="arrow">→</span></a>
+    </div>
+  </a>
 
 </div>
 

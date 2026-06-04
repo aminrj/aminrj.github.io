@@ -26,3 +26,17 @@
   function trackSocialClick(platform) { _gc('event-social-' + platform, 'Social Click: ' + platform); }
   function trackDownload(resource) { _gc('event-download-' + resource, 'Download: ' + resource); }
 </script>
+
+<!-- Strip Chirpy popup/lightbox wrapper from cover images (resources page) -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.cover-img').forEach(function(img) {
+      var a = img.closest('a.popup');
+      if (a) {
+        a.classList.remove('popup', 'img-link', 'shimmer');
+        a.removeAttribute('href');
+        a.style.cursor = 'default';
+      }
+    });
+  });
+</script>

@@ -46,6 +46,10 @@ permalink: /resources/
     object-fit: cover;
     display: block;
     border-bottom: 1px solid var(--border-color);
+    cursor: default;
+  }
+  .resource-card .card-body {
+    cursor: default;
   }
   .resource-card .card-body {
     padding: 1.25rem;

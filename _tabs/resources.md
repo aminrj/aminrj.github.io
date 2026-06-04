@@ -63,24 +63,31 @@ permalink: /resources/
   /* ── Card wrapper (clickable) ──────────────────────────────────────── */
   .resource-card-link {
     text-decoration: none;
-    color: inherit;
+    color: var(--rm-ink);
     display: block;
   }
 
   /* ── Card ───────────────────────────────────────────────────────────── */
   .resource-card {
-    background: var(--rm-paper);
+    background: var(--rm-paper) !important;
     border: 1px solid var(--rm-rule);
     padding: 1.75rem 1.75rem 1.5rem;
     transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
     display: flex;
     flex-direction: column;
     cursor: pointer;
+    color: var(--rm-ink);
   }
   .resource-card:hover {
     border-color: var(--rm-accent);
     box-shadow: 0 2px 12px rgba(0,0,0,0.04);
     transform: translateY(-2px);
+  }
+  .resource-card h3 {
+    color: var(--rm-ink);
+  }
+  .resource-card .desc {
+    color: var(--rm-soft);
   }
 
   /* ── Type badge ─────────────────────────────────────────────────────── */

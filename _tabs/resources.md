@@ -49,15 +49,19 @@ permalink: /resources/
 
   /* ── Grid ───────────────────────────────────────────────────────────── */
   .resources-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-    margin: 1.5rem 0 2.5rem;
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1.5rem !important;
+    margin: 1.5rem 0 2.5rem !important;
   }
   @media (max-width: 768px) {
     .resources-grid {
-      grid-template-columns: 1fr;
+      grid-template-columns: 1fr !important;
     }
+  }
+  .resources-grid > * {
+    width: 100% !important;
+    max-width: 100% !important;
   }
 
   /* ── Card wrapper (clickable) ──────────────────────────────────────── */

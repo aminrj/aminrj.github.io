@@ -171,6 +171,9 @@ collections:
   newsletters:
     output: true
     permalink: /newsletter/:name/
+  resources:
+    output: true
+    sort_by: order
 
 defaults:
   - scope:
@@ -191,6 +194,11 @@ defaults:
       type: "newsletters"
     values:
       layout: "newsletter"
+  - scope:
+      path: "_resources"
+      type: "resources"
+    values:
+      layout: "page"
   - scope:
       path: assets/js/dist
     values:

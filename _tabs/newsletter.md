@@ -29,7 +29,7 @@ order: 3
   min-height: 220px;
   background-size: cover;
   background-position: center;
-  background-image: url('{{ site.baseurl }}/assets/media/newsletters/newsletter-13-six-governments-agree-your-ai-security-model-was-wrong.jpg');
+  background-image: url('{{ site.baseurl }}/assets/media/newsletters/newsletter-14-your-coding-agents-approval-prompt-is-lying-to-you.jpg');
   text-decoration: none;
 }
 .newsletter-hero-body {
@@ -227,8 +227,8 @@ html[data-mode="dark"] .newsletter-hero-cta:hover {
 }
 </style>
 
-<!-- ── Hero: latest issue (issue 11) ─────────────────────────────────── -->
-{% assign latest = site.newsletters | where_exp:'n','n.url contains "newsletter-issue-13"' | first %}
+<!-- ── Hero: latest issue (issue 14) ─────────────────────────────────── -->
+{% assign latest = site.newsletters | where_exp:'n','n.url contains "newsletter-issue-14"' | first %}
 <div class="newsletter-hero">
   <a href="{{ site.baseurl }}{{ latest.url }}" class="newsletter-hero-img-wrap"></a>
   <div class="newsletter-hero-body">
@@ -256,12 +256,23 @@ html[data-mode="dark"] .newsletter-hero-cta:hover {
 <!-- ── Recent issues ─────────────────────────────────────────────────── -->
 <h3 class="newsletter-section-title">Recent Issues</h3>
 
+{% assign n14 = site.newsletters | where_exp:'n','n.url contains "newsletter-issue-14"' | first %}
 {% assign n13 = site.newsletters | where_exp:'n','n.url contains "newsletter-issue-13"' | first %}
 {% assign n12 = site.newsletters | where_exp:'n','n.url contains "newsletter-issue-12"' | first %}
 {% assign n11 = site.newsletters | where_exp:'n','n.url contains "newsletter-issue-11"' | first %}
 {% assign n10 = site.newsletters | where_exp:'n','n.url contains "newsletter-issue-10"' | first %}
-{% if n13 or n12 or n11 or n10 %}
+{% if n14 or n13 or n12 or n11 or n10 %}
 <div class="newsletter-grid">
+{% assign thumb = nil %}{% if n14 %}{% assign thumb = 'newsletter-14-your-coding-agents-approval-prompt-is-lying-to-you.jpg' %}{% endif %}
+  <a href="{{ n14.url }}" class="newsletter-card">
+    <div class="newsletter-card-img"{% if thumb %} style="background-image:url('{{ site.baseurl }}/assets/media/newsletters/{{ thumb }}');background-size:cover;background-position:center;"{% else %} style="background:var(--main-bg);display:flex;align-items:center;justify-content:center;"{% endif %}></div>
+    <div class="newsletter-card-body">
+      <div class="newsletter-card-issue">Issue #{{ n14.issue }}</div>
+      <h4 class="newsletter-card-title">{{ n14.title }}</h4>
+      <p class="newsletter-card-preview">{{ n14.preview_text | default: n14.subtitle | strip_html | truncate: 160 }}</p>
+      <div class="newsletter-card-meta">{{ n14.date | date: '%B %d, %Y' }}</div>
+    </div>
+  </a>
 {% assign thumb = nil %}{% if n13 %}{% assign thumb = 'newsletter-13-six-governments-agree-your-ai-security-model-was-wrong.jpg' %}{% endif %}
   <a href="{{ n13.url }}" class="newsletter-card">
     <div class="newsletter-card-img"{% if thumb %} style="background-image:url('{{ site.baseurl }}/assets/media/newsletters/{{ thumb }}');background-size:cover;background-position:center;"{% else %} style="background:var(--main-bg);display:flex;align-items:center;justify-content:center;"{% endif %}></div>

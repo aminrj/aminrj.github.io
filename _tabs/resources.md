@@ -11,127 +11,125 @@ permalink: /resources/
 <style>
   .resources-hero {
     text-align: center;
-    padding: 2rem 0 1.5rem;
+    padding: 2.5rem 0 2rem;
   }
   .resources-hero h1 {
-    font-size: 1.8rem;
+    font-size: 2rem;
     margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
   }
   .resources-hero p {
     color: var(--text-muted-color);
-    font-size: 1rem;
-    max-width: 600px;
+    font-size: 1.05rem;
+    max-width: 560px;
     margin: 0 auto;
+    line-height: 1.6;
   }
   .resources-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 1.5rem;
-    margin: 2rem 0;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.25rem;
+    margin: 1.5rem 0 2rem;
   }
   .resource-card {
     background: var(--card-bg-color);
     border: 1px solid var(--border-color);
-    border-radius: 8px;
+    border-radius: 10px;
     overflow: hidden;
-    transition: border-color 0.2s, transform 0.2s;
+    transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   }
   .resource-card:hover {
     border-color: var(--accent-color);
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
   }
   .resource-card .cover-img {
     width: 100%;
     height: 200px;
-    object-fit: cover;
+    object-fit: contain;
     display: block;
-    border-bottom: 1px solid var(--border-color);
-    cursor: default;
+    background: #0f172a;
+    padding: 12px;
+    box-sizing: border-box;
   }
   .resource-card .card-body {
-    cursor: default;
-  }
-  .resource-card .card-body {
-    padding: 1.25rem;
+    padding: 1.1rem 1.25rem 1.25rem;
   }
   .resource-card .resource-tag {
     display: inline-block;
     font-family: var(--font-monospace);
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
-    padding: 2px 8px;
-    border-radius: 3px;
-    margin-bottom: 0.75rem;
+    letter-spacing: 0.08em;
+    padding: 3px 10px;
+    border-radius: 4px;
+    margin-bottom: 0.65rem;
+    font-weight: 600;
   }
-  .resource-card .resource-tag.checklist { background: #e3f2fd; color: #1565c0; }
-  .resource-card .resource-tag.rubric { background: #f3e5f5; color: #7b1fa2; }
-  .resource-card .resource-tag.guide { background: #fff3e0; color: #e65100; }
+  .resource-card .resource-tag.checklist { background: #e0f2fe; color: #0369a1; }
+  .resource-card .resource-tag.rubric { background: #f3e8ff; color: #7e22ce; }
+  .resource-card .resource-tag.guide { background: #fef2f2; color: #b91c1c; }
   .resource-card h3 {
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
-    line-height: 1.3;
+    font-size: 1rem;
+    margin-bottom: 0.45rem;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
   }
   .resource-card p {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: var(--text-muted-color);
-    margin-bottom: 1rem;
-    line-height: 1.5;
+    margin-bottom: 0.85rem;
+    line-height: 1.55;
   }
   .resource-card .resource-meta {
     font-family: var(--font-monospace);
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     color: var(--text-muted-color);
-    margin-bottom: 1rem;
+    margin-bottom: 0.85rem;
+    opacity: 0.7;
   }
   .resource-btn {
     display: inline-block;
     font-family: var(--font-monospace);
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    padding: 6px 14px;
-    border-radius: 4px;
+    padding: 7px 16px;
+    border-radius: 5px;
     text-decoration: none;
     transition: all 0.2s;
+    font-weight: 500;
   }
   .resource-btn.primary {
     background: var(--accent-color);
     color: #fff;
   }
   .resource-btn.primary:hover {
-    opacity: 0.9;
-  }
-  .resource-btn.outline {
-    border: 1px solid var(--border-color);
-    color: var(--text-color);
-    background: transparent;
-  }
-  .resource-btn.outline:hover {
-    border-color: var(--accent-color);
-    color: var(--accent-color);
+    opacity: 0.85;
   }
   .resource-cta-section {
     text-align: center;
     padding: 2rem 0;
-    margin-top: 2rem;
+    margin-top: 1rem;
     border-top: 1px solid var(--border-color);
   }
   .resource-cta-section p {
     color: var(--text-muted-color);
     margin-bottom: 1rem;
+    font-size: 0.95rem;
   }
 </style>
 
 <div class="resources-hero">
   <h1>Free AI Security Resources</h1>
-  <p>Practitioner-grade checklists and rubrics for teams deploying AI agents in production.</p>
+  <p>Practitioner-grade checklists, rubrics, and field guides for teams deploying AI agents in production.</p>
 </div>
 
 <div class="resources-grid">
 
   <!-- Field Guide -->
   <div class="resource-card">
+    <img src="/assets/img/cover-field-guide.svg" alt="AI Agent Security Field Guide cover" class="cover-img">
     <div class="card-body">
       <span class="resource-tag guide">Field Guide</span>
       <h3>AI Agent Security Field Guide</h3>
@@ -143,7 +141,7 @@ permalink: /resources/
 
   <!-- Pre-Deployment Checklist -->
   <div class="resource-card">
-    <img src="/assets/img/cover-predeployment-checklist.jpg" alt="Pre-Deployment Security Checklist cover" class="cover-img">
+    <img src="/assets/img/cover-predeployment-checklist.svg" alt="Pre-Deployment Security Checklist cover" class="cover-img">
     <div class="card-body">
       <span class="resource-tag checklist">Checklist</span>
       <h3>Agent Pre-Deployment Security Checklist</h3>
@@ -155,7 +153,7 @@ permalink: /resources/
 
   <!-- Threat Model Checklist -->
   <div class="resource-card">
-    <img src="/assets/img/cover-threat-model-checklist.jpg" alt="Threat Modeling Checklist cover" class="cover-img">
+    <img src="/assets/img/cover-threat-model-checklist.svg" alt="Threat Modeling Checklist cover" class="cover-img">
     <div class="card-body">
       <span class="resource-tag checklist">Checklist</span>
       <h3>5 Ways AI Breaks Threat Modeling</h3>
@@ -167,7 +165,7 @@ permalink: /resources/
 
   <!-- Identity Readiness Checklist -->
   <div class="resource-card">
-    <img src="/assets/img/cover-identity-readiness-checklist.jpg" alt="Identity Readiness Checklist cover" class="cover-img">
+    <img src="/assets/img/cover-identity-readiness-checklist.svg" alt="Identity Readiness Checklist cover" class="cover-img">
     <div class="card-body">
       <span class="resource-tag checklist">Checklist</span>
       <h3>AI Agent Identity Readiness Checklist</h3>
@@ -179,7 +177,7 @@ permalink: /resources/
 
   <!-- Containment Rubric -->
   <div class="resource-card">
-    <img src="/assets/img/cover-containment-rubric.jpg" alt="Containment Rubric cover" class="cover-img">
+    <img src="/assets/img/cover-containment-rubric.svg" alt="Containment Rubric cover" class="cover-img">
     <div class="card-body">
       <span class="resource-tag rubric">Rubric</span>
       <h3>AI Agent Containment Rubric</h3>

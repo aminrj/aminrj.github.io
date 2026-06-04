@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="600" height="400"
+     viewBox="0 0 600 400">
+    <defs>
+        <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" fill="none"
+                  stroke="white" stroke-opacity="0.03" stroke-width="1"/>
+        </pattern>
+        <linearGradient id="accent-bar" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#e94560"/>
+            <stop offset="100%" stop-color="#e9456022"/>
+        </linearGradient>
+        <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#1a1a2e"/>
+            <stop offset="100%" stop-color="#16213e"/>
+        </linearGradient>
+    </defs>
+    <rect width="600" height="400" fill="url(#bg)"/>
+    <rect width="600" height="400" fill="url(#grid)"/>
+    <rect x="0" y="0" width="600" height="4" fill="url(#accent-bar)"/>
+    <circle cx="80" cy="120" r="36"
+            fill="#e9456015" stroke="#e94560" stroke-width="1.5" opacity="0.8"/>
+    <g transform="translate(60, 100)" width="40" height="40">
+        <path d="M4 6h16M4 12h16M4 18h12"
+              stroke="#e94560" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        <circle cx="20" cy="12" r="5" fill="none" stroke="#e94560" stroke-width="2"/>
+    </g>
+    <rect x="80" y="175" width="74" height="24" rx="12"
+          fill="#e9456022" stroke="#e94560" stroke-width="0.5" opacity="0.9"/>
+    <text x="117" y="192"
+          font-family="system-ui, -apple-system, sans-serif"
+          font-size="10" font-weight="600" letter-spacing="0.08em"
+          text-transform="uppercase" fill="#e94560">
+        Field Guide
+    </text>
+    <text x="80" y="240"
+          font-family="system-ui, -apple-system, sans-serif"
+          font-size="24" font-weight="700" fill="#ffffff">
+        <tspan x="80" dy="0">AI Agent Security</tspan>
+<tspan x="80" dy="0">Field Guide</tspan>
+    </text>
+    <text x="80" y="280"
+          font-family="system-ui, -apple-system, sans-serif"
+          font-size="13" fill="#a0a0b0">
+        OWASP Agentic Top 10 mapped to real attack patterns and production-ready mitigations.
+    </text>
+    <rect x="80" y="320" width="60" height="2" rx="1"
+          fill="url(#accent-bar)" opacity="0.6"/>
+    <text x="80" y="365"
+          font-family="system-ui, -apple-system, sans-serif"
+          font-size="10" font-weight="500" letter-spacing="0.05em"
+          fill="#a0a0b0" opacity="0.6">
+        aminrj.com
+    </text>
+    <text x="520" y="365"
+          font-family="system-ui, -apple-system, sans-serif"
+          font-size="10" fill="#a0a0b0" opacity="0.6">
+        Free Download
+    </text>
+</svg>

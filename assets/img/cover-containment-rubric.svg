@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="600" height="400"
+     viewBox="0 0 600 400">
+    
+    <defs>
+        <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" fill="none"
+                  stroke="white" stroke-opacity="0.03" stroke-width="1"/>
+        </pattern>
+        <linearGradient id="accent-bar" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#c084fc"/>
+            <stop offset="100%" stop-color="#c084fc22"/>
+        </linearGradient>
+    </defs>
+    
+    <!-- Background -->
+    <rect width="600" height="400" rx="0"
+          fill="url(#bg)"/>
+    <defs>
+        <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#1a1040"/>
+            <stop offset="100%" stop-color="#2d1b69"/>
+        </linearGradient>
+    </defs>
+    <!-- Grid overlay -->
+    <rect width="600" height="400" fill="url(#grid)"/>
+
+    <!-- Accent bar top -->
+    <rect x="0" y="0" width="600" height="4"
+          fill="url(#accent-bar)"/>
+
+    <!-- Icon circle -->
+    <circle cx="80" cy="120" r="36"
+            fill="#c084fc15"
+            stroke="#c084fc" stroke-width="1.5"
+            opacity="0.8"/>
+    <!-- Icon -->
+    <g transform="translate(60, 100)" width="40" height="40">
+        
+        <rect x="3" y="3" width="7" height="7" rx="1"
+              fill="#c084fc" opacity="0.3"/>
+        <rect x="14" y="3" width="7" height="7" rx="1"
+              fill="none" stroke="#c084fc" stroke-width="2"/>
+        <rect x="3" y="14" width="7" height="7" rx="1"
+              fill="none" stroke="#c084fc" stroke-width="2"/>
+        <rect x="14" y="14" width="7" height="7" rx="1"
+              fill="none" stroke="#c084fc" stroke-width="2"/>
+    
+    </g>
+
+    <!-- Badge -->
+    <rect x="80" y="175" width="74" height="24" rx="12"
+          fill="#c084fc22" stroke="#c084fc" stroke-width="0.5"
+          opacity="0.9"/>
+    <text x="117.0" y="192"
+          font-family="system-ui, -apple-system, sans-serif"
+          font-size="10" font-weight="600" letter-spacing="0.08em"
+          text-transform="uppercase" fill="#c084fc">
+        Rubric
+    </text>
+
+    <!-- Title -->
+    <text x="80" y="240"
+          font-family="system-ui, -apple-system, sans-serif"
+          font-size="24" font-weight="700" fill="#ffffff">
+        <tspan x="80" dy="0">AI Agent Containment Rubric</tspan>
+    </text>
+
+    <!-- Subtitle -->
+    <text x="80" y="280"
+          font-family="system-ui, -apple-system, sans-serif"
+          font-size="13" fill="#a78bfa">
+        Five dimensions to assess your team's ability to contain AI-specific incidents.
+    </text>
+
+    <!-- Bottom accent -->
+    <rect x="80" y="320" width="60" height="2" rx="1"
+          fill="url(#accent-bar)" opacity="0.6"/>
+
+    <!-- Footer -->
+    <text x="80" y="365"
+          font-family="system-ui, -apple-system, sans-serif"
+          font-size="10" font-weight="500" letter-spacing="0.05em"
+          fill="#a78bfa" opacity="0.6">
+        aminrj.com
+    </text>
+    <text x="520" y="365"
+          font-family="system-ui, -apple-system, sans-serif"
+          font-size="10" fill="#a78bfa" opacity="0.6">
+        Free Download
+    </text>
+</svg>

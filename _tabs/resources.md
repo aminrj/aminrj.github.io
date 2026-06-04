@@ -8,115 +8,177 @@ permalink: /resources/
 
 <!-- ── Resources page styles ──────────────────────────────────────────────── -->
 
+<!-- Import lead-magnet fonts for the resources page -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;600;700&family=Newsreader:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
 <style>
+  /* ── Tokens matching the lead-magnet brand ──────────────────────────── */
+  :root {
+    --rm-paper:   #FAF8F4;
+    --rm-ink:     #1A1A1A;
+    --rm-soft:    #5A5A5A;
+    --rm-rule:    #D8D4CE;
+    --rm-accent:  #C8553D;
+    --rm-accent-ink: #9E3F2C;
+  }
+
+  /* ── Hero ───────────────────────────────────────────────────────────── */
   .resources-hero {
     text-align: center;
-    padding: 2.5rem 0 2rem;
+    padding: 3rem 0 2.5rem;
   }
   .resources-hero h1 {
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 700;
+    font-size: 2.2rem;
+    color: var(--rm-ink);
+    margin-bottom: 0.6rem;
     letter-spacing: -0.02em;
+    line-height: 1.15;
   }
   .resources-hero p {
-    color: var(--text-muted-color);
+    font-family: 'Newsreader', Georgia, serif;
     font-size: 1.05rem;
-    max-width: 560px;
+    color: var(--rm-soft);
+    max-width: 540px;
     margin: 0 auto;
     line-height: 1.6;
   }
+
+  /* ── Grid ───────────────────────────────────────────────────────────── */
   .resources-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.25rem;
-    margin: 1.5rem 0 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+    margin: 1.5rem 0 2.5rem;
   }
+
+  /* ── Card ───────────────────────────────────────────────────────────── */
   .resource-card {
-    background: var(--card-bg-color);
-    border: 1px solid var(--border-color);
-    border-radius: 10px;
-    overflow: hidden;
-    transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    background: var(--rm-paper);
+    border: 1px solid var(--rm-rule);
+    padding: 1.75rem 1.75rem 1.5rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+    display: flex;
+    flex-direction: column;
   }
   .resource-card:hover {
-    border-color: var(--accent-color);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    border-color: var(--rm-accent);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    transform: translateY(-2px);
   }
-  .resource-card .cover-img {
-    width: 100%;
-    height: 200px;
-    object-fit: contain;
-    display: block;
-    background: #0f172a;
-    padding: 12px;
-    box-sizing: border-box;
-  }
-  .resource-card .card-body {
-    padding: 1.1rem 1.25rem 1.25rem;
-  }
-  .resource-card .resource-tag {
-    display: inline-block;
-    font-family: var(--font-monospace);
-    font-size: 0.65rem;
+
+  /* ── Type badge ─────────────────────────────────────────────────────── */
+  .resource-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    font-weight: 500;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    padding: 3px 10px;
-    border-radius: 4px;
-    margin-bottom: 0.65rem;
-    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--rm-accent);
+    margin-bottom: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
   }
-  .resource-card .resource-tag.checklist { background: #e0f2fe; color: #0369a1; }
-  .resource-card .resource-tag.rubric { background: #f3e8ff; color: #7e22ce; }
-  .resource-card .resource-tag.guide { background: #fef2f2; color: #b91c1c; }
+  .resource-badge::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--rm-accent);
+    flex-shrink: 0;
+  }
+  .resource-badge.rubric { color: #7E22CE; }
+  .resource-badge.rubric::before { background: #7E22CE; }
+
+  /* ── Title ──────────────────────────────────────────────────────────── */
   .resource-card h3 {
-    font-size: 1rem;
-    margin-bottom: 0.45rem;
-    line-height: 1.35;
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--rm-ink);
+    line-height: 1.25;
+    margin-bottom: 0.55rem;
     letter-spacing: -0.01em;
   }
-  .resource-card p {
-    font-size: 0.85rem;
-    color: var(--text-muted-color);
-    margin-bottom: 0.85rem;
+
+  /* ── Description ────────────────────────────────────────────────────── */
+  .resource-card .desc {
+    font-family: 'Newsreader', Georgia, serif;
+    font-size: 0.88rem;
+    color: var(--rm-soft);
     line-height: 1.55;
-  }
-  .resource-card .resource-meta {
-    font-family: var(--font-monospace);
-    font-size: 0.7rem;
-    color: var(--text-muted-color);
-    margin-bottom: 0.85rem;
-    opacity: 0.7;
-  }
-  .resource-btn {
-    display: inline-block;
-    font-family: var(--font-monospace);
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    padding: 7px 16px;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: all 0.2s;
-    font-weight: 500;
-  }
-  .resource-btn.primary {
-    background: var(--accent-color);
-    color: #fff;
-  }
-  .resource-btn.primary:hover {
-    opacity: 0.85;
-  }
-  .resource-cta-section {
-    text-align: center;
-    padding: 2rem 0;
-    margin-top: 1rem;
-    border-top: 1px solid var(--border-color);
-  }
-  .resource-cta-section p {
-    color: var(--text-muted-color);
     margin-bottom: 1rem;
+    flex: 1;
+  }
+
+  /* ── Meta ───────────────────────────────────────────────────────────── */
+  .resource-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--rm-soft);
+    opacity: 0.6;
+    margin-bottom: 1.1rem;
+    letter-spacing: 0.02em;
+  }
+
+  /* ── Download link ──────────────────────────────────────────────────── */
+  .resource-download {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--rm-accent);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: gap 0.15s ease, color 0.15s ease;
+  }
+  .resource-download:hover {
+    gap: 0.7rem;
+    color: var(--rm-accent-ink);
+  }
+  .resource-download .arrow {
+    transition: transform 0.15s ease;
+  }
+  .resource-download:hover .arrow {
+    transform: translateX(2px);
+  }
+
+  /* ── CTA section ────────────────────────────────────────────────────── */
+  .resource-cta {
+    text-align: center;
+    padding: 2.5rem 0 1rem;
+    border-top: 1px solid var(--rm-rule);
+    margin-top: 1rem;
+  }
+  .resource-cta p {
+    font-family: 'Newsreader', Georgia, serif;
     font-size: 0.95rem;
+    color: var(--rm-soft);
+    margin-bottom: 1rem;
+  }
+  .resource-cta a {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--rm-paper);
+    background: var(--rm-accent);
+    text-decoration: none;
+    padding: 9px 22px;
+    border-radius: 4px;
+    transition: background 0.15s ease;
+  }
+  .resource-cta a:hover {
+    background: var(--rm-accent-ink);
   }
 </style>
 
@@ -129,62 +191,47 @@ permalink: /resources/
 
   <!-- Field Guide -->
   <div class="resource-card">
-    <img src="/assets/img/cover-field-guide.svg" alt="AI Agent Security Field Guide cover" class="cover-img">
-    <div class="card-body">
-      <span class="resource-tag guide">Field Guide</span>
-      <h3>AI Agent Security Field Guide</h3>
-      <p>20+ pages mapping the OWASP Agentic Top 10 to real attack patterns and production-ready mitigations.</p>
-      <div class="resource-meta">PDF · 20+ pages · Free</div>
-      <a href="/assets/pdfs/ai-agent-security-field-guide.pdf" class="resource-btn primary" target="_blank">Download →</a>
-    </div>
+    <div class="resource-badge">Field Guide</div>
+    <h3>AI Agent Security Field Guide</h3>
+    <p class="desc">20+ pages mapping the OWASP Agentic Top 10 to real attack patterns and production-ready mitigations.</p>
+    <div class="resource-meta">PDF · 20+ pages · Free</div>
+    <a href="/assets/pdfs/ai-agent-security-field-guide.pdf" class="resource-download" target="_blank">Download<span class="arrow">→</span></a>
   </div>
 
   <!-- Pre-Deployment Checklist -->
   <div class="resource-card">
-    <img src="/assets/img/cover-predeployment-checklist.svg" alt="Pre-Deployment Security Checklist cover" class="cover-img">
-    <div class="card-body">
-      <span class="resource-tag checklist">Checklist</span>
-      <h3>Agent Pre-Deployment Security Checklist</h3>
-      <p>25 controls across 5 families: probabilistic testing, supply chain, tool controls, injection defense, and sign-off.</p>
-      <div class="resource-meta">PDF · 5 pages · Free</div>
-      <a href="/assets/pdfs/predeployment-checklist.pdf" class="resource-btn primary" target="_blank">Download →</a>
-    </div>
+    <div class="resource-badge">Checklist</div>
+    <h3>Agent Pre-Deployment Security Checklist</h3>
+    <p class="desc">25 controls across 5 families: probabilistic testing, supply chain, tool controls, injection defense, and sign-off.</p>
+    <div class="resource-meta">PDF · 5 pages · Free</div>
+    <a href="/assets/pdfs/predeployment-checklist.pdf" class="resource-download" target="_blank">Download<span class="arrow">→</span></a>
   </div>
 
   <!-- Threat Model Checklist -->
   <div class="resource-card">
-    <img src="/assets/img/cover-threat-model-checklist.svg" alt="Threat Modeling Checklist cover" class="cover-img">
-    <div class="card-body">
-      <span class="resource-tag checklist">Checklist</span>
-      <h3>5 Ways AI Breaks Threat Modeling</h3>
-      <p>A practical checklist for security teams deploying agentic AI — with what you need to add before you ship.</p>
-      <div class="resource-meta">PDF · 6 pages · Free</div>
-      <a href="/assets/pdfs/threat-model-checklist.pdf" class="resource-btn primary" target="_blank">Download →</a>
-    </div>
+    <div class="resource-badge">Checklist</div>
+    <h3>5 Ways AI Breaks Threat Modeling</h3>
+    <p class="desc">A practical checklist for security teams deploying agentic AI — with what you need to add before you ship.</p>
+    <div class="resource-meta">PDF · 6 pages · Free</div>
+    <a href="/assets/pdfs/threat-model-checklist.pdf" class="resource-download" target="_blank">Download<span class="arrow">→</span></a>
   </div>
 
   <!-- Identity Readiness Checklist -->
   <div class="resource-card">
-    <img src="/assets/img/cover-identity-readiness-checklist.svg" alt="Identity Readiness Checklist cover" class="cover-img">
-    <div class="card-body">
-      <span class="resource-tag checklist">Checklist</span>
-      <h3>AI Agent Identity Readiness Checklist</h3>
-      <p>Five dimensions to verify before any AI agent enters production: governance, risk, capability, procurement, operations.</p>
-      <div class="resource-meta">PDF · 5 pages · Free</div>
-      <a href="/assets/pdfs/identity-readiness-checklist.pdf" class="resource-btn primary" target="_blank">Download →</a>
-    </div>
+    <div class="resource-badge">Checklist</div>
+    <h3>AI Agent Identity Readiness Checklist</h3>
+    <p class="desc">Five dimensions to verify before any AI agent enters production: governance, risk, capability, procurement, operations.</p>
+    <div class="resource-meta">PDF · 5 pages · Free</div>
+    <a href="/assets/pdfs/identity-readiness-checklist.pdf" class="resource-download" target="_blank">Download<span class="arrow">→</span></a>
   </div>
 
   <!-- Containment Rubric -->
   <div class="resource-card">
-    <img src="/assets/img/cover-containment-rubric.svg" alt="Containment Rubric cover" class="cover-img">
-    <div class="card-body">
-      <span class="resource-tag rubric">Rubric</span>
-      <h3>AI Agent Containment Rubric</h3>
-      <p>Assess your team's ability to contain AI-specific incidents across detection, isolation, response, communication, and improvement.</p>
-      <div class="resource-meta">PDF · 5 pages · Free</div>
-      <a href="/assets/pdfs/containment-rubric.pdf" class="resource-btn primary" target="_blank">Download →</a>
-    </div>
+    <div class="resource-badge rubric">Rubric</div>
+    <h3>AI Agent Containment Rubric</h3>
+    <p class="desc">Assess your team's ability to contain AI-specific incidents across detection, isolation, response, communication, and improvement.</p>
+    <div class="resource-meta">PDF · 5 pages · Free</div>
+    <a href="/assets/pdfs/containment-rubric.pdf" class="resource-download" target="_blank">Download<span class="arrow">→</span></a>
   </div>
 
 </div>

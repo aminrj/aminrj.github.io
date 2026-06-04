@@ -25,7 +25,7 @@ permalink: /resources/
   }
   .resources-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 1.5rem;
     margin: 2rem 0;
   }
@@ -33,11 +33,21 @@ permalink: /resources/
     background: var(--card-bg-color);
     border: 1px solid var(--border-color);
     border-radius: 8px;
-    padding: 1.5rem;
-    transition: border-color 0.2s;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
   }
   .resource-card:hover {
     border-color: var(--accent-color);
+    transform: translateY(-2px);
+  }
+  .resource-card .cover-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-bottom: 1px solid var(--border-color);
+  }
+  .resource-card .card-body {
+    padding: 1.25rem;
   }
   .resource-card .resource-tag {
     display: inline-block;
@@ -55,6 +65,7 @@ permalink: /resources/
   .resource-card h3 {
     font-size: 1.1rem;
     margin-bottom: 0.5rem;
+    line-height: 1.3;
   }
   .resource-card p {
     font-size: 0.9rem;
@@ -66,7 +77,7 @@ permalink: /resources/
     font-family: var(--font-monospace);
     font-size: 0.75rem;
     color: var(--text-muted-color);
-    margin-bottom: 0.75rem;
+    margin-bottom: 1rem;
   }
   .resource-btn {
     display: inline-block;
@@ -116,47 +127,61 @@ permalink: /resources/
 
   <!-- Field Guide -->
   <div class="resource-card">
-    <span class="resource-tag guide">Field Guide</span>
-    <h3>AI Agent Security Field Guide</h3>
-    <p>20+ pages mapping the OWASP Agentic Top 10 to real attack patterns and production-ready mitigations.</p>
-    <div class="resource-meta">PDF · 20+ pages · Free</div>
-    <a href="/assets/pdfs/ai-agent-security-field-guide.pdf" class="resource-btn primary" target="_blank">Download →</a>
+    <div class="card-body">
+      <span class="resource-tag guide">Field Guide</span>
+      <h3>AI Agent Security Field Guide</h3>
+      <p>20+ pages mapping the OWASP Agentic Top 10 to real attack patterns and production-ready mitigations.</p>
+      <div class="resource-meta">PDF · 20+ pages · Free</div>
+      <a href="/assets/pdfs/ai-agent-security-field-guide.pdf" class="resource-btn primary" target="_blank">Download →</a>
+    </div>
   </div>
 
   <!-- Pre-Deployment Checklist -->
   <div class="resource-card">
-    <span class="resource-tag checklist">Checklist</span>
-    <h3>Agent Pre-Deployment Security Checklist</h3>
-    <p>25 controls across 5 families: probabilistic testing, supply chain, tool controls, injection defense, and sign-off.</p>
-    <div class="resource-meta">PDF · 5 pages · Free</div>
-    <a href="/resources/predeployment-checklist/" class="resource-btn outline">View &amp; Download →</a>
+    <img src="/assets/img/cover-predeployment-checklist.png" alt="Pre-Deployment Security Checklist cover" class="cover-img">
+    <div class="card-body">
+      <span class="resource-tag checklist">Checklist</span>
+      <h3>Agent Pre-Deployment Security Checklist</h3>
+      <p>25 controls across 5 families: probabilistic testing, supply chain, tool controls, injection defense, and sign-off.</p>
+      <div class="resource-meta">PDF · 5 pages · Free</div>
+      <a href="/assets/pdfs/predeployment-checklist.pdf" class="resource-btn primary" target="_blank">Download →</a>
+    </div>
   </div>
 
   <!-- Threat Model Checklist -->
   <div class="resource-card">
-    <span class="resource-tag checklist">Checklist</span>
-    <h3>5 Ways AI Breaks Threat Modeling</h3>
-    <p>A practical checklist for security teams deploying agentic AI — with what you need to add before you ship.</p>
-    <div class="resource-meta">PDF · 6 pages · Free</div>
-    <a href="/resources/threat-model-checklist/" class="resource-btn outline">View &amp; Download →</a>
+    <img src="/assets/img/cover-threat-model-checklist.png" alt="Threat Modeling Checklist cover" class="cover-img">
+    <div class="card-body">
+      <span class="resource-tag checklist">Checklist</span>
+      <h3>5 Ways AI Breaks Threat Modeling</h3>
+      <p>A practical checklist for security teams deploying agentic AI — with what you need to add before you ship.</p>
+      <div class="resource-meta">PDF · 6 pages · Free</div>
+      <a href="/assets/pdfs/threat-model-checklist.pdf" class="resource-btn primary" target="_blank">Download →</a>
+    </div>
   </div>
 
   <!-- Identity Readiness Checklist -->
   <div class="resource-card">
-    <span class="resource-tag checklist">Checklist</span>
-    <h3>AI Agent Identity Readiness Checklist</h3>
-    <p>Five dimensions to verify before any AI agent enters production: governance, risk, capability, procurement, operations.</p>
-    <div class="resource-meta">PDF · 5 pages · Free</div>
-    <a href="/resources/identity-readiness-checklist/" class="resource-btn outline">View &amp; Download →</a>
+    <img src="/assets/img/cover-identity-readiness-checklist.png" alt="Identity Readiness Checklist cover" class="cover-img">
+    <div class="card-body">
+      <span class="resource-tag checklist">Checklist</span>
+      <h3>AI Agent Identity Readiness Checklist</h3>
+      <p>Five dimensions to verify before any AI agent enters production: governance, risk, capability, procurement, operations.</p>
+      <div class="resource-meta">PDF · 5 pages · Free</div>
+      <a href="/assets/pdfs/identity-readiness-checklist.pdf" class="resource-btn primary" target="_blank">Download →</a>
+    </div>
   </div>
 
   <!-- Containment Rubric -->
   <div class="resource-card">
-    <span class="resource-tag rubric">Rubric</span>
-    <h3>AI Agent Containment Rubric</h3>
-    <p>Assess your team's ability to contain AI-specific incidents across detection, isolation, response, communication, and improvement.</p>
-    <div class="resource-meta">PDF · 5 pages · Free</div>
-    <a href="/resources/containment-rubric/" class="resource-btn outline">View &amp; Download →</a>
+    <img src="/assets/img/cover-containment-rubric.png" alt="Containment Rubric cover" class="cover-img">
+    <div class="card-body">
+      <span class="resource-tag rubric">Rubric</span>
+      <h3>AI Agent Containment Rubric</h3>
+      <p>Assess your team's ability to contain AI-specific incidents across detection, isolation, response, communication, and improvement.</p>
+      <div class="resource-meta">PDF · 5 pages · Free</div>
+      <a href="/assets/pdfs/containment-rubric.pdf" class="resource-btn primary" target="_blank">Download →</a>
+    </div>
   </div>
 
 </div>

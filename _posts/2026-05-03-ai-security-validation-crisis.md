@@ -133,3 +133,11 @@ The Mythos coverage will keep running for another few weeks and then shift to wh
 - AISLE, *AI Cybersecurity After Mythos: The Jagged Frontier*, April 2026: [aisle.com/blog](https://aisle.com/blog/ai-cybersecurity-after-mythos-the-jagged-frontier)
 - HackerOne, *Internal vs Expert Triage: Why Your Triage Model Matters*, February 2026: [hackerone.com/blog](https://www.hackerone.com/blog/internal-vs-expert-triage-vulnerability-management)
 - Rawsec, *About the hype around XBOW*: [blog.raw.pm](https://blog.raw.pm/en/about-the-hype-around-xbow/)
+
+---
+
+<div style="background: var(--card-bg-color); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin: 1.5rem 0;">
+  <p style="margin: 0 0 0.75rem; font-weight: 600;">Assess your AI security readiness</p>
+  <p style="margin: 0 0 0.75rem; font-size: 0.9rem; color: var(--text-muted-color);">The <a href="/resources/identity-readiness-checklist/">AI Agent Identity Readiness Checklist</a> covers governance, risk mapping, organizational capability, procurement, and operational controls — 25 items across 5 dimensions. [Download the PDF →](/assets/pdfs/identity-readiness-checklist.pdf)</p>
+  <p style="margin: 0; font-size: 0.85rem; color: var(--text-muted-color);">Also: <a href="/resources/predeployment-checklist/">Pre-Deployment Checklist</a> · <a href="/resources/containment-rubric/">Containment Rubric</a></p>
+</div>

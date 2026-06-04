@@ -1234,6 +1234,14 @@ If you're deploying LLM agents to production, building AI systems for regulated 
 
 [Schedule a consultation](/consultation/) or connect on [LinkedIn](https://www.linkedin.com/in/aminebennaji/).
 
+---
+
+<div style="background: var(--card-bg-color); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin: 1.5rem 0;">
+  <p style="margin: 0 0 0.75rem; font-weight: 600;">Download the pre-deployment checklist</p>
+  <p style="margin: 0 0 0.75rem; font-size: 0.9rem; color: var(--text-muted-color);">The <a href="/resources/predeployment-checklist/">AI Agent Pre-Deployment Security Checklist</a> covers 25 controls across 5 families — from probabilistic testing to pre-ship sign-off. [Download the PDF →](/assets/pdfs/predeployment-checklist.pdf)</p>
+  <p style="margin: 0; font-size: 0.85rem; color: var(--text-muted-color);">Also: <a href="/resources/containment-rubric/">Containment Rubric</a> · <a href="/resources/holmesgpt-case-study/">HolmesGPT Case Study</a></p>
+</div>
+
 ## Continue the LLM Engineering series
 
 - [Part 1: Building a Procurement Analyst AI](/posts/LLM-engineering-building-a-procurements-analyst-ai/) — initial implementation and basic agent architecture

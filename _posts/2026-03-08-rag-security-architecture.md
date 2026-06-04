@@ -2030,4 +2030,12 @@ The attacks are real, the code runs locally, and the defenses exist. Clone the [
 
 ---
 
-_Part of a series on practical AI security: [LLM attack surface]({% post_url 2026-02-20-llm-attack-surface %}) · [OWASP Agentic Top 10 in practice]({% post_url 2026-02-24-owasp-agentic-top-10-in-practice %}) · [MCP tool poisoning]({% post_url 2026-02-26-mcp-tool-poisoning %}) · [DockerDash kill chain]({% post_url 2026-03-03-docker-dash-mcp-attack %}) · [Red teaming with PyRIT and Promptfoo]({% post_url 2026-03-05-attack-patterns-red-teaming %}). For a complimentary review of your AI security posture, [schedule 30 minutes](/consultation/)._
+_Part of a series on practical AI security: [LLM attack surface]({% post_url 2026-02-20-llm-attack-surface %}) · [OWASP Agentic Top 10 in practice]({% post_url 2026-02-24-owasp-agentic-top-10-in-practice %}) · [MCP tool poisoning]({% post_url 2026-02-26-mcp-tool-poisoning %}) · [DockerDash kill chain]({% post_url 2026-03-03-docker-dash-mcp-attack %}) · [Red teaming with PyRIT and Promptfoo]({% post_url 2026-03-05-attack-patterns-red-teaming %}). For a complimentary review of your AI security posture, [schedule 30 minutes](/consultation/).
+
+---
+
+<div style="background: var(--card-bg-color); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin: 1.5rem 0;">
+  <p style="margin: 0 0 0.75rem; font-weight: 600;">Download the threat modeling checklist</p>
+  <p style="margin: 0 0 0.75rem; font-size: 0.9rem; color: var(--text-muted-color);">The <a href="/resources/threat-model-checklist/">5 Ways AI Breaks Threat Modeling</a> checklist covers training data security, agent actions, prompt injection, and supply chain — with what you need to add to your process. [Download the PDF →](/assets/pdfs/threat-model-checklist.pdf)</p>
+  <p style="margin: 0; font-size: 0.85rem; color: var(--text-muted-color);">Also: <a href="/resources/predeployment-checklist/">Pre-Deployment Checklist</a> · <a href="/resources/containment-rubric/">Containment Rubric</a></p>
+</div>_

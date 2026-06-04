@@ -232,3 +232,11 @@ This is the honest state of the art: five defense layers — the three RAG-speci
 ---
 
 *The full implementation of all five defense layers — including `embedding_anomaly_detection.py`, `access_controlled_retrieval.py`, and `hardened_prompt.py` — is in the [mcp-attack-labs repository](https://github.com/aminrj-labs/mcp-attack-labs/lab04), with the measurement framework to verify the numbers yourself.*
+
+---
+
+<div style="background: var(--card-bg-color); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin: 1.5rem 0;">
+  <p style="margin: 0 0 0.75rem; font-weight: 600;">Download the pre-deployment checklist</p>
+  <p style="margin: 0 0 0.75rem; font-size: 0.9rem; color: var(--text-muted-color);">The <a href="/resources/predeployment-checklist/">AI Agent Pre-Deployment Security Checklist</a> covers RAG security as part of its 25 controls across 5 families. [Download the PDF →](/assets/pdfs/predeployment-checklist.pdf)</p>
+  <p style="margin: 0; font-size: 0.85rem; color: var(--text-muted-color);">Also: <a href="/resources/threat-model-checklist/">Threat Modeling Checklist</a> · <a href="/resources/holmesgpt-case-study/">HolmesGPT Case Study</a></p>
+</div>

@@ -737,3 +737,11 @@ The lab materials for reproducing every attack covered in this series are availa
 - [mcp-attack-labs](https://github.com/aminrj-labs/mcp-attack-labs) — Full source code for the attacks documented in this series
 - [NIST AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework) — Federal AI security guidance
 - [OWASP GenAI Red Teaming Guide](https://genai.owasp.org/resource/owasp-vendor-evaluation-criteria-for-ai-red-teaming-providers-tooling-v1-0/) — Evaluation criteria for AI red teaming providers
+
+---
+
+<div style="background: var(--card-bg-color); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin: 1.5rem 0;">
+  <p style="margin: 0 0 0.75rem; font-weight: 600;">Read the HolmesGPT case study</p>
+  <p style="margin: 0 0 0.75rem; font-size: 0.9rem; color: var(--text-muted-color);">A customer support agent was compromised through prompt injection. This <a href="/resources/holmesgpt-case-study/">case study</a> walks through the attack timeline, detection, containment, and lessons learned. [Download the PDF →](/assets/pdfs/holmesgpt-case-study.pdf)</p>
+  <p style="margin: 0; font-size: 0.85rem; color: var(--text-muted-color);">Also: <a href="/resources/predeployment-checklist/">Pre-Deployment Checklist</a> · <a href="/resources/containment-rubric/">Containment Rubric</a></p>
+</div>

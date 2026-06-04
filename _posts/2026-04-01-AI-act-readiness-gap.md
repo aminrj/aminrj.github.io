@@ -142,3 +142,11 @@ Register at [newsletter.aminrj.com](https://newsletter.aminrj.com) — workshop 
 ---
 
 *Amine Raji is an AI security practitioner with 15+ years in banking, defense, and automotive security. He writes about agentic AI attack surfaces, MCP security, and the OWASP Agentic Top 10 at [aminrj.com](https://aminrj.com).*
+
+---
+
+<div style="background: var(--card-bg-color); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin: 1.5rem 0;">
+  <p style="margin: 0 0 0.75rem; font-weight: 600;">Assess your AI governance readiness</p>
+  <p style="margin: 0 0 0.75rem; font-size: 0.9rem; color: var(--text-muted-color);">The <a href="/resources/identity-readiness-checklist/">AI Agent Identity Readiness Checklist</a> covers governance, policy, risk mapping, and regulatory obligations — 25 controls across 5 dimensions. [Download the PDF →](/assets/pdfs/identity-readiness-checklist.pdf)</p>
+  <p style="margin: 0; font-size: 0.85rem; color: var(--text-muted-color);">Also: <a href="/resources/predeployment-checklist/">Pre-Deployment Checklist</a> · <a href="/resources/containment-rubric/">Containment Rubric</a></p>
+</div>

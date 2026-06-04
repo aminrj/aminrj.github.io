@@ -278,5 +278,11 @@ _Amine Raji is an AI security specialist with 15+ years in production security a
 
 ---
 
+<div style="background: var(--card-bg-color); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin: 1.5rem 0;">
+  <p style="margin: 0 0 0.75rem; font-weight: 600;">Download the pre-deployment checklist</p>
+  <p style="margin: 0 0 0.75rem; font-size: 0.9rem; color: var(--text-muted-color);">The <a href="/resources/predeployment-checklist/">AI Agent Pre-Deployment Security Checklist</a> has 25 controls across 5 families — covering prompt injection, tool controls, supply chain, and more. [Download the PDF →](/assets/pdfs/predeployment-checklist.pdf)</p>
+  <p style="margin: 0; font-size: 0.85rem; color: var(--text-muted-color);">Also: <a href="/resources/threat-model-checklist/">Threat Modeling Checklist</a> · <a href="/resources/containment-rubric/">Containment Rubric</a></p>
+</div>
+
 <!-- **Tags for Medium:** Cybersecurity · AI Security · LLM · Machine Learning Security · Prompt Injection · Artificial Intelligence -->
 

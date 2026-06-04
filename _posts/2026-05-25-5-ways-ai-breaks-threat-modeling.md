@@ -139,6 +139,12 @@ If your AI security review for a production agent deployment looks identical to 
 
 ---
 
+<div style="background: var(--card-bg-color); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin: 1.5rem 0;">
+  <p style="margin: 0 0 0.75rem; font-weight: 600;">Download the threat modeling checklist</p>
+  <p style="margin: 0 0 0.75rem; font-size: 0.9rem; color: var(--text-muted-color);">This article was expanded into a <a href="/resources/threat-model-checklist/">practical checklist for security teams</a> — with specific controls you need to add before shipping AI. [Download the PDF →](/assets/pdfs/threat-model-checklist.pdf)</p>
+  <p style="margin: 0; font-size: 0.85rem; color: var(--text-muted-color);">Also: <a href="/resources/predeployment-checklist/">Pre-Deployment Checklist</a> · <a href="/resources/containment-rubric/">Containment Rubric</a></p>
+</div>
+
 For practical guides on MCP security, agentic AI red teaming, and production incident analysis: [subscribe to the AI Security Intelligence newsletter.](/newsletter/)
 
 ---

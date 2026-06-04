@@ -165,19 +165,17 @@ permalink: /resources/
   }
 
   /* ── CTA section ────────────────────────────────────────────────────── */
-  .resource-cta {
+  .resource-cta-section {
     text-align: center;
     padding: 2.5rem 0 1rem;
-    border-top: 1px solid var(--rm-rule);
-    margin-top: 1rem;
   }
-  .resource-cta p {
+  .resource-cta-section p {
     font-family: 'Newsreader', Georgia, serif;
     font-size: 0.95rem;
     color: var(--rm-soft);
     margin-bottom: 1rem;
   }
-  .resource-cta a {
+  .resource-cta-section a {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.72rem;
     font-weight: 500;
@@ -190,7 +188,7 @@ permalink: /resources/
     border-radius: 4px;
     transition: background 0.15s ease;
   }
-  .resource-cta a:hover {
+  .resource-cta-section a:hover {
     background: var(--rm-accent-ink);
   }
 </style>

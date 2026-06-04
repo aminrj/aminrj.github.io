@@ -42,7 +42,8 @@ permalink: /resources/
   }
   .resource-card .cover-img {
     width: 100%;
-    height: auto;
+    height: 200px;
+    object-fit: cover;
     display: block;
     border-bottom: 1px solid var(--border-color);
   }
@@ -138,7 +139,7 @@ permalink: /resources/
 
   <!-- Pre-Deployment Checklist -->
   <div class="resource-card">
-    <img src="/assets/img/cover-predeployment-checklist.png" alt="Pre-Deployment Security Checklist cover" class="cover-img">
+    <img src="/assets/img/cover-predeployment-checklist.jpg" alt="Pre-Deployment Security Checklist cover" class="cover-img">
     <div class="card-body">
       <span class="resource-tag checklist">Checklist</span>
       <h3>Agent Pre-Deployment Security Checklist</h3>
@@ -150,7 +151,7 @@ permalink: /resources/
 
   <!-- Threat Model Checklist -->
   <div class="resource-card">
-    <img src="/assets/img/cover-threat-model-checklist.png" alt="Threat Modeling Checklist cover" class="cover-img">
+    <img src="/assets/img/cover-threat-model-checklist.jpg" alt="Threat Modeling Checklist cover" class="cover-img">
     <div class="card-body">
       <span class="resource-tag checklist">Checklist</span>
       <h3>5 Ways AI Breaks Threat Modeling</h3>
@@ -162,7 +163,7 @@ permalink: /resources/
 
   <!-- Identity Readiness Checklist -->
   <div class="resource-card">
-    <img src="/assets/img/cover-identity-readiness-checklist.png" alt="Identity Readiness Checklist cover" class="cover-img">
+    <img src="/assets/img/cover-identity-readiness-checklist.jpg" alt="Identity Readiness Checklist cover" class="cover-img">
     <div class="card-body">
       <span class="resource-tag checklist">Checklist</span>
       <h3>AI Agent Identity Readiness Checklist</h3>
@@ -174,7 +175,7 @@ permalink: /resources/
 
   <!-- Containment Rubric -->
   <div class="resource-card">
-    <img src="/assets/img/cover-containment-rubric.png" alt="Containment Rubric cover" class="cover-img">
+    <img src="/assets/img/cover-containment-rubric.jpg" alt="Containment Rubric cover" class="cover-img">
     <div class="card-body">
       <span class="resource-tag rubric">Rubric</span>
       <h3>AI Agent Containment Rubric</h3>

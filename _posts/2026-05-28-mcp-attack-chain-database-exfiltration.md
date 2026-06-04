@@ -106,6 +106,8 @@ The attack exists entirely at the semantic layer. A human reviewer could have ca
 
 The deeper issue is structural. This attack crosses four architectural layers of the stack simultaneously:
 
+<a href="/assets/diagrams/mcp-layer-cross.svg" class="popup img-link shimmer"><img src="/assets/diagrams/mcp-layer-cross.svg" alt="Diagram showing how the MCP supply chain attack crosses four MAESTRO layers: Agent Ecosystem, Agent Framework, Foundation Model, and Data Operations."></a>
+
 - The payload lives in **the agent ecosystem layer** (the MCP registry, where tool descriptions are published)
 - Delivery happens via **the framework layer** (the agent framework loading tool descriptions at init)
 - Execution happens at **the model layer** (the foundation model processing the embedded instruction)

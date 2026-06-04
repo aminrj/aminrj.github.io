@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 500" width="760" height="500">
+  <style>
+    /* Font properties only. fill is set per element as a presentation attribute. */
+    .title   { font-family: -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:20px; font-weight:700; }
+    .body    { font-family: -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:13px; font-weight:600; }
+    .sub     { font-family: -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:12px; font-weight:400; }
+    .mono    { font-family: 'Courier New',Courier,monospace; font-size:9px; font-weight:500; letter-spacing:0.06em; }
+    .caption { font-family: -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:12px; font-weight:400; }
+    .num     { font-family: -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:13px; font-weight:700; }
+  </style>
+
+  <defs>
+    <marker id="arr" markerWidth="6" markerHeight="5" refX="5" refY="2.5" orient="auto">
+      <polygon points="0 0, 6 2.5, 0 5" fill="#e2e8f0"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="760" height="500" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="380" y="40" text-anchor="middle" class="title" fill="#0f172a">The Attack Crosses 4 Architectural Layers</text>
+  <line x1="40" y1="56" x2="720" y2="56" stroke="#f1f5f9" stroke-width="1"/>
+
+  <!--
+    Box sizing: top_pad=12 + title_lh=18 + sub_lh=16 + sub_lh=16 + bottom_pad=14 = 76px
+    4 boxes at 76px with 24px gaps = 376px total stack.
+    Boxes: x=76, width=644, height=76. Circles: cx=48, r=16.
+    Content text starts at x=96 (box_left + 20px padding).
+
+    Layer 1: box y=80,  cy=118, text at 106/124/140, bottom=156
+    Layer 2: box y=180, cy=218, text at 206/224/240, bottom=256
+    Layer 3: box y=280, cy=318, text at 306/324/340, bottom=356
+    Layer 4: box y=380, cy=418, text at 406/424/440, bottom=456
+  -->
+
+  <!-- Connector lines between circles (drawn before circles) -->
+  <line x1="48" y1="135" x2="48" y2="201" stroke="#e2e8f0" stroke-width="1.5" stroke-dasharray="4,4" marker-end="url(#arr)"/>
+  <line x1="48" y1="235" x2="48" y2="301" stroke="#e2e8f0" stroke-width="1.5" stroke-dasharray="4,4" marker-end="url(#arr)"/>
+  <line x1="48" y1="335" x2="48" y2="401" stroke="#e2e8f0" stroke-width="1.5" stroke-dasharray="4,4" marker-end="url(#arr)"/>
+
+  <!-- =========================================
+       LAYER 1  ==  Agent Ecosystem (entry point)
+       box y=80, bottom=156. All baselines within.
+       ========================================= -->
+  <circle cx="48" cy="118" r="16" fill="#c2410c"/>
+  <text x="48" y="123" text-anchor="middle" class="num" fill="#ffffff">1</text>
+  <rect x="76" y="80" width="644" height="76" rx="6" fill="#ffffff" stroke="#c2410c" stroke-width="1.5"/>
+  <text x="96" y="106" class="body" fill="#0f172a">Agent Ecosystem</text>
+  <text x="708" y="106" text-anchor="end" class="mono" fill="#c2410c">ENTRY POINT</text>
+  <text x="96" y="124" class="sub" fill="#334155">Attacker embeds payload inside tool description text</text>
+  <text x="96" y="140" class="sub" fill="#64748b">No scanner reads natural-language tool descriptions for adversarial intent</text>
+
+  <!-- =========================================
+       LAYER 2  ==  Agent Framework (delivery)
+       box y=180, bottom=256. All baselines within.
+       ========================================= -->
+  <circle cx="48" cy="218" r="16" fill="#0f172a"/>
+  <text x="48" y="223" text-anchor="middle" class="num" fill="#ffffff">2</text>
+  <rect x="76" y="180" width="644" height="76" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="96" y="206" class="body" fill="#0f172a">Agent Framework</text>
+  <text x="708" y="206" text-anchor="end" class="mono" fill="#64748b">DELIVERY</text>
+  <text x="96" y="224" class="sub" fill="#334155">Tool descriptions loaded into model context at agent initialization</text>
+  <text x="96" y="240" class="sub" fill="#64748b">Standard init logs do not capture or inspect description content</text>
+
+  <!-- =========================================
+       LAYER 3  ==  Foundation Model (execution)
+       box y=280, bottom=356. All baselines within.
+       ========================================= -->
+  <circle cx="48" cy="318" r="16" fill="#0f172a"/>
+  <text x="48" y="323" text-anchor="middle" class="num" fill="#ffffff">3</text>
+  <rect x="76" y="280" width="644" height="76" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="96" y="306" class="body" fill="#0f172a">Foundation Model</text>
+  <text x="708" y="306" text-anchor="end" class="mono" fill="#64748b">EXECUTION</text>
+  <text x="96" y="324" class="sub" fill="#334155">Injected instruction interpreted as operational guidance</text>
+  <text x="96" y="340" class="sub" fill="#64748b">Model has no mechanism to distinguish instruction source or legitimacy</text>
+
+  <!-- =========================================
+       LAYER 4  ==  Data Operations (impact)
+       box y=380, bottom=456. All baselines within.
+       ========================================= -->
+  <circle cx="48" cy="418" r="16" fill="#c2410c"/>
+  <text x="48" y="423" text-anchor="middle" class="num" fill="#ffffff">4</text>
+  <rect x="76" y="380" width="644" height="76" rx="6" fill="#ffffff" stroke="#c2410c" stroke-width="1.5"/>
+  <text x="96" y="406" class="body" fill="#0f172a">Data Operations</text>
+  <text x="708" y="406" text-anchor="end" class="mono" fill="#c2410c">IMPACT</text>
+  <text x="96" y="424" class="sub" fill="#334155">Customer records forwarded to attacker-controlled endpoint</text>
+  <text x="96" y="440" class="sub" fill="#64748b">Appears as an authorized tool call. No anomaly flagged.</text>
+
+  <!-- Caption -->
+  <text x="380" y="484" text-anchor="middle" class="caption" fill="#64748b">No single-layer control intercepts the full path. The payload crosses all four layers with one tool description.</text>
+</svg>

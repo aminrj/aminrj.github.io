@@ -51,7 +51,6 @@ permalink: /resources/
   }
   .resource-card .resource-tag.checklist { background: #e3f2fd; color: #1565c0; }
   .resource-card .resource-tag.rubric { background: #f3e5f5; color: #7b1fa2; }
-  .resource-card .resource-tag.case-study { background: #e8f5e9; color: #2e7d32; }
   .resource-card .resource-tag.guide { background: #fff3e0; color: #e65100; }
   .resource-card h3 {
     font-size: 1.1rem;
@@ -110,7 +109,7 @@ permalink: /resources/
 
 <div class="resources-hero">
   <h1>Free AI Security Resources</h1>
-  <p>Practitioner-grade checklists, rubrics, and case studies for teams deploying AI agents in production.</p>
+  <p>Practitioner-grade checklists and rubrics for teams deploying AI agents in production.</p>
 </div>
 
 <div class="resources-grid">
@@ -158,15 +157,6 @@ permalink: /resources/
     <p>Assess your team's ability to contain AI-specific incidents across detection, isolation, response, communication, and improvement.</p>
     <div class="resource-meta">PDF · 5 pages · Free</div>
     <a href="/resources/containment-rubric/" class="resource-btn outline">View &amp; Download →</a>
-  </div>
-
-  <!-- HolmesGPT Case Study -->
-  <div class="resource-card">
-    <span class="resource-tag case-study">Case Study</span>
-    <h3>HolmesGPT Case Study</h3>
-    <p>How a customer support agent was compromised through prompt injection, and what it took to contain it. Full timeline, detection, and lessons.</p>
-    <div class="resource-meta">PDF · 8 pages · Free</div>
-    <a href="/resources/holmesgpt-case-study/" class="resource-btn outline">View &amp; Download →</a>
   </div>
 
 </div>

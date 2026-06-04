@@ -806,5 +806,5 @@ _This playbook is maintained by [Amine Raji](/) and updated as frameworks and to
 <div style="background: var(--card-bg-color); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin: 1.5rem 0;">
   <p style="margin: 0 0 0.75rem; font-weight: 600;">Assess your containment capability</p>
   <p style="margin: 0 0 0.75rem; font-size: 0.9rem; color: var(--text-muted-color);">The <a href="/resources/containment-rubric/">AI Agent Containment Rubric</a> helps you assess your team's ability to detect, contain, and recover from AI-specific incidents across five dimensions. [Download the PDF →](/assets/pdfs/containment-rubric.pdf)</p>
-  <p style="margin: 0; font-size: 0.85rem; color: var(--text-muted-color);">Also: <a href="/resources/holmesgpt-case-study/">HolmesGPT Case Study</a> · <a href="/resources/predeployment-checklist/">Pre-Deployment Checklist</a></p>
+  <p style="margin: 0; font-size: 0.85rem; color: var(--text-muted-color);">Also: <a href="/resources/predeployment-checklist/">Pre-Deployment Checklist</a> · <a href="/resources/threat-model-checklist/">Threat Modeling Checklist</a></p>
 </div>_

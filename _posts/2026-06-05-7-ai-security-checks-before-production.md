@@ -161,7 +161,7 @@ If your system passes all 7 checks, you have addressed the controls that appear 
 <div style="background: var(--card-bg-color); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin: 1.5rem 0;">
   <p style="margin: 0 0 0.75rem; font-weight: 600;">Download the full checklist</p>
   <p style="margin: 0 0 0.75rem; font-size: 0.9rem; color: var(--text-muted-color);">The <a href="/resources/predeployment-checklist/">AI Agent Pre-Deployment Security Checklist</a> has 25 controls across 5 families — probabilistic testing, supply chain, tool controls, injection defense, and sign-off. [Download the PDF →](/assets/pdfs/predeployment-checklist.pdf)</p>
-  <p style="margin: 0; font-size: 0.85rem; color: var(--text-muted-color);">Also: <a href="/resources/containment-rubric/">Containment Rubric</a> · <a href="/resources/holmesgpt-case-study/">HolmesGPT Case Study</a></p>
+  <p style="margin: 0; font-size: 0.85rem; color: var(--text-muted-color);">Also: <a href="/resources/containment-rubric/">Containment Rubric</a> · <a href="/resources/threat-model-checklist/">Threat Modeling Checklist</a></p>
 </div>
 
 For weekly AI security coverage, production incidents, framework updates, and what teams are actually missing before launch: [subscribe to the AI Security Intelligence newsletter.](/newsletter/)

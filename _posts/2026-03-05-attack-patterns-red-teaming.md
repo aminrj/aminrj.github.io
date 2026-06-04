@@ -741,7 +741,7 @@ The lab materials for reproducing every attack covered in this series are availa
 ---
 
 <div style="background: var(--card-bg-color); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin: 1.5rem 0;">
-  <p style="margin: 0 0 0.75rem; font-weight: 600;">Read the HolmesGPT case study</p>
-  <p style="margin: 0 0 0.75rem; font-size: 0.9rem; color: var(--text-muted-color);">A customer support agent was compromised through prompt injection. This <a href="/resources/holmesgpt-case-study/">case study</a> walks through the attack timeline, detection, containment, and lessons learned. [Download the PDF →](/assets/pdfs/holmesgpt-case-study.pdf)</p>
-  <p style="margin: 0; font-size: 0.85rem; color: var(--text-muted-color);">Also: <a href="/resources/predeployment-checklist/">Pre-Deployment Checklist</a> · <a href="/resources/containment-rubric/">Containment Rubric</a></p>
+  <p style="margin: 0 0 0.75rem; font-weight: 600;">Download the containment rubric</p>
+  <p style="margin: 0 0 0.75rem; font-size: 0.9rem; color: var(--text-muted-color);">The <a href="/resources/containment-rubric/">AI Agent Containment Rubric</a> covers detection, isolation, response, communication, and continuous improvement — 25 controls across 5 dimensions. [Download the PDF →](/assets/pdfs/containment-rubric.pdf)</p>
+  <p style="margin: 0; font-size: 0.85rem; color: var(--text-muted-color);">Also: <a href="/resources/predeployment-checklist/">Pre-Deployment Checklist</a> · <a href="/resources/threat-model-checklist/">Threat Modeling Checklist</a></p>
 </div>

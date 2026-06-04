@@ -95,7 +95,7 @@ Certification is resource-intensive. 12-18 months and $200K-$500K for mid-market
 
 ## The decision in three questions
 
-<a href="/assets/diagrams/ai-security-framework-decision-flow.png" class="popup img-link shimmer"><img src="/assets/diagrams/ai-security-framework-decision-flow.svg" alt="Decision flowchart showing how to pick the right framework based on who is asking, what you are building, and your security maturity."></a>
+<a href="/assets/diagrams/ai-security-framework-decision-flow.svg" class="popup img-link shimmer"><img src="/assets/diagrams/ai-security-framework-decision-flow.svg" alt="Decision flowchart showing how to pick the right framework based on who is asking, what you are building, and your security maturity."></a>
 
 **Question 1: Who is asking?**
 
@@ -141,7 +141,7 @@ You don't need all five layers at once. Identify your current gap, fill it, add 
 
 A fintech deploying its first customer service agent: run MAESTRO for the threat model, check findings against ATLAS, then prepare NIST AI RMF documentation for your banking partners. You don't start all four at once.
 
-<a href="/assets/diagrams/ai-security-framework-stack.png" class="popup img-link shimmer"><img src="/assets/diagrams/ai-security-framework-stack.svg" alt="Framework layering stack showing how the six layers work together — from management system at the bottom to operational testing at the top."></a>
+<a href="/assets/diagrams/ai-security-framework-stack.svg" class="popup img-link shimmer"><img src="/assets/diagrams/ai-security-framework-stack.svg" alt="Framework layering stack showing how the six layers work together, from management system at the bottom to operational testing at the top."></a>
 
 ---
 

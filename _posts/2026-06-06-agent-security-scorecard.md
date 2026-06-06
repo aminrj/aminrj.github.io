@@ -76,12 +76,18 @@ Each question uses a 0 to 3 maturity scale:
 
 Your domain score is the mean of four answers, normalized to 0 to 100. Your global score is the mean of all five domains.
 
+The screenshot below shows the full methodology breakdown that powers the assessment.
+
+![Scoring methodology](/assets/media/ai-security/scoring-methodology-screenshot.png)
+
 The result is not just a number. You get:
 
 - A named archetype (Lopsided Fortress, Blind Operator, Methodical Builder)
 - A radar chart showing where you are weak and where you are strong
 - Your top three risks, ranked by severity and gap, each with a concrete first action
 - A 30-day remediation roadmap, sequenced by impact
+
+The screenshot below shows the scoring methodology detail that powers all of this.
 
 ## Why the shape matters more than the score
 
@@ -106,6 +112,14 @@ The assessment assigns you a named archetype based on your score shape. Here are
 **The Optimistic Adopter** — Moving fast on capability, light on the brakes. Your cognition defenses are ahead of your identity and containment controls.
 
 **The Resilient Operator** — Enforced least agency, real auditability, tested containment. Agents are treated as production infrastructure.
+
+## The radar chart: your posture at a glance
+
+The radar chart is the single most useful output of the assessment. Each axis represents one domain. The dashed ring is the Resilient target (76+). The gap between your shape and that ring is the story.
+
+A perfect pentagon touching the outer ring means you are resilient across every dimension. A shape with one deep indentation tells you exactly where to focus. The visual makes the abstract concrete.
+
+![Radar chart showing your security posture](/assets/media/ai-security/radar-chart-screenshot.png)
 
 ## What most teams miss
 

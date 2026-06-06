@@ -1,5 +1,5 @@
 ---
-title: Most Teams Deploying AI Agents Are Exposed. Here's the Proof.
+title: Most teams deploying AI agents are exposed. Here's the proof.
 date: 2026-06-06
 uuid: 202606061000
 tags: [Agentic AI, AI Security, OWASP, Risk Assessment]
@@ -34,31 +34,31 @@ Try it here: https://scorecard.aminrj.com/
 
 The assessment covers five domains, each mapped to specific ASI controls from the OWASP Agentic Top 10.
 
-### Agent Inventory and Governance (ASI10)
+### Agent inventory and governance (ASI10)
 
 Do you know your agents exist, who owns them, and is there a gate before they ship?
 
 Without a live inventory, every downstream control is guesswork. You cannot scope permissions, assign ownership, or detect rogue agents on systems you do not know exist. This is the number one gap that security leaders cite.
 
-### Identity, Access, and Least Agency (ASI02, ASI03)
+### Identity, access, and least agency (ASI02, ASI03)
 
 Do agents have their own scoped identity, and are their permissions limited to what they actually need?
 
 Over-provisioned agents are the primary vector for tool misuse. The autonomy permission paradox makes this tempting to defer, but every unused permission is an attack surface. When an agent uses a shared account and misbehaves, you cannot tell what it did or revoke just its access.
 
-### Input Trust and Cognition Integrity (ASI01, ASI06)
+### Input trust and cognition integrity (ASI01, ASI06)
 
 Is external content treated as untrusted? Can your agent's memory be poisoned across sessions?
 
 Agents cannot reliably separate instructions from data. A poisoned email, PDF, or RAG document can silently hijack the agent's goal with zero user visibility. Persistent memory is a silent injection vector, because a poisoned entry from session N can redirect behavior in session N plus 100.
 
-### Execution and Supply Chain Safety (ASI04, ASI05, ASI07)
+### Execution and supply chain safety (ASI04, ASI05, ASI07)
 
 Is agent-generated code sandboxed? Are third-party tools and MCP servers vetted and pinned?
 
 Agent-generated code running with host privileges is a one-step path from prompt injection to full host compromise. 2026 saw the first agent-skill registry poisoned at scale and SSRF-vulnerable MCP servers found in the wild. An unpinned tool update is an automatic supply chain attack vector.
 
-### Detection, Response, and Containment (ASI08, ASI09, ASI10)
+### Detection, response, and containment (ASI08, ASI09, ASI10)
 
 Can you see, replay, and stop agent misbehavior?
 
@@ -68,11 +68,11 @@ Cascading failures and rogue agents are invisible until they detonate. If you ca
 
 Each question uses a 0 to 3 maturity scale:
 
-- **0** — Absent. No control in place.
-- **1** — Ad hoc. Done inconsistently, no standard.
-- **2** — Defined. Standardized and documented.
-- **3** — Managed. Enforced, monitored, verified.
-- **N/A** — Not applicable (counts as 0 for scoring, tracked separately).
+- **0** Absent. No control in place.
+- **1** Ad hoc. Done inconsistently, no standard.
+- **2** Defined. Standardized and documented.
+- **3** Managed. Enforced, monitored, verified.
+- **N/A** Not applicable (counts as 0 for scoring, tracked separately).
 
 Your domain score is the mean of four answers, normalized to 0 to 100. Your global score is the mean of all five domains.
 
@@ -103,19 +103,29 @@ That is why the archetype is derived from the shape of your five domain scores, 
 
 The assessment assigns you a named archetype based on your score shape. Here are the ones most teams land in:
 
-**The Lopsided Fortress** — You have hardened the sophisticated risks while leaving a basic one wide open. Your weakest domain undoes the work in your strongest.
+**The Lopsided Fortress**
 
-**Flying Blind** — Agents are in production with little agent-specific security. This is the highest urgency band. Start with identity and containment.
+You have hardened the sophisticated risks while leaving a basic one wide open. Your weakest domain undoes the work in your strongest.
 
-**The Blind Operator** — You have controls, but little visibility into what agents do and no fast way to stop them. You would miss a quiet compromise.
+**Flying Blind**
 
-**The Optimistic Adopter** — Moving fast on capability, light on the brakes. Your cognition defenses are ahead of your identity and containment controls.
+Agents are in production with little agent-specific security. This is the highest urgency band. Start with identity and containment.
 
-**The Resilient Operator** — Enforced least agency, real auditability, tested containment. Agents are treated as production infrastructure.
+**The Blind Operator**
+
+You have controls, but little visibility into what agents do and no fast way to stop them. You would miss a quiet compromise.
+
+**The Optimistic Adopter**
+
+Moving fast on capability, light on the brakes. Your cognition defenses are ahead of your identity and containment controls.
+
+**The Resilient Operator**
+
+Enforced least agency, real auditability, tested containment. Agents are treated as production infrastructure.
 
 ## The radar chart: your posture at a glance
 
-The radar chart is the single most useful output of the assessment. Each axis represents one domain. The dashed ring is the Resilient target (76+). The gap between your shape and that ring is the story.
+The radar chart is the single most useful output of the assessment. Each axis represents one domain. The dashed ring is the Resilient target (76+). The gap between your shape and the ring is where the story lives.
 
 A perfect pentagon touching the outer ring means you are resilient across every dimension. A shape with one deep indentation tells you exactly where to focus. The visual makes the abstract concrete.
 
@@ -123,7 +133,7 @@ A perfect pentagon touching the outer ring means you are resilient across every 
 
 ## What most teams miss
 
-From what I have seen, the most common gap is not prompt injection. It is identity.
+I keep running into the same pattern. The most common gap is not prompt injection. It is identity.
 
 Teams spend hours hardening their LLM prompts and forget that every agent running with shared credentials and broad permissions is a walking privilege escalation. A compromised agent with a shared service account does not just leak data. It becomes the attacker.
 
@@ -141,14 +151,12 @@ If you work on agentic AI security, I would love your feedback. Which questions 
 
 ---
 
-**Immediate Action Items:**
+**Immediate action items:**
 
 If you are deploying AI agents today, take these steps to secure your environment:
 
-- Build a live inventory of every agent running in production — name, purpose, owner, and what APIs it can call
-- Give your highest-privilege agent its own scoped identity and rotate any shared credentials it uses
-- Define your top five high-impact actions and add a mandatory confirmation step to each
-- Set a 90-day rotation schedule for all agent credentials as a floor toward just-in-time credentials
-- Time yourself: starting now, how long does it take to completely halt your highest-risk agent? Target is under five minutes
-
-The era of agentic AI is here. Let's make sure we get the security right from the beginning.
+- Build a live inventory of every agent running in production. Name, purpose, owner, and what APIs it can call.
+- Give your highest-privilege agent its own scoped identity and rotate any shared credentials it uses.
+- Define your top five high-impact actions and add a mandatory confirmation step to each.
+- Set a 90-day rotation schedule for all agent credentials as a floor toward just-in-time credentials.
+- Time yourself: starting now, how long does it take to completely halt your highest-risk agent? Target is under five minutes.

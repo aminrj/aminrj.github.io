@@ -75,6 +75,46 @@ permalink: /resources/
     box-shadow: 0 2px 12px rgba(0,0,0,0.04);
     transform: translateY(-2px);
   }
+
+  /* ── Featured card ──────────────────────────────────────────────────── */
+  .resource-card.featured {
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, #f0fdf4 0%, #faf8f4 100%);
+    border-color: #059669;
+    border-width: 2px;
+    padding: 2rem 2rem 1.75rem;
+  }
+  .resource-card.featured:hover {
+    border-color: #047857;
+    box-shadow: 0 4px 20px rgba(5,150,105,0.08);
+  }
+  .resource-card.featured h3 {
+    font-size: 1.3rem;
+  }
+  .resource-card.featured .featured-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.55rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #059669;
+    background: #d1fae5;
+    padding: 3px 8px;
+    border-radius: 3px;
+    margin-bottom: 0.6rem;
+  }
+  .resource-card.featured .featured-label::before {
+    content: '';
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #059669;
+    flex-shrink: 0;
+  }
   .resource-card h3 {
     color: var(--rm-ink);
   }
@@ -106,6 +146,8 @@ permalink: /resources/
   }
   .resource-badge.rubric { color: #7E22CE; }
   .resource-badge.rubric::before { background: #7E22CE; }
+  .resource-badge.tool { color: #059669; }
+  .resource-badge.tool::before { background: #059669; }
 
   /* ── Title ──────────────────────────────────────────────────────────── */
   .resource-card h3 {
@@ -198,6 +240,16 @@ permalink: /resources/
 </div>
 
 <div class="resources-grid">
+
+  <!-- Agent Security Scorecard — Featured -->
+  <div class="resource-card featured" onclick="window.location='https://scorecard.aminrj.com/'">
+    <div class="featured-label">Featured</div>
+    <div class="resource-badge tool">Interactive Tool</div>
+    <h3>Agent Security Scorecard</h3>
+    <p class="desc">Score your AI agents against the OWASP Agentic Top 10 in 12 minutes. Get a maturity score, radar chart, top 3 risks, and a 30-day remediation roadmap.</p>
+    <div class="resource-meta">Free · No login · Results in-browser</div>
+    <a href="https://scorecard.aminrj.com/" class="resource-download" target="_blank" onclick="event.stopPropagation()" style="color: #059669;">Try the Scorecard<span class="arrow">→</span></a>
+  </div>
 
   <!-- Field Guide -->
   <div class="resource-card" onclick="window.location='/resources/field-guide/'">

@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 520" width="1000" height="520">
+  <style>
+    .title { font-family: -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:20px; font-weight:700; }
+    .header { font-family: -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:11px; font-weight:600; letter-spacing:0.5px; }
+    .body { font-family: -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:13px; font-weight:500; }
+    .sub { font-family: -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:11px; font-weight:400; }
+    .caption { font-family: -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:11px; font-weight:400; }
+    .pill { font-family: -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:10px; font-weight:600; }
+  </style>
+
+  <!-- Background -->
+  <rect width="1000" height="520" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="500" y="36" class="title" fill="#0f172a" text-anchor="middle">7 AI Security Checks -- Pre-Production Triage</text>
+  <line x1="120" y1="50" x2="880" y2="50" stroke="#f1f5f9" stroke-width="1"/>
+
+  <!-- Legend -->
+  <rect x="120" y="60" width="12" height="12" rx="3" fill="#059669"/>
+  <text x="138" y="71" class="sub" fill="#64748b">Pass</text>
+  <rect x="180" y="60" width="12" height="12" rx="3" fill="#f59e0b"/>
+  <text x="198" y="71" class="sub" fill="#64748b">Pending</text>
+  <rect x="248" y="60" width="12" height="12" rx="3" fill="#e2e8f0"/>
+  <text x="266" y="71" class="sub" fill="#64748b">N/A</text>
+  <text x="340" y="71" class="sub" fill="#64748b">Start with checks 1, 2, 4</text>
+  <text x="340" y="71" class="pill" fill="#059669" text-anchor="start">P0</text>
+
+  <!-- ========== PHASE 1: Build-time (3 in a row) ========== -->
+  <text x="120" y="100" class="header" fill="#64748b">Build-time / Pre-deployment</text>
+
+  <!-- Check 1: box at (120,116), 260x80 -->
+  <rect x="120" y="116" width="260" height="80" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <rect x="340" y="126" width="24" height="24" rx="12" fill="#059669"/>
+  <text x="352" y="143" class="pill" fill="#ffffff" text-anchor="middle">P0</text>
+  <text x="136" y="150" class="body" fill="#0f172a">Check 1 -- Prompt injection testing</text>
+  <text x="136" y="168" class="sub" fill="#64748b">Automated test suite, 500+ variations</text>
+
+  <!-- Check 2: box at (412,116), 260x80 -->
+  <rect x="412" y="116" width="260" height="80" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <rect x="632" y="126" width="24" height="24" rx="12" fill="#059669"/>
+  <text x="644" y="143" class="pill" fill="#ffffff" text-anchor="middle">P0</text>
+  <text x="428" y="150" class="body" fill="#0f172a">Check 2 -- Tool allowlist</text>
+  <text x="428" y="168" class="sub" fill="#64748b">Block all tools except required set</text>
+
+  <!-- Check 6: box at (704,116), 260x80 -->
+  <rect x="704" y="116" width="260" height="80" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <rect x="924" y="126" width="24" height="24" rx="12" fill="#f59e0b"/>
+  <text x="936" y="143" class="pill" fill="#ffffff" text-anchor="middle">PENDING</text>
+  <text x="720" y="150" class="body" fill="#0f172a">Check 6 -- MCP server scanning</text>
+  <text x="720" y="168" class="sub" fill="#64748b">Scan tool descriptions, hash-pin at install</text>
+
+  <!-- ========== PHASE 2: Runtime (2x2 grid) ========== -->
+  <text x="120" y="228" class="header" fill="#64748b">Runtime / Per-request</text>
+
+  <!-- Row 1 -->
+  <!-- Check 3: box at (120,244), 260x80 -->
+  <rect x="120" y="244" width="260" height="80" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <rect x="340" y="254" width="24" height="24" rx="12" fill="#e2e8f0"/>
+  <text x="352" y="271" class="pill" fill="#64748b" text-anchor="middle">N/A</text>
+  <text x="136" y="278" class="body" fill="#0f172a">Check 3 -- Input parameter validation</text>
+  <text x="136" y="296" class="sub" fill="#64748b">Server-side schema validation per tool</text>
+
+  <!-- Check 4: box at (412,244), 260x80 -->
+  <rect x="412" y="244" width="260" height="80" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <rect x="632" y="254" width="24" height="24" rx="12" fill="#059669"/>
+  <text x="644" y="271" class="pill" fill="#ffffff" text-anchor="middle">P0</text>
+  <text x="428" y="278" class="body" fill="#0f172a">Check 4 -- Scope-limited credentials</text>
+  <text x="428" y="296" class="sub" fill="#64748b">One identity per agent, least privilege</text>
+
+  <!-- Row 2 -->
+  <!-- Check 5: box at (120,340), 260x80 -->
+  <rect x="120" y="340" width="260" height="80" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <rect x="340" y="350" width="24" height="24" rx="12" fill="#e2e8f0"/>
+  <text x="352" y="367" class="pill" fill="#64748b" text-anchor="middle">N/A</text>
+  <text x="136" y="374" class="body" fill="#0f172a">Check 5 -- Tamper-evident logging</text>
+  <text x="136" y="392" class="sub" fill="#64748b">Signed logs, agent cannot modify</text>
+
+  <!-- Check 7: box at (412,340), 260x80 -->
+  <rect x="412" y="340" width="260" height="80" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <rect x="632" y="350" width="24" height="24" rx="12" fill="#e2e8f0"/>
+  <text x="644" y="367" class="pill" fill="#64748b" text-anchor="middle">N/A</text>
+  <text x="428" y="374" class="body" fill="#0f172a">Check 7 -- Output data validation</text>
+  <text x="428" y="392" class="sub" fill="#64748b">Scan for PII, credentials, leaks</text>
+
+  <!-- Caption -->
+  <text x="500" y="450" class="caption" fill="#64748b" text-anchor="middle">Use this card in team planning sessions. Update status as each check is completed.</text>
+</svg>

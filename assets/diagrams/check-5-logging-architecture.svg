@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" width="900" height="400">
+  <style>
+    .title { font-family: -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:20px; font-weight:700; }
+    .header { font-family: -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:11px; font-weight:600; letter-spacing:0.5px; }
+    .body { font-family: -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:13px; font-weight:500; }
+    .sub { font-family: -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:11px; font-weight:400; }
+    .caption { font-family: -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:11px; font-weight:400; }
+  </style>
+
+  <!-- Background -->
+  <rect width="900" height="400" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="450" y="36" class="title" fill="#0f172a" text-anchor="middle">Check 5 -- Logging Architecture Options</text>
+  <line x1="120" y1="50" x2="780" y2="50" stroke="#f1f5f9" stroke-width="1"/>
+
+  <!-- Agent node (top center) -->
+  <rect x="370" y="70" width="160" height="56" rx="8" fill="#0f172a"/>
+  <text x="450" y="95" class="body" fill="#ffffff" text-anchor="middle">Agent</text>
+  <text x="450" y="113" class="sub" fill="#ffffff" text-anchor="middle">Makes tool calls</text>
+
+  <!-- Arrow from Agent down -->
+  <line x1="450" y1="126" x2="450" y2="150" stroke="#0f172a" stroke-width="2"/>
+  <polygon points="444,148 450,158 456,148" fill="#0f172a"/>
+
+  <!-- Branch line -->
+  <line x1="220" y1="150" x2="680" y2="150" stroke="#0f172a" stroke-width="2"/>
+
+  <!-- Branch arrows down -->
+  <line x1="220" y1="150" x2="220" y2="174" stroke="#0f172a" stroke-width="2"/>
+  <polygon points="214,172 220,182 226,172" fill="#0f172a"/>
+
+  <line x1="450" y1="150" x2="450" y2="174" stroke="#0f172a" stroke-width="2"/>
+  <polygon points="444,172 450,182 456,172" fill="#0f172a"/>
+
+  <line x1="680" y1="150" x2="680" y2="174" stroke="#0f172a" stroke-width="2"/>
+  <polygon points="674,172 680,182 686,172" fill="#0f172a"/>
+
+  <!-- ========== PATH 1: Cloud-native ========== -->
+  <!-- Tier label -->
+  <text x="220" y="196" class="header" fill="#64748b" text-anchor="middle">Cloud-native</text>
+
+  <!-- Log store node -->
+  <rect x="140" y="208" width="160" height="56" rx="8" fill="#ffffff" stroke="#059669" stroke-width="2"/>
+  <text x="220" y="233" class="body" fill="#0f172a" text-anchor="middle">CloudTrail / GCP</text>
+  <text x="220" y="251" class="sub" fill="#334155" text-anchor="middle">Audit Logs / Azure Monitor</text>
+
+  <!-- Integrity badge -->
+  <rect x="156" y="276" width="128" height="24" rx="12" fill="#f0fdf4" stroke="#059669" stroke-width="1"/>
+  <text x="220" y="292" class="sub" fill="#059669" text-anchor="middle">Integrity by default</text>
+
+  <!-- ========== PATH 2: Self-hosted ========== -->
+  <text x="450" y="196" class="header" fill="#64748b" text-anchor="middle">Self-hosted</text>
+
+  <!-- Log store node -->
+  <rect x="370" y="208" width="160" height="56" rx="8" fill="#ffffff" stroke="#2563eb" stroke-width="2"/>
+  <text x="450" y="233" class="body" fill="#0f172a" text-anchor="middle">OpenSearch + ILM</text>
+  <text x="450" y="251" class="sub" fill="#334155" text-anchor="middle">HMAC-SHA256 per entry</text>
+
+  <!-- Integrity badge -->
+  <rect x="376" y="276" width="128" height="24" rx="12" fill="#eff6ff" stroke="#2563eb" stroke-width="1"/>
+  <text x="450" y="292" class="sub" fill="#2563eb" text-anchor="middle">Signing key separate</text>
+
+  <!-- ========== PATH 3: Minimal viable ========== -->
+  <text x="680" y="196" class="header" fill="#64748b" text-anchor="middle">Minimal viable</text>
+
+  <!-- Log store node -->
+  <rect x="600" y="208" width="160" height="56" rx="8" fill="#ffffff" stroke="#64748b" stroke-width="2"/>
+  <text x="680" y="233" class="body" fill="#0f172a" text-anchor="middle">Separate service</text>
+  <text x="680" y="251" class="sub" fill="#334155" text-anchor="middle">account, no agent write</text>
+
+  <!-- Integrity badge -->
+  <rect x="616" y="276" width="128" height="24" rx="12" fill="#f8fafc" stroke="#64748b" stroke-width="1"/>
+  <text x="680" y="292" class="sub" fill="#64748b" text-anchor="middle">Manual hash verify</text>
+
+  <!-- Caption -->
+  <text x="450" y="340" class="caption" fill="#64748b" text-anchor="middle">Pick the tier that matches your infrastructure. All paths ensure the agent cannot tamper with its own logs.</text>
+</svg>

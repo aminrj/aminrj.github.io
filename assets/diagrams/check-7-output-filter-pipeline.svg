@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 360" width="960" height="360">
+  <style>
+    .title { font-family: -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:20px; font-weight:700; }
+    .body { font-family: -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:13px; font-weight:500; }
+    .sub { font-family: -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:11px; font-weight:400; }
+    .caption { font-family: -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:11px; font-weight:400; }
+  </style>
+
+  <!-- Background -->
+  <rect width="960" height="360" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="480" y="36" class="title" fill="#0f172a" text-anchor="middle">Check 7 -- Output Filter Pipeline</text>
+  <line x1="120" y1="50" x2="840" y2="50" stroke="#f1f5f9" stroke-width="1"/>
+
+  <!-- ========== ROW 1: Primary flow ========== -->
+
+  <!-- [1] Model Output -->
+  <rect x="60" y="80" width="160" height="56" rx="8" fill="#0f172a"/>
+  <text x="140" y="105" class="body" fill="#ffffff" text-anchor="middle">Model Output</text>
+  <text x="140" y="123" class="sub" fill="#ffffff" text-anchor="middle">Raw response</text>
+
+  <!-- Arrow: Model Output → Regex PII Scan -->
+  <line x1="220" y1="108" x2="268" y2="108" stroke="#0f172a" stroke-width="2"/>
+  <polygon points="262,104 272,108 262,112" fill="#0f172a"/>
+
+  <!-- [2] Regex PII Scan -->
+  <rect x="268" y="80" width="160" height="56" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="348" y="105" class="body" fill="#0f172a" text-anchor="middle">Regex PII Scan</text>
+  <text x="348" y="123" class="sub" fill="#334155" text-anchor="middle">SSN, CC, email, phone</text>
+
+  <!-- Decision: Regex match? -->
+  <!-- Down arrow to Block + Log -->
+  <line x1="348" y1="136" x2="348" y2="180" stroke="#e2e8f0" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <polygon points="342,178 348,188 354,178" fill="#e2e8f0"/>
+  <text x="348" y="166" class="sub" fill="#64748b" text-anchor="middle">Match?</text>
+
+  <!-- Right arrow to Secondary Model Scan -->
+  <line x1="428" y1="108" x2="476" y2="108" stroke="#0f172a" stroke-width="2"/>
+  <polygon points="470,104 480,108 470,112" fill="#0f172a"/>
+  <text x="452" y="100" class="sub" fill="#64748b" text-anchor="middle">No match</text>
+
+  <!-- [3] Secondary Model Scan -->
+  <rect x="476" y="80" width="160" height="56" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="556" y="105" class="body" fill="#0f172a" text-anchor="middle">Secondary Model</text>
+  <text x="556" y="123" class="sub" fill="#334155" text-anchor="middle">Contextual PII check</text>
+
+  <!-- Decision: Secondary match? -->
+  <!-- Down arrow to Block + Log -->
+  <line x1="556" y1="136" x2="556" y2="180" stroke="#e2e8f0" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <polygon points="550,178 556,188 562,178" fill="#e2e8f0"/>
+  <text x="556" y="166" class="sub" fill="#64748b" text-anchor="middle">Match?</text>
+
+  <!-- Right arrow to Deliver -->
+  <line x1="636" y1="108" x2="684" y2="108" stroke="#0f172a" stroke-width="2"/>
+  <polygon points="678,104 688,108 678,112" fill="#0f172a"/>
+  <text x="660" y="100" class="sub" fill="#64748b" text-anchor="middle">No match</text>
+
+  <!-- [4] Deliver -->
+  <rect x="684" y="80" width="160" height="56" rx="8" fill="#ffffff" stroke="#059669" stroke-width="2"/>
+  <text x="764" y="105" class="body" fill="#0f172a" text-anchor="middle">Deliver</text>
+  <text x="764" y="123" class="sub" fill="#059669" text-anchor="middle">Response sent</text>
+
+  <!-- ========== ROW 2: Block paths ========== -->
+
+  <!-- [A] Block + Log (under Regex) -->
+  <rect x="268" y="220" width="160" height="56" rx="8" fill="#ffffff" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="348" y="245" class="body" fill="#0f172a" text-anchor="middle">Block + Log</text>
+  <text x="348" y="263" class="sub" fill="#334155" text-anchor="middle">Regex matched</text>
+
+  <!-- [B] Block + Log (under Secondary) -->
+  <rect x="476" y="220" width="160" height="56" rx="8" fill="#ffffff" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="556" y="245" class="body" fill="#0f172a" text-anchor="middle">Block + Log</text>
+  <text x="556" y="263" class="sub" fill="#334155" text-anchor="middle">Contextual PII matched</text>
+
+  <!-- Caption -->
+  <text x="480" y="320" class="caption" fill="#64748b" text-anchor="middle">Layered detection: regex catches known patterns, secondary model catches contextual leaks. Both paths log blocked responses.</text>
+</svg>

@@ -28,7 +28,7 @@ No signup required. No data stored. All scoring runs in your browser.
 
 Try it here: https://scorecard.aminrj.com/
 
-![Agent Security Scorecard](/assets/media/ai-security/agent-security-scorecard.png)
+![Agent Security Scorecard](/assets/media/ai-security/agent-scorecard-screenshot.png)
 
 ## What it measures
 

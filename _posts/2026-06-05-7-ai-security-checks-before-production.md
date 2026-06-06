@@ -30,8 +30,6 @@ These 7 checks target the controls whose absence appears most frequently in prod
 
 They will not make your system bulletproof. They will catch the majority of issues that cause incidents. If your system passes all 7, you have a defensible baseline to build from.
 
-![AI security checklist](/assets/media/ai-security/ai-security-checklist-production.png)
-
 ## Check 1: Test prompt injection resistance with an automated tool
 
 **What it is:** Run an automated prompt injection test suite against your system before launch.

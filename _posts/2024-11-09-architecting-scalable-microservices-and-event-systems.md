@@ -84,8 +84,6 @@ help, in this case, with Kubernetes and Apache Kafka.
 
 Apache Kafka and Kubernetes cover complementary concerns — event streaming and container orchestration. Used together, they give you a solid base for distributed, cloud-native systems.
 
-![Kubernetes & Apache Kafka](/assets/media/cloud-native/kubernetes-kafka.png)
-
 Apache Kafka is a distributed event streaming platform built for high-throughput, low-latency communication between services.
 
 Kubernetes automates the deployment, scaling, and management of containerized applications.

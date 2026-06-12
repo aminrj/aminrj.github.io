@@ -7,6 +7,8 @@ published: true
 content-type: article
 target-audience: advanced
 categories: [AI, Agent Engineering, Software Development]
+image:
+  path: /assets/media/ai/prompts-to-loops-hero.png
 tags:
   [
     AI,
@@ -18,8 +20,6 @@ tags:
     Prompt Engineering,
     Software Development
   ]
-image:
-  path: /assets/media/ai-security/prompts-to-loops-hero.png
 description: "The entire arc from autocomplete to autonomous coding loops happened in roughly five years, and most of it in the last eighteen months. Here is how we got here, what a loop actually is, and what you gain when you stop prompting and start designing."
 mermaid: false
 ---
@@ -34,16 +34,9 @@ This post traces how we got from "type a question into a chat box" to "design a 
 
 The thing worth noticing first is the pace. The entire arc below happened in roughly five years, and most of it in the last eighteen months.
 
-> **Figure 1 — The five steps.** *(Insert the "AI coding evolution, five steps" diagram here.)*
+<a href="/assets/diagrams/ai-coding-evolution.svg" class="popup img-link shimmer"><img src="/assets/diagrams/ai-coding-evolution.svg" alt="AI Coding Evolution: Five Steps from 2021 to 2026" width="800" height="620"></a>
 
-
-If you have ever pasted a question into ChatGPT, copied the answer into your editor, run it, watched it break, and pasted the error back in, you already understand most of this post. That copy-paste-fix dance is where almost everyone started. What changed is not that the dance got faster. It is that you can now hand the whole dance to the machine and walk away.
-
-This post traces how we got from "type a question into a chat box" to "design a loop that works without you," with real dates, real product names, and a concrete before-and-after example at every step. Then it explains what a loop is, why it differs from everything before it, and what you actually gain. It is the on-ramp. If you want the hands-on build afterward, including how to run all of this on hardware you own, that is the companion guide: [Loop Engineering on Your Own Hardware](#).
-
-The thing worth noticing first is the pace. The entire arc below happened in roughly five years, and most of it in the last eighteen months.
-
-> **Figure 1 — The five steps.** *(Insert the "AI coding evolution, five steps" diagram here.)*
+<figcaption class="caption">The shift from autocomplete to autonomous verification. Each step reduces human involvement in the mechanical work.</figcaption>
 
 ## Step 1: Autocomplete in the editor (2021)
 
@@ -77,7 +70,9 @@ ChatGPT:  "Run pip install requests first. Here is the corrected version..."
 
 The model had no access to your files, could not run anything, and had no idea whether its answer worked. You were the runtime: the one carrying output from the chat box to the terminal and the errors back again.
 
-> **Figure 2 — You are the runtime.** *(Insert the "human as runtime, manual loop" diagram here.)*
+<a href="/assets/diagrams/human-as-runtime.svg" class="popup img-link shimmer"><img src="/assets/diagrams/human-as-runtime.svg" alt="Step 2: You Are the Runtime - the manual copy-paste loop" width="800" height="400"></a>
+
+<figcaption class="caption">In Step 2, every arrow is you. The model is just a text generator. You carry output from the chat to the terminal and the errors back again.</figcaption>
 
 ## Step 3: The model gets hands (2023)
 
@@ -140,7 +135,9 @@ You:  [come back, read the diff, approve the pull request]
 
 Nobody approved iteration 1 before iteration 2 began. The loop carried the failure forward on its own. You defined the goal and reviewed the result; the mechanical middle ran without you.
 
-> **Figure 3 — From "human in the loop" to "human out of the loop."** *(Insert the "agent loop vs autonomous loop" comparison diagram here.)*
+<a href="/assets/diagrams/human-out-of-loop.svg" class="popup img-link shimmer"><img src="/assets/diagrams/human-out-of-loop.svg" alt="Step 4 vs Step 5: Human in the Loop vs Human Out of the Loop" width="800" height="480"></a>
+
+<figcaption class="caption">In Step 4 you sit inside the loop, approving each pass. In Step 5 the loop carries failures forward on its own. You define the goal and review the result.</figcaption>
 
 ## So what actually is a loop?
 

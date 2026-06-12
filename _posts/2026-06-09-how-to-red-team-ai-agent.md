@@ -7,6 +7,8 @@ published: true
 content-type: article
 target-audience: advanced
 categories: [AI Security, Red Team, Agentic AI]
+image:
+  path: /assets/media/ai-security/ai-red-team-guide.png
 tags:
   [
     AI Security,
@@ -18,8 +20,6 @@ tags:
     OWASP,
     Security
   ]
-image:
-  path: /assets/media/ai-security/ai-red-team-guide.png
 description: "Model-level red teaming misses the attacks that cause production incidents. Here is how to red team the full agentic system, with a practical PyRIT setup and the four attack categories that matter."
 mermaid: false
 ---
@@ -27,8 +27,6 @@ mermaid: false
 # How to Red Team Your AI Agent Before You Ship
 
 *By Amine Raji, PhD, CISSP*
-
----
 
 Most AI red teaming in 2026 is testing the wrong thing.
 
@@ -54,7 +52,9 @@ When you test only the model endpoint, you are evaluating content safety. Does t
 
 All four categories produce normal-looking model outputs at the model endpoint. The anomaly is downstream, in the tool calls, the data operations, or the agent interactions.
 
-[[VISUAL: Model-level vs System-level testing comparison — two-panel diagram. Left: "Model-level" (adversarial prompt → model endpoint → output check, labeled "what most teams do"). Right: "System-level" (adversarial prompt → agent → tool calls → downstream systems → data operations, labeled "what you should do"). This is the article's central argument. Place after the four attack classes list.]]
+<a href="/assets/diagrams/model-vs-system-testing.svg" class="popup img-link shimmer"><img src="/assets/diagrams/model-vs-system-testing.svg" alt="Model-Level vs System-Level Red Teaming - comparison diagram" width="800" height="440"></a>
+
+<figcaption class="caption">Model-level testing checks if the model produces harmful text. System-level testing checks if the agent causes harm through tool calls, data operations, and downstream systems.</figcaption>
 
 ---
 
@@ -110,7 +110,9 @@ Standard PyRIT sends prompts directly to the model API. For agentic systems, rou
 
 The key instrumentation addition for agents: log tool calls alongside model outputs. You are not just looking for harmful model responses. You are looking for unexpected tool calls, tool calls with anomalous parameters, and tool calls the agent made but that no user-facing output reflects.
 
-[[VISUAL: PyRIT setup architecture — a diagram showing: PyRIT → Agent endpoint → Tool integrations → MCP servers → Backend APIs, with the tool call logging layer highlighted between Agent endpoint and Tool integrations. This makes the "point at the agent, not the model" principle concrete. Place after the "log tool calls alongside model outputs" paragraph.]]
+<a href="/assets/diagrams/pyrit-setup-architecture.svg" class="popup img-link shimmer"><img src="/assets/diagrams/pyrit-setup-architecture.svg" alt="PyRIT Setup Architecture for Agentic Systems" width="800" height="440"></a>
+
+<figcaption class="caption">Point PyRIT at the agent endpoint, not the model. The key addition is the tool call logging layer between the agent and tool integrations.</figcaption>
 
 ## Garak: model-level vulnerability scanning
 
@@ -142,11 +144,9 @@ Garak's probe catalog includes prompt injection (direct, encoding, payload split
 
 Run Garak first for breadth. Use PyRIT for depth against the attack categories Garak flags.
 
-[[VISUAL: Garak scan output screenshot — a screenshot of actual Garak output showing probe results: the categories, pass/fail rates, and confidence intervals. This grounds the tool description in something real. Place after the Garak code examples, before the "When to use which tool" table.]]
-
 The setup above points PyRIT at your agent endpoint generically. The four sections below describe what to look for in the output — and what to inject where — for each of the attack categories that matter most.
 
-[[VISUAL: Attack category matrix — a 4x4 grid:
+- `HarmBench`
 | Attack Type | Where to Inject | Where to Detect | What to Instrument |
 |---|---|---|---|
 | Direct prompt injection | User input | Tool call log | Endpoint |
@@ -168,7 +168,11 @@ Report Attack Success Rate as a percentage with a confidence interval. An ASR of
 
 ## The four attack categories to prioritize
 
-Focus red team effort on these four. They account for the majority of production incidents in agentic AI systems:
+Focus red team effort on these four. They account for the majority of production incidents in agentic AI systems.
+
+<a href="/assets/diagrams/attack-category-matrix.svg" class="popup img-link shimmer"><img src="/assets/diagrams/attack-category-matrix.svg" alt="Four Attack Categories to Prioritize - matrix reference" width="800" height="420"></a>
+
+<figcaption class="caption">These four categories account for the majority of production incidents in agentic AI systems. Each requires instrumentation at a different layer of the stack.</figcaption>
 
 **1. Direct prompt injection**
 

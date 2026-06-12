@@ -7,6 +7,8 @@ published: true
 content-type: article
 target-audience: advanced
 categories: [AI, Local LLM, Agent Engineering]
+image:
+  path: /assets/media/ai/loop-engineering-hero.png
 tags:
   [
     AI,
@@ -18,8 +20,6 @@ tags:
     Autonomous Coding,
     Self-Hosted AI
   ]
-image:
-  path: /assets/media/ai-security/loop-engineering-hero.png
 description: "Everyone is talking about loop engineering. Almost nobody is showing you how to run it on a model you own. Here is how to build one, step by step, on hardware you already have."
 mermaid: false
 ---
@@ -36,15 +36,9 @@ This guide takes the opposite position. The single biggest weakness of an autono
 
 Here is how to build one, step by step, on hardware you already have.
 
-# Loop Engineering on Your Own Hardware: A Practical Guide to Self-Hosted Coding Loops
+<a href="/assets/diagrams/local-loop-architecture.svg" class="popup img-link shimmer"><img src="/assets/diagrams/local-loop-architecture.svg" alt="Local Loop Architecture - the full system diagram" width="800" height="520"></a>
 
-Everyone is talking about loop engineering. Almost nobody is showing you how to run it on a model you own.
-
-In June 2026, two sentences from Peter Steinberger (creator of OpenClaw, now at OpenAI) hit several million views: stop prompting your coding agents, start designing loops that prompt them for you. Boris Cherny, who runs Claude Code at Anthropic, had said the same thing on stage days earlier: he doesn't prompt anymore, his job is to write loops. The idea is real and the tooling has caught up. But almost every guide assumes you are pointing your loop at a frontier API and have a budget that absorbs millions of tokens overnight.
-
-This guide takes the opposite position. The single biggest weakness of an autonomous loop is cost, and the second is that you are shipping your entire codebase to a third party on every iteration. A local model solves both. When the agent is running on your own GPU, the only thing a runaway loop costs you is electricity, and nothing leaves your network. That changes the risk calculation completely. You can let it run.
-
-Here is how to build one, step by step, on hardware you already have.
+<figcaption class="caption">Every iteration is a fresh agent process. State lives in git and files, not in the model context window. The verification gate is independent of the agent's opinion.</figcaption>
 
 ## What a loop actually is
 
@@ -68,6 +62,10 @@ Run the loop on a local model and that constraint mostly disappears:
 - **You can let it run while you sleep without watching the meter.** The whole appeal of loops is unattended work. Local removes the anxiety that makes people babysit the run anyway.
 
 The honest trade-off: a local model on a single consumer GPU is slower and somewhat less capable than a frontier API. The 2026 consensus pattern handles this directly. Run sixty to eighty percent of your loop traffic locally, and escalate only the hard twenty percent to a frontier API when you genuinely need it. The loop you build below is the local workhorse. Wiring in a cloud reviewer for the hard cases is a one-line config change once the loop works.
+
+<a href="/assets/diagrams/local-vs-cloud-loop.svg" class="popup img-link shimmer"><img src="/assets/diagrams/local-vs-cloud-loop.svg" alt="Local vs Cloud for Loop Engineering - comparison" width="800" height="400"></a>
+
+<figcaption class="caption">Local removes cost and privacy as constraints. The trade-off is speed and capability, which the hybrid pattern addresses directly.</figcaption>
 
 ## What you need
 
@@ -236,6 +234,10 @@ The brakes are not decoration. They are what separate a loop from a runaway:
 - **No-progress detection.** If two consecutive iterations produce the identical diff, the agent is stuck in a rut and more iterations will not help. Stop and hand it to a human. This single check saves more wasted runs than any other.
 - **Verification stronger than the agent's word.** The loop stops on `npm test` passing, not on the model announcing it is done. In production, a claim is not done until something independent checks it. This is non-negotiable, and it is exactly why the loop is only as good as your test suite.
 - **A clean git commit every iteration.** Every pass leaves an auditable diff. If the loop goes wrong, you can see exactly which iteration broke things and roll back to the commit before it. This is also what makes the stateless-worker model work: state lives in git, not in the model.
+
+<a href="/assets/diagrams/hardened-loop-flowchart.svg" class="popup img-link shimmer"><img src="/assets/diagrams/hardened-loop-flowchart.svg" alt="Hardened Loop Flow - the complete loop with safety brakes" width="800" height="620"></a>
+
+<figcaption class="caption">Three safety brakes: iteration cap, no-progress detection, and machine verification. The agent's opinion never decides the outcome.</figcaption>
 
 ## Step 5: Add a trigger
 

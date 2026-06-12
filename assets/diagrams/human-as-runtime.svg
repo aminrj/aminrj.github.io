@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" width="800" height="400">
+  <style>
+    .title { font-family: -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:22px; font-weight:700; }
+    .header { font-family: -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:11px; font-weight:600; letter-spacing:0.5px; text-transform:uppercase; }
+    .body { font-family: -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:13px; font-weight:500; }
+    .sub { font-family: -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:11px; font-weight:400; }
+    .caption { font-family: -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:11px; font-weight:400; }
+  </style>
+
+  <rect width="800" height="400" fill="#ffffff"/>
+
+  <text x="400" y="36" class="title" fill="#0f172a" text-anchor="middle">Step 2: You Are the Runtime</text>
+  <line x1="120" y1="52" x2="680" y2="52" stroke="#f1f5f9" stroke-width="1"/>
+
+  <!-- User node -->
+  <rect x="50" y="80" width="120" height="240" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="110" y="108" class="header" fill="#64748b" text-anchor="middle">You</text>
+  <text x="110" y="140" class="sub" fill="#334155" text-anchor="middle">Write prompt</text>
+  <text x="110" y="164" class="sub" fill="#334155" text-anchor="middle">Copy code</text>
+  <text x="110" y="188" class="sub" fill="#334155" text-anchor="middle">Run it</text>
+  <text x="110" y="212" class="sub" fill="#334155" text-anchor="middle">Read error</text>
+  <text x="110" y="236" class="sub" fill="#334155" text-anchor="middle">Paste error</text>
+  <text x="110" y="260" class="sub" fill="#334155" text-anchor="middle">Repeat</text>
+
+  <!-- Arrow: You -> Chat -->
+  <line x1="170" y1="130" x2="260" y2="130" stroke="#0f172a" stroke-width="2"/>
+  <polygon points="264,130 256,125 256,135" fill="#0f172a"/>
+  <text x="215" y="122" class="sub" fill="#64748b" text-anchor="middle">"Write a function"</text>
+
+  <!-- Chat model node -->
+  <rect x="265" y="80" width="140" height="70" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="335" y="108" class="header" fill="#64748b" text-anchor="middle">Chat Model</text>
+  <text x="335" y="132" class="sub" fill="#334155" text-anchor="middle">Returns text</text>
+
+  <!-- Arrow: Chat -> You (copy) -->
+  <line x1="265" y1="160" x2="170" y2="160" stroke="#64748b" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <polygon points="166,160 174,155 174,165" fill="#64748b"/>
+  <text x="215" y="152" class="sub" fill="#64748b" text-anchor="middle">Returns code</text>
+
+  <!-- Arrow: You -> Terminal -->
+  <line x1="170" y1="200" x2="260" y2="200" stroke="#0f172a" stroke-width="2"/>
+  <polygon points="264,200 256,195 256,205" fill="#0f172a"/>
+  <text x="215" y="192" class="sub" fill="#64748b" text-anchor="middle">Run code</text>
+
+  <!-- Terminal node -->
+  <rect x="265" y="175" width="140" height="70" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="335" y="203" class="header" fill="#64748b" text-anchor="middle">Terminal</text>
+  <text x="335" y="227" class="sub" fill="#334155" text-anchor="middle">ModuleNotFoundError</text>
+
+  <!-- Arrow: Terminal -> You (error) -->
+  <line x1="265" y1="240" x2="170" y2="240" stroke="#64748b" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <polygon points="166,240 174,235 174,245" fill="#64748b"/>
+  <text x="215" y="232" class="sub" fill="#64748b" text-anchor="middle">Error output</text>
+
+  <!-- Arrow: You -> Chat (retry) -->
+  <line x1="170" y1="270" x2="260" y2="270" stroke="#0f172a" stroke-width="2"/>
+  <polygon points="264,270 256,265 256,275" fill="#0f172a"/>
+  <text x="215" y="262" class="sub" fill="#64748b" text-anchor="middle">Paste error back</text>
+
+  <!-- Loop back arrow -->
+  <path d="M 405 150 Q 420 150 420 165 L 420 280 Q 420 310 395 310" stroke="#059669" stroke-width="2" fill="none" stroke-dasharray="5,4"/>
+  <polygon points="395,314 395,304 405,309" fill="#059669"/>
+  <text x="430" y="230" class="sub" fill="#059669">manual loop</text>
+
+  <!-- Right side: annotation -->
+  <rect x="450" y="80" width="320" height="240" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="470" y="108" class="header" fill="#64748b">The Problem</text>
+  <text x="470" y="140" class="body" fill="#0f172a">Every arrow is you</text>
+  <text x="470" y="168" class="sub" fill="#334155">The model has no idea whether its</text>
+  <text x="470" y="188" class="sub" fill="#334155">answer works. You carry output</text>
+  <text x="470" y="208" class="sub" fill="#334155">from the chat to the terminal and</text>
+  <text x="470" y="228" class="sub" fill="#334155">the errors back again.</text>
+  <text x="470" y="260" class="sub" fill="#334155">You are the runtime.</text>
+  <rect x="470" y="280" width="280" height="28" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="610" y="300" class="sub" fill="#334155" text-anchor="middle">No execution. No memory. No automation.</text>
+
+  <!-- Caption -->
+  <text x="400" y="380" class="caption" fill="#64748b" text-anchor="middle">In Step 2, the human carries every piece of information between the chat box, the terminal, and the editor. The model is just a text generator.</text>
+</svg>

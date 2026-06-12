@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" width="800" height="420">
+  <style>
+    .title { font-family: -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:22px; font-weight:700; }
+    .header { font-family: -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:11px; font-weight:600; letter-spacing:0.5px; text-transform:uppercase; }
+    .body { font-family: -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:13px; font-weight:500; }
+    .sub { font-family: -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:11px; font-weight:400; }
+    .caption { font-family: -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:11px; font-weight:400; }
+  </style>
+
+  <rect width="800" height="420" fill="#ffffff"/>
+
+  <text x="400" y="36" class="title" fill="#0f172a" text-anchor="middle">Four Attack Categories to Prioritize</text>
+  <line x1="120" y1="52" x2="680" y2="52" stroke="#f1f5f9" stroke-width="1"/>
+
+  <!-- Table header -->
+  <rect x="100" y="60" width="600" height="32" rx="6" fill="#0f172a"/>
+  <text x="130" y="82" class="body" fill="#ffffff">Attack Type</text>
+  <text x="310" y="82" class="body" fill="#ffffff">Where to Inject</text>
+  <text x="470" y="82" class="body" fill="#ffffff">Where to Detect</text>
+  <text x="610" y="82" class="body" fill="#ffffff">What to Instrument</text>
+
+  <!-- Row 1: Direct prompt injection -->
+  <rect x="100" y="92" width="600" height="60" rx="0" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+  <rect x="100" y="92" width="210" height="60" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="205" y="117" class="body" fill="#0f172a" text-anchor="middle">Direct prompt injection</text>
+  <text x="205" y="137" class="sub" fill="#64748b" text-anchor="middle">User input</text>
+
+  <rect x="310" y="92" width="160" height="60" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="390" y="127" class="sub" fill="#334155" text-anchor="middle">User input</text>
+  <text x="390" y="143" class="sub" fill="#64748b" text-anchor="middle">Adversarial instructions</text>
+
+  <rect x="470" y="92" width="140" height="60" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="540" y="127" class="sub" fill="#334155" text-anchor="middle">Tool call log</text>
+  <text x="540" y="143" class="sub" fill="#64748b" text-anchor="middle">Unauthorized tool calls</text>
+
+  <rect x="610" y="92" width="90" height="60" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="655" y="127" class="sub" fill="#334155" text-anchor="middle">Endpoint</text>
+
+  <!-- Row 2: Indirect prompt injection -->
+  <rect x="100" y="152" width="600" height="60" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+  <rect x="100" y="152" width="210" height="60" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="205" y="177" class="body" fill="#0f172a" text-anchor="middle">Indirect prompt injection</text>
+  <text x="205" y="197" class="sub" fill="#64748b" text-anchor="middle">Retrieval corpus</text>
+
+  <rect x="310" y="152" width="160" height="60" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="390" y="177" class="sub" fill="#334155" text-anchor="middle">Retrieval corpus</text>
+  <text x="390" y="197" class="sub" fill="#64748b" text-anchor="middle">Seeded documents</text>
+
+  <rect x="470" y="152" width="140" height="60" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="540" y="177" class="sub" fill="#334155" text-anchor="middle">Retrieval + tool log</text>
+  <text x="540" y="197" class="sub" fill="#64748b" text-anchor="middle">Injected instructions</text>
+
+  <rect x="610" y="152" width="90" height="60" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="655" y="177" class="sub" fill="#334155" text-anchor="middle">Retrieval</text>
+  <text x="655" y="197" class="sub" fill="#64748b" text-anchor="middle">layer</text>
+
+  <!-- Row 3: Tool parameter manipulation -->
+  <rect x="100" y="212" width="600" height="60" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+  <rect x="100" y="212" width="210" height="60" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="205" y="237" class="body" fill="#0f172a" text-anchor="middle">Tool parameter manipulation</text>
+  <text x="205" y="257" class="sub" fill="#64748b" text-anchor="middle">User input</text>
+
+  <rect x="310" y="212" width="160" height="60" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="390" y="237" class="sub" fill="#334155" text-anchor="middle">User input</text>
+  <text x="390" y="257" class="sub" fill="#64748b" text-anchor="middle">Malicious params</text>
+
+  <rect x="470" y="212" width="140" height="60" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="540" y="237" class="sub" fill="#334155" text-anchor="middle">Validation layer</text>
+  <text x="540" y="257" class="sub" fill="#64748b" text-anchor="middle">Anomalous params</text>
+
+  <rect x="610" y="212" width="90" height="60" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="655" y="237" class="sub" fill="#334155" text-anchor="middle">Tool</text>
+  <text x="655" y="257" class="sub" fill="#64748b" text-anchor="middle">layer</text>
+
+  <!-- Row 4: Context window contamination -->
+  <rect x="100" y="272" width="600" height="60" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+  <rect x="100" y="272" width="210" height="60" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="205" y="297" class="body" fill="#0f172a" text-anchor="middle">Context window contamination</text>
+  <text x="205" y="317" class="sub" fill="#64748b" text-anchor="middle">Extended conversation</text>
+
+  <rect x="310" y="272" width="160" height="60" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="390" y="297" class="sub" fill="#334155" text-anchor="middle">Conversation store</text>
+  <text x="390" y="317" class="sub" fill="#64748b" text-anchor="middle">Long context + cross-session</text>
+
+  <rect x="470" y="272" width="140" height="60" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="540" y="297" class="sub" fill="#334155" text-anchor="middle">Model output at turn N</text>
+  <text x="540" y="317" class="sub" fill="#64748b" text-anchor="middle">Degraded safety</text>
+
+  <rect x="610" y="272" width="90" height="60" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="655" y="297" class="sub" fill="#334155" text-anchor="middle">Conversation</text>
+  <text x="655" y="317" class="sub" fill="#64748b" text-anchor="middle">store</text>
+
+  <!-- Caption -->
+  <text x="400" y="390" class="caption" fill="#64748b" text-anchor="middle">These four categories account for the majority of production incidents in agentic AI systems. Each requires instrumentation at a different layer of the stack.</text>
+</svg>

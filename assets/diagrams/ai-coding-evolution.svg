@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 620" width="800" height="620">
+  <style>
+    .title { font-family: -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:22px; font-weight:700; }
+    .header { font-family: -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:11px; font-weight:600; letter-spacing:0.5px; text-transform:uppercase; }
+    .body { font-family: -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:13px; font-weight:500; }
+    .sub { font-family: -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:11px; font-weight:400; }
+    .caption { font-family: -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:11px; font-weight:400; }
+  </style>
+
+  <rect width="800" height="620" fill="#ffffff"/>
+
+  <text x="400" y="36" class="title" fill="#0f172a" text-anchor="middle">AI Coding Evolution: Five Steps (2021-2026)</text>
+  <line x1="120" y1="52" x2="680" y2="52" stroke="#f1f5f9" stroke-width="1"/>
+
+  <!-- Step 1: Autocomplete (2021) -->
+  <rect x="100" y="72" width="600" height="80" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5"/>
+  <rect x="116" y="82" width="32" height="14" rx="7" fill="#0f172a"/>
+  <text x="132" y="93" class="sub" fill="#ffffff" text-anchor="middle">1</text>
+  <text x="164" y="93" class="body" fill="#0f172a">Autocomplete in the Editor</text>
+  <text x="164" y="114" class="sub" fill="#64748b">GitHub Copilot preview (June 2021)</text>
+  <text x="164" y="132" class="sub" fill="#334155">Inline code suggestion as you type. No execution. No memory.</text>
+  <rect x="520" y="96" width="160" height="32" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="600" y="117" class="sub" fill="#334155" text-anchor="middle">You are the runtime</text>
+
+  <!-- Arrow down -->
+  <line x1="140" y1="152" x2="140" y2="172" stroke="#64748b" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <polygon points="140,176 136,168 144,168" fill="#64748b"/>
+
+  <!-- Step 2: Chat Box (late 2022) -->
+  <rect x="100" y="176" width="600" height="80" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5"/>
+  <rect x="116" y="186" width="32" height="14" rx="7" fill="#0f172a"/>
+  <text x="132" y="197" class="sub" fill="#ffffff" text-anchor="middle">2</text>
+  <text x="164" y="197" class="body" fill="#0f172a">The Chat Box</text>
+  <text x="164" y="218" class="sub" fill="#64748b">ChatGPT release (November 2022)</text>
+  <text x="164" y="236" class="sub" fill="#334155">Describe what you want. Copy paste. Run. Fix errors. Repeat.</text>
+  <rect x="520" y="200" width="160" height="32" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="600" y="221" class="sub" fill="#334155" text-anchor="middle">You are the runtime</text>
+
+  <!-- Arrow down -->
+  <line x1="140" y1="256" x2="140" y2="276" stroke="#64748b" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <polygon points="140,280 136,272 144,272" fill="#64748b"/>
+
+  <!-- Step 3: Model Gets Hands (2023) -->
+  <rect x="100" y="280" width="600" height="80" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5"/>
+  <rect x="116" y="290" width="32" height="14" rx="7" fill="#0f172a"/>
+  <text x="132" y="301" class="sub" fill="#ffffff" text-anchor="middle">3</text>
+  <text x="164" y="301" class="body" fill="#0f172a">The Model Gets Hands</text>
+  <text x="164" y="322" class="sub" fill="#64748b">Code Interpreter (March 2023)</text>
+  <text x="164" y="340" class="sub" fill="#334155">Model writes code, runs it, sees the error, fixes it. Loop closes itself.</text>
+  <rect x="520" y="304" width="160" height="32" rx="6" fill="#ffffff" stroke="#059669" stroke-width="1.5"/>
+  <text x="600" y="325" class="sub" fill="#059669" text-anchor="middle">Model closes the loop</text>
+
+  <!-- Arrow down -->
+  <line x1="140" y1="360" x2="140" y2="380" stroke="#64748b" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <polygon points="140,384 136,376 144,376" fill="#64748b"/>
+
+  <!-- Step 4: Agents in Terminal (2025) -->
+  <rect x="100" y="384" width="600" height="80" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5"/>
+  <rect x="116" y="394" width="32" height="14" rx="7" fill="#0f172a"/>
+  <text x="132" y="405" class="sub" fill="#ffffff" text-anchor="middle">4</text>
+  <text x="164" y="405" class="body" fill="#0f172a">Agents in the Terminal</text>
+  <text x="164" y="426" class="sub" fill="#64748b">Codex, Claude Code, OpenCode (May-June 2025)</text>
+  <text x="164" y="444" class="sub" fill="#334155">Agent reads real files, runs real tests, edits your codebase. You still approve each step.</text>
+  <rect x="520" y="408" width="160" height="32" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="600" y="429" class="sub" fill="#334155" text-anchor="middle">You are still the loop</text>
+
+  <!-- Arrow down -->
+  <line x1="140" y1="464" x2="140" y2="484" stroke="#64748b" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <polygon points="140,488 136,480 144,480" fill="#64748b"/>
+
+  <!-- Step 5: Loops (2026) -->
+  <rect x="100" y="488" width="600" height="80" rx="8" fill="#0f172a"/>
+  <rect x="116" y="498" width="32" height="14" rx="7" fill="#ffffff"/>
+  <text x="132" y="509" class="sub" fill="#0f172a" text-anchor="middle">5</text>
+  <text x="164" y="509" class="body" fill="#ffffff">Loops</text>
+  <text x="164" y="530" class="sub" fill="#94a3b8">Early 2026</text>
+  <text x="164" y="548" class="sub" fill="#cbd5e1">You design the loop once. Agent runs inside it. You review the result.</text>
+  <rect x="520" y="512" width="160" height="32" rx="6" fill="#059669"/>
+  <text x="600" y="533" class="sub" fill="#ffffff" text-anchor="middle">Human out of the loop</text>
+
+  <!-- Caption -->
+  <text x="400" y="600" class="caption" fill="#64748b" text-anchor="middle">The shift from manual copy-paste to autonomous verification. Each step reduces human involvement in the mechanical work.</text>
+</svg>

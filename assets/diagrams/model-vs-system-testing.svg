@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 440" width="800" height="440">
+  <style>
+    .title { font-family: -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:22px; font-weight:700; }
+    .header { font-family: -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:11px; font-weight:600; letter-spacing:0.5px; text-transform:uppercase; }
+    .body { font-family: -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:13px; font-weight:500; }
+    .sub { font-family: -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:11px; font-weight:400; }
+    .caption { font-family: -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:11px; font-weight:400; }
+  </style>
+
+  <rect width="800" height="440" fill="#ffffff"/>
+
+  <text x="400" y="36" class="title" fill="#0f172a" text-anchor="middle">Model-Level vs System-Level Red Teaming</text>
+  <line x1="120" y1="52" x2="680" y2="52" stroke="#f1f5f9" stroke-width="1"/>
+
+  <!-- Divider -->
+  <line x1="400" y1="60" x2="400" y2="340" stroke="#f1f5f9" stroke-width="1" stroke-dasharray="8,6"/>
+
+  <!-- LEFT: Model-Level -->
+  <text x="200" y="80" class="header" fill="#64748b" text-anchor="middle">Model-Level (What Most Teams Do)</text>
+
+  <!-- Adversarial prompt -->
+  <rect x="100" y="100" width="200" height="40" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="200" y="125" class="body" fill="#0f172a" text-anchor="middle">Adversarial prompt</text>
+
+  <!-- Arrow down -->
+  <line x1="200" y1="140" x2="200" y2="160" stroke="#0f172a" stroke-width="2"/>
+  <polygon points="200,164 196,156 204,156" fill="#0f172a"/>
+
+  <!-- Model endpoint -->
+  <rect x="100" y="164" width="200" height="40" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="200" y="189" class="body" fill="#0f172a" text-anchor="middle">Model endpoint</text>
+
+  <!-- Arrow down -->
+  <line x1="200" y1="204" x2="200" y2="224" stroke="#0f172a" stroke-width="2"/>
+  <polygon points="200,228 196,220 204,220" fill="#0f172a"/>
+
+  <!-- Output check -->
+  <rect x="100" y="228" width="200" height="40" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="200" y="253" class="body" fill="#0f172a" text-anchor="middle">Output check</text>
+
+  <!-- Pass/fail -->
+  <rect x="100" y="272" width="200" height="40" rx="6" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="200" y="297" class="body" fill="#334155" text-anchor="middle">Pass / Fail</text>
+
+  <!-- Annotation -->
+  <rect x="100" y="324" width="200" height="36" rx="6" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="200" y="347" class="sub" fill="#64748b" text-anchor="middle">Tests content safety only</text>
+
+  <!-- RIGHT: System-Level -->
+  <text x="600" y="80" class="header" fill="#64748b" text-anchor="middle">System-Level (What You Should Do)</text>
+
+  <!-- Adversarial prompt -->
+  <rect x="500" y="100" width="200" height="40" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="600" y="125" class="body" fill="#0f172a" text-anchor="middle">Adversarial prompt</text>
+
+  <!-- Arrow down -->
+  <line x1="600" y1="140" x2="600" y2="160" stroke="#0f172a" stroke-width="2"/>
+  <polygon points="600,164 596,156 604,156" fill="#0f172a"/>
+
+  <!-- Agent -->
+  <rect x="500" y="164" width="200" height="40" rx="6" fill="#ffffff" stroke="#0f172a" stroke-width="2"/>
+  <text x="600" y="189" class="body" fill="#0f172a" text-anchor="middle">Agent (full system)</text>
+
+  <!-- Arrow down -->
+  <line x1="600" y1="204" x2="600" y2="224" stroke="#0f172a" stroke-width="2"/>
+  <polygon points="600,228 596,220 604,220" fill="#0f172a"/>
+
+  <!-- Tool calls -->
+  <rect x="500" y="228" width="200" height="40" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="600" y="253" class="body" fill="#0f172a" text-anchor="middle">Tool calls</text>
+
+  <!-- Arrow down -->
+  <line x1="600" y1="268" x2="600" y2="288" stroke="#0f172a" stroke-width="2"/>
+  <polygon points="600,292 596,284 604,284" fill="#0f172a"/>
+
+  <!-- Downstream systems -->
+  <rect x="500" y="292" width="200" height="40" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="600" y="317" class="body" fill="#0f172a" text-anchor="middle">Downstream systems</text>
+
+  <!-- Data operations -->
+  <rect x="500" y="336" width="200" height="40" rx="6" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="600" y="361" class="body" fill="#334155" text-anchor="middle">Data operations</text>
+
+  <!-- Annotation -->
+  <rect x="500" y="388" width="200" height="36" rx="6" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="600" y="411" class="sub" fill="#64748b" text-anchor="middle">Tests the full attack surface</text>
+
+  <!-- Caption -->
+  <text x="400" y="430" class="caption" fill="#64748b" text-anchor="middle">Model-level testing checks if the model produces harmful text. System-level testing checks if the agent causes harm through tool calls, data operations, and downstream systems.</text>
+</svg>

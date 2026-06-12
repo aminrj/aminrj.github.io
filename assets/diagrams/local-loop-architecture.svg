@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" width="800" height="520">
+  <style>
+    .title { font-family: -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:22px; font-weight:700; }
+    .header { font-family: -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:11px; font-weight:600; letter-spacing:0.5px; text-transform:uppercase; }
+    .body { font-family: -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:13px; font-weight:500; }
+    .sub { font-family: -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:11px; font-weight:400; }
+    .caption { font-family: -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:11px; font-weight:400; }
+  </style>
+
+  <rect width="800" height="520" fill="#ffffff"/>
+
+  <text x="400" y="36" class="title" fill="#0f172a" text-anchor="middle">Local Loop Architecture</text>
+  <line x1="120" y1="52" x2="680" y2="52" stroke="#f1f5f9" stroke-width="1"/>
+
+  <!-- Local machine boundary -->
+  <rect x="60" y="70" width="680" height="380" rx="12" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <text x="70" y="92" class="header" fill="#64748b">Local Machine</text>
+
+  <!-- Layer 1: Trigger -->
+  <rect x="100" y="110" width="600" height="56" rx="8" fill="#0f172a"/>
+  <text x="400" y="135" class="body" fill="#ffffff" text-anchor="middle">Trigger (cron / webhook / manual command)</text>
+  <text x="120" y="152" class="sub" fill="#94a3b8">Starts the loop</text>
+
+  <!-- Arrow down -->
+  <line x1="400" y1="166" x2="400" y2="186" stroke="#0f172a" stroke-width="2"/>
+  <polygon points="400,190 396,182 404,182" fill="#0f172a"/>
+
+  <!-- Layer 2: Loop Controller -->
+  <rect x="100" y="190" width="600" height="80" rx="8" fill="#ffffff" stroke="#0f172a" stroke-width="2"/>
+  <text x="400" y="215" class="body" fill="#0f172a" text-anchor="middle">Loop Controller (bash script)</text>
+  <text x="120" y="240" class="sub" fill="#334155">Iteration cap + no-progress detection + git commit + failure feedback</text>
+  <text x="120" y="258" class="sub" fill="#334155">Fresh agent process every iteration. State lives in filesystem, not context.</text>
+
+  <!-- Arrow down -->
+  <line x1="400" y1="270" x2="400" y2="290" stroke="#0f172a" stroke-width="2"/>
+  <polygon points="400,294 396,286 404,286" fill="#0f172a"/>
+
+  <!-- Layer 3: Agent -->
+  <rect x="100" y="294" width="280" height="60" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="240" y="318" class="body" fill="#0f172a" text-anchor="middle">Coding Agent (OpenCode)</text>
+  <text x="120" y="340" class="sub" fill="#334155">Reads TASK.md + skill files</text>
+
+  <!-- Arrow from Agent to Inference -->
+  <line x1="380" y1="324" x2="420" y2="324" stroke="#0f172a" stroke-width="2"/>
+  <polygon points="424,324 416,319 416,329" fill="#0f172a"/>
+  <text x="400" y="316" class="sub" fill="#64748b" text-anchor="middle">OpenAI-compatible</text>
+
+  <!-- Layer 3b: Inference Server -->
+  <rect x="420" y="294" width="280" height="60" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="560" y="318" class="body" fill="#0f172a" text-anchor="middle">llama.cpp (llama-server)</text>
+  <text x="440" y="340" class="sub" fill="#334155">Local GPU endpoint</text>
+
+  <!-- Arrow down from Agent -->
+  <line x1="240" y1="354" x2="240" y2="374" stroke="#0f172a" stroke-width="2"/>
+  <polygon points="240,378 236,370 244,370" fill="#0f172a"/>
+
+  <!-- Layer 4: Verification -->
+  <rect x="100" y="378" width="280" height="56" rx="8" fill="#ffffff" stroke="#059669" stroke-width="1.5"/>
+  <text x="240" y="401" class="body" fill="#059669" text-anchor="middle">Verification (npm test + typecheck)</text>
+  <text x="120" y="422" class="sub" fill="#334155">The machine decides, not the agent</text>
+
+  <!-- Arrow down from Inference -->
+  <line x1="560" y1="354" x2="560" y2="374" stroke="#0f172a" stroke-width="2"/>
+  <polygon points="560,378 556,370 564,370" fill="#0f172a"/>
+
+  <!-- Layer 4b: Filesystem -->
+  <rect x="420" y="378" width="280" height="56" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="560" y="401" class="body" fill="#0f172a" text-anchor="middle">Filesystem (git + TASK.md)</text>
+  <text x="440" y="422" class="sub" fill="#334155">State persists between iterations</text>
+
+  <!-- Arrow up from Verification to Loop Controller (success) -->
+  <path d="M 240 378 Q 160 378 160 230 Q 160 190 200 190" stroke="#059669" stroke-width="2" fill="none"/>
+  <polygon points="204,190 196,185 196,195" fill="#059669"/>
+  <text x="140" y="290" class="sub" fill="#059669">pass -> stop</text>
+
+  <!-- Arrow up from Filesystem to Loop Controller (failure) -->
+  <path d="M 560 378 Q 640 378 640 230 Q 640 190 600 190" stroke="#64748b" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <polygon points="596,190 604,185 604,195" fill="#64748b"/>
+  <text x="650" y="290" class="sub" fill="#64748b">fail -> retry</text>
+
+  <!-- Caption -->
+  <text x="400" y="490" class="caption" fill="#64748b" text-anchor="middle">Every iteration is a fresh agent process. State lives in git and files, not in the model context window. The verification gate is independent of the agent's opinion.</text>
+</svg>

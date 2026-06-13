@@ -139,7 +139,7 @@ The `"tools": true` line is not optional for loop work. It tells the agent the m
 
 ## Step 3: Give the agent a skill file
 
-Before you automate anything, write down what the agent should never have to rediscover. This is the single highest-leverage step and the one most people skip.
+Before you automate anything, write down what the agent should never have to rediscover. This is the single highest-impact step and the one most people skip.
 
 A loop with no reusable knowledge re-learns your project from zero on every iteration. It re-reads your conventions, re-guesses your test command, re-discovers your folder layout, and burns tokens doing it. A loop with a good skill file compounds instead. You write the convention once and every future iteration starts from it.
 

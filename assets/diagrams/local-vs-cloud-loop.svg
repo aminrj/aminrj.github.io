@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" width="800" height="400">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" width="800" height="480">
   <style>
     .title { font-family: -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:22px; font-weight:700; }
     .header { font-family: -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:11px; font-weight:600; letter-spacing:0.5px; text-transform:uppercase; }
@@ -21,24 +21,24 @@
   <rect x="80" y="100" width="240" height="240" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
 
   <!-- Cost -->
-  <rect x="100" y="116" width="200" height="36" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
-  <text x="200" y="139" class="body" fill="#0f172a" text-anchor="middle">Cost per iteration</text>
-  <text x="100" y="160" class="sub" fill="#64748b">Watching the meter anxiously</text>
+  <rect x="100" y="116" width="200" height="48" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="200" y="141" class="body" fill="#0f172a" text-anchor="middle">Cost per iteration</text>
+  <text x="100" y="163" class="sub" fill="#64748b">Watching the meter anxiously</text>
 
   <!-- Privacy -->
-  <rect x="100" y="160" width="200" height="36" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
-  <text x="200" y="183" class="body" fill="#0f172a" text-anchor="middle">Code leaves your network</text>
-  <text x="100" y="204" class="sub" fill="#64748b">Every iteration sends your repo</text>
+  <rect x="100" y="168" width="200" height="48" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="200" y="193" class="body" fill="#0f172a" text-anchor="middle">Code leaves your network</text>
+  <text x="100" y="215" class="sub" fill="#64748b">Every iteration sends your repo</text>
 
   <!-- Unattended -->
-  <rect x="100" y="204" width="200" height="36" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
-  <text x="200" y="227" class="body" fill="#0f172a" text-anchor="middle">Unattended runs</text>
-  <text x="100" y="248" class="sub" fill="#64748b">Need dollar caps as safety</text>
+  <rect x="100" y="220" width="200" height="48" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="200" y="245" class="body" fill="#0f172a" text-anchor="middle">Unattended runs</text>
+  <text x="100" y="267" class="sub" fill="#64748b">Need dollar caps as safety</text>
 
   <!-- Capability -->
-  <rect x="100" y="248" width="200" height="36" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
-  <text x="200" y="271" class="body" fill="#0f172a" text-anchor="middle">Model capability</text>
-  <text x="100" y="292" class="sub" fill="#64748b">Best-in-class frontier models</text>
+  <rect x="100" y="272" width="200" height="48" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="200" y="297" class="body" fill="#0f172a" text-anchor="middle">Model capability</text>
+  <text x="100" y="319" class="sub" fill="#64748b">Best-in-class frontier models</text>
 
   <!-- RIGHT: Local -->
   <text x="600" y="80" class="header" fill="#64748b" text-anchor="middle">Local GPU</text>
@@ -46,29 +46,29 @@
   <rect x="480" y="100" width="240" height="240" rx="8" fill="#ffffff" stroke="#059669" stroke-width="1.5"/>
 
   <!-- Cost -->
-  <rect x="500" y="116" width="200" height="36" rx="6" fill="#ffffff" stroke="#059669" stroke-width="1.5"/>
-  <text x="600" y="139" class="body" fill="#059669" text-anchor="middle">Near-zero marginal cost</text>
-  <text x="500" y="160" class="sub" fill="#64748b">Only electricity matters</text>
+  <rect x="500" y="116" width="200" height="48" rx="6" fill="#ffffff" stroke="#059669" stroke-width="1.5"/>
+  <text x="600" y="141" class="body" fill="#059669" text-anchor="middle">Near-zero marginal cost</text>
+  <text x="500" y="163" class="sub" fill="#64748b">Only electricity matters</text>
 
   <!-- Privacy -->
-  <rect x="500" y="160" width="200" height="36" rx="6" fill="#ffffff" stroke="#059669" stroke-width="1.5"/>
-  <text x="600" y="183" class="body" fill="#059669" text-anchor="middle">Code never leaves LAN</text>
-  <text x="500" y="204" class="sub" fill="#64748b">Air-gapped work is allowed</text>
+  <rect x="500" y="168" width="200" height="48" rx="6" fill="#ffffff" stroke="#059669" stroke-width="1.5"/>
+  <text x="600" y="193" class="body" fill="#059669" text-anchor="middle">Code never leaves LAN</text>
+  <text x="500" y="215" class="sub" fill="#64748b">Air-gapped work is allowed</text>
 
   <!-- Unattended -->
-  <rect x="500" y="204" width="200" height="36" rx="6" fill="#ffffff" stroke="#059669" stroke-width="1.5"/>
-  <text x="600" y="227" class="body" fill="#059669" text-anchor="middle">Run while you sleep</text>
-  <text x="500" y="248" class="sub" fill="#64748b">No meter anxiety</text>
+  <rect x="500" y="220" width="200" height="48" rx="6" fill="#ffffff" stroke="#059669" stroke-width="1.5"/>
+  <text x="600" y="245" class="body" fill="#059669" text-anchor="middle">Run while you sleep</text>
+  <text x="500" y="267" class="sub" fill="#64748b">No meter anxiety</text>
 
   <!-- Capability -->
-  <rect x="500" y="248" width="200" height="36" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
-  <text x="600" y="271" class="body" fill="#334155" text-anchor="middle">Slower, less capable</text>
-  <text x="500" y="292" class="sub" fill="#64748b">27B-35B quantized models</text>
+  <rect x="500" y="272" width="200" height="48" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="600" y="297" class="body" fill="#334155" text-anchor="middle">Slower, less capable</text>
+  <text x="500" y="319" class="sub" fill="#64748b">27B-35B quantized models</text>
 
   <!-- Bottom: recommendation -->
-  <rect x="100" y="360" width="600" height="36" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5"/>
+  <rect x="100" y="404" width="600" height="36" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5"/>
   <text x="400" y="383" class="body" fill="#0f172a" text-anchor="middle">Best pattern: 60-80% local workhorse, escalate hard 20% to cloud</text>
 
   <!-- Caption -->
-  <text x="400" y="420" class="caption" fill="#64748b" text-anchor="middle">Local removes cost and privacy as constraints. The trade-off is speed and capability, which the hybrid pattern addresses directly.</text>
+  <text x="400" y="464" class="caption" fill="#64748b" text-anchor="middle">Local removes cost and privacy as constraints. The trade-off is speed and capability, which the hybrid pattern addresses directly.</text>
 </svg>

@@ -23,7 +23,7 @@
   <!-- Increment -->
   <rect x="320" y="130" width="160" height="40" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
   <text x="400" y="148" class="sub" fill="#334155" text-anchor="middle">ITERATION = ITERATION + 1</text>
-  <text x="400" y="164" class="sub" fill="#64748b" text-anchor="middle">Check: ITERATION < MAX_ITERATIONS?</text>
+  <text x="400" y="164" class="sub" fill="#64748b" text-anchor="middle">Check: ITERATION &lt; MAX_ITERATIONS?</text>
 
   <!-- Arrow down -->
   <line x1="400" y1="170" x2="400" y2="190" stroke="#0f172a" stroke-width="2"/>
@@ -70,7 +70,7 @@
   <!-- No progress check -->
   <rect x="560" y="354" width="180" height="56" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
   <text x="650" y="376" class="body" fill="#0f172a" text-anchor="middle">No-progress check</text>
-  <text x="580" y="396" class="sub" fill="#334155">Diff unchanged 2x? -> stop</text>
+  <text x="580" y="396" class="sub" fill="#334155">Diff unchanged 2x? then stop</text>
 
   <!-- Arrow down from no-progress check -->
   <line x1="650" y1="410" x2="650" y2="430" stroke="#64748b" stroke-width="1.5"/>

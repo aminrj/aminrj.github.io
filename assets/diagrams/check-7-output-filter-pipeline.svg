@@ -20,7 +20,7 @@
   <text x="140" y="105" class="body" fill="#ffffff" text-anchor="middle">Model Output</text>
   <text x="140" y="123" class="sub" fill="#ffffff" text-anchor="middle">Raw response</text>
 
-  <!-- Arrow: Model Output → Regex PII Scan -->
+  <!-- Arrow: Model Output to Regex PII Scan -->
   <line x1="220" y1="108" x2="268" y2="108" stroke="#0f172a" stroke-width="2"/>
   <polygon points="262,104 272,108 262,112" fill="#0f172a"/>
 

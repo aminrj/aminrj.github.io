@@ -139,7 +139,7 @@ Garak's probe catalog includes prompt injection (direct, encoding, payload split
 | Tool | Best for | Limitation |
 |------|----------|------------|
 | Garak | Baseline model-level vulnerability scan | Tests model in isolation, not the full agentic system |
-| PyRIT | Orchestrated multi-turn attacks against the full system | Requires more setup and custom objective definitions |
+| PyRIT | Chained multi-turn attacks against the full system | Requires more setup and custom objective definitions |
 | CoPyRIT (PyRIT GUI) | Manual/human-led red teaming with session tracking | Not automated; scales with team size |
 
 Run Garak first for breadth. Use PyRIT for depth against the attack categories Garak flags.
@@ -155,7 +155,7 @@ The setup above points PyRIT at your agent endpoint generically. The four sectio
 | Context window contamination | Extended conversation | Model output at turn N | Conversation store |
 This is the most actionable reference in the article. Place at the start of the "The four attack categories" section, before the detailed descriptions.]]
 
-- `HarmBench` — comprehensive jailbreak benchmark, good baseline coverage for prompt injection
+- `HarmBench` — broad jailbreak benchmark, good baseline coverage for prompt injection
 - `AdvBench` — adversarial instructions, useful for testing instruction-following safety
 - `XSTest` — tests for over-refusal as well as under-refusal, both failure modes matter for production
 - `AIRT` — AI Red Team dataset with agentic scenarios included

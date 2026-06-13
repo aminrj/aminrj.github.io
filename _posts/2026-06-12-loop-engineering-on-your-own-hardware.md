@@ -24,10 +24,6 @@ description: "Everyone is talking about loop engineering. Almost nobody is showi
 mermaid: false
 ---
 
-# Loop Engineering on Your Own Hardware: A Practical Guide to Self-Hosted Coding Loops
-
-*By Amine Raji, PhD, CISSP*
-
 Everyone is talking about loop engineering. Almost nobody is showing you how to run it on a model you own.
 
 In June 2026, two sentences from Peter Steinberger (creator of OpenClaw, now at OpenAI) hit several million views: stop prompting your coding agents, start designing loops that prompt them for you. Boris Cherny, who runs Claude Code at Anthropic, had said the same thing on stage days earlier: he doesn't prompt anymore, his job is to write loops. The idea is real and the tooling has caught up. But almost every guide assumes you are pointing your loop at a frontier API and have a budget that absorbs millions of tokens overnight.
@@ -289,6 +285,6 @@ Two failure modes get sharper as the loop gets better, and a local model does no
 
 ## The takeaway
 
-Prompt engineering is not dead. The leverage moved. Five years ago you wrote the code. Two years ago you prompted a model to write it. Last year you watched an agent write it and approved changes one at a time. Today, for bounded and verifiable tasks, you design the loop that prompts, checks, retries, and stops, and you run it on a model you own so cost and privacy stop being the reasons you cannot let it run unattended.
+Prompt engineering is not dead. The power shifted. Five years ago you wrote the code. Two years ago you prompted a model to write it. Last year you watched an agent write it and approved changes one at a time. Today, for bounded and verifiable tasks, you design the loop that prompts, checks, retries, and stops, and you run it on a model you own so cost and privacy stop being the reasons you cannot let it run unattended.
 
 Whatever you automate, stay the engineer. Write the skill files. Define the stop conditions and the precise goal. Read what it shipped. A loop is a tool for moving faster on work you understand, or a tool for avoiding understanding the work at all. On your own hardware the temptation to let it run forever is stronger, because it is free. Resist it. The iteration cap, the test gate, and your own eyes on the diff are what keep the loop working for you instead of the other way around.

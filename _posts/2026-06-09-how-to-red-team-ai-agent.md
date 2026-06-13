@@ -24,10 +24,6 @@ description: "Model-level red teaming misses the attacks that cause production i
 mermaid: false
 ---
 
-# How to Red Team Your AI Agent Before You Ship
-
-*By Amine Raji, PhD, CISSP*
-
 Most AI red teaming in 2026 is testing the wrong thing.
 
 The standard practice is to point an adversarial prompt suite at the model endpoint, observe whether the model produces policy-violating outputs, and report the pass/fail result. This is useful for evaluating model behavior in isolation. It tells you almost nothing about the security of an agentic system in production.

@@ -24,10 +24,6 @@ description: "The entire arc from autocomplete to autonomous coding loops happen
 mermaid: false
 ---
 
-# From Prompts to Loops: How We Got Here, and Why It Changes the Way You Work
-
-*By Amine Raji, PhD, CISSP*
-
 If you have ever pasted a question into ChatGPT, copied the answer into your editor, run it, watched it break, and pasted the error back in, you already understand most of this post. That copy-paste-fix dance is where almost everyone started. What changed is not that the dance got faster. It is that you can now hand the whole dance to the machine and walk away.
 
 This post traces how we got from "type a question into a chat box" to "design a loop that works without you," with real dates, real product names, and a concrete before-and-after example at every step. Then it explains what a loop is, why it differs from everything before it, and what you actually gain. It is the on-ramp. If you want the hands-on build afterward, including how to run all of this on hardware you own, that is the companion guide: [Loop Engineering on Your Own Hardware](/2026/06/12/loop-engineering-on-your-own-hardware.html).
@@ -214,7 +210,7 @@ A simple rule of thumb:
 
 ## The takeaway
 
-Prompt engineering is not dead. The leverage just moved. Five years ago you wrote the code yourself. Then you prompted a model to write it. Then you watched an agent write it and approved each step. Now, for the right kind of task, you design the loop that prompts, checks, retries, and stops, and you stay the engineer who defined the goal and owns the result.
+Prompt engineering is not dead. The power just moved. Five years ago you wrote the code yourself. Then you prompted a model to write it. Then you watched an agent write it and approved each step. Now, for the right kind of task, you design the loop that prompts, checks, retries, and stops, and you stay the engineer who defined the goal and owns the result.
 
 The shift is smaller than it sounds and bigger than it looks. You are not learning a new tool. You are moving one rung up a ladder, from doing the work, to directing the work, to designing the system that does the work. Each rung freed up attention for the rung above it. This is just the next one.
 

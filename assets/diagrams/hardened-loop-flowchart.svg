@@ -1,98 +1,405 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 620" width="800" height="620">
-  <style>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 800 620"
+   width="800"
+   height="620"
+   version="1.1"
+   id="svg20"
+   sodipodi:docname="hardened-loop-flowchart.svg"
+   inkscape:version="1.4.3 (0d15f75, 2025-12-25)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs20" />
+  <sodipodi:namedview
+     id="namedview20"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="3.0435484"
+     inkscape:cx="399.86222"
+     inkscape:cy="310"
+     inkscape:window-width="3840"
+     inkscape:window-height="2126"
+     inkscape:window-x="1609"
+     inkscape:window-y="-11"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg20" />
+  <style
+     id="style1">
     .title { font-family: -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:22px; font-weight:700; }
     .header { font-family: -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:11px; font-weight:600; letter-spacing:0.5px; text-transform:uppercase; }
     .body { font-family: -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:13px; font-weight:500; }
     .sub { font-family: -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:11px; font-weight:400; }
     .caption { font-family: -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:11px; font-weight:400; }
   </style>
-
-  <rect width="800" height="620" fill="#ffffff"/>
-
-  <text x="400" y="36" class="title" fill="#0f172a" text-anchor="middle">Hardened Loop Flow</text>
-  <line x1="120" y1="52" x2="680" y2="52" stroke="#f1f5f9" stroke-width="1"/>
-
+  <rect
+     width="800"
+     height="620"
+     fill="#ffffff"
+     id="rect1" />
+  <text
+     x="400"
+     y="36"
+     class="title"
+     fill="#0f172a"
+     text-anchor="middle"
+     id="text1">Hardened Loop Flow</text>
+  <line
+     x1="120"
+     y1="52"
+     x2="680"
+     y2="52"
+     stroke="#f1f5f9"
+     stroke-width="1"
+     id="line1" />
   <!-- Start -->
-  <rect x="320" y="70" width="160" height="36" rx="18" fill="#0f172a"/>
-  <text x="400" y="93" class="body" fill="#ffffff" text-anchor="middle">Start loop</text>
-
+  <rect
+     x="320"
+     y="70"
+     width="160"
+     height="36"
+     rx="18"
+     fill="#0f172a"
+     id="rect2" />
+  <text
+     x="400"
+     y="93"
+     class="body"
+     fill="#ffffff"
+     text-anchor="middle"
+     id="text2">Start loop</text>
   <!-- Arrow down -->
-  <line x1="400" y1="106" x2="400" y2="126" stroke="#0f172a" stroke-width="2"/>
-  <polygon points="400,130 396,122 404,122" fill="#0f172a"/>
-
+  <line
+     x1="400"
+     y1="106"
+     x2="400"
+     y2="126"
+     stroke="#0f172a"
+     stroke-width="2"
+     id="line2" />
+  <polygon
+     points="400,130 396,122 404,122"
+     fill="#0f172a"
+     id="polygon2" />
   <!-- Increment -->
-  <rect x="320" y="130" width="160" height="40" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
-  <text x="400" y="148" class="sub" fill="#334155" text-anchor="middle">ITERATION = ITERATION + 1</text>
-  <text x="400" y="164" class="sub" fill="#64748b" text-anchor="middle">Check: ITERATION &lt; MAX_ITERATIONS?</text>
-
+  <rect
+     x="293.82651"
+     y="130.1116"
+     width="212.347"
+     height="39.776787"
+     rx="7.9630127"
+     fill="#ffffff"
+     stroke="#e2e8f0"
+     stroke-width="1.72321"
+     id="rect3" />
+  <text
+     x="400"
+     y="148"
+     class="sub"
+     fill="#334155"
+     text-anchor="middle"
+     id="text3">ITERATION = ITERATION + 1</text>
+  <text
+     x="400"
+     y="164"
+     class="sub"
+     fill="#64748b"
+     text-anchor="middle"
+     id="text4">Check: ITERATION &lt; MAX_ITERATIONS?</text>
   <!-- Arrow down -->
-  <line x1="400" y1="170" x2="400" y2="190" stroke="#0f172a" stroke-width="2"/>
-  <polygon points="400,194 396,186 404,186" fill="#0f172a"/>
-
+  <line
+     x1="400"
+     y1="170"
+     x2="400"
+     y2="190"
+     stroke="#0f172a"
+     stroke-width="2"
+     id="line4" />
+  <polygon
+     points="400,194 396,186 404,186"
+     fill="#0f172a"
+     id="polygon4" />
   <!-- Agent run -->
-  <rect x="320" y="194" width="160" height="56" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
-  <text x="400" y="216" class="body" fill="#0f172a" text-anchor="middle">Agent run</text>
-  <text x="400" y="236" class="sub" fill="#334155" text-anchor="middle">Fresh process, reads TASK.md</text>
-
+  <rect
+     x="320"
+     y="194"
+     width="160"
+     height="56"
+     rx="6"
+     fill="#ffffff"
+     stroke="#e2e8f0"
+     stroke-width="1.5"
+     id="rect4" />
+  <text
+     x="400"
+     y="216"
+     class="body"
+     fill="#0f172a"
+     text-anchor="middle"
+     id="text5">Agent run</text>
+  <text
+     x="400"
+     y="236"
+     class="sub"
+     fill="#334155"
+     text-anchor="middle"
+     id="text6">Fresh process, reads TASK.md</text>
   <!-- Arrow down -->
-  <line x1="400" y1="250" x2="400" y2="270" stroke="#0f172a" stroke-width="2"/>
-  <polygon points="400,274 396,266 404,266" fill="#0f172a"/>
-
+  <line
+     x1="400"
+     y1="250"
+     x2="400"
+     y2="270"
+     stroke="#0f172a"
+     stroke-width="2"
+     id="line6" />
+  <polygon
+     points="400,274 396,266 404,266"
+     fill="#0f172a"
+     id="polygon6" />
   <!-- Verify -->
-  <rect x="320" y="274" width="160" height="56" rx="6" fill="#ffffff" stroke="#059669" stroke-width="2"/>
-  <text x="400" y="296" class="body" fill="#059669" text-anchor="middle">Verify</text>
-  <text x="400" y="316" class="sub" fill="#334155" text-anchor="middle">npm test + typecheck</text>
-
+  <rect
+     x="320"
+     y="274"
+     width="160"
+     height="56"
+     rx="6"
+     fill="#ffffff"
+     stroke="#059669"
+     stroke-width="2"
+     id="rect6" />
+  <text
+     x="400"
+     y="296"
+     class="body"
+     fill="#059669"
+     text-anchor="middle"
+     id="text7">Verify</text>
+  <text
+     x="400"
+     y="316"
+     class="sub"
+     fill="#334155"
+     text-anchor="middle"
+     id="text8">npm test + typecheck</text>
   <!-- Arrow down -->
-  <line x1="400" y1="330" x2="400" y2="350" stroke="#0f172a" stroke-width="2"/>
-  <polygon points="400,354 396,346 404,346" fill="#0f172a"/>
-
+  <line
+     x1="400"
+     y1="330"
+     x2="400"
+     y2="350"
+     stroke="#0f172a"
+     stroke-width="2"
+     id="line8" />
+  <polygon
+     points="400,354 396,346 404,346"
+     fill="#0f172a"
+     id="polygon8" />
   <!-- Decision -->
-  <rect x="320" y="354" width="160" height="56" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
-  <text x="400" y="378" class="body" fill="#0f172a" text-anchor="middle">Tests pass?</text>
-  <text x="400" y="398" class="sub" fill="#64748b" text-anchor="middle">Machine decides, not agent</text>
-
+  <rect
+     x="320"
+     y="354"
+     width="160"
+     height="56"
+     rx="8"
+     fill="#ffffff"
+     stroke="#e2e8f0"
+     stroke-width="1.5"
+     id="rect8" />
+  <text
+     x="400"
+     y="378"
+     class="body"
+     fill="#0f172a"
+     text-anchor="middle"
+     id="text9">Tests pass?</text>
+  <text
+     x="400"
+     y="398"
+     class="sub"
+     fill="#64748b"
+     text-anchor="middle"
+     id="text10">Machine decides, not agent</text>
   <!-- YES path -->
-  <line x1="400" y1="410" x2="400" y2="430" stroke="#059669" stroke-width="2"/>
-  <polygon points="400,434 396,426 404,426" fill="#059669"/>
-  <text x="410" y="426" class="sub" fill="#059669">yes</text>
-
+  <line
+     x1="400"
+     y1="410"
+     x2="400"
+     y2="430"
+     stroke="#059669"
+     stroke-width="2"
+     id="line10" />
+  <polygon
+     points="400,434 396,426 404,426"
+     fill="#059669"
+     id="polygon10" />
+  <text
+     x="410"
+     y="426"
+     class="sub"
+     fill="#059669"
+     id="text11">yes</text>
   <!-- Success -->
-  <rect x="320" y="434" width="160" height="40" rx="6" fill="#059669"/>
-  <text x="400" y="452" class="body" fill="#ffffff" text-anchor="middle">Commit + Stop</text>
-  <text x="400" y="468" class="sub" fill="#d1fae5" text-anchor="middle">Goal met</text>
-
+  <rect
+     x="320"
+     y="434"
+     width="160"
+     height="40"
+     rx="6"
+     fill="#059669"
+     id="rect11" />
+  <text
+     x="400"
+     y="452"
+     class="body"
+     fill="#ffffff"
+     text-anchor="middle"
+     id="text12">Commit + Stop</text>
+  <text
+     x="400"
+     y="468"
+     class="sub"
+     fill="#d1fae5"
+     text-anchor="middle"
+     id="text13">Goal met</text>
   <!-- NO path (right side) -->
-  <line x1="480" y1="382" x2="560" y2="382" stroke="#64748b" stroke-width="1.5"/>
-  <polygon points="564,382 556,377 556,387" fill="#64748b"/>
-  <text x="520" y="374" class="sub" fill="#64748b" text-anchor="middle">no</text>
-
+  <line
+     x1="480"
+     y1="382"
+     x2="560"
+     y2="382"
+     stroke="#64748b"
+     stroke-width="1.5"
+     id="line13" />
+  <polygon
+     points="564,382 556,377 556,387"
+     fill="#64748b"
+     id="polygon13" />
+  <text
+     x="506.52887"
+     y="376.29996"
+     class="sub"
+     fill="#64748b"
+     text-anchor="middle"
+     id="text14">no</text>
   <!-- No progress check -->
-  <rect x="560" y="354" width="180" height="56" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
-  <text x="650" y="376" class="body" fill="#0f172a" text-anchor="middle">No-progress check</text>
-  <text x="580" y="396" class="sub" fill="#334155">Diff unchanged 2x? then stop</text>
-
+  <rect
+     x="560"
+     y="354"
+     width="180"
+     height="56"
+     rx="6"
+     fill="#ffffff"
+     stroke="#e2e8f0"
+     stroke-width="1.5"
+     id="rect14" />
+  <text
+     x="650"
+     y="376"
+     class="body"
+     fill="#0f172a"
+     text-anchor="middle"
+     id="text15">No-progress check</text>
+  <text
+     x="580"
+     y="396"
+     class="sub"
+     fill="#334155"
+     id="text16">Diff unchanged 2x? then stop</text>
   <!-- Arrow down from no-progress check -->
-  <line x1="650" y1="410" x2="650" y2="430" stroke="#64748b" stroke-width="1.5"/>
-  <polygon points="650,434 646,426 654,426" fill="#64748b"/>
-
+  <line
+     x1="650"
+     y1="410"
+     x2="650"
+     y2="430"
+     stroke="#64748b"
+     stroke-width="1.5"
+     id="line16" />
+  <polygon
+     points="650,434 646,426 654,426"
+     fill="#64748b"
+     id="polygon16" />
   <!-- Commit WIP -->
-  <rect x="560" y="434" width="180" height="40" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
-  <text x="650" y="452" class="sub" fill="#334155" text-anchor="middle">git commit (WIP)</text>
-
+  <rect
+     x="560"
+     y="434"
+     width="180"
+     height="40"
+     rx="6"
+     fill="#ffffff"
+     stroke="#e2e8f0"
+     stroke-width="1.5"
+     id="rect16" />
+  <text
+     x="650"
+     y="452"
+     class="sub"
+     fill="#334155"
+     text-anchor="middle"
+     id="text17">git commit (WIP)</text>
   <!-- Arrow down -->
-  <line x1="650" y1="474" x2="650" y2="494" stroke="#64748b" stroke-width="1.5"/>
-  <polygon points="650,498 646,490 654,490" fill="#64748b"/>
-
+  <line
+     x1="650"
+     y1="474"
+     x2="650"
+     y2="494"
+     stroke="#64748b"
+     stroke-width="1.5"
+     id="line17" />
+  <polygon
+     points="650,498 646,490 654,490"
+     fill="#64748b"
+     id="polygon17" />
   <!-- Feed back -->
-  <rect x="560" y="498" width="180" height="40" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
-  <text x="650" y="516" class="sub" fill="#334155" text-anchor="middle">Append error to TASK.md</text>
-
+  <rect
+     x="560"
+     y="498"
+     width="180"
+     height="40"
+     rx="6"
+     fill="#ffffff"
+     stroke="#e2e8f0"
+     stroke-width="1.5"
+     id="rect17" />
+  <text
+     x="650"
+     y="516"
+     class="sub"
+     fill="#334155"
+     text-anchor="middle"
+     id="text18">Append error to TASK.md</text>
   <!-- Arrow up (loop back) -->
-  <path d="M 560 518 Q 480 518 480 150 Q 480 110 440 110" stroke="#64748b" stroke-width="1.5" stroke-dasharray="5,4"/>
-  <polygon points="436,110 444,105 444,115" fill="#64748b"/>
-  <text x="500" y="310" class="sub" fill="#64748b">next iteration</text>
-
+  <path
+     d="m 559.67167,522.2711 c -48.90756,0 -55.35188,-107.79832 -23.51633,-306.0823 15.74786,-98.08373 -33.06439,-101.78158 -96.15553,-106.18857"
+     stroke="#64748b"
+     stroke-width="1.51023"
+     stroke-dasharray="5, 4"
+     id="path18"
+     style="fill:none"
+     sodipodi:nodetypes="csc" />
+  <polygon
+     points="436,110 444,105 444,115"
+     fill="#64748b"
+     id="polygon18" />
+  <text
+     x="535.81348"
+     y="293.57181"
+     class="sub"
+     fill="#64748b"
+     id="text19">next iteration</text>
   <!-- Caption -->
-  <text x="400" y="590" class="caption" fill="#64748b" text-anchor="middle">Three safety brakes: iteration cap, no-progress detection, and machine verification. The agent's opinion never decides the outcome.</text>
+  <text
+     x="400"
+     y="590"
+     class="caption"
+     fill="#64748b"
+     text-anchor="middle"
+     id="text20">Three safety brakes: iteration cap, no-progress detection, and machine verification. The agent's opinion never decides the outcome.</text>
 </svg>

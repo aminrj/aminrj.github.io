@@ -1,74 +1,320 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 440" width="800" height="440">
-  <style>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 800 440"
+   width="800"
+   height="440"
+   version="1.1"
+   id="svg17"
+   sodipodi:docname="pyrit-setup-architecture.svg"
+   inkscape:version="1.4.3 (0d15f75, 2025-12-25)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs17" />
+  <sodipodi:namedview
+     id="namedview17"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="4.2886364"
+     inkscape:cx="399.89401"
+     inkscape:cy="220"
+     inkscape:window-width="3840"
+     inkscape:window-height="2126"
+     inkscape:window-x="1609"
+     inkscape:window-y="-11"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg17" />
+  <style
+     id="style1">
     .title { font-family: -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:22px; font-weight:700; }
     .header { font-family: -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:11px; font-weight:600; letter-spacing:0.5px; text-transform:uppercase; }
     .body { font-family: -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:13px; font-weight:500; }
     .sub { font-family: -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:11px; font-weight:400; }
     .caption { font-family: -apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:11px; font-weight:400; }
   </style>
-
-  <rect width="800" height="440" fill="#ffffff"/>
-
-  <text x="400" y="36" class="title" fill="#0f172a" text-anchor="middle">PyRIT Setup for Agentic Systems</text>
-  <line x1="120" y1="52" x2="680" y2="52" stroke="#f1f5f9" stroke-width="1"/>
-
+  <rect
+     width="800"
+     height="440"
+     fill="#ffffff"
+     id="rect1" />
+  <text
+     x="400"
+     y="36"
+     class="title"
+     fill="#0f172a"
+     text-anchor="middle"
+     id="text1">PyRIT Setup for Agentic Systems</text>
+  <line
+     x1="120"
+     y1="52"
+     x2="680"
+     y2="52"
+     stroke="#f1f5f9"
+     stroke-width="1"
+     id="line1" />
   <!-- PyRIT node -->
-  <rect x="50" y="160" width="120" height="60" rx="8" fill="#0f172a"/>
-  <text x="110" y="185" class="body" fill="#ffffff" text-anchor="middle">PyRIT</text>
-  <text x="110" y="205" class="sub" fill="#94a3b8" text-anchor="middle">Attack engine</text>
-
+  <rect
+     x="50"
+     y="160"
+     width="120"
+     height="60"
+     rx="8"
+     fill="#0f172a"
+     id="rect2" />
+  <text
+     x="110"
+     y="185"
+     class="body"
+     fill="#ffffff"
+     text-anchor="middle"
+     id="text2">PyRIT</text>
+  <text
+     x="110"
+     y="205"
+     class="sub"
+     fill="#94a3b8"
+     text-anchor="middle"
+     id="text3">Attack engine</text>
   <!-- Arrow -->
-  <line x1="170" y1="190" x2="220" y2="190" stroke="#0f172a" stroke-width="2"/>
-  <polygon points="224,190 216,185 216,195" fill="#0f172a"/>
-
+  <line
+     x1="170"
+     y1="190"
+     x2="220"
+     y2="190"
+     stroke="#0f172a"
+     stroke-width="2"
+     id="line3" />
+  <polygon
+     points="224,190 216,185 216,195"
+     fill="#0f172a"
+     id="polygon3" />
   <!-- Agent endpoint -->
-  <rect x="225" y="160" width="140" height="60" rx="8" fill="#ffffff" stroke="#0f172a" stroke-width="2"/>
-  <text x="295" y="185" class="body" fill="#0f172a" text-anchor="middle">Agent endpoint</text>
-  <text x="295" y="205" class="sub" fill="#334155" text-anchor="middle">Full agent stack</text>
-
+  <rect
+     x="225"
+     y="160"
+     width="140"
+     height="60"
+     rx="8"
+     fill="#ffffff"
+     stroke="#0f172a"
+     stroke-width="2"
+     id="rect3" />
+  <text
+     x="295"
+     y="185"
+     class="body"
+     fill="#0f172a"
+     text-anchor="middle"
+     id="text4">Agent endpoint</text>
+  <text
+     x="295"
+     y="205"
+     class="sub"
+     fill="#334155"
+     text-anchor="middle"
+     id="text5">Full agent stack</text>
   <!-- Arrow -->
-  <line x1="365" y1="190" x2="415" y2="190" stroke="#0f172a" stroke-width="2"/>
-  <polygon points="419,190 411,185 411,195" fill="#0f172a"/>
-
+  <line
+     x1="365"
+     y1="190"
+     x2="415"
+     y2="190"
+     stroke="#0f172a"
+     stroke-width="2"
+     id="line5" />
+  <polygon
+     points="419,190 411,185 411,195"
+     fill="#0f172a"
+     id="polygon5" />
   <!-- Tool integrations -->
-  <rect x="420" y="160" width="140" height="60" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
-  <text x="490" y="185" class="body" fill="#0f172a" text-anchor="middle">Tool integrations</text>
-  <text x="490" y="205" class="sub" fill="#334155" text-anchor="middle">Function calls</text>
-
+  <rect
+     x="420"
+     y="160"
+     width="140"
+     height="60"
+     rx="8"
+     fill="#ffffff"
+     stroke="#e2e8f0"
+     stroke-width="1.5"
+     id="rect5" />
+  <text
+     x="490"
+     y="185"
+     class="body"
+     fill="#0f172a"
+     text-anchor="middle"
+     id="text6">Tool integrations</text>
+  <text
+     x="490"
+     y="205"
+     class="sub"
+     fill="#334155"
+     text-anchor="middle"
+     id="text7">Function calls</text>
   <!-- Arrow -->
-  <line x1="560" y1="190" x2="610" y2="190" stroke="#0f172a" stroke-width="2"/>
-  <polygon points="614,190 606,185 606,195" fill="#0f172a"/>
-
+  <line
+     x1="560"
+     y1="190"
+     x2="610"
+     y2="190"
+     stroke="#0f172a"
+     stroke-width="2"
+     id="line7" />
+  <polygon
+     points="614,190 606,185 606,195"
+     fill="#0f172a"
+     id="polygon7" />
   <!-- MCP servers -->
-  <rect x="615" y="160" width="140" height="60" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
-  <text x="685" y="185" class="body" fill="#0f172a" text-anchor="middle">MCP servers</text>
-  <text x="685" y="205" class="sub" fill="#334155" text-anchor="middle">External tools</text>
-
+  <rect
+     x="615"
+     y="160"
+     width="140"
+     height="60"
+     rx="8"
+     fill="#ffffff"
+     stroke="#e2e8f0"
+     stroke-width="1.5"
+     id="rect7" />
+  <text
+     x="685"
+     y="185"
+     class="body"
+     fill="#0f172a"
+     text-anchor="middle"
+     id="text8">MCP servers</text>
+  <text
+     x="685"
+     y="205"
+     class="sub"
+     fill="#334155"
+     text-anchor="middle"
+     id="text9">External tools</text>
   <!-- Arrow -->
-  <line x1="755" y1="190" x2="780" y2="190" stroke="#0f172a" stroke-width="2"/>
-  <polygon points="784,190 776,185 776,195" fill="#0f172a"/>
-
+  <line
+     x1="755"
+     y1="190"
+     x2="780"
+     y2="190"
+     stroke="#0f172a"
+     stroke-width="2"
+     id="line9" />
+  <polygon
+     points="784,190 776,185 776,195"
+     fill="#0f172a"
+     id="polygon9" />
   <!-- Backend APIs -->
-  <rect x="785" y="160" width="8" height="60" rx="2" fill="#e2e8f0"/>
-  <text x="789" y="195" class="sub" fill="#64748b" text-anchor="middle">APIs</text>
-
+  <rect
+     x="785"
+     y="160"
+     width="8"
+     height="60"
+     rx="2"
+     fill="#e2e8f0"
+     id="rect9" />
+  <text
+     x="789"
+     y="195"
+     class="sub"
+     fill="#64748b"
+     text-anchor="middle"
+     id="text10">APIs</text>
   <!-- Tool call logging layer (highlighted) -->
-  <rect x="225" y="240" width="335" height="80" rx="8" fill="#f8fafc" stroke="#059669" stroke-width="2"/>
-  <text x="392" y="265" class="header" fill="#059669" text-anchor="middle">Tool Call Logging Layer</text>
-  <text x="245" y="290" class="sub" fill="#334155">Log tool calls alongside model outputs</text>
-  <text x="245" y="310" class="sub" fill="#334155">Unexpected tool calls, anomalous params</text>
-  <text x="245" y="330" class="sub" fill="#334155">Calls the agent made but no output reflects</text>
-
+  <rect
+     x="225"
+     y="240"
+     width="335"
+     height="80"
+     rx="8"
+     fill="#f8fafc"
+     stroke="#059669"
+     stroke-width="2"
+     id="rect10" />
+  <text
+     x="392"
+     y="265"
+     class="header"
+     fill="#059669"
+     text-anchor="middle"
+     id="text11">Tool Call Logging Layer</text>
+  <text
+     x="245"
+     y="290"
+     class="sub"
+     fill="#334155"
+     id="text12">Log tool calls alongside model outputs</text>
+  <text
+     x="245"
+     y="310"
+     class="sub"
+     fill="#334155"
+     id="text13">Unexpected tool calls, anomalous params</text>
+  <text
+     x="245"
+     y="330"
+     class="sub"
+     fill="#334155"
+     id="text14">Calls the agent made but no output reflects</text>
   <!-- Arrows from logging layer -->
-  <line x1="295" y1="240" x2="295" y2="220" stroke="#059669" stroke-width="1.5" stroke-dasharray="4,3"/>
-  <line x1="392" y1="240" x2="392" y2="220" stroke="#059669" stroke-width="1.5" stroke-dasharray="4,3"/>
-  <line x1="490" y1="240" x2="490" y2="220" stroke="#059669" stroke-width="1.5" stroke-dasharray="4,3"/>
-
+  <line
+     x1="295"
+     y1="240"
+     x2="295"
+     y2="220"
+     stroke="#059669"
+     stroke-width="1.5"
+     stroke-dasharray="4,3"
+     id="line14" />
+  <line
+     x1="392"
+     y1="240"
+     x2="392"
+     y2="220"
+     stroke="#059669"
+     stroke-width="1.5"
+     stroke-dasharray="4,3"
+     id="line15" />
+  <line
+     x1="490"
+     y1="240"
+     x2="490"
+     y2="220"
+     stroke="#059669"
+     stroke-width="1.5"
+     stroke-dasharray="4,3"
+     id="line16" />
   <!-- Back arrow to PyRIT -->
-  <path d="M 225 280 Q 150 280 150 220 Q 150 190 110 190" stroke="#059669" stroke-width="1.5" stroke-dasharray="4,3"/>
-  <polygon points="106,190 114,185 114,195" fill="#059669"/>
-  <text x="130" y="260" class="sub" fill="#059669">results</text>
-
+  <path
+     d="m 225,280 c -27.85932,0 -95.65381,8.37521 -119.75276,-7.99839 -19.152199,-13.01261 1.7494,-50.84803 3.12054,-55.18656"
+     stroke="#059669"
+     stroke-width="1.5"
+     stroke-dasharray="4, 3"
+     id="path16"
+     style="fill:none"
+     sodipodi:nodetypes="csc" />
+  <polygon
+     points="114,195 106,190 114,185 "
+     fill="#059669"
+     id="polygon16"
+     transform="translate(-2.5649179,26.581876)" />
+  <text
+     x="130"
+     y="260"
+     class="sub"
+     fill="#059669"
+     id="text16">results</text>
   <!-- Caption -->
-  <text x="400" y="410" class="caption" fill="#64748b" text-anchor="middle">Point PyRIT at the agent endpoint, not the model. The key addition is the tool call logging layer between the agent and tool integrations. You are looking for unexpected tool calls, not just harmful outputs.</text>
+  <text
+     x="400"
+     y="410"
+     class="caption"
+     fill="#64748b"
+     text-anchor="middle"
+     id="text17">Point PyRIT at the agent endpoint, not the model. The key addition is the tool call logging layer between the agent and tool integrations. You are looking for unexpected tool calls, not just harmful outputs.</text>
 </svg>

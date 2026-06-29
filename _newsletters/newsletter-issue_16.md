@@ -67,15 +67,15 @@ The defensive side moved this quarter. NVIDIA shipped OpenShell, an open-source 
 
 Two pieces I published that pair directly with this week's theme:
 
-- **Loop Engineering on Your Own Hardware** — the full build for an autonomous coding loop on a single 24GB GPU. The reason it belongs in a security newsletter is the section on where it breaks: "passes tests and typechecks" does not catch security regressions, license contamination, or broken invariants. The loop will turn the bar green and ship an auth bypass no assertion was written to catch. On security-sensitive code, the gap between "the loop says it passed" and "it's actually correct" is exactly where the risk lives. [Read it →](https://aminrj.com/posts/loop-engineering-on-your-own-hardware/)
-- **The Right AI Security Framework Depends on the Question You're Asking** — OWASP's report names a dozen frameworks. If you're staring at that list wondering which to actually run, this is the decision. There are 20+ frameworks in 2026; most teams implement all of them and produce a 60-page document with no usable threat model. [Read it →](https://aminrj.com/posts/which-ai-security-framework-to-use/)
+- **Loop Engineering on Your Own Hardware:** the full build for an autonomous coding loop on a single 24GB GPU. The reason it belongs in a security newsletter is the section on where it breaks: "passes tests and typechecks" does not catch security regressions, license contamination, or broken invariants. The loop will turn the bar green and ship an auth bypass no assertion was written to catch. On security-sensitive code, the gap between "the loop says it passed" and "it's actually correct" is exactly where the risk lives. [Read it →](https://aminrj.com/posts/loop-engineering-on-your-own-hardware/)
+- **The Right AI Security Framework Depends on the Question You're Asking:** OWASP's report names a dozen frameworks. If you're staring at that list wondering which to actually run, this is the decision. There are 20+ frameworks in 2026; most teams implement all of them and produce a 60-page document with no usable threat model. [Read it →](https://aminrj.com/posts/which-ai-security-framework-to-use/)
 
 ---
 
 ## Tooling worth knowing
 
-- **Agent Security Scorecard** — score your agents against the OWASP Agentic Top 10 (2026) in about 12 minutes. Vendor-neutral, no login. This week's lethal-trifecta exercise is exactly what it walks you through: where your agents have private data, untrusted input, and an exit channel all at once. [Take the scorecard →](https://scorecard.aminrj.com)
-- **AI Agent Pre-Deployment Security Checklist** — 25 controls across five families, each a yes or no, covering identity, tool permissions, sandboxing, and CI/CD gating. The exact gaps the LiteLLM and Cursor incidents exploited. Free, built from real assessments. [Get the checklist →](https://aminrj.com/resources/predeployment-checklist/)
+- **Agent Security Scorecard:** score your agents against the OWASP Agentic Top 10 (2026) in about 12 minutes. Vendor-neutral, no login. This week's lethal-trifecta exercise is exactly what it walks you through: where your agents have private data, untrusted input, and an exit channel all at once. [Take the scorecard →](https://scorecard.aminrj.com)
+- **AI Agent Pre-Deployment Security Checklist:** 25 controls across five families, each a yes or no, covering identity, tool permissions, sandboxing, and CI/CD gating. The exact gaps the LiteLLM and Cursor incidents exploited. Free, built from real assessments. [Get the checklist →](https://aminrj.com/resources/predeployment-checklist/)
 
 ---
 
@@ -91,15 +91,15 @@ I'm working through exactly this on my own agent build. [Follow along on the blo
 
 ## What I'm watching
 
-→ **Safety and security merging at the org chart** — OWASP's strongest claim is organizational: for autonomous agents on production data, splitting AI safety and AI security into separate teams guarantees you fix neither. Watch whether enterprises actually restructure, or just rename a team and move on.
+→ **Safety and security merging at the org chart.** OWASP's strongest claim is organizational: for autonomous agents on production data, splitting AI safety and AI security into separate teams guarantees you fix neither. Watch whether enterprises actually restructure, or just rename a team and move on.
 
-→ **AI on both ends of the supply chain** — hackerbot-claw poisoned the infrastructure other AI agents depend on, autonomously. The attacker-agent is no longer a thought experiment. Your detection and response window is now measured against a machine that doesn't sleep or get bored mid-attack. Calibrate containment to that clock.
+→ **AI on both ends of the supply chain.** hackerbot-claw poisoned the infrastructure other AI agents depend on, autonomously. The attacker-agent is no longer a thought experiment. Your detection and response window is now measured against a machine that doesn't sleep or get bored mid-attack. Calibrate containment to that clock.
 
-→ **The "allowlist theater" pattern** — CVE-2026-22708 won't be the last allowlist that approved the very command the attacker needed. Expect more "we had a control and it made things worse" disclosures as teams allowlist verbs instead of validated operations.
+→ **The "allowlist theater" pattern.** CVE-2026-22708 won't be the last allowlist that approved the very command the attacker needed. Expect more "we had a control and it made things worse" disclosures as teams allowlist verbs instead of validated operations.
 
-→ **AI-driven CVE volume** — one forecast has 2026 CVEs pushing toward 66,000, largely from AI-assisted vulnerability discovery. The discovery side is scaling faster than any team's ability to triage. The bottleneck is shifting from "find the bug" to "decide which of the 200 findings actually matters."
+→ **AI-driven CVE volume.** One forecast has 2026 CVEs pushing toward 66,000, largely from AI-assisted vulnerability discovery. The discovery side is scaling faster than any team's ability to triage. The bottleneck is shifting from "find the bug" to "decide which of the 200 findings actually matters."
 
-→ **The cybersecurity agent build** — next issue: I'm putting my own loop behind a sandbox and wiring a frontier-model reviewer onto the verification step, then testing whether it catches the security regressions the local test gate misses. The hybrid local-worker / cloud-reviewer pattern, measured.
+→ **The cybersecurity agent build.** Next issue: I'm putting my own loop behind a sandbox and wiring a frontier-model reviewer onto the verification step, then testing whether it catches the security regressions the local test gate misses. The hybrid local-worker / cloud-reviewer pattern, measured.
 
 ---
 

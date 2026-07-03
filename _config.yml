@@ -239,8 +239,18 @@ exclude:
   # robots.txt is provided by the Chirpy theme (assets/robots.txt with permalink)
   - robots.txt
 
-# Note: Chirpy v7 handles tags/categories natively via the tags/categories tabs.
-# jekyll-archives is disabled to avoid duplicate page generation conflicts.
+# jekyll-archives generates individual tag and category pages (e.g. /tags/mcp/, /categories/security/).
+# Without this, tag/category links from the theme return 404.
+jekyll-archives:
+  enabled:
+    - tags
+    - categories
+  layouts:
+    tag: tag
+    category: category
+  permalinks:
+    tag: /tags/:name/
+    category: /categories/:name/
 
 # Analytics Configuration
 plausible:

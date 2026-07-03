@@ -2,7 +2,7 @@
 title: "When Infostealers Meet Agentic AI: The Kill Chain Security Teams Aren't Modeling"
 date: 2026-04-02
 categories: [AI Security, Threat Intelligence]
-tags: [mcp, agentic-ai, owasp, tool-poisoning, infostealer, kill-chain]
+tags: [MCP, Agentic AI, OWASP, Tool Poisoning, Infostealer, Kill Chain]
 description: "Flashpoint's 2026 threat report shows 3.3 billion stolen credentials flooding criminal markets. Here is what happens when those credentials reach an environment with an agentic AI system connected to it — and why the attack chain is more dangerous than most teams realize."
 image:
   path: /assets/media/ai-security/infosec-agentic-stealers.png

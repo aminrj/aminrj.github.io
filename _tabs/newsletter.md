@@ -227,10 +227,10 @@ html[data-mode="dark"] .newsletter-hero-cta:hover {
 }
 </style>
 
-<!-- ── Hero: latest issue (issue 14) ─────────────────────────────────── -->
-{% assign latest = site.newsletters | where_exp:'n','n.url contains "newsletter-issue-15"' | first %}
+<!-- ── Hero: latest issue (issue 18) ─────────────────────────────────── -->
+{% assign latest = site.newsletters | where_exp:'n','n.url contains "newsletter-issue-18"' | first %}
 <div class="newsletter-hero">
-  <a href="{{ site.baseurl }}{{ latest.url }}" class="newsletter-hero-img-wrap"></a>
+  <a href="{{ site.baseurl }}{{ latest.url }}" class="newsletter-hero-img-wrap" style="background-image:url('{{ site.baseurl }}/assets/media/newsletters/newsletter-18-mcp-goes-stateless-your-gateway-goes-blind.jpg');"></a>
   <div class="newsletter-hero-body">
     <div class="newsletter-hero-label">Latest Issue</div>
     <h2 class="newsletter-hero-title">
@@ -256,14 +256,44 @@ html[data-mode="dark"] .newsletter-hero-cta:hover {
 <!-- ── Recent issues ─────────────────────────────────────────────────── -->
 <h3 class="newsletter-section-title">Recent Issues</h3>
 
+{% assign n18 = site.newsletters | where_exp:'n','n.url contains "newsletter-issue-18"' | first %}
+{% assign n17 = site.newsletters | where_exp:'n','n.url contains "newsletter-issue-17"' | first %}
+{% assign n16 = site.newsletters | where_exp:'n','n.url contains "newsletter-issue-16"' | first %}
 {% assign n15 = site.newsletters | where_exp:'n','n.url contains "newsletter-issue-15"' | first %}
 {% assign n14 = site.newsletters | where_exp:'n','n.url contains "newsletter-issue-14"' | first %}
 {% assign n13 = site.newsletters | where_exp:'n','n.url contains "newsletter-issue-13"' | first %}
-{% assign n12 = site.newsletters | where_exp:'n','n.url contains "newsletter-issue-12"' | first %}
-{% assign n11 = site.newsletters | where_exp:'n','n.url contains "newsletter-issue-11"' | first %}
-{% assign n10 = site.newsletters | where_exp:'n','n.url contains "newsletter-issue-10"' | first %}
-{% if n15 or n14 or n13 or n12 or n11 or n10 %}
+{% if n18 or n17 or n16 or n15 or n14 or n13 %}
 <div class="newsletter-grid">
+{% assign thumb = nil %}{% if n18 %}{% assign thumb = 'newsletter-18-mcp-goes-stateless-your-gateway-goes-blind.jpg' %}{% endif %}
+  <a href="{{ n18.url }}" class="newsletter-card">
+    <div class="newsletter-card-img"{% if thumb %} style="background-image:url('{{ site.baseurl }}/assets/media/newsletters/{{ thumb }}');background-size:cover;background-position:center;"{% else %} style="background:var(--main-bg);display:flex;align-items:center;justify-content:center;"{% endif %}></div>
+    <div class="newsletter-card-body">
+      <div class="newsletter-card-issue">Issue #{{ n18.issue }}</div>
+      <h4 class="newsletter-card-title">{{ n18.title }}</h4>
+      <p class="newsletter-card-preview">{{ n18.preview_text | default: n18.subtitle | strip_html | truncate: 160 }}</p>
+      <div class="newsletter-card-meta">{{ n18.date | date: '%B %d, %Y' }}</div>
+    </div>
+  </a>
+{% assign thumb = nil %}{% if n17 %}{% assign thumb = 'newsletter-17-your-agents-have-no-idea-who-they-are.jpg' %}{% endif %}
+  <a href="{{ n17.url }}" class="newsletter-card">
+    <div class="newsletter-card-img"{% if thumb %} style="background-image:url('{{ site.baseurl }}/assets/media/newsletters/{{ thumb }}');background-size:cover;background-position:center;"{% else %} style="background:var(--main-bg);display:flex;align-items:center;justify-content:center;"{% endif %}></div>
+    <div class="newsletter-card-body">
+      <div class="newsletter-card-issue">Issue #{{ n17.issue }}</div>
+      <h4 class="newsletter-card-title">{{ n17.title }}</h4>
+      <p class="newsletter-card-preview">{{ n17.preview_text | default: n17.subtitle | strip_html | truncate: 160 }}</p>
+      <div class="newsletter-card-meta">{{ n17.date | date: '%B %d, %Y' }}</div>
+    </div>
+  </a>
+{% assign thumb = nil %}{% if n16 %}{% assign thumb = 'newsletter-16-i-let-an-agent-rewrite-my-code-while-i-slept.jpg' %}{% endif %}
+  <a href="{{ n16.url }}" class="newsletter-card">
+    <div class="newsletter-card-img"{% if thumb %} style="background-image:url('{{ site.baseurl }}/assets/media/newsletters/{{ thumb }}');background-size:cover;background-position:center;"{% else %} style="background:var(--main-bg);display:flex;align-items:center;justify-content:center;"{% endif %}></div>
+    <div class="newsletter-card-body">
+      <div class="newsletter-card-issue">Issue #{{ n16.issue }}</div>
+      <h4 class="newsletter-card-title">{{ n16.title }}</h4>
+      <p class="newsletter-card-preview">{{ n16.preview_text | default: n16.subtitle | strip_html | truncate: 160 }}</p>
+      <div class="newsletter-card-meta">{{ n16.date | date: '%B %d, %Y' }}</div>
+    </div>
+  </a>
 {% assign thumb = nil %}{% if n15 %}{% assign thumb = 'newsletter-15-one-character-bypasses-auth-on-millions-of-ai-servers.jpg' %}{% endif %}
   <a href="{{ n15.url }}" class="newsletter-card">
     <div class="newsletter-card-img"{% if thumb %} style="background-image:url('{{ site.baseurl }}/assets/media/newsletters/{{ thumb }}');background-size:cover;background-position:center;"{% else %} style="background:var(--main-bg);display:flex;align-items:center;justify-content:center;"{% endif %}></div>
@@ -294,71 +324,98 @@ html[data-mode="dark"] .newsletter-hero-cta:hover {
       <div class="newsletter-card-meta">{{ n13.date | date: '%B %d, %Y' }}</div>
     </div>
   </a>
-{% assign thumb = nil %}{% if n12 %}{% assign thumb = 'newsletter-12-claude-mythos-found-thousands-of-zero-days.jpg' %}{% endif %}
-  <a href="{{ n12.url }}" class="newsletter-card">
-    <div class="newsletter-card-img"{% if thumb %} style="background-image:url('{{ site.baseurl }}/assets/media/newsletters/{{ thumb }}');background-size:cover;background-position:center;"{% else %} style="background:var(--main-bg);display:flex;align-items:center;justify-content:center;"{% endif %}></div>
-    <div class="newsletter-card-body">
-      <div class="newsletter-card-issue">Issue #{{ n12.issue }}</div>
-      <h4 class="newsletter-card-title">{{ n12.title }}</h4>
-      <p class="newsletter-card-preview">{{ n12.preview_text | default: n12.subtitle | strip_html | truncate: 160 }}</p>
-      <div class="newsletter-card-meta">{{ n12.date | date: '%B %d, %Y' }}</div>
-    </div>
-  </a>
-{% assign thumb = nil %}{% if n11 %}{% assign thumb = 'newsletter-11-mcp-servers-just-tripled.jpg' %}{% endif %}
-  <a href="{{ n11.url }}" class="newsletter-card">
-    <div class="newsletter-card-img"{% if thumb %} style="background-image:url('{{ site.baseurl }}/assets/media/newsletters/{{ thumb }}');background-size:cover;background-position:center;"{% else %} style="background:var(--main-bg);display:flex;align-items:center;justify-content:center;"{% endif %}></div>
-    <div class="newsletter-card-body">
-      <div class="newsletter-card-issue">Issue #{{ n11.issue }}</div>
-      <h4 class="newsletter-card-title">{{ n11.title }}</h4>
-      <p class="newsletter-card-preview">{{ n11.preview_text | default: n11.subtitle | strip_html | truncate: 160 }}</p>
-      <div class="newsletter-card-meta">{{ n11.date | date: '%B %d, %Y' }}</div>
-    </div>
-  </a>
-{% assign thumb = nil %}{% if n10 %}{% assign thumb = 'newsletter-10-most-mcp-servers-trust-every-request-by-default.jpg' %}{% endif %}
-  <a href="{{ n10.url }}" class="newsletter-card">
-    <div class="newsletter-card-img"{% if thumb %} style="background-image:url('{{ site.baseurl }}/assets/media/newsletters/{{ thumb }}');background-size:cover;background-position:center;"{% else %} style="background:var(--main-bg);display:flex;align-items:center;justify-content:center;"{% endif %}></div>
-    <div class="newsletter-card-body">
-      <div class="newsletter-card-issue">Issue #{{ n10.issue }}</div>
-      <h4 class="newsletter-card-title">{{ n10.title }}</h4>
-      <p class="newsletter-card-preview">{{ n10.preview_text | default: n10.subtitle | strip_html | truncate: 160 }}</p>
-      <div class="newsletter-card-meta">{{ n10.date | date: '%B %d, %Y' }}</div>
-    </div>
-  </a>
 </div>
 {% endif %}
 
-<!-- ── Archive (Issues 1–7) ──────────────────────────────────────────── -->
+<!-- ── Archive (Issues 1–12) ─────────────────────────────────────────── -->
 <h3 class="newsletter-section-title">Earlier Issues</h3>
 
-{% assign n7  = site.newsletters | where_exp:'n','n.url contains "newsletter-issue-7"' | first %}
-{% assign n6  = site.newsletters | where_exp:'n','n.url contains "newsletter-issue-6"' | first %}
-{% assign n5  = site.newsletters | where_exp:'n','n.url contains "newsletter-issue-5"' | first %}
-{% assign n4  = site.newsletters | where_exp:'n','n.url contains "newsletter-issue-4"' | first %}
-{% assign n3  = site.newsletters | where_exp:'n','n.url contains "newsletter-issue-3"' | first %}
-{% assign n2  = site.newsletters | where_exp:'n','n.url contains "newsletter-issue-2"' | first %}
-{% assign n1  = site.newsletters | where_exp:'n','n.url contains "newsletter-issue-1"' | first %}
-{% assign all_issues = site.newsletters | where_exp:'n','n.url contains "newsletter-issue-"' | sort: 'date' | reverse %}
-{% if n7 or n6 or n5 or n4 or n3 or n2 or n1 %}
+{% assign n12 = site.newsletters | where_exp:'n','n.url contains "newsletter-issue-12"' | first %}
+{% assign n11 = site.newsletters | where_exp:'n','n.url contains "newsletter-issue-11"' | first %}
+{% assign n10 = site.newsletters | where_exp:'n','n.url contains "newsletter-issue-10"' | first %}
+{% assign n9  = site.newsletters | where_exp:'n','n.url contains "newsletter-issue-9"'  | first %}
+{% assign n8  = site.newsletters | where_exp:'n','n.url contains "newsletter-issue-8"'  | first %}
+{% assign n7  = site.newsletters | where_exp:'n','n.url contains "newsletter-issue-7"'  | first %}
+{% assign n6  = site.newsletters | where_exp:'n','n.url contains "newsletter-issue-6"'  | first %}
+{% assign n5  = site.newsletters | where_exp:'n','n.url contains "newsletter-issue-5"'  | first %}
+{% assign n4  = site.newsletters | where_exp:'n','n.url contains "newsletter-issue-4"'  | first %}
+{% assign n3  = site.newsletters | where_exp:'n','n.url contains "newsletter-issue-3"'  | first %}
+{% assign n2  = site.newsletters | where_exp:'n','n.url contains "newsletter-issue-2"'  | first %}
+{% assign n1  = site.newsletters | where_exp:'n','n.url contains "newsletter-issue-1"'  | first %}
 <ul class="newsletter-archive-list">
-{% for newsletter in all_issues %}
-  {% assign num = newsletter.url | remove: "/newsletter/newsletter-issue-" | remove: "/" %}
-  {% if num == "1" or num == "2" or num == "3" or num == "4" or num == "5" or num == "6" or num == "7" %}
+{% if n12 %}
   <li class="newsletter-archive-item">
-    <a href="{{ site.baseurl }}{{ newsletter.url }}" class="newsletter-archive-title">
-      {% if newsletter.title != "AI Security Intelligence Digest" %}
-        {{ newsletter.title }}
-      {% else %}
-        Issue #{{ newsletter.issue }}
-      {% endif %}
-    </a>
-    <span class="newsletter-archive-date">{{ newsletter.date | date: '%b %d, %Y' }}</span>
+    <a href="{{ site.baseurl }}{{ n12.url }}" class="newsletter-archive-title">{{ n12.title }}</a>
+    <span class="newsletter-archive-date">{{ n12.date | date: '%b %d, %Y' }}</span>
   </li>
-  {% endif %}
-{% endfor %}
-</ul>
-{% else %}
-<p class="text-muted">No earlier issues available.</p>
 {% endif %}
+{% if n11 %}
+  <li class="newsletter-archive-item">
+    <a href="{{ site.baseurl }}{{ n11.url }}" class="newsletter-archive-title">{{ n11.title }}</a>
+    <span class="newsletter-archive-date">{{ n11.date | date: '%b %d, %Y' }}</span>
+  </li>
+{% endif %}
+{% if n10 %}
+  <li class="newsletter-archive-item">
+    <a href="{{ site.baseurl }}{{ n10.url }}" class="newsletter-archive-title">{{ n10.title }}</a>
+    <span class="newsletter-archive-date">{{ n10.date | date: '%b %d, %Y' }}</span>
+  </li>
+{% endif %}
+{% if n9 %}
+  <li class="newsletter-archive-item">
+    <a href="{{ site.baseurl }}{{ n9.url }}" class="newsletter-archive-title">{{ n9.title }}</a>
+    <span class="newsletter-archive-date">{{ n9.date | date: '%b %d, %Y' }}</span>
+  </li>
+{% endif %}
+{% if n8 %}
+  <li class="newsletter-archive-item">
+    <a href="{{ site.baseurl }}{{ n8.url }}" class="newsletter-archive-title">{{ n8.title }}</a>
+    <span class="newsletter-archive-date">{{ n8.date | date: '%b %d, %Y' }}</span>
+  </li>
+{% endif %}
+{% if n7 %}
+  <li class="newsletter-archive-item">
+    <a href="{{ site.baseurl }}{{ n7.url }}" class="newsletter-archive-title">{{ n7.title }}</a>
+    <span class="newsletter-archive-date">{{ n7.date | date: '%b %d, %Y' }}</span>
+  </li>
+{% endif %}
+{% if n6 %}
+  <li class="newsletter-archive-item">
+    <a href="{{ site.baseurl }}{{ n6.url }}" class="newsletter-archive-title">{{ n6.title }}</a>
+    <span class="newsletter-archive-date">{{ n6.date | date: '%b %d, %Y' }}</span>
+  </li>
+{% endif %}
+{% if n5 %}
+  <li class="newsletter-archive-item">
+    <a href="{{ site.baseurl }}{{ n5.url }}" class="newsletter-archive-title">{{ n5.title }}</a>
+    <span class="newsletter-archive-date">{{ n5.date | date: '%b %d, %Y' }}</span>
+  </li>
+{% endif %}
+{% if n4 %}
+  <li class="newsletter-archive-item">
+    <a href="{{ site.baseurl }}{{ n4.url }}" class="newsletter-archive-title">{{ n4.title }}</a>
+    <span class="newsletter-archive-date">{{ n4.date | date: '%b %d, %Y' }}</span>
+  </li>
+{% endif %}
+{% if n3 %}
+  <li class="newsletter-archive-item">
+    <a href="{{ site.baseurl }}{{ n3.url }}" class="newsletter-archive-title">{{ n3.title }}</a>
+    <span class="newsletter-archive-date">{{ n3.date | date: '%b %d, %Y' }}</span>
+  </li>
+{% endif %}
+{% if n2 %}
+  <li class="newsletter-archive-item">
+    <a href="{{ site.baseurl }}{{ n2.url }}" class="newsletter-archive-title">{{ n2.title }}</a>
+    <span class="newsletter-archive-date">{{ n2.date | date: '%b %d, %Y' }}</span>
+  </li>
+{% endif %}
+{% if n1 %}
+  <li class="newsletter-archive-item">
+    <a href="{{ site.baseurl }}{{ n1.url }}" class="newsletter-archive-title">{{ n1.title }}</a>
+    <span class="newsletter-archive-date">{{ n1.date | date: '%b %d, %Y' }}</span>
+  </li>
+{% endif %}
+</ul>
 
 <!-- ── Read on Beehiiv ────────────────────────────────────────────────── -->
 <div class="text-center my-4">
